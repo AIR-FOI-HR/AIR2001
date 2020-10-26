@@ -1,2 +1,0 @@
-include ':app'
-rootProject.name = "AIR2001-Beervana"
