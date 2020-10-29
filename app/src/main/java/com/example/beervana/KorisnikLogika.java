@@ -88,6 +88,23 @@ public class KorisnikLogika {
         }
         return "";
     }
+    public String ProvijeriPostojiLiKorisnickoIme(String korisnickoIme){
+        if(korisnickoIme.equals("default")){
+            return "Greška: korisničko ime je zauzeto.";
+        }
+
+
+        return "";
+    }
+    public String ProvijeriPostojiLiEmail(String email){
+        if(email.equals("default@default.com")){
+            return "Greška: Korisnički račun s ovim emailom već postoji.";
+        }
+        return"";
+    }
+    public String KreirajKorisnika(){
+        return "";
+    }
 
 
     public boolean SamoSlovaHrv(String zaProvjeriti){

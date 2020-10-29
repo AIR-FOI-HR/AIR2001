@@ -66,6 +66,15 @@ public class LokacijaLogika {
         }
         return "";
     }
+    public String ProvijeriPostojiLiOIBlokacije(String oibLokacije){
+        if(oibLokacije.equals("99999999999")){
+            return "Greška: OIB lokacije već postoji.";
+        }
+        return "";
+    }
+    public String KreirajLokaciju(){
+        return "";
+    }
     public boolean SamoSlovaHrv(String zaProvjeriti){
         return Pattern.matches("^[a-zA-ZčČćĆžŽđĐšŠ]+$",zaProvjeriti);
     }

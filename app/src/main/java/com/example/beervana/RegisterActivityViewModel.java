@@ -260,6 +260,12 @@ public class RegisterActivityViewModel extends ViewModel {
             if(!errUnosOibLokacije.equals("")) {
                 sveUredu=false;
                 errUnosOibLokacijeVidljivost = visible;
+            }else{
+                errUnosOibLokacije=logikaLokacija.ProvijeriPostojiLiOIBlokacije(oibLokacije);
+                if(!errUnosOibLokacije.equals("")){
+                    sveUredu=false;
+                    errUnosOibLokacijeVidljivost = visible;
+                }
             }
             if(!errUnosOpisLokacije.equals("")) {
                 sveUredu=false;
@@ -300,13 +306,27 @@ public class RegisterActivityViewModel extends ViewModel {
             sveUredu=false;
             errUnosEmailVidljivost = visible;
         }else{
-            errUnosEmailVidljivost = gone;
+            errUnosEmail=logikaKorisnika.ProvijeriPostojiLiEmail(email);
+            if(!errUnosEmail.equals("")){
+                sveUredu=false;
+                errUnosEmailVidljivost=visible;
+            }else{
+                errUnosEmailVidljivost = gone;
+            }
+
         }
         if(!errUnosKorisnickoIme.equals("")) {
             sveUredu=false;
             errUnosKorisnickoImeVidljivost = visible;
         }else{
-            errUnosKorisnickoImeVidljivost = gone;
+            errUnosKorisnickoIme=logikaKorisnika.ProvijeriPostojiLiKorisnickoIme(korisnickoIme);
+            if(!errUnosKorisnickoIme.equals("")){
+                sveUredu=false;
+                errUnosKorisnickoImeVidljivost= visible;
+            }else{
+                errUnosKorisnickoImeVidljivost = gone;
+            }
+
         }
         if(!errUnosLozinka.equals("")) {
             sveUredu=false;
