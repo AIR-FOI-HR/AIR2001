@@ -1,3 +1,8 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="paddingTekstEditor">15dp</dimen>
+    <dimen name="pocetnaMarginaTekstEditor">40dp</dimen>
+    <dimen name="zavrsnaMarginaTekstEditor">40dp</dimen>
+    <dimen name="razmakIzmedjuRedakaTekstEditor">25dp</dimen>
+    <dimen name="razmakZaGreske">5dp</dimen>
 </resources>
