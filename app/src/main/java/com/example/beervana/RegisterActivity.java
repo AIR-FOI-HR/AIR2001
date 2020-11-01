@@ -13,10 +13,30 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.beervana.databinding.ActivityRegisterBinding;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    private String sendUrl="https://beervana2020.000webhostapp.com/test/getData.php";
+    private RequestQueue requestQueue;
+    private  static  final  String TAG=MainActivity.class.getSimpleName();
+    int success;
+    private String TAG_SUCESS="success";
+    private String TAG_MESSAGE="message";
+    private String tag_json_obj="json_obj_req";
     private EditText ime;
     private EditText  prezime;
     private EditText  brojMobitela;
@@ -125,6 +145,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         errUnosUlica.setVisibility(viewModel.errUnosUlicaVidljivost);
         errUnosKucniBroj.setVisibility(viewModel.errUnosKucniBrojVidljivost);
 
+        requestQueue= Volley.newRequestQueue(getApplicationContext());
+
         binding.btnRegistracija.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,6 +167,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 if(viewModel.ProvijeriSvePodatke()){
                     Toast toast = Toast.makeText(getApplicationContext(),"Uspješna Registracija",Toast.LENGTH_LONG);
                     toast.show();
+                    sendData();
                 }else{
                     errUnosIme.setText(viewModel.getErrUnosIme());
                     errUnosPrezime.setText(viewModel.getErrUnosPrezime());
@@ -206,6 +229,42 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             errUnosKucniBroj.setVisibility(View.GONE);
 
         }
+    }
+    private  void sendData(){
+        StringRequest request=new StringRequest(Request.Method.POST, sendUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jobj = new JSONObject(response);
+                    success = jobj.getInt(TAG_SUCESS);
+                    if (success == 1) {
+                        Toast.makeText(RegisterActivity.this, jobj.getString(TAG_MESSAGE), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(RegisterActivity.this, jobj.getString(TAG_MESSAGE), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    Toast.makeText(RegisterActivity.this, "Error Occured", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(RegisterActivity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            public Map<String,String> getParams(){
+                Map<String, String> params=new HashMap<String, String>();
+                params.put("ime_korisnika",ime.getText().toString());
+                params.put("prezime_korisnika",prezime.getText().toString());
+                params.put("email_korisnika",email.getText().toString());
+                params.put("korsnicko_ime",korisnickoIme.getText().toString());
+                params.put("lozinka",lozinka.getText().toString());
+                return params;
+            }
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(10000,1,1.0f));
+        requestQueue.add(request);
+
     }
 
     @Override
