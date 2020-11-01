@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class gl_izbornik_client extends AppCompatActivity {
+public class GlavniIzbornikClient extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

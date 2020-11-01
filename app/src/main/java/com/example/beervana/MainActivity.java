@@ -86,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast toast = Toast.makeText(getApplicationContext(), "Uspješna prijava! ", Toast.LENGTH_LONG);
                     toast.show();
                     sendData();
+                    openMainMenu();
+
                 } else {
                     errorKorisnickoIme.setText(viewModel.getErrorKorisnickoIme());
                     errorLozinka.setText(viewModel.getErrorLozinka());
@@ -105,6 +107,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openRegistration(){
         Intent intent = new Intent(this,RegisterActivity.class);
+        startActivity(intent);
+    }
+
+    public void openMainMenu(){
+        Intent intent = new Intent(this,GlavniIzbornikClient.class);
         startActivity(intent);
     }
 

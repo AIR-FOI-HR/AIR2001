@@ -1,5 +1,6 @@
 package com.example.beervana;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +26,7 @@ import com.example.beervana.databinding.ActivityRegisterBinding;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.Inet4Address;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -168,6 +170,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                     Toast toast = Toast.makeText(getApplicationContext(),"Uspješna Registracija",Toast.LENGTH_LONG);
                     toast.show();
                     sendData();
+                    openLogin();
                 }else{
                     errUnosIme.setText(viewModel.getErrUnosIme());
                     errUnosPrezime.setText(viewModel.getErrUnosPrezime());
@@ -202,6 +205,11 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             }
         });
 
+    }
+
+    public void openLogin(){
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
 
     @Override

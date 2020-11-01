@@ -10,7 +10,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".gl_izbornik_client">
+        tools:context=".GlavniIzbornikClient">
 
         <ImageView
             android:id="@+id/imageView7"
@@ -52,7 +52,8 @@
             android:layout_marginEnd="72dp"
             android:text="Tap to see all"
             android:textSize="8dp"
-
+            android:textColor="@color/black"
+            android:background="@drawable/gradient1"
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -164,7 +165,8 @@
             android:layout_height="31dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="72dp"
-
+            android:textColor="@color/black"
+            android:background="@drawable/gradient1"
             android:text="Tap to see all"
             android:textAllCaps="false"
             android:textSize="8dp"
@@ -189,6 +191,7 @@
             android:layout_marginEnd="140dp"
             android:text="Recent ratings on my beers"
             android:textColor="@color/black"
+            android:background="@drawable/gradient1"
             android:textSize="18dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -212,6 +215,7 @@
             android:layout_marginBottom="8dp"
             android:text="My statistics"
             android:textColor="@color/black"
+            android:background="@drawable/gradient1"
             android:textSize="18dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/imageView8"
@@ -247,6 +251,7 @@
             android:text="My catalogue"
             android:textColor="@color/black"
             android:textSize="18dp"
+            android:background="@drawable/gradient1"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider2" />
@@ -270,6 +275,7 @@
             android:text="Beers"
             android:textColor="@color/black"
             android:textSize="14dp"
+            android:background="@drawable/gradient1"
             android:textStyle="bold"
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
@@ -285,6 +291,7 @@
             android:text="Tours"
             android:textColor="@color/black"
             android:textSize="14dp"
+            android:background="@drawable/gradient1"
             android:textStyle="bold"
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
@@ -299,6 +306,7 @@
             android:layout_marginTop="48dp"
             android:text="Tasting menus"
             android:textColor="@color/black"
+            android:background="@drawable/gradient1"
             android:textSize="12dp"
             android:textStyle="bold"
             android:textAllCaps="false"
@@ -309,6 +317,7 @@
 
         <Button
             android:id="@+id/button5"
+            android:background="@drawable/gradient1"
             android:layout_width="133dp"
             android:layout_height="49dp"
             android:layout_marginStart="36dp"
@@ -325,6 +334,7 @@
 
         <Button
             android:id="@+id/button6"
+            android:background="@drawable/gradient1"
             android:layout_width="133dp"
             android:layout_height="48dp"
             android:layout_marginTop="48dp"
@@ -340,6 +350,7 @@
 
         <Button
             android:id="@+id/button7"
+            android:background="@drawable/gradient1"
             android:layout_width="132dp"
             android:layout_height="48dp"
             android:layout_marginStart="57dp"
