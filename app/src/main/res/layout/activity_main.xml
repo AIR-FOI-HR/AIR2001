@@ -85,9 +85,8 @@
         app:srcCompat="@drawable/group_1"
         tools:ignore="MissingConstraints" />
 
-<<<<<<< HEAD
 
-=======
+
     <TextView
         android:id="@+id/tvNotUser"
         android:layout_width="131dp"
@@ -100,7 +99,7 @@
         app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
->>>>>>> features/login
+
 
     <TextView
         android:id="@+id/tvSignUp"
