@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "14603137766",
+    "firebase_url": "https://beervana-1ce8a.firebaseio.com",
+    "project_id": "beervana-1ce8a",
+    "storage_bucket": "beervana-1ce8a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14603137766:android:43626dbc9f48f5adb2c127",
+        "android_client_info": {
+          "package_name": "com.example.beervana"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "14603137766-etl9fto2pa1l6t8f3absvgtg2pps0o9c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_ou2prszsRShsyMpI-o-voHFG-YgXmQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "14603137766-etl9fto2pa1l6t8f3absvgtg2pps0o9c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
