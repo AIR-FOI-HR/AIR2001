@@ -9,4 +9,26 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="registracija">Registracija</string>
+    <string name="ime">Ime</string>
+    <string name="prezime">Prezime</string>
+    <string name="broj_mobitela">Broj mobitela</string>
+    <string name="e_mail">E-mail</string>
+    <string name="korisnicko_ime">Korisničko ime</string>
+    <string name="lozinka">Lozinka</string>
+    <string name="ponovite_lozinku">Ponovite lozinku</string>
+    <string name="registriraj_se">Registriraj se</string>
+    <string name="odaberite_ulogu">Odaberite Ulogu</string>
+    <string name="naziv_lokacije">Naziv lokacije</string>
+    <string name="opis_lokacije">Opis Lokacije</string>
+    <string name="grad">Grad</string>
+    <string name="ulica">Ulica</string>
+    <string name="kucni_broj">Kućni broj</string>
+    <string name="oib_lokacije">OIB lokacije</string>
+    <string-array name="ListaUloga">
+        <item>Odaberite Ulogu</item>
+        <item>Korisnik</item>
+        <item>Klijent</item>
+    </string-array>
 </resources>
