@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
     private String sendUrl="https://beervana2020.000webhostapp.com/test/getData.php";
     private RequestQueue requestQueue;
-    private  static  final  String TAG=MainActivity.class.getSimpleName();
+    private  static  final  String TAG=RegisterActivity.class.getSimpleName();
     int success;
     private String TAG_SUCESS="success";
     private String TAG_MESSAGE="message";

@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/beervana"
+        android:src="@drawable/beervana"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -24,6 +24,7 @@
         android:layout_width="211dp"
         android:layout_height="40dp"
         android:layout_marginTop="25dp"
+        android:layout_below="@id/ivBeervana"
         android:background="#FFFFFF"
         android:ems="10"
         android:hint="Username"
@@ -31,12 +32,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivBeervana" />
+        app:layout_constraintTop_toBottomOf="@+id/ivBeervana"
+         />
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="210dp"
         android:layout_height="42dp"
+        android:layout_below="@id/etUsername"
         android:layout_marginTop="25dp"
         android:background="#FFFFFF"
         android:ems="10"
@@ -53,6 +56,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="44dp"
         android:background="@drawable/gradient1"
+        android:layout_below="@id/etPassword"
         android:text="login"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,11 +70,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:contentDescription="TODO"
+        android:layout_below="@id/btnUserLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.593"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnUserLogin"
-        app:srcCompat="@drawable/google_plus" />
+        android:src="@drawable/google_plus" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -78,42 +83,70 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:contentDescription="TODO"
+        android:layout_below="@id/btnUserLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.398"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnUserLogin"
-        app:srcCompat="@drawable/group_1"
+        android:src="@drawable/group_1"
         tools:ignore="MissingConstraints" />
-
-
 
 
     <TextView
         android:id="@+id/tvNotUser"
-        android:layout_width="131dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="25dp"
+        android:layout_width="134dp"
+        android:layout_height="25dp"
+        android:layout_below="@id/imageView3"
+        android:layout_marginTop="24dp"
         android:text="Not a user?"
         android:textAlignment="center"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
-
     <TextView
-        android:id="@+id/tvSignUp"
+        android:id="@+id/errUnosKorisnickoIme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="40dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        android:layout_marginStart="@dimen/pocetnaMarginaTekstEditor"
+        android:layout_marginTop="@dimen/razmakZaGreske"
+        android:layout_marginEnd="@dimen/zavrsnaMarginaTekstEditor"
+        app:layout_constraintTop_toBottomOf="@+id/etUsername"
+        android:textColor="@android:color/holo_red_light"/>
+
+    <TextView
+        android:id="@+id/errUnosLozinka"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/pocetnaMarginaTekstEditor"
+        android:layout_marginTop="@dimen/razmakZaGreske"
+        android:layout_marginEnd="@dimen/zavrsnaMarginaTekstEditor"
+        android:text=""
+        android:visibility="gone"
+        android:textColor="@android:color/holo_red_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="128dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="32dp"
         android:text="Sign up"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNotUser"
-        app:layout_constraintVertical_bias="0.179" />
+        app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
