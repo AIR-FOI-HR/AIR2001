@@ -11,6 +11,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.databinding.ActivityMainBinding;
+import com.example.webservice.SlanjePodataka;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -33,6 +34,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -85,8 +87,27 @@ public class MainActivity extends AppCompatActivity {
                 if (viewModel.ProvjeriPodatke()) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Uspješna prijava! ", Toast.LENGTH_LONG);
                     toast.show();
-                    sendData();
-                    openMainMenu();
+                    Map<String, String> params=new HashMap<String, String>();
+                    params.put("korsnicko_ime",korisnickoIme.getText().toString());
+                    params.put("lozinka",lozinka.getText().toString());
+                    SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
+                    slanjePodataka.setParametri(params);
+                    slanjePodataka.sendData(getApplicationContext(),requestQueue);
+                    //requestQueue = slanjePodataka.sendData(getApplicationContext());
+                    requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+                        @Override
+                        public void onRequestFinished(Request<Object> request) {
+                            String odgovor = slanjePodataka.getOdgovor();
+                            Toast noviToast = Toast.makeText(getApplicationContext(),odgovor,Toast.LENGTH_LONG);
+                            noviToast.show();
+                            if(odgovor.equals(" Successfully loged in")){
+                                openMainMenu();
+                            }
+                        }
+                    });
+
+
+
 
                 } else {
                     errorKorisnickoIme.setText(viewModel.getErrorKorisnickoIme());

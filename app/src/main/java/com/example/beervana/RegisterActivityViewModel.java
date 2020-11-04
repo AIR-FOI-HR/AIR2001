@@ -168,6 +168,18 @@ public class RegisterActivityViewModel extends ViewModel {
         this.kucniBroj = kucniBroj;
     }
 
+    public void setErrUnosEmail(String errUnosEmail) {
+        this.errUnosEmail = errUnosEmail;
+    }
+
+    public void setErrUnosKorisnickoIme(String errUnosKorisnickoIme) {
+        this.errUnosKorisnickoIme = errUnosKorisnickoIme;
+    }
+
+    public void setErrUnosOibLokacije(String errUnosOibLokacije) {
+        this.errUnosOibLokacije = errUnosOibLokacije;
+    }
+
     public String getErrUnosIme() {
         return errUnosIme;
     }
@@ -260,12 +272,6 @@ public class RegisterActivityViewModel extends ViewModel {
             if(!errUnosOibLokacije.equals("")) {
                 sveUredu=false;
                 errUnosOibLokacijeVidljivost = visible;
-            }else{
-                errUnosOibLokacije=logikaLokacija.ProvijeriPostojiLiOIBlokacije(oibLokacije);
-                if(!errUnosOibLokacije.equals("")){
-                    sveUredu=false;
-                    errUnosOibLokacijeVidljivost = visible;
-                }
             }
             if(!errUnosOpisLokacije.equals("")) {
                 sveUredu=false;
@@ -306,27 +312,13 @@ public class RegisterActivityViewModel extends ViewModel {
             sveUredu=false;
             errUnosEmailVidljivost = visible;
         }else{
-            errUnosEmail=logikaKorisnika.ProvijeriPostojiLiEmail(email);
-            if(!errUnosEmail.equals("")){
-                sveUredu=false;
-                errUnosEmailVidljivost=visible;
-            }else{
-                errUnosEmailVidljivost = gone;
-            }
-
+            errUnosEmailVidljivost = gone;
         }
         if(!errUnosKorisnickoIme.equals("")) {
             sveUredu=false;
             errUnosKorisnickoImeVidljivost = visible;
         }else{
-            errUnosKorisnickoIme=logikaKorisnika.ProvijeriPostojiLiKorisnickoIme(korisnickoIme);
-            if(!errUnosKorisnickoIme.equals("")){
-                sveUredu=false;
-                errUnosKorisnickoImeVidljivost= visible;
-            }else{
-                errUnosKorisnickoImeVidljivost = gone;
-            }
-
+            errUnosKorisnickoImeVidljivost = gone;
         }
         if(!errUnosLozinka.equals("")) {
             sveUredu=false;
