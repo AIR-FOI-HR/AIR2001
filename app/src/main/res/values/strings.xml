@@ -26,9 +26,14 @@
     <string name="ulica">Ulica</string>
     <string name="kucni_broj">Kućni broj</string>
     <string name="oib_lokacije">OIB lokacije</string>
-    
+    <string name="add_event">Add Event</string>
+    <string name="event_name">Event name</string>
+    <string name="slika_za_doga_aj">Slika za događaj</string>
+    <string name="add_image">Add Image</string>
+    <string name="description">Description</string>
+    <string name="datumTekst">/ /</string>
 
-    
+
     <string-array name="ListaUloga">
         <item>Odaberite Ulogu</item>
         <item>Korisnik</item>

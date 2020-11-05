@@ -1,4 +1,6 @@
 package com.example.beervana;
 
-public class AddEventActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class AddEventActivity extends AppCompatActivity {
 }

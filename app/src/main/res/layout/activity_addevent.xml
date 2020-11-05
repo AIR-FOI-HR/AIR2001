@@ -1,6 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.Beervana.NoActionBar"
+    android:background="@color/white"
+    tools:context=".AddEventActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txtAddEvent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:padding="15dp"
+            android:text="@string/add_event"
+            android:textAlignment="center"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/slikaDogadjaj"
+            android:layout_width="match_parent"
+            android:layout_height="175dp"
+            android:layout_below="@id/txtAddEvent"
+            android:contentDescription="@string/slika_za_doga_aj"
+            app:srcCompat="@android:drawable/ic_menu_gallery"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:scaleType="fitXY"
+            />
+        <TextView
+            android:id="@+id/errSlika"
+            android:layout_below="@id/slikaDogadjaj"
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="@dimen/razmakZaGreske"
+            android:layout_marginEnd="50dp"
+            android:textColor="@android:color/holo_red_light"
+            android:visibility="gone"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:text="" />
+
+        <Button
+            android:id="@+id/btnDodajSliku"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/errSlika"
+            android:text="@string/add_image" />
+
+        <EditText
+            android:importantForAutofill="no"
+            android:id="@+id/unosImeDogadaja"
+            android:layout_below="@id/btnDodajSliku"
+            android:hint="@string/event_name"
+            android:inputType="textPersonName"
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/edit_text_border"
+            android:ellipsize="start"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/paddingTekstEditor"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+        <TextView
+            android:id="@+id/errUnosImeDogadaja"
+            android:layout_below="@id/unosImeDogadaja"
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="@dimen/razmakZaGreske"
+            android:layout_marginEnd="50dp"
+            android:textColor="@android:color/holo_red_light"
+            android:visibility="gone"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:text="" />
+        <EditText
+            android:importantForAutofill="no"
+            android:id="@+id/unosOpisDogadaja"
+            android:layout_below="@id/errUnosImeDogadaja"
+            android:hint="@string/description"
+            android:inputType="date"
+
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/edit_text_border"
+            android:ellipsize="start"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/paddingTekstEditor"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+        <TextView
+            android:id="@+id/errUnosOpisdogadaja"
+            android:layout_below="@id/unosOpisDogadaja"
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="@dimen/razmakZaGreske"
+            android:layout_marginEnd="50dp"
+            android:textColor="@android:color/holo_red_light"
+            android:visibility="gone"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:text="" />
+        <TextView
+            android:id="@+id/prikazDatuma"
+            android:layout_below="@id/errUnosOpisdogadaja"
+            android:background="@drawable/edit_text_border"
+
+
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="50dp"
+            android:textColor="@color/black"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:text="@string/datumTekst" />
+        <Button
+            android:id="@+id/btnOdaberiDatum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/errUnosOpisdogadaja"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@id/prikazDatuma"
+            android:text="Odaberi Datum" />
+        <TextView
+            android:id="@+id/errUnosDatum"
+            android:layout_below="@id/prikazDatuma"
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="@dimen/razmakZaGreske"
+            android:layout_marginEnd="50dp"
+            android:textColor="@android:color/holo_red_light"
+            android:visibility="gone"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:text="" />
+        <Button
+            android:id="@+id/btnDodajDogadaj"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/errUnosDatum"
+            android:layout_marginTop="30dp"
+            android:text="Add Event" />
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>
