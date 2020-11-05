@@ -55,7 +55,7 @@ public class SlanjePodataka {
         this.sendUrl = sendUrl;
     }
 
-    public RequestQueue sendData(Context context, RequestQueue requestQueue) {
+    public void sendData(Context context, RequestQueue requestQueue) {
         //requestQueue = Volley.newRequestQueue(context);
         StringRequest request = new StringRequest(Request.Method.POST, sendUrl, new Response.Listener<String>() {
             @Override
@@ -88,7 +88,7 @@ public class SlanjePodataka {
         };
         request.setRetryPolicy(new DefaultRetryPolicy(10000, 1, 1.0f));
         requestQueue.add(request);
-        return requestQueue;
+
 
     }
 

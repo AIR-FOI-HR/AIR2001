@@ -33,7 +33,7 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private String sendUrl="https://beervana2020.000webhostapp.com/test/proba.php";
+    private String sendUrl="https://beervana2020.000webhostapp.com/test/email.php";
     private RequestQueue requestQueue;
     private  static  final  String TAG=RegisterActivity.class.getSimpleName();
     int success;
@@ -149,7 +149,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         errUnosUlica.setVisibility(viewModel.errUnosUlicaVidljivost);
         errUnosKucniBroj.setVisibility(viewModel.errUnosKucniBrojVidljivost);
 
-        requestQueue= Volley.newRequestQueue(getApplicationContext());
+        //requestQueue= Volley.newRequestQueue(getApplicationContext());
 
         binding.btnRegistracija.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,28 +169,26 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 viewModel.setUlica(ulica.getText().toString());
                 viewModel.setKucniBroj(kucniBroj.getText().toString());
                 if(viewModel.ProvijeriSvePodatke()){
-
-                    Toast toast = Toast.makeText(getApplicationContext(),"Uspješna Registracija",Toast.LENGTH_LONG);
-                    toast.show();
+                    requestQueue= Volley.newRequestQueue(getApplicationContext());
+                    provjeraPostojeLiPodaci = true;
                     Map<String, String> params=new HashMap<String, String>();
                     params.put("ime_korisnika",ime.getText().toString());
                     params.put("prezime_korisnika",prezime.getText().toString());
                     params.put("email_korisnika",email.getText().toString());
                     params.put("korsnicko_ime",korisnickoIme.getText().toString());
                     params.put("lozinka",lozinka.getText().toString());
+                    sendUrl="https://beervana2020.000webhostapp.com/test/email.php";
                     SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
                     slanjePodataka.setParametri(params);
                     slanjePodataka.sendData(getApplicationContext(),requestQueue);
-                    sendUrl="https://beervana2020.000webhostapp.com/test/korisnickoImeProvjera.php";
-                    slanjePodataka.setSendUrl(sendUrl);
-                    slanjePodataka.sendData(getApplicationContext(),requestQueue);
+                    //sendUrl="https://beervana2020.000webhostapp.com/test/korisnickoImeProvjera.php";
+                    //slanjePodataka.setSendUrl(sendUrl);
+                    //slanjePodataka.sendData(getApplicationContext(),requestQueue);
                     requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
                         @Override
                         public void onRequestFinished(Request<Object> request) {
                             String odgovor = slanjePodataka.getOdgovor();
-                            Toast noviToast = Toast.makeText(getApplicationContext(),odgovor,Toast.LENGTH_LONG);
-                            noviToast.show();
-                            if(request.getUrl().contains("proba.php")){
+                            if(request.getUrl().contains("email.php")){
                                 if(odgovor.equals("E-mail already exists")){
                                     viewModel.setErrUnosEmail(odgovor);
                                     viewModel.errUnosEmailVidljivost = View.VISIBLE;
@@ -198,6 +196,9 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                                     errUnosEmail.setVisibility(viewModel.errUnosEmailVidljivost);
                                     provjeraPostojeLiPodaci=false;
                                 }
+                                sendUrl="https://beervana2020.000webhostapp.com/test/korisnickoImeProvjera.php";
+                                slanjePodataka.setSendUrl(sendUrl);
+                                slanjePodataka.sendData(getApplicationContext(),requestQueue);
 
                             }else if(request.getUrl().contains("korisnickoImeProvjera.php")){
                                 if(odgovor.equals("Username already exists")){
@@ -207,12 +208,19 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                                     errUnosKorisnickoIme.setVisibility(viewModel.errUnosKorisnickoImeVidljivost);
                                     provjeraPostojeLiPodaci=false;
                                 }
+                                if(provjeraPostojeLiPodaci){
+                                    sendUrl="https://beervana2020.000webhostapp.com/test/getData.php";
+                                    slanjePodataka.setSendUrl(sendUrl);
+                                    slanjePodataka.sendData(getApplicationContext(),requestQueue);
+                                }
                             }else{
-
+                                if(odgovor.equals("successfully registered")){
+                                    openLogin();
+                                }
                             }
                         }
                     });
-                    openLogin();
+                    //openLogin();
                 }else{
                     errUnosIme.setText(viewModel.getErrUnosIme());
                     errUnosPrezime.setText(viewModel.getErrUnosPrezime());
@@ -250,6 +258,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     }
 
     public void openLogin(){
+        Toast toast = Toast.makeText(getApplicationContext(),"Successfully registered",Toast.LENGTH_LONG);
+        toast.show();
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }
