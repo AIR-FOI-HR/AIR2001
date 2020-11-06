@@ -3,13 +3,16 @@ package com.example.beervana;
 import android.net.Uri;
 import android.view.View;
 
+import androidx.lifecycle.ViewModel;
 
-public class AddEventActivityViewModel {
+
+public class AddEventActivityViewModel extends ViewModel {
     private Uri slika;
+    private String slikaZaSlanje = "";
     private String unosImedogadjaja;
     private String unosOpisaDogadaja;
-    private String prikazDatuma;
-    private String prikazVremena;
+    private String prikazDatuma = "   / /   ";
+    private String prikazVremena= "    :    ";
     private String errSlika;
     private String errUnosImeDogadjaja;
     private String errOpisaDogadjaja;
@@ -24,6 +27,16 @@ public class AddEventActivityViewModel {
 
     int gone = View.GONE;
     int visible=View.VISIBLE;
+
+    DogadajLogika logikaDogadjaj = new DogadajLogika();
+
+    public String getSlikaZaSlanje() {
+        return slikaZaSlanje;
+    }
+
+    public void setSlikaZaSlanje(String slikaZaSlanje) {
+        this.slikaZaSlanje = slikaZaSlanje;
+    }
 
     public Uri getSlika() {
         return slika;
@@ -105,6 +118,42 @@ public class AddEventActivityViewModel {
         this.errUnosVrijeme = errUnosVrijeme;
     }
 
+    public boolean ProvijeriSvePodatke(){
+        boolean sveUredu = true;
+        errSlikaVisibility = gone;
+        errUnosImeDogadjajaVisibility = gone;
+        errOpisaDogadjajaVisibility = gone;
+        errUnosDatumVisibility = gone;
+        errUnosVrijemeVisibility = gone;
 
+        errSlika = logikaDogadjaj.ProvjeraUnosaSlike(slikaZaSlanje);
+        errUnosImeDogadjaja = logikaDogadjaj.ProvjeraUnosaNazivaDogadjaja(unosImedogadjaja);
+        errOpisaDogadjaja = logikaDogadjaj.ProvjeraUnosaOpisaDogadjaja(unosOpisaDogadaja);
+        errUnosDatum  = logikaDogadjaj.ProvjeraUpisaDatuma(prikazDatuma);
+        errUnosVrijeme = logikaDogadjaj.ProvjeraUpisaVremena(prikazVremena);
+
+        if(!errSlika.equals("")){
+              sveUredu=false;
+              errSlikaVisibility = visible;
+        }
+        if(!errUnosImeDogadjaja.equals("")){
+            sveUredu=false;
+            errUnosImeDogadjajaVisibility = visible;
+        }
+        if(!errOpisaDogadjaja.equals("")){
+            sveUredu=false;
+            errOpisaDogadjajaVisibility = visible;
+        }
+        if(!errUnosDatum.equals("")){
+            sveUredu=false;
+            errUnosDatumVisibility = visible;
+        }
+        if(!errUnosVrijeme.equals("")){
+            sveUredu=false;
+            errUnosVrijemeVisibility = visible;
+        }
+
+        return sveUredu;
+    }
 
 }

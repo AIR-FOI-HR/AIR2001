@@ -21,7 +21,8 @@
             android:text="@string/add_event"
             android:textAlignment="center"
             android:textSize="36sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
         <ImageView
             android:id="@+id/slikaDogadjaj"
             android:layout_width="match_parent"
@@ -133,7 +134,7 @@
             android:background="@drawable/edit_text_border"
 
 
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginStart="60dp"
@@ -172,7 +173,7 @@
             android:background="@drawable/edit_text_border"
 
 
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginStart="60dp"
@@ -180,7 +181,7 @@
             android:layout_marginEnd="50dp"
             android:textColor="@color/black"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-            android:text=" :  : " />
+            android:text="    :    " />
         <Button
             android:id="@+id/btnOdaberiVrijeme"
             android:layout_width="wrap_content"

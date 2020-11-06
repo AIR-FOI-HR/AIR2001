@@ -31,7 +31,7 @@
     <string name="slika_za_doga_aj">Slika za događaj</string>
     <string name="add_image">Add Image</string>
     <string name="description">Description</string>
-    <string name="datumTekst">/ /</string>
+    <string name="datumTekst">   / /   </string>
 
 
     <string-array name="ListaUloga">
