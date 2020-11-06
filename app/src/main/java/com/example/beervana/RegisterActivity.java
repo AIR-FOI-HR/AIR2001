@@ -180,7 +180,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                     params.put("uloga",uloga.getSelectedItem().toString());
                     params.put("nazivLokacije",nazivLokacije.getText().toString());
                     params.put("OIBLokacije",oibLokacije.getText().toString());
-                    params.put("adresaLokacije",ulica.getText().toString()+ " " + kucniBroj.getText().toString() + " " + grad.getText().toString());
+                    params.put("adresaLokacije",ulica.getText().toString().concat(" ".concat(kucniBroj.getText().toString().concat(" ".concat(grad.getText().toString()))) ));
                     sendUrl="https://beervana2020.000webhostapp.com/test/email.php";
                     SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
                     slanjePodataka.setParametri(params);
@@ -323,6 +323,10 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 params.put("email_korisnika",email.getText().toString());
                 params.put("korsnicko_ime",korisnickoIme.getText().toString());
                 params.put("lozinka",lozinka.getText().toString());
+                params.put("uloga",uloga.getSelectedItem().toString());
+                params.put("nazivLokacije",nazivLokacije.getText().toString());
+                params.put("OIBLokacije",oibLokacije.getText().toString());
+                params.put("adresaLokacije",ulica.getText().toString()+ " " + kucniBroj.getText().toString() + " " + grad.getText().toString());
                 return params;
             }
         };
