@@ -26,12 +26,16 @@
     <string name="ulica">Ulica</string>
     <string name="kucni_broj">Kućni broj</string>
     <string name="oib_lokacije">OIB lokacije</string>
-    
 
-    
+
     <string-array name="ListaUloga">
         <item>Odaberite Ulogu</item>
         <item>Korisnik</item>
         <item>Klijent</item>
     </string-array>
+    <string name="title_activity_dodavanje_degustacijskih_menia">
+        DodavanjeDegustacijskihMeniaActivity
+    </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
