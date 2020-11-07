@@ -77,16 +77,16 @@ public class MainActivity extends AppCompatActivity {
         signUp = binding.btnSignUp;
         signUp.setMovementMethod(LinkMovementMethod.getInstance());
 
-        requestQueue= Volley.newRequestQueue(getApplicationContext());
+
 
         binding.btnUserLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                requestQueue= Volley.newRequestQueue(getApplicationContext());
                 viewModel.setKorisnickoIme(korisnickoIme.getText().toString());
                 viewModel.setLozinka(lozinka.getText().toString());
                 if (viewModel.ProvjeriPodatke()) {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Uspješna prijava! ", Toast.LENGTH_LONG);
-                    toast.show();
+
                     Map<String, String> params=new HashMap<String, String>();
                     params.put("korsnicko_ime",korisnickoIme.getText().toString());
                     params.put("lozinka",lozinka.getText().toString());
@@ -94,9 +94,11 @@ public class MainActivity extends AppCompatActivity {
                     slanjePodataka.setParametri(params);
                     slanjePodataka.sendData(getApplicationContext(),requestQueue);
                     //requestQueue = slanjePodataka.sendData(getApplicationContext());
+
                     requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
                         @Override
                         public void onRequestFinished(Request<Object> request) {
+
                             String odgovor = slanjePodataka.getOdgovor();
                             Toast noviToast = Toast.makeText(getApplicationContext(),odgovor,Toast.LENGTH_LONG);
                             noviToast.show();
@@ -158,40 +160,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private  void sendData(){
-        StringRequest request=new StringRequest(Request.Method.POST, sendUrl, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    //Log.e ( "response", "" + response );
-                    JSONObject jobj = new JSONObject(response);
-                    success = jobj.getInt(TAG_SUCESS);
-                    if (success == 1) {
-                        Toast.makeText(MainActivity.this, jobj.getString(TAG_MESSAGE), Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(MainActivity.this, jobj.getString(TAG_MESSAGE), Toast.LENGTH_SHORT).show();
-                    }
-                } catch (JSONException e) {
-                    //Log.e ( "response", "" + response );
-                    Toast.makeText(MainActivity.this, "Error Occured", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
-            }
-        }){
-            public Map<String,String> getParams(){
-                Map<String, String> params=new HashMap<String, String>();
-                params.put("korsnicko_ime",korisnickoIme.getText().toString());
-                params.put("lozinka",lozinka.getText().toString());
-                return params;
-            }
-        };
-        request.setRetryPolicy(new DefaultRetryPolicy(10000,1,1.0f));
-        requestQueue.add(request);
 
-    }
 
 }

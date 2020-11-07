@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class SlanjePodataka {
     private String sendUrl;
-    //RequestQueue requestQueue;
+
     //private static final String TAG = RegisterActivity.class.getSimpleName();
     int success;
     private String TAG_SUCESS = "success";
@@ -59,6 +59,7 @@ public class SlanjePodataka {
         //requestQueue = Volley.newRequestQueue(context);
         StringRequest request = new StringRequest(Request.Method.POST, sendUrl, new Response.Listener<String>() {
             @Override
+
             public void onResponse(String response) {
                 try {
                     JSONObject jobj = new JSONObject(response);
@@ -87,6 +88,7 @@ public class SlanjePodataka {
             }
         };
         request.setRetryPolicy(new DefaultRetryPolicy(10000, 1, 1.0f));
+
         requestQueue.add(request);
 
 
