@@ -63,7 +63,9 @@
             android:id="@+id/unosImeDogadaja"
             android:layout_below="@id/btnDodajSliku"
             android:hint="@string/event_name"
-            android:inputType="textPersonName"
+            android:textColorHint="@color/black"
+            android:inputType="text"
+            android:textColor="@color/black"
 
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -98,7 +100,9 @@
             android:id="@+id/unosOpisDogadaja"
             android:layout_below="@id/errUnosImeDogadaja"
             android:hint="@string/description"
+            android:textColorHint="@color/black"
             android:inputType="text"
+            android:textColor="@color/black"
 
             android:layout_width="wrap_content"
             android:layout_height="100dp"

@@ -38,7 +38,7 @@ public class DogadajLogika {
         if(datumZaProvjeru.equals("   / /   ")){
             return "Error: you have to enter time for event.";
         }else{
-            SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             try {
                 Date datum = format.parse(datumZaProvjeru);
                 Date danas = Calendar.getInstance().getTime();

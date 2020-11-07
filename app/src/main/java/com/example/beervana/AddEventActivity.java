@@ -68,6 +68,7 @@ public class AddEventActivity extends AppCompatActivity {
         prikazDatuma.setText(viewModel.getPrikazDatuma());
         prikazVremena.setText(viewModel.getPrikazVremena());
         slikaDogadjaj.setImageURI(viewModel.getSlika());
+        PostaviGreske();
 
         binding.btnDodajSliku.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,9 +129,8 @@ public class AddEventActivity extends AppCompatActivity {
                 viewModel.setUnosOpisaDogadaja(unosOpisaDogadaja.getText().toString());
                 if(viewModel.ProvijeriSvePodatke()){
 
-                }else{
-                    //Postavi Sve Greške
                 }
+                PostaviGreske();
             }
         });
 
@@ -164,6 +164,20 @@ public class AddEventActivity extends AppCompatActivity {
                 toast.show();
             }
         }
+    }
+
+    private void PostaviGreske(){
+        errSlika.setText(viewModel.getErrSlika());
+        errUnosImeDogadjaja.setText(viewModel.getErrUnosImeDogadjaja());
+        errOpisaDogadjaja.setText(viewModel.getErrOpisaDogadjaja());
+        errUnosDatum.setText(viewModel.getErrUnosDatum());
+        errUnosVrijeme.setText(viewModel.getErrUnosVrijeme());
+
+        errSlika.setVisibility(viewModel.getErrSlikaVisibility());
+        errUnosImeDogadjaja.setVisibility(viewModel.getErrUnosImeDogadjajaVisibility());
+        errOpisaDogadjaja.setVisibility(viewModel.getErrOpisaDogadjajaVisibility());
+        errUnosDatum.setVisibility(viewModel.getErrUnosDatumVisibility());
+        errUnosVrijeme.setVisibility(viewModel.getErrUnosVrijemeVisibility());
     }
 
 }

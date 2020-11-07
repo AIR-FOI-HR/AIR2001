@@ -19,16 +19,17 @@ public class AddEventActivityViewModel extends ViewModel {
     private String errUnosDatum;
     private String errUnosVrijeme;
 
-    private int errSlikaVisibility;
-    private int errUnosImeDogadjajaVisibility;
-    private int errOpisaDogadjajaVisibility;
-    private int errUnosDatumVisibility;
-    private int errUnosVrijemeVisibility;
-
     int gone = View.GONE;
     int visible=View.VISIBLE;
 
+    private int errSlikaVisibility = gone;
+    private int errUnosImeDogadjajaVisibility= gone;
+    private int errOpisaDogadjajaVisibility= gone;
+    private int errUnosDatumVisibility= gone;
+    private int errUnosVrijemeVisibility= gone;
+
     DogadajLogika logikaDogadjaj = new DogadajLogika();
+
 
     public String getSlikaZaSlanje() {
         return slikaZaSlanje;
@@ -116,6 +117,26 @@ public class AddEventActivityViewModel extends ViewModel {
 
     public void setErrUnosVrijeme(String errUnosVrijeme) {
         this.errUnosVrijeme = errUnosVrijeme;
+    }
+
+    public int getErrSlikaVisibility() {
+        return errSlikaVisibility;
+    }
+
+    public int getErrUnosImeDogadjajaVisibility() {
+        return errUnosImeDogadjajaVisibility;
+    }
+
+    public int getErrOpisaDogadjajaVisibility() {
+        return errOpisaDogadjajaVisibility;
+    }
+
+    public int getErrUnosDatumVisibility() {
+        return errUnosDatumVisibility;
+    }
+
+    public int getErrUnosVrijemeVisibility() {
+        return errUnosVrijemeVisibility;
     }
 
     public boolean ProvijeriSvePodatke(){
