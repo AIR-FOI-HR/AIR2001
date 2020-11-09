@@ -11,13 +11,17 @@ public class AddEventActivityViewModel extends ViewModel {
     private String slikaZaSlanje = "";
     private String unosImedogadjaja;
     private String unosOpisaDogadaja;
-    private String prikazDatuma = "   / /   ";
-    private String prikazVremena= "    :    ";
+    private String prikazDatumaOd = "   / /   ";
+    private String prikazVremenaOd= "    :    ";
+    private String prikazDatumaDo = "   / /   ";
+    private String prikazVremenaDo= "    :    ";
     private String errSlika;
     private String errUnosImeDogadjaja;
     private String errOpisaDogadjaja;
-    private String errUnosDatum;
-    private String errUnosVrijeme;
+    private String errUnosDatumOd;
+    private String errUnosVrijemeOd;
+    private String errUnosDatumDo;
+    private String errUnosVrijemeDo;
 
     int gone = View.GONE;
     int visible=View.VISIBLE;
@@ -25,8 +29,10 @@ public class AddEventActivityViewModel extends ViewModel {
     private int errSlikaVisibility = gone;
     private int errUnosImeDogadjajaVisibility= gone;
     private int errOpisaDogadjajaVisibility= gone;
-    private int errUnosDatumVisibility= gone;
-    private int errUnosVrijemeVisibility= gone;
+    private int errUnosDatumOdVisibility= gone;
+    private int errUnosVrijemeOdVisibility= gone;
+    private int errUnosDatumDoVisibility= gone;
+    private int errUnosVrijemeDoVisibility= gone;
 
     DogadajLogika logikaDogadjaj = new DogadajLogika();
 
@@ -63,20 +69,36 @@ public class AddEventActivityViewModel extends ViewModel {
         this.unosOpisaDogadaja = unosOpisaDogadaja;
     }
 
-    public String getPrikazDatuma() {
-        return prikazDatuma;
+    public String getPrikazDatumaOd() {
+        return prikazDatumaOd;
     }
 
-    public void setPrikazDatuma(String prikazDatuma) {
-        this.prikazDatuma = prikazDatuma;
+    public void setPrikazDatumaOd(String prikazDatumaOd) {
+        this.prikazDatumaOd = prikazDatumaOd;
     }
 
-    public String getPrikazVremena() {
-        return prikazVremena;
+    public String getPrikazVremenaOd() {
+        return prikazVremenaOd;
     }
 
-    public void setPrikazVremena(String prikazVremena) {
-        this.prikazVremena = prikazVremena;
+    public void setPrikazVremenaOd(String prikazVremenaOd) {
+        this.prikazVremenaOd = prikazVremenaOd;
+    }
+
+    public String getPrikazDatumaDo() {
+        return prikazDatumaDo;
+    }
+
+    public void setPrikazDatumaDo(String prikazDatumaDo) {
+        this.prikazDatumaDo = prikazDatumaDo;
+    }
+
+    public String getPrikazVremenaDo() {
+        return prikazVremenaDo;
+    }
+
+    public void setPrikazVremenaDo(String prikazVremenaDo) {
+        this.prikazVremenaDo = prikazVremenaDo;
     }
 
     public String getErrSlika() {
@@ -103,20 +125,36 @@ public class AddEventActivityViewModel extends ViewModel {
         this.errOpisaDogadjaja = errOpisaDogadjaja;
     }
 
-    public String getErrUnosDatum() {
-        return errUnosDatum;
+    public String getErrUnosDatumOd() {
+        return errUnosDatumOd;
     }
 
-    public void setErrUnosDatum(String errUnosDatum) {
-        this.errUnosDatum = errUnosDatum;
+    public void setErrUnosDatumOd(String errUnosDatumOd) {
+        this.errUnosDatumOd = errUnosDatumOd;
     }
 
-    public String getErrUnosVrijeme() {
-        return errUnosVrijeme;
+    public String getErrUnosVrijemeOd() {
+        return errUnosVrijemeOd;
     }
 
-    public void setErrUnosVrijeme(String errUnosVrijeme) {
-        this.errUnosVrijeme = errUnosVrijeme;
+    public void setErrUnosVrijemeOd(String errUnosVrijemeOd) {
+        this.errUnosVrijemeOd = errUnosVrijemeOd;
+    }
+
+    public String getErrUnosDatumDo() {
+        return errUnosDatumDo;
+    }
+
+    public void setErrUnosDatumDo(String errUnosDatumDo) {
+        this.errUnosDatumDo = errUnosDatumDo;
+    }
+
+    public String getErrUnosVrijemeDo() {
+        return errUnosVrijemeDo;
+    }
+
+    public void setErrUnosVrijemeDo(String errUnosVrijemeDo) {
+        this.errUnosVrijemeDo = errUnosVrijemeDo;
     }
 
     public int getErrSlikaVisibility() {
@@ -131,12 +169,20 @@ public class AddEventActivityViewModel extends ViewModel {
         return errOpisaDogadjajaVisibility;
     }
 
-    public int getErrUnosDatumVisibility() {
-        return errUnosDatumVisibility;
+    public int getErrUnosDatumOdVisibility() {
+        return errUnosDatumOdVisibility;
     }
 
-    public int getErrUnosVrijemeVisibility() {
-        return errUnosVrijemeVisibility;
+    public int getErrUnosVrijemeOdVisibility() {
+        return errUnosVrijemeOdVisibility;
+    }
+
+    public int getErrUnosDatumDoVisibility() {
+        return errUnosDatumDoVisibility;
+    }
+
+    public int getErrUnosVrijemeDoVisibility() {
+        return errUnosVrijemeDoVisibility;
     }
 
     public boolean ProvijeriSvePodatke(){
@@ -144,14 +190,18 @@ public class AddEventActivityViewModel extends ViewModel {
         errSlikaVisibility = gone;
         errUnosImeDogadjajaVisibility = gone;
         errOpisaDogadjajaVisibility = gone;
-        errUnosDatumVisibility = gone;
-        errUnosVrijemeVisibility = gone;
+        errUnosDatumOdVisibility = gone;
+        errUnosVrijemeOdVisibility = gone;
+        errUnosDatumDoVisibility = gone;
+        errUnosVrijemeDoVisibility = gone;
 
         errSlika = logikaDogadjaj.ProvjeraUnosaSlike(slikaZaSlanje);
         errUnosImeDogadjaja = logikaDogadjaj.ProvjeraUnosaNazivaDogadjaja(unosImedogadjaja);
         errOpisaDogadjaja = logikaDogadjaj.ProvjeraUnosaOpisaDogadjaja(unosOpisaDogadaja);
-        errUnosDatum  = logikaDogadjaj.ProvjeraUpisaDatuma(prikazDatuma);
-        errUnosVrijeme = logikaDogadjaj.ProvjeraUpisaVremena(prikazVremena);
+        errUnosDatumOd  = logikaDogadjaj.ProvjeraUpisaDatuma(prikazDatumaOd);
+        errUnosVrijemeOd = logikaDogadjaj.ProvjeraUpisaVremena(prikazVremenaOd);
+        errUnosDatumDo  = logikaDogadjaj.ProvjeraUpisaDatuma(prikazDatumaDo);
+        errUnosVrijemeDo = logikaDogadjaj.ProvjeraUpisaVremena(prikazVremenaDo);
 
         if(!errSlika.equals("")){
               sveUredu=false;
@@ -165,13 +215,27 @@ public class AddEventActivityViewModel extends ViewModel {
             sveUredu=false;
             errOpisaDogadjajaVisibility = visible;
         }
-        if(!errUnosDatum.equals("")){
+        if(!errUnosDatumOd.equals("")){
             sveUredu=false;
-            errUnosDatumVisibility = visible;
+            errUnosDatumOdVisibility = visible;
         }
-        if(!errUnosVrijeme.equals("")){
+        if(!errUnosVrijemeOd.equals("")){
             sveUredu=false;
-            errUnosVrijemeVisibility = visible;
+            errUnosVrijemeOdVisibility = visible;
+        }
+        if(!errUnosVrijemeDo.equals("")){
+            sveUredu=false;
+            errUnosVrijemeDoVisibility = visible;
+        }
+        if(errUnosDatumOd.equals("") && errUnosVrijemeOd.equals("") &&
+                errUnosDatumDo.equals("") && errUnosVrijemeDo.equals("")){
+            errUnosDatumDo=
+                    logikaDogadjaj.ProvjeraIspravnostiPocetniZavrsnidatum
+                            (prikazDatumaOd,prikazDatumaDo,prikazVremenaOd,prikazVremenaDo);
+        }
+        if(!errUnosDatumDo.equals("")){
+            sveUredu=false;
+            errUnosDatumDoVisibility = visible;
         }
 
         return sveUredu;

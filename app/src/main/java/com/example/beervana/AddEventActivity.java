@@ -26,6 +26,8 @@ import com.example.beervana.databinding.ActivityAddeventBinding;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class AddEventActivity extends AppCompatActivity {
@@ -36,13 +38,19 @@ public class AddEventActivity extends AppCompatActivity {
     private TextView errSlika;
     private TextView errUnosImeDogadjaja;
     private TextView errOpisaDogadjaja;
-    private TextView errUnosDatum;
-    private TextView errUnosVrijeme;
-    private TextView prikazDatuma;
-    private TextView prikazVremena;
+    private TextView errUnosDatumOd;
+    private TextView errUnosVrijemeOd;
+    private TextView errUnosDatumDo;
+    private TextView errUnosVrijemeDo;
+    private TextView prikazDatumaOd;
+    private TextView prikazVremenaOd;
+    private TextView prikazDatumaDo;
+    private TextView prikazVremenaDo;
 
-    private DatePickerDialog.OnDateSetListener listenerZaDatum;
-    private TimePickerDialog.OnTimeSetListener listenerZaVrijeme;
+    private DatePickerDialog.OnDateSetListener listenerZaDatumOd;
+    private TimePickerDialog.OnTimeSetListener listenerZaVrijemeOd;
+    private DatePickerDialog.OnDateSetListener listenerZaDatumDo;
+    private TimePickerDialog.OnTimeSetListener listenerZaVrijemeDo;
     private Calendar calendar = Calendar.getInstance();
     private AddEventActivityViewModel viewModel;
     @Override
@@ -54,19 +62,25 @@ public class AddEventActivity extends AppCompatActivity {
         //final AddEventActivityViewModel viewModel = new ViewModelProvider(this).get(AddEventActivityViewModel.class);
         viewModel = new ViewModelProvider(this).get(AddEventActivityViewModel.class);
 
-        prikazDatuma = binding.prikazDatuma;
-        prikazVremena = binding.prikazVremena;
+        prikazDatumaOd = binding.prikazDatumaOd;
+        prikazVremenaOd = binding.prikazVremenaOd;
+        prikazDatumaDo = binding.prikazDatumaDo;
+        prikazVremenaDo = binding.prikazVremenaDo;
         slikaDogadjaj = binding.slikaDogadjaj;
         unosImedogadjaja = binding.unosImeDogadaja;
         unosOpisaDogadaja = binding.unosOpisDogadaja;
         errSlika = binding.errSlika;
         errUnosImeDogadjaja = binding.errUnosImeDogadaja;
         errOpisaDogadjaja = binding.errUnosOpisdogadaja;
-        errUnosDatum = binding.errUnosDatum;
-        errUnosVrijeme = binding.errUnosVrijeme;
+        errUnosDatumOd = binding.errUnosDatumOd;
+        errUnosVrijemeOd = binding.errUnosVrijemeOd;
+        errUnosDatumDo = binding.errUnosDatumDo;
+        errUnosVrijemeDo = binding.errUnosVrijemeDo;
 
-        prikazDatuma.setText(viewModel.getPrikazDatuma());
-        prikazVremena.setText(viewModel.getPrikazVremena());
+        prikazDatumaOd.setText(viewModel.getPrikazDatumaOd());
+        prikazVremenaOd.setText(viewModel.getPrikazVremenaOd());
+        prikazDatumaDo.setText(viewModel.getPrikazDatumaDo());
+        prikazVremenaDo.setText(viewModel.getPrikazVremenaDo());
         slikaDogadjaj.setImageURI(viewModel.getSlika());
         PostaviGreske();
 
@@ -78,47 +92,62 @@ public class AddEventActivity extends AppCompatActivity {
             }
         });
 
-        binding.btnOdaberiDatum.setOnClickListener(new View.OnClickListener() {
+        binding.btnOdaberiDatumOd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int godina = calendar.get(Calendar.YEAR);
-                int mjesec = calendar.get(Calendar.MONTH);
-                int dan = calendar.get(calendar.DAY_OF_MONTH);
-
-                DatePickerDialog dialog = new DatePickerDialog
-                        (AddEventActivity.this,R.style.Theme_AppCompat_Light_Dialog_MinWidth,
-                                listenerZaDatum,godina,mjesec,dan);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
-                dialog.show();
+                PokreniDijalogZaDatum(listenerZaDatumOd);
             }
         });
 
-        binding.btnOdaberiVrijeme.setOnClickListener(new View.OnClickListener() {
+        binding.btnOdaberiVrijemeOd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int sat = calendar.get(Calendar.HOUR_OF_DAY);
-                int minuta = calendar.get(Calendar.MINUTE);
-
-                TimePickerDialog dialog = new TimePickerDialog(AddEventActivity.this,R.style.Theme_AppCompat_DayNight_Dialog_MinWidth
-                        ,listenerZaVrijeme,sat,minuta,true);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable((Color.LTGRAY)));
-                dialog.show();
+                PokreniDijalogZaVrijeme(listenerZaVrijemeOd);
+            }
+        });
+        binding.btnOdaberiDatumDo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PokreniDijalogZaDatum(listenerZaDatumDo);
             }
         });
 
-        listenerZaDatum = new DatePickerDialog.OnDateSetListener() {
+        binding.btnOdaberiVrijemeDo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PokreniDijalogZaVrijeme(listenerZaVrijemeDo);
+            }
+        });
+
+
+        listenerZaDatumOd = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month = month + 1;
-                viewModel.setPrikazDatuma(dayOfMonth +"/"+month+"/"+year);
-                prikazDatuma.setText(viewModel.getPrikazDatuma());
+                viewModel.setPrikazDatumaOd(dayOfMonth +"/"+month+"/"+year);
+                prikazDatumaOd.setText(viewModel.getPrikazDatumaOd());
             }
         };
-        listenerZaVrijeme = new TimePickerDialog.OnTimeSetListener() {
+        listenerZaVrijemeOd = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                viewModel.setPrikazVremena(hourOfDay+":"+minute);
-                prikazVremena.setText(viewModel.getPrikazVremena());
+                viewModel.setPrikazVremenaOd(hourOfDay+":"+minute);
+                prikazVremenaOd.setText(viewModel.getPrikazVremenaOd());
+            }
+        };
+        listenerZaDatumDo = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month + 1;
+                viewModel.setPrikazDatumaDo(dayOfMonth +"/"+month+"/"+year);
+                prikazDatumaDo.setText(viewModel.getPrikazDatumaDo());
+            }
+        };
+        listenerZaVrijemeDo = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                viewModel.setPrikazVremenaDo(hourOfDay+":"+minute);
+                prikazVremenaDo.setText(viewModel.getPrikazVremenaDo());
             }
         };
 
@@ -128,7 +157,13 @@ public class AddEventActivity extends AppCompatActivity {
                 viewModel.setUnosImedogadjaja(unosImedogadjaja.getText().toString());
                 viewModel.setUnosOpisaDogadaja(unosOpisaDogadaja.getText().toString());
                 if(viewModel.ProvijeriSvePodatke()){
+                    Map<String, String> params=new HashMap<String, String>();
+                    params.put("slika",viewModel.getSlikaZaSlanje());
+                    params.put("naziv_dogadjaja",viewModel.getUnosImedogadjaja());
+                    params.put("opis_dogadjaja",viewModel.getUnosOpisaDogadaja());
+                    //params.put("datum_vrijeme",korisnickoIme.getText().toString());
 
+                    //sendUrl="https://beervana2020.000webhostapp.com/test/email.php";
                 }
                 PostaviGreske();
             }
@@ -170,14 +205,40 @@ public class AddEventActivity extends AppCompatActivity {
         errSlika.setText(viewModel.getErrSlika());
         errUnosImeDogadjaja.setText(viewModel.getErrUnosImeDogadjaja());
         errOpisaDogadjaja.setText(viewModel.getErrOpisaDogadjaja());
-        errUnosDatum.setText(viewModel.getErrUnosDatum());
-        errUnosVrijeme.setText(viewModel.getErrUnosVrijeme());
+        errUnosDatumOd.setText(viewModel.getErrUnosDatumOd());
+        errUnosVrijemeOd.setText(viewModel.getErrUnosVrijemeOd());
+        errUnosDatumDo.setText(viewModel.getErrUnosDatumDo());
+        errUnosVrijemeDo.setText(viewModel.getErrUnosVrijemeDo());
 
         errSlika.setVisibility(viewModel.getErrSlikaVisibility());
         errUnosImeDogadjaja.setVisibility(viewModel.getErrUnosImeDogadjajaVisibility());
         errOpisaDogadjaja.setVisibility(viewModel.getErrOpisaDogadjajaVisibility());
-        errUnosDatum.setVisibility(viewModel.getErrUnosDatumVisibility());
-        errUnosVrijeme.setVisibility(viewModel.getErrUnosVrijemeVisibility());
+        errUnosDatumOd.setVisibility(viewModel.getErrUnosDatumOdVisibility());
+        errUnosVrijemeOd.setVisibility(viewModel.getErrUnosVrijemeOdVisibility());
+        errUnosDatumDo.setVisibility(viewModel.getErrUnosDatumDoVisibility());
+        errUnosVrijemeDo.setVisibility(viewModel.getErrUnosVrijemeDoVisibility());
+    }
+
+    private void PokreniDijalogZaDatum(DatePickerDialog.OnDateSetListener listener){
+        int godina = calendar.get(Calendar.YEAR);
+        int mjesec = calendar.get(Calendar.MONTH);
+        int dan = calendar.get(calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dialog = new DatePickerDialog
+                (AddEventActivity.this,R.style.Theme_AppCompat_Light_Dialog_MinWidth,
+                        listener,godina,mjesec,dan);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
+        dialog.show();
+    }
+
+    private void PokreniDijalogZaVrijeme(TimePickerDialog.OnTimeSetListener listener){
+        int sat = calendar.get(Calendar.HOUR_OF_DAY);
+        int minuta = calendar.get(Calendar.MINUTE);
+
+        TimePickerDialog dialog = new TimePickerDialog(AddEventActivity.this,R.style.Theme_AppCompat_DayNight_Dialog_MinWidth
+                ,listener,sat,minuta,true);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable((Color.LTGRAY)));
+        dialog.show();
     }
 
 }

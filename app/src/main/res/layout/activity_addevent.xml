@@ -133,8 +133,20 @@
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
             android:text="" />
         <TextView
-            android:id="@+id/prikazDatuma"
+            android:id="@+id/txtStartDate"
             android:layout_below="@id/errUnosOpisdogadaja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="15dp"
+            android:text="@string/start_date"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/prikazDatumaOd"
+            android:layout_below="@id/txtStartDate"
             android:background="@drawable/edit_text_border"
 
 
@@ -148,17 +160,17 @@
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
             android:text="@string/datumTekst" />
         <Button
-            android:id="@+id/btnOdaberiDatum"
+            android:id="@+id/btnOdaberiDatumOd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/errUnosOpisdogadaja"
+            android:layout_below="@id/txtStartDate"
             android:layout_marginTop="20dp"
-            android:layout_toEndOf="@id/prikazDatuma"
-            android:text="Odaberi Datum" />
+            android:layout_toEndOf="@id/prikazDatumaOd"
+            android:text="Date" />
         <TextView
-            android:id="@+id/errUnosDatum"
-            android:layout_below="@id/prikazDatuma"
+            android:id="@+id/errUnosDatumOd"
+            android:layout_below="@id/prikazDatumaOd"
 
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -172,8 +184,8 @@
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
             android:text="" />
         <TextView
-            android:id="@+id/prikazVremena"
-            android:layout_below="@id/errUnosDatum"
+            android:id="@+id/prikazVremenaOd"
+            android:layout_below="@id/errUnosDatumOd"
             android:background="@drawable/edit_text_border"
 
 
@@ -187,17 +199,107 @@
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
             android:text="    :    " />
         <Button
-            android:id="@+id/btnOdaberiVrijeme"
+            android:id="@+id/btnOdaberiVrijemeOd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/errUnosDatum"
+            android:layout_below="@id/errUnosDatumOd"
             android:layout_marginTop="20dp"
-            android:layout_toEndOf="@id/prikazVremena"
-            android:text="Odaberi Vrijeme" />
+            android:layout_toEndOf="@id/prikazVremenaOd"
+            android:text="Time" />
         <TextView
-            android:id="@+id/errUnosVrijeme"
-            android:layout_below="@id/prikazVremena"
+            android:id="@+id/errUnosVrijemeOd"
+            android:layout_below="@id/prikazVremenaOd"
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="@dimen/razmakZaGreske"
+            android:layout_marginEnd="50dp"
+            android:textColor="@android:color/holo_red_light"
+            android:visibility="gone"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:text="" />
+        <TextView
+            android:id="@+id/txtEndDate"
+            android:layout_below="@id/errUnosVrijemeOd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="15dp"
+            android:text="@string/end_date"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/prikazDatumaDo"
+            android:layout_below="@id/txtEndDate"
+            android:background="@drawable/edit_text_border"
+
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="50dp"
+            android:textColor="@color/black"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:text="@string/datumTekst" />
+        <Button
+            android:id="@+id/btnOdaberiDatumDo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/txtEndDate"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@id/prikazDatumaDo"
+            android:text="Date" />
+        <TextView
+            android:id="@+id/errUnosDatumDo"
+            android:layout_below="@id/prikazDatumaDo"
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="@dimen/razmakZaGreske"
+            android:layout_marginEnd="50dp"
+            android:textColor="@android:color/holo_red_light"
+            android:visibility="gone"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:text="" />
+        <TextView
+            android:id="@+id/prikazVremenaDo"
+            android:layout_below="@id/errUnosDatumDo"
+            android:background="@drawable/edit_text_border"
+
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="50dp"
+            android:textColor="@color/black"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:text="    :    " />
+        <Button
+            android:id="@+id/btnOdaberiVrijemeDo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/errUnosDatumDo"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@id/prikazVremenaDo"
+            android:text="Time" />
+        <TextView
+            android:id="@+id/errUnosVrijemeDo"
+            android:layout_below="@id/prikazVremenaDo"
 
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -215,7 +317,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/errUnosVrijeme"
+            android:layout_below="@id/errUnosVrijemeDo"
             android:layout_marginTop="30dp"
             android:text="Add Event" />
 

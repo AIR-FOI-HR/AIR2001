@@ -36,7 +36,7 @@ public class DogadajLogika {
     public String ProvjeraUpisaDatuma(String datumZaProvjeru){
 
         if(datumZaProvjeru.equals("   / /   ")){
-            return "Error: you have to enter time for event.";
+            return "Error: you have to enter a date for event.";
         }else{
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             try {
@@ -50,6 +50,20 @@ public class DogadajLogika {
             }
 
         }
+        return "";
+    }
+    public String ProvjeraIspravnostiPocetniZavrsnidatum(String pocetniDatum, String zavrsniDatum, String pocetnoVrijeme, String zavrsnoVrijeme){
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        try {
+            Date datumPocetak = format.parse(pocetniDatum+" "+pocetnoVrijeme);
+            Date datumKraj = format.parse(zavrsniDatum+ " "+zavrsnoVrijeme);
+            if(datumKraj.before(datumPocetak)){
+                return "Error: end date can't be before start date";
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         return "";
     }
 
