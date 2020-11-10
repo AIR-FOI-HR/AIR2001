@@ -241,4 +241,13 @@ public class AddEventActivityViewModel extends ViewModel {
         return sveUredu;
     }
 
+    public String FormirajDatum(String datum,String vrijeme) {
+        String konacniDatum;
+        String [] poljeDatum;
+        poljeDatum= datum.split("/");
+        konacniDatum = poljeDatum[2]+"-"+poljeDatum[1]+"-"+poljeDatum[0]+" "+vrijeme;
+
+
+        return konacniDatum;
+    }
 }

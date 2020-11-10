@@ -21,7 +21,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.example.beervana.databinding.ActivityAddeventBinding;
+import com.example.webservice.SlanjePodataka;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -31,6 +35,8 @@ import java.util.Map;
 
 
 public class AddEventActivity extends AppCompatActivity {
+    private String sendUrl;
+    private RequestQueue requestQueue;
     private ActivityAddeventBinding binding;
     private ImageView slikaDogadjaj;
     private EditText unosImedogadjaja;
@@ -82,6 +88,9 @@ public class AddEventActivity extends AppCompatActivity {
         prikazDatumaDo.setText(viewModel.getPrikazDatumaDo());
         prikazVremenaDo.setText(viewModel.getPrikazVremenaDo());
         slikaDogadjaj.setImageURI(viewModel.getSlika());
+
+        requestQueue= Volley.newRequestQueue(getApplicationContext());
+
         PostaviGreske();
 
         binding.btnDodajSliku.setOnClickListener(new View.OnClickListener() {
@@ -156,14 +165,29 @@ public class AddEventActivity extends AppCompatActivity {
             public void onClick(View v) {
                 viewModel.setUnosImedogadjaja(unosImedogadjaja.getText().toString());
                 viewModel.setUnosOpisaDogadaja(unosOpisaDogadaja.getText().toString());
+                //TODO promijenit statičke podatke s prvim
                 if(viewModel.ProvijeriSvePodatke()){
                     Map<String, String> params=new HashMap<String, String>();
+                    params.put("id_korisnik","50");
+                    params.put("id_lokacija","8");
                     params.put("slika",viewModel.getSlikaZaSlanje());
                     params.put("naziv_dogadjaja",viewModel.getUnosImedogadjaja());
                     params.put("opis_dogadjaja",viewModel.getUnosOpisaDogadaja());
-                    //params.put("datum_vrijeme",korisnickoIme.getText().toString());
+                    params.put("datum_pocetak",viewModel.FormirajDatum(viewModel.getPrikazDatumaOd(),viewModel.getPrikazVremenaOd()));
+                    params.put("datum_kraj",viewModel.FormirajDatum(viewModel.getPrikazDatumaDo(), viewModel.getPrikazVremenaDo()));
 
-                    //sendUrl="https://beervana2020.000webhostapp.com/test/email.php";
+                    sendUrl="https://beervana2020.000webhostapp.com/test/dodajDogadjaj.php";
+                    SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
+                    slanjePodataka.setParametri(params);
+                    slanjePodataka.sendData(getApplicationContext(),requestQueue);
+                    requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+                        @Override
+                        public void onRequestFinished(Request<Object> request) {
+                            String odgovor = slanjePodataka.getOdgovor();
+                            Toast toast = Toast.makeText(getApplicationContext(),odgovor,Toast.LENGTH_LONG);
+                            toast.show();
+                        }
+                    });
                 }
                 PostaviGreske();
             }
