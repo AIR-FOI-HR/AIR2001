@@ -213,7 +213,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                                     provjeraPostojeLiPodaci=false;
                                 }
                                 if(provjeraPostojeLiPodaci){
-                                    sendUrl="https://beervana2020.000webhostapp.com/test/testiranjeUloge.php";
+                                    sendUrl="https://beervana2020.000webhostapp.com/test/registracijaEmail.php";
                                     slanjePodataka.setSendUrl(sendUrl);
                                     slanjePodataka.sendData(getApplicationContext(),requestQueue);
                                 }
@@ -293,46 +293,6 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             errUnosKucniBroj.setVisibility(View.GONE);
 
         }
-    }
-    private  void sendData(){
-        StringRequest request=new StringRequest(Request.Method.POST, sendUrl, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jobj = new JSONObject(response);
-                    success = jobj.getInt(TAG_SUCESS);
-                    if (success == 1) {
-                        Toast.makeText(RegisterActivity.this, jobj.getString(TAG_MESSAGE), Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(RegisterActivity.this, jobj.getString(TAG_MESSAGE), Toast.LENGTH_SHORT).show();
-                    }
-                } catch (JSONException e) {
-                    Toast.makeText(RegisterActivity.this, "Error Occured", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(RegisterActivity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
-            }
-        }){
-            public Map<String,String> getParams(){
-                Map<String, String> params=new HashMap<String, String>();
-                params.put("ime_korisnika",ime.getText().toString());
-                params.put("prezime_korisnika",prezime.getText().toString());
-                params.put("email_korisnika",email.getText().toString());
-                params.put("korsnicko_ime",korisnickoIme.getText().toString());
-                params.put("lozinka",lozinka.getText().toString());
-                params.put("uloga",uloga.getSelectedItem().toString());
-                params.put("nazivLokacije",nazivLokacije.getText().toString());
-                params.put("OIBLokacije",oibLokacije.getText().toString());
-                params.put("adresaLokacije",ulica.getText().toString()+ " " + kucniBroj.getText().toString() + " " + grad.getText().toString());
-                return params;
-            }
-        };
-        request.setRetryPolicy(new DefaultRetryPolicy(10000,1,1.0f));
-        requestQueue.add(request);
-
     }
 
     @Override
