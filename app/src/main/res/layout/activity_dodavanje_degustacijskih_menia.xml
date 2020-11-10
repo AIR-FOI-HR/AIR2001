@@ -1,33 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/Theme.Beervana.NoActionBar"
+    android:background="@color/white"
     tools:context=".DodavanjeDegustacijskihMeniaActivity">
 
-    <include layout="@layout/fragment_toolbar" />
+    <androidx.constraintlayout.widget.ConstraintLayout
 
-    <ScrollView
-        android:layout_width="407dp"
-        android:layout_height="844dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.948">
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+
+            android:id="@+id/txtAddTastingMenu"
+            android:layout_width="409dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:padding="15dp"
+            android:text="@string/add_tasting_menu"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <ImageView
-            android:id="@+id/imageView10"
+            android:id="@+id/imageTastingMenu"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:contentDescription="@string/imageTastingMenu"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtAddTastingMenu"
+            app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+
+        <EditText
+            android:id="@+id/tastingMenuName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_menu_report_image" />
-    </ScrollView>
+            android:background="@drawable/edit_text_border"
+            android:ellipsize="start"
+            android:ems="10"
+
+            android:gravity="center_horizontal"
+            android:hint="@string/tastingMenuName"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:paddingTop="@dimen/paddingTekstEditor"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageTastingMenu"
+            app:srcCompat="@android:drawable/ic_menu_gallery"/>
+
+        <TextView
+            android:id="@+id/errTastingMenuName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Hello"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:textColor="@android:color/holo_red_light"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tastingMenuName"
+            app:srcCompat="@android:drawable/ic_menu_gallery" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
