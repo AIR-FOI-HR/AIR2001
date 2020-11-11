@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public class LokacijaLogika {
     public String ProvijeriUnosNazivaLokacije(String nazivLokacije){
         if(nazivLokacije.equals("")) {
-            return "Greška: Morate unijeti naziv lokacije.";
+            return "Error: You have to enter a location name.";
         }
         return "";
     }
@@ -13,56 +13,56 @@ public class LokacijaLogika {
     public String ProvijeritiOIBLokacije(String oibLokacije){
         if(oibLokacije.length()==11){
             if(!SamoBrojevi(oibLokacije)){
-                return "Greška: OIB lokacije smije sadržavati samo brojeve.";
+                return "Error: Location OIB can only contain numbers.";
 
             }
         }else if (oibLokacije.equals("")){
-            return "Greška: Morate unijeti OIB lokacije.";
+            return "Error: You have to enter a Location OIB.";
         }else{
-            return "Greška: OIB mora biti duljine 11 znakova.";
+            return "Error: OIB must be 11 characters long.";
         }
         return  "";
     }
     public String ProvijeritiUnosOpisaLokacije(String opisLokacije){
         if(opisLokacije.equals("")) {
-            return "Greška: Morate unijeti opis lokacije.";
+            return "Error: You have to enter a location description.";
         }
         return "";
     }
     public String ProvijeritiUnosGrada(String grad){
         if(grad.length()>2 && grad.length()<31){
             if(!SlovaHrkIRazmaci(grad)){
-                return "Greška: Grad smije sadržavati samo slova i razmake";
+                return "Error: City can only contain letters and spaces.";
 
             }
         }else if (grad.equals("")){
-            return "Greška: Morate unijeti grad.";
+            return "Error: You have to enter a city.";
         }else{
-            return "Greška: Grad mora biti duljine od 3 do 30 znakova";
+            return "Error: The city must be between 3 and 30 characters.";
         }
         return "";
     }
     public String ProvijeritiUnosUlice(String ulica){
         if(ulica.length()>6 && ulica.length()<41){
             if(!SlovaHrkIRazmaci(ulica)){
-                return "Greška: Ulica smije zadržavati samo slova i razmake";
+                return "Error: Street can only contain letters and spaces.";
             }
         }else if (ulica.equals("")){
-            return "Greška: Morate unijeti ulicu.";
+            return "Error: You have to enter a street.";
         }else{
-            return "Greška: Ulica mora biti duljine od 7 do 40 znakova";
+            return "Error: The street must be between 7 and 40 characters.";
         }
         return "";
     }
     public String ProvijeriUnosKucniBroj(String kucniBroj){
         if(kucniBroj.length()>0 && kucniBroj.length()<6){
             if(!SlovaIBrojevi(kucniBroj)){
-                return "Greška: Kućni broj smije sadržavati samo slova i brojeve";
+                return "Error: House number can only contain letters and numbers.";
             }
         }else if(kucniBroj.equals("")){
-            return "Greška: Morate unijeti kućni broj.";
+            return "Error: You have to enter a house number.";
         }else{
-            return "Greška: Kućni broj mora biti duljine od 1 do 5 znakova";
+            return "Error: The house number must be between 1 and 5 characters.";
         }
         return "";
     }

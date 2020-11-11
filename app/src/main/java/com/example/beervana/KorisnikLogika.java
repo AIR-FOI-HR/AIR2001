@@ -7,84 +7,84 @@ public class KorisnikLogika {
 
         if(ime.length()>1 && ime.length()<46){
             if(!SlovaHrkIRazmaci(ime)){
-                return "Greška: Ime mora sadržavati samo slova i razmake.";
+                return "Error: Name can only contain letters and spaces.";
             }
         }else if(ime.equals("")){
-            return "Greška: Morate unijeti ime.";
+            return "Error: You have to enter a name.";
         }else{
-            return "Greška: Korisnički ime mora biti duljine od 2 do 45 znakova.";
+            return "Error: The name must be between 2 and 45 characters.";
         }
         return "";
     }
     public String ProvjeraUnosaPrezimena(String prezime){
         if(prezime.length()>1 && prezime.length()<46){
             if(!SlovaHrkIRazmaci(prezime)){
-                return "Greška: Prezime mora sadržavati samo slova i razmake.";
+                return "Error: Surname can only contain letters and spaces.";
             }
         }else if (prezime.equals("")){
-            return "Greška: Morate unijeti prezime.";
+            return "Error: You have to enter a surname.";
         }else{
-            return "Greška: prezime mora biti duljine od 2 do 45 znakova.";
+            return "Error: The surname must be between 2 and 45 characters.";
         }
         return "";
     }
     public String ProvjeraUnosaBrojaMobitela(String brojMobitela){
         if(brojMobitela.length()>9 && brojMobitela.length()<46){
             if(!SamoBrojevi(brojMobitela)){
-                return "Greška: Broj mobitela mora sadržavati samo brojeve.";
+                return "Error: Phone number can only contain numbers.";
             }
         }else if(brojMobitela.equals("")){
-            return "Greška: Morate unijeti broj mobitela.";
+            return "Error: You have to enter a phone number.";
         }else{
-            return "Greška: Broj mobitela mora biti duljine od 10 do 45 znakova.";
+            return "Error: The phone number must be between 10 and 45 characters.";
         }
         return "";
     }
     public String ProvjeraUnosaEmail(String email){
         if(email.length()>6 && email.length()<46){
             if(!EmailProvjera(email)){
-                return "Greška: Email mora biti u pravilnom formatu.";
+                return "Error: Email has to be in a correct format.";
             }
         }else if (email.equals("")){
-            return "Greška: Morate unijeti Email.";
+            return "Error: You have to enter an email.";
         }else{
-            return "Greška: Email mora biti duljine od 7 do 45 znakova.";
+            return "Error: The email must be between 7 and 45 characters.";
         }
         return "";
     }
     public String ProvjeraUnosaKorisnickogImena(String korisnickoIme){
         if(korisnickoIme.length()>1 && korisnickoIme.length()<26){
             if(!SlovaIBrojevi(korisnickoIme)){
-                return "Greška: Korisničko ime mora sadržavati samo slova (bez čćžšđ) i brojeve.";
+                return "Error: User name can only contain letters (excluding čćšđž).";
 
             }
         }else if (korisnickoIme.equals("")){
-            return "Greška: Morate unijeti korisničko ime.";
+            return "Error: You have to enter a user name.";
         }else{
-            return "Greška: Korisničko ime mora biti duljine od 2 do 25 znakova.";
+            return "Error: The user name must be between 2 and 25 characters.";
         }
         return  "";
     }
     public String ProvjeraUnosaLozinke(String lozinka){
         if(lozinka.length()>5 && lozinka.length()<21){
             if(!SlovaIBrojevi(lozinka)){
-                return "Greška: Lozinka smije sadržavati samo slova i brojeve.";
+                return "Error: password can only contain letters and numbers.";
 
             }
         }else if (lozinka.equals("")){
-            return "Greška: Morate unijeti lozinku.";
+            return "Error: You have to enter a password.";
         }else{
-            return "Greška: Lozinka mora biti duljine od 6 do 20 znakova";
+            return "Error: The password must be between 6 and 20 characters.";
         }
         return "";
     }
     public String ProvjeraUnosaPonovljeneLozinke(String ponovljenaLozinka, String lozinka){
         if(!ponovljenaLozinka.equals("")){
             if(!ponovljenaLozinka.equals(lozinka)){
-                return "Greška: Morate ponoviti istu lozinku.";
+                return "Error: you have to repeat the same password";
             }
         }else{
-            return "Greška: Morate unijeti ponovljenu lozinku.";
+            return "Error: You have to enter a repeated password.";
         }
         return "";
     }

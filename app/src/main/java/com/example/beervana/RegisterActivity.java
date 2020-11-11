@@ -212,11 +212,32 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                                     errUnosKorisnickoIme.setVisibility(viewModel.errUnosKorisnickoImeVidljivost);
                                     provjeraPostojeLiPodaci=false;
                                 }
+                                if(viewModel.getUloga().equals("Klijent")){
+                                    sendUrl="https://beervana2020.000webhostapp.com/test/LokacijaOIBProvjera.php";
+                                    slanjePodataka.setSendUrl(sendUrl);
+                                    slanjePodataka.sendData(getApplicationContext(),requestQueue);
+                                }else{
+                                    if(provjeraPostojeLiPodaci){
+                                        sendUrl="https://beervana2020.000webhostapp.com/test/registracijaEmail.php";
+                                        slanjePodataka.setSendUrl(sendUrl);
+                                        slanjePodataka.sendData(getApplicationContext(),requestQueue);
+                                    }
+                                }
+
+                            }else if(request.getUrl().contains("LokacijaOIBProvjera.php")){
+                                if(odgovor.equals("There already exist a location with this OIB")){
+                                    viewModel.setErrUnosOibLokacije(odgovor);
+                                    viewModel.errUnosOibLokacijeVidljivost = View.VISIBLE;
+                                    errUnosOibLokacije.setText(viewModel.getErrUnosOibLokacije());
+                                    errUnosOibLokacije.setVisibility(viewModel.errUnosOibLokacijeVidljivost);
+                                    provjeraPostojeLiPodaci=false;
+                                }
                                 if(provjeraPostojeLiPodaci){
                                     sendUrl="https://beervana2020.000webhostapp.com/test/registracijaEmail.php";
                                     slanjePodataka.setSendUrl(sendUrl);
                                     slanjePodataka.sendData(getApplicationContext(),requestQueue);
                                 }
+
                             }else{
                                 if(odgovor.equals("successfully registered")){
                                     openLogin();
