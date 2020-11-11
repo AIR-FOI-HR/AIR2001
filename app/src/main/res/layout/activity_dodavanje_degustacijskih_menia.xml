@@ -8,6 +8,7 @@
     android:background="@color/white"
     tools:context=".DodavanjeDegustacijskihMeniaActivity">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:id="@+id/relativeLayout"
@@ -34,8 +35,8 @@
 
         <ImageView
             android:id="@+id/imageTastingMenu"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_width="@dimen/tastingMenuImageSize"
+            android:layout_height="@dimen/tastingMenuImageSize"
             android:contentDescription="@string/imageTastingMenu"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
@@ -65,24 +66,54 @@
             app:layout_constraintTop_toBottomOf="@id/imageTastingMenu"
             app:srcCompat="@android:drawable/ic_menu_gallery"/>
 
-        <TextView
-            android:id="@+id/errTastingMenuName"
+        <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
+
+            android:id="@+id/spinPivi"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-            android:textColor="@android:color/holo_red_light"
-            android:visibility="visible"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tastingMenuName"
-            app:srcCompat="@android:drawable/ic_menu_gallery" />
+            android:layout_marginStart="@dimen/pocetnaMarginaTekstEditor"
+            android:layout_marginTop="@dimen/razmakIzmedjuRedakaTekstEditor"
+            android:layout_marginEnd="@dimen/zavrsnaMarginaTekstEditor"
+            android:ellipsize="start"
+            android:entries="@array/ListaPivi"
+            android:hint="@string/odaberite_pivu"
+            android:background="@drawable/spinner_background"
+            android:paddingTop="@dimen/paddingTekstEditor"
 
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
 
+            />
 
+        <ImageButton
+            android:id="@+id/acceptTastingMenu"
+            android:layout_width="@dimen/circleButton"
+            android:layout_height="@dimen/circleButton"
+            app:layout_constraintEnd_toStartOf="@id/cancelTastingMenu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinPivi"
+            app:srcCompat="@drawable/ic_baseline_check_24"
+            android:layout_marginStart="@dimen/pocetnaMarginaTekstEditor"
+            android:layout_marginTop="@dimen/razmakIzmedjuRedakaTekstEditor"
+            android:layout_marginEnd="@dimen/zavrsnaMarginaTekstEditor"
+            android:background="@drawable/circle_button"
 
-
-
+            />
+        <ImageButton
+            android:id="@+id/cancelTastingMenu"
+            android:layout_width="@dimen/circleButton"
+            android:layout_height="@dimen/circleButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/acceptTastingMenu"
+            app:layout_constraintTop_toBottomOf="@id/spinPivi"
+            app:srcCompat="@drawable/ic_baseline_close_24"
+            android:layout_marginStart="@dimen/pocetnaMarginaTekstEditor"
+            android:layout_marginTop="@dimen/razmakIzmedjuRedakaTekstEditor"
+            android:layout_marginEnd="@dimen/zavrsnaMarginaTekstEditor"
+            android:background="@drawable/circle_button"
+            />
 
 
 

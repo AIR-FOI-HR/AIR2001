@@ -33,6 +33,21 @@
     <string name="datumTekst">   / /   </string>
     <string name="start_date">Start Date:</string>
     <string name="end_date">End Date:</string>
+    <string name="odaberite_pivu">Choose beer</string>
+
+
+    <string-array name="ListaPivi">
+        <item>WannaBePiva1</item>
+        <item>WannaBePiva2</item>
+        <item>WannaBePiva1</item>
+        <item>WannaBePiva2</item>
+        <item>WannaBePiva1</item>
+        <item>WannaBePiva2</item>
+        <item>WannaBePiva1</item>
+        <item>WannaBePiva2</item>
+        <item>WannaBePiva1</item>
+        <item>WannaBePiva2</item>
+    </string-array>
 
     <string-array name="ListaUloga">
         <item>Odaberite Ulogu</item>
