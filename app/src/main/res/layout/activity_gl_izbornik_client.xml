@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".GlavniIzbornikClient">
@@ -300,22 +298,6 @@
             app:layout_constraintTop_toBottomOf="@+id/button2" />
 
         <Button
-            android:id="@+id/button4"
-            android:layout_width="133dp"
-            android:layout_height="47dp"
-            android:layout_marginTop="48dp"
-            android:text="Tasting menus"
-            android:textColor="@color/black"
-            android:background="@drawable/gradient1"
-            android:textSize="12dp"
-            android:textStyle="bold"
-            android:textAllCaps="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.154"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button3" />
-
-        <Button
             android:id="@+id/button5"
             android:background="@drawable/gradient1"
             android:layout_width="133dp"
@@ -350,19 +332,17 @@
 
         <Button
             android:id="@+id/button7"
-            android:background="@drawable/gradient1"
             android:layout_width="132dp"
             android:layout_height="48dp"
-            android:layout_marginStart="57dp"
             android:layout_marginTop="44dp"
+            android:background="@drawable/gradient1"
             android:text="Add new item"
+            android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="12dp"
             android:textStyle="bold"
-            android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/button4"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button6" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
