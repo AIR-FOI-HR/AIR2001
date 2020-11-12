@@ -43,30 +43,24 @@ public class AddBeers extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         spinner1 = findViewById(R.id.spinner1);
         String url = "https://beervana2020.000webhostapp.com/test/populateBeerType.php";
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONArray jsonArray = response.getJSONArray("kategorija");
-                    for(int i=0; i<jsonArray.length();i++){
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String naziv_kategorije = jsonObject.optString("naziv_kategorije");
-                        lista.add(naziv_kategorije);
-                        listaAdapter = new ArrayAdapter<>(AddBeers.this,
-                                android.R.layout.simple_spinner_item, lista);
-                        listaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinner1.setAdapter(listaAdapter);
-                }
-
-                } catch (JSONException e){
-                    e.printStackTrace();
-                }
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, response -> {
+            try {
+                JSONArray jsonArray = response.getJSONArray("kategorija");
+                for(int i=0; i<jsonArray.length();i++){
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    String naziv_kategorije = jsonObject.optString("naziv_kategorije");
+                    lista.add(naziv_kategorije);
+                    listaAdapter = new ArrayAdapter<>(AddBeers.this,
+                            android.R.layout.simple_spinner_item, lista);
+                    listaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner1.setAdapter(listaAdapter);
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
 
+            } catch (JSONException e){
+                e.printStackTrace();
             }
+        }, error -> {
+
         });
         requestQueue.add(jsonObjectRequest);
     }
