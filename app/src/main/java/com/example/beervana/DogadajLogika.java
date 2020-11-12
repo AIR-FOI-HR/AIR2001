@@ -33,22 +33,21 @@ public class DogadajLogika {
         }
         return "";
     }
-    public String ProvjeraUpisaDatuma(String datumZaProvjeru){
+    public String ProvjeraUpisaDatuma(String datum, String vrijeme){
 
-        if(datumZaProvjeru.equals("   / /   ")){
+        if(datum.equals("   / /   ")){
             return "Error: you have to enter a date for event.";
         }else{
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
             try {
-                Date datum = format.parse(datumZaProvjeru);
-                Date danas = Calendar.getInstance().getTime();
-                if(datum.before(danas)){
-                    return "Error: date of event can't be in the past or today";
+                Date datumZaProvjeriti = format.parse(datum+" "+vrijeme);
+                Date datumDanas = Calendar.getInstance().getTime();
+                if(datumZaProvjeriti.before(datumDanas)){
+                    return "Error: end date can't be in past.";
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-
         }
         return "";
     }
@@ -63,6 +62,11 @@ public class DogadajLogika {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        return "";
+    }
+    public String ProvjeraIspravnostiDatuma(String datum,  String vrijeme){
+
 
         return "";
     }

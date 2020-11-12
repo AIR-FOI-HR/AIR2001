@@ -18,9 +18,9 @@ public class AddEventActivityViewModel extends ViewModel {
     private String errSlika;
     private String errUnosImeDogadjaja;
     private String errOpisaDogadjaja;
-    private String errUnosDatumOd;
+    private String errUnosDatumOd = "";
     private String errUnosVrijemeOd;
-    private String errUnosDatumDo;
+    private String errUnosDatumDo = "";
     private String errUnosVrijemeDo;
 
     int gone = View.GONE;
@@ -198,9 +198,7 @@ public class AddEventActivityViewModel extends ViewModel {
         errSlika = logikaDogadjaj.ProvjeraUnosaSlike(slikaZaSlanje);
         errUnosImeDogadjaja = logikaDogadjaj.ProvjeraUnosaNazivaDogadjaja(unosImedogadjaja);
         errOpisaDogadjaja = logikaDogadjaj.ProvjeraUnosaOpisaDogadjaja(unosOpisaDogadaja);
-        errUnosDatumOd  = logikaDogadjaj.ProvjeraUpisaDatuma(prikazDatumaOd);
         errUnosVrijemeOd = logikaDogadjaj.ProvjeraUpisaVremena(prikazVremenaOd);
-        errUnosDatumDo  = logikaDogadjaj.ProvjeraUpisaDatuma(prikazDatumaDo);
         errUnosVrijemeDo = logikaDogadjaj.ProvjeraUpisaVremena(prikazVremenaDo);
 
         if(!errSlika.equals("")){
@@ -215,17 +213,22 @@ public class AddEventActivityViewModel extends ViewModel {
             sveUredu=false;
             errOpisaDogadjajaVisibility = visible;
         }
+        if(!errUnosVrijemeOd.equals("")){
+            sveUredu=false;
+            errUnosVrijemeOdVisibility = visible;
+        }else{
+            errUnosDatumOd  = logikaDogadjaj.ProvjeraUpisaDatuma(prikazDatumaOd,prikazVremenaOd);
+        }
         if(!errUnosDatumOd.equals("")){
             sveUredu=false;
             errUnosDatumOdVisibility = visible;
         }
-        if(!errUnosVrijemeOd.equals("")){
-            sveUredu=false;
-            errUnosVrijemeOdVisibility = visible;
-        }
+
         if(!errUnosVrijemeDo.equals("")){
             sveUredu=false;
             errUnosVrijemeDoVisibility = visible;
+        }else{
+            errUnosDatumDo  = logikaDogadjaj.ProvjeraUpisaDatuma(prikazDatumaDo,prikazVremenaDo);
         }
         if(errUnosDatumOd.equals("") && errUnosVrijemeOd.equals("") &&
                 errUnosDatumDo.equals("") && errUnosVrijemeDo.equals("")){
