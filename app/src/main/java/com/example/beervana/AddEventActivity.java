@@ -89,7 +89,7 @@ public class AddEventActivity extends AppCompatActivity {
         prikazVremenaDo.setText(viewModel.getPrikazVremenaDo());
         slikaDogadjaj.setImageURI(viewModel.getSlika());
 
-        requestQueue= Volley.newRequestQueue(getApplicationContext());
+
 
         PostaviGreske();
 
@@ -165,8 +165,9 @@ public class AddEventActivity extends AppCompatActivity {
             public void onClick(View v) {
                 viewModel.setUnosImedogadjaja(unosImedogadjaja.getText().toString());
                 viewModel.setUnosOpisaDogadaja(unosOpisaDogadaja.getText().toString());
-                //TODO promijenit statičke podatke s prvim
+                //TODO promijenit statičke podatke s pravim
                 if(viewModel.ProvijeriSvePodatke()){
+                    requestQueue= Volley.newRequestQueue(getApplicationContext());
                     Map<String, String> params=new HashMap<String, String>();
                     params.put("id_korisnik","50");
                     params.put("id_lokacija","8");
@@ -176,7 +177,7 @@ public class AddEventActivity extends AppCompatActivity {
                     params.put("datum_pocetak",viewModel.FormirajDatum(viewModel.getPrikazDatumaOd(),viewModel.getPrikazVremenaOd()));
                     params.put("datum_kraj",viewModel.FormirajDatum(viewModel.getPrikazDatumaDo(), viewModel.getPrikazVremenaDo()));
 
-                    sendUrl="https://beervana2020.000webhostapp.com/test/dodajDogadjaj.php";
+                    sendUrl="https://beervana2020.000webhostapp.com/test/dodajDogadjajV2.php";
                     SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
                     slanjePodataka.setParametri(params);
                     slanjePodataka.sendData(getApplicationContext(),requestQueue);
@@ -207,7 +208,7 @@ public class AddEventActivity extends AppCompatActivity {
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 60, stream);
                     byte [] byte_arr = stream.toByteArray();
                     String image_str = Base64.encodeToString(byte_arr, Base64.DEFAULT);
                     viewModel.setSlikaZaSlanje(image_str);
