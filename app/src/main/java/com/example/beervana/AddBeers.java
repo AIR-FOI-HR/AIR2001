@@ -73,7 +73,6 @@ public class AddBeers extends AppCompatActivity {
                             android.R.layout.simple_spinner_item, lista);
                     listaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner1.setAdapter(listaAdapter);
-                    //pitati jel dobro
                     //pozicija = spinner1.getSelectedItemPosition();
 
                 }
