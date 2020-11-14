@@ -3,12 +3,19 @@ package com.example.beervana;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -25,17 +32,27 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class AddBeers extends AppCompatActivity {
 
-
+    ImageView slika;
     EditText naziv_proizvoda;
     EditText cijena_proizvoda;
     EditText okus;
     EditText kolicina;
+
+    TextView errSlika;
+    TextView errNaziv;
+    TextView errOkus;
+    TextView errCijena;
+    TextView errLitra;
+
+    private AddBeersViewModel viewModel;
 
     Spinner spinner1;
     ArrayList<String> lista = new ArrayList<>();
@@ -55,9 +72,25 @@ public class AddBeers extends AppCompatActivity {
         binding = AddBeersActivityBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        viewModel=new ViewModelProvider(this).get(AddBeersViewModel.class);
 
+        naziv_proizvoda=binding.editTextTextPersonName;
+        cijena_proizvoda= binding.editTextNumberDecimal;
+        okus = binding.editTextTextPersonName3;
+        kolicina = binding.editTextTextPersonName4;
+        slika = binding.imageView11;
+        slika.setImageURI(viewModel.getSlika());
+        //final AddBeersViewModel viewModel = new ViewModelProvider(this).get(AddBeersViewModel.class);
 
-        final AddBeersViewModel viewModel = new ViewModelProvider(this).get(AddBeersViewModel.class);
+        //PostaviGreske();
+
+        binding.button8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickPhoto,1);
+            }
+        });
 
         requestQueue = Volley.newRequestQueue(this);
         spinner1 = findViewById(R.id.spinner1);
@@ -88,51 +121,96 @@ public class AddBeers extends AppCompatActivity {
         binding.floatingActionButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                requestQueue = Volley.newRequestQueue(getApplicationContext());
-                pozicija = (String) spinner1.getSelectedItem();
-                if (pozicija.equals("Svijetla")){
-                    pozicija_int = 1;
-                }
-                else if (pozicija.equals("Crvena")){
-                    pozicija_int = 2;
-                }
-                else if (pozicija.equals("Tamna")){
-                    pozicija_int = 3;
-                }
-                else if (pozicija.equals("Crna")){
-                    pozicija_int = 4;
-                }
-
-                naziv_proizvoda = findViewById(R.id.editTextTextPersonName);
-                cijena_proizvoda = findViewById(R.id.editTextNumberDecimal);
-                okus = findViewById(R.id.editTextTextPersonName3);
-                kolicina = findViewById(R.id.editTextTextPersonName4);
-
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("naziv_proizvoda", naziv_proizvoda.getText().toString());
-                params.put("cijena_proizvoda", cijena_proizvoda.getText().toString());
-                params.put("vrsta_proizvoda", okus.getText().toString());
-                params.put("kolicina_proizvoda", kolicina.getText().toString());
-                params.put("id_kategorija", pozicija_int.toString());
-
-                SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
-                slanjePodataka.setParametri(params);
-                slanjePodataka.sendData(getApplicationContext(), requestQueue);
-
-                requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
-                    @Override
-                    public void onRequestFinished(Request<Object> request) {
-                        String odgovor = slanjePodataka.getOdgovor();
-                        if (odgovor.equals("Succesfully added a beer")) {
-                            Toast toast = Toast.makeText(getApplicationContext(), "Successfully added a beer! ", Toast.LENGTH_LONG);
-                            toast.show();
-                        }
+                viewModel.setNazivPiva(naziv_proizvoda.getText().toString());
+                viewModel.setCijenaPiva(Double.parseDouble(cijena_proizvoda.getText().toString()));
+                viewModel.setLitraPiva(Double.parseDouble(kolicina.getText().toString()));
+                viewModel.setOkusPiva(okus.getText().toString());
+                if(viewModel.ProvjeriPodatke()) {
+                    requestQueue = Volley.newRequestQueue(getApplicationContext());
+                    pozicija = (String) spinner1.getSelectedItem();
+                    if (pozicija.equals("Svijetla")) {
+                        pozicija_int = 1;
+                    } else if (pozicija.equals("Crvena")) {
+                        pozicija_int = 2;
+                    } else if (pozicija.equals("Tamna")) {
+                        pozicija_int = 3;
+                    } else if (pozicija.equals("Crna")) {
+                        pozicija_int = 4;
                     }
-                });
+
+
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("id_lokacija","8");
+                    params.put("naziv_proizvoda", viewModel.getNazivPiva());
+                    params.put("cijena_proizvoda", String.valueOf(viewModel.getCijenaPiva()));
+                    params.put("vrsta_proizvoda", viewModel.getOkusPiva());
+                    params.put("kolicina_proizvoda", String.valueOf(viewModel.getLitraPiva()));
+                    params.put("id_kategorija", pozicija_int.toString());
+                    params.put("slika",viewModel.getSlikaZaSlanje());
+
+                    SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
+                    slanjePodataka.setParametri(params);
+                    slanjePodataka.sendData(getApplicationContext(), requestQueue);
+
+                    requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+                        @Override
+                        public void onRequestFinished(Request<Object> request) {
+                            String odgovor = slanjePodataka.getOdgovor();
+                            if (odgovor.equals("Succesfully added a beer")) {
+                                Toast toast = Toast.makeText(getApplicationContext(), "Successfully added a beer! ", Toast.LENGTH_LONG);
+                                toast.show();
+
+                            }
+                        }
+                    });
+                }
+                //PostaviGreske();
             }
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode !=RESULT_CANCELED){
+            if (resultCode == RESULT_OK && data != null) {
+                Uri selectedImage =  data.getData();
+
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 60, stream);
+                    byte [] byte_arr = stream.toByteArray();
+                    String image_str = Base64.encodeToString(byte_arr, Base64.DEFAULT);
+                    viewModel.setSlikaZaSlanje(image_str);
+                } catch (IOException e) {
+                    Toast toast = Toast.makeText(getApplicationContext(),"Erorr file not found",Toast.LENGTH_LONG);
+                    toast.show();
+                    e.printStackTrace();
+                }
+                viewModel.setSlika(selectedImage);
+                slika.setImageURI(viewModel.getSlika());
+            }else{
+                Toast toast = Toast.makeText(getApplicationContext(),"Error when inserting image",Toast.LENGTH_LONG);
+                toast.show();
+            }
+        }
+    }
+
+    private void PostaviGreske() {
+        errSlika.setText(viewModel.getErrSlika());
+        errCijena.setText(viewModel.getErrCijena());
+        errLitra.setText(viewModel.getErrLitra());
+        errNaziv.setText(viewModel.getErrNaziv());
+        errOkus.setText(viewModel.getErrOkus());
+
+        errSlika.setVisibility(viewModel.getErrSlikaVisibility());
+        errOkus.setVisibility(viewModel.getErrUnosokusaPivaVisibility());
+        errNaziv.setVisibility(viewModel.getErrUnosNazivaPivaVisibility());
+        errLitra.setVisibility(viewModel.getErrUnosLitreVisibility());
+        errCijena.setVisibility(viewModel.getErrUnosCijenePivaVisibility());
+    }
 
 
 }
