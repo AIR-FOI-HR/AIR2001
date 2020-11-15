@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/beerImage"
+        android:layout_width="207dp"
+        android:layout_height="132dp"
+        android:layout_margin="20dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="30dp"
+        android:src=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/beerNameTextView1" />
+
+    <ImageView
+        android:id="@+id/userPicture1"
+        android:layout_width="47dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="27dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:srcCompat="@drawable/ic_user_icon" />
+
+    <TextView
+        android:id="@+id/userReviewTextView1"
+        android:layout_width="46dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="10dp"
+        android:text="Review"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toStartOf="@+id/commentTextView1"
+        app:layout_constraintStart_toEndOf="@+id/userPicture1"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/commentTextView1"
+        android:layout_width="222dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="45dp"
+        android:text="Comment"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/commentTextView2"
+        android:layout_width="222dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="18dp"
+        android:text="Comment"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/commentTextView1" />
+
+    <TextView
+        android:id="@+id/userReviewTextView2"
+        android:layout_width="46dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="10dp"
+        android:text="Review"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toStartOf="@+id/commentTextView2"
+        app:layout_constraintStart_toEndOf="@+id/userPicture2"
+        app:layout_constraintTop_toBottomOf="@+id/userReviewTextView1" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="130dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="248dp"
+        android:text="Reviews:"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="339dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="39dp"
+        android:text="Description"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/beerNameTextView2" />
+
+    <TextView
+        android:id="@+id/beerNameTextView2"
+        android:layout_width="129dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="12dp"
+        android:text="BeerName"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+    <TextView
+        android:id="@+id/alcoholPercentageTextView"
+        android:layout_width="108dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="36dp"
+        android:text="AlcoholPercentage"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/beerNameTextView2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+    <ImageView
+        android:id="@+id/userPicture2"
+        android:layout_width="47dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userPicture1"
+        app:srcCompat="@drawable/ic_user_icon" />
+
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="286dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="7dp"
+        android:contentDescription="image2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19"
+        app:srcCompat="@drawable/untitled" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="250dp"
+        android:layout_height="21dp"
+        android:text="This beer is eligible for spending coins!"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/beerNameTextView2"
+        app:layout_constraintEnd_toEndOf="@+id/imageView6"
+        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/beerImage"
+        app:layout_constraintVertical_bias="0.543" />
+
+    <TextView
+        android:id="@+id/beerNameTextView1"
+        android:layout_width="89dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="117dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="145dp"
+        android:text="BeerName"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/actionBack2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/actionBack2"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_left_arrow_icon" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="104dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="36dp"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/beerImage"
+        app:layout_constraintTop_toBottomOf="@+id/noStarTextView" />
+
+    <TextView
+        android:id="@+id/noStarTextView"
+        android:layout_width="102dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="36dp"
+        android:text="/5"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/beerImage"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="64dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="115dp"
+        android:layout_marginEnd="59dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_star_icon" />
+</androidx.constraintlayout.widget.ConstraintLayout>
