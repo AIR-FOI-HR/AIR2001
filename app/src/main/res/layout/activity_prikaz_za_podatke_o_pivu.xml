@@ -116,20 +116,20 @@
         android:layout_width="129dp"
         android:layout_height="30dp"
         android:layout_marginStart="34dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="78dp"
         android:text="BeerName"
         android:textColor="@color/black"
         android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+        app:layout_constraintTop_toBottomOf="@+id/beerImage" />
 
     <TextView
         android:id="@+id/alcoholPercentageTextView"
         android:layout_width="108dp"
         android:layout_height="28dp"
         android:layout_marginStart="104dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="67dp"
         android:layout_marginEnd="36dp"
         android:text="AlcoholPercentage"
         android:textColor="@color/black"
@@ -137,7 +137,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/beerNameTextView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     <ImageView
         android:id="@+id/userPicture2"
@@ -149,30 +149,6 @@
         app:layout_constraintTop_toBottomOf="@+id/userPicture1"
         app:srcCompat="@drawable/ic_user_icon" />
 
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="286dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="7dp"
-        android:contentDescription="image2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView19"
-        app:srcCompat="@drawable/untitled" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="250dp"
-        android:layout_height="21dp"
-        android:text="This beer is eligible for spending coins!"
-        android:textColor="@color/black"
-        android:textSize="14dp"
-        app:layout_constraintBottom_toTopOf="@+id/beerNameTextView2"
-        app:layout_constraintEnd_toEndOf="@+id/imageView6"
-        app:layout_constraintHorizontal_bias="0.583"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/beerImage"
-        app:layout_constraintVertical_bias="0.543" />
 
     <TextView
         android:id="@+id/beerNameTextView1"
