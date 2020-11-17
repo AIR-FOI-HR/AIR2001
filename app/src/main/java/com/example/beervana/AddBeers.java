@@ -84,6 +84,7 @@ public class AddBeers extends AppCompatActivity {
 
         //PostaviGreske();
 
+
         binding.button8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
