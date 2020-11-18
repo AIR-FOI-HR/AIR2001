@@ -11,11 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Beervana">
-        <!--<activity android:name=".BeerCatalog"></activity> -->
+        <activity android:name=".BeerCatalog"></activity>
         <activity android:name=".PrikazZaPodatkeOPivuActivity"></activity>
         <activity android:name=".GlavniIzbornikClient" />
         <activity
-            android:name=".BeerCatalog"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.Beervana.NoActionBar">
             <intent-filter>
