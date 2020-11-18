@@ -13,13 +13,13 @@
 
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <TextView
 
             android:id="@+id/txtAddTastingMenu"
             android:layout_width="409dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="1dp"
             android:layout_marginEnd="1dp"
             android:padding="15dp"
@@ -43,16 +43,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtAddTastingMenu"
             app:srcCompat="@android:drawable/ic_menu_gallery" />
+        <TextView
+            android:id="@+id/imageTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/spinPivi"
+            android:textColor="@android:color/holo_red_light"
+            android:layout_marginStart="@dimen/pocetnaMarginaTekstEditor"
+            android:layout_marginTop="@dimen/razmakZaGreske"
+            android:layout_marginEnd="@dimen/zavrsnaMarginaTekstEditor"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageTastingMenu"
+            android:visibility="gone"
+            android:text="@string/imageTastingMenu"></TextView>
 
 
         <EditText
             android:id="@+id/tastingMenuName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@drawable/edit_text_border"
             android:ellipsize="start"
             android:ems="10"
-
+            android:selectAllOnFocus="true"
             android:gravity="center_horizontal"
             android:hint="@string/tastingMenuName"
             android:importantForAutofill="no"
@@ -63,29 +79,108 @@
             android:textColorHint="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageTastingMenu"
-            app:srcCompat="@android:drawable/ic_menu_gallery"/>
+            app:layout_constraintTop_toBottomOf="@id/imageTextView"
+            app:srcCompat="@android:drawable/ic_menu_gallery"
+            android:layout_marginStart="@dimen/pocetnaMarginaTekstEditor"
+            android:layout_marginTop="@dimen/razmakIzmedjuRedakaTekstEditor"
+            android:layout_marginEnd="@dimen/zavrsnaMarginaTekstEditor"/>
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/spinPivi"
+            android:textColor="@android:color/holo_red_light"
+            android:layout_marginStart="@dimen/pocetnaMarginaTekstEditor"
+            android:layout_marginTop="@dimen/razmakZaGreske"
+            android:layout_marginEnd="@dimen/zavrsnaMarginaTekstEditor"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tastingMenuName"
+            android:visibility="gone"
+            android:text="@string/menuNameMismatch"></TextView>
 
         <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
 
             android:id="@+id/spinPivi"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tastingMenuName"
+            app:layout_constraintTop_toBottomOf="@id/nameTextView"
             android:layout_marginStart="@dimen/pocetnaMarginaTekstEditor"
             android:layout_marginTop="@dimen/razmakIzmedjuRedakaTekstEditor"
             android:layout_marginEnd="@dimen/zavrsnaMarginaTekstEditor"
             android:ellipsize="start"
-            android:entries="@array/ListaPivi"
             android:hint="@string/odaberite_pivu"
             android:background="@drawable/spinner_background"
             android:paddingTop="@dimen/paddingTekstEditor"
-
+            android:focusableInTouchMode="true"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
 
             />
+        <TextView
+            android:id="@+id/spinTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/spinPivi"
+            android:textColor="@android:color/holo_red_light"
+            android:layout_marginStart="@dimen/pocetnaMarginaTekstEditor"
+            android:layout_marginTop="@dimen/razmakZaGreske"
+            android:layout_marginEnd="@dimen/zavrsnaMarginaTekstEditor"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinPivi"
+            android:visibility="gone"
+            android:text="@string/menuBeerPickError"></TextView>
+
+
+        <EditText
+            android:id="@+id/tastingMenuDuration"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/edit_text_border"
+            android:ellipsize="start"
+            android:ems="10"
+            android:selectAllOnFocus="true"
+            android:layout_marginStart="@dimen/pocetnaMarginaTekstEditor"
+            android:layout_marginTop="@dimen/razmakIzmedjuRedakaTekstEditor"
+            android:layout_marginEnd="@dimen/zavrsnaMarginaTekstEditor"
+            android:gravity="center_horizontal"
+            android:hint="@string/tastingMenuDuration"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:paddingTop="@dimen/paddingTekstEditor"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            app:srcCompat="@android:drawable/ic_menu_gallery"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinTextView">
+        </EditText>
+
+            <TextView
+                android:id="@+id/durationTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/tastingMenuDuration"
+                android:textColor="@android:color/holo_red_light"
+                android:layout_marginStart="@dimen/pocetnaMarginaTekstEditor"
+                android:layout_marginTop="@dimen/razmakZaGreske"
+                android:layout_marginEnd="@dimen/zavrsnaMarginaTekstEditor"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tastingMenuDuration"
+                android:visibility="gone"
+                android:text="@string/menuDurationMismatch"></TextView>
 
         <ImageButton
             android:id="@+id/acceptTastingMenu"
@@ -93,7 +188,7 @@
             android:layout_height="@dimen/circleButton"
             app:layout_constraintEnd_toStartOf="@id/cancelTastingMenu"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spinPivi"
+            app:layout_constraintTop_toBottomOf="@id/durationTextView"
             app:srcCompat="@drawable/ic_baseline_check_24"
             android:layout_marginStart="@dimen/pocetnaMarginaTekstEditor"
             android:layout_marginTop="@dimen/razmakIzmedjuRedakaTekstEditor"
@@ -107,7 +202,7 @@
             android:layout_height="@dimen/circleButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/acceptTastingMenu"
-            app:layout_constraintTop_toBottomOf="@id/spinPivi"
+            app:layout_constraintTop_toBottomOf="@id/durationTextView"
             app:srcCompat="@drawable/ic_baseline_close_24"
             android:layout_marginStart="@dimen/pocetnaMarginaTekstEditor"
             android:layout_marginTop="@dimen/razmakIzmedjuRedakaTekstEditor"
