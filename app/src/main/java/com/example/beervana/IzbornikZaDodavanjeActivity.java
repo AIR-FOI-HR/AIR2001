@@ -21,10 +21,10 @@ public class IzbornikZaDodavanjeActivity extends AppCompatActivity{
         Button button3 = (Button) findViewById(R.id.actionAddPromo);
         button3.setOnClickListener(v -> openAddPromo());
          */
-        /*
+
         Button button4 = (Button) findViewById(R.id.actionAddTastingMenu);
         button4.setOnClickListener(v -> openAddTastingMenu());
-         */
+
         /*
         Button button5 = (Button) findViewById(R.id.actionAddTour);
         button5.setOnClickListener(v -> openAddTour());
@@ -46,12 +46,12 @@ public class IzbornikZaDodavanjeActivity extends AppCompatActivity{
         startActivity(intent);
     }
      */
-    /*
+
     public void openAddTastingMenu(){
-        Intent intent = new Intent(this, AddTastingMenuActivity.class);
+        Intent intent = new Intent(this, DodavanjeDegustacijskihMeniaActivity.class);
         startActivity(intent);
     }
-     */
+
     /*
     public void openAddTour(){
         Intent intent = new Intent(this, AddTourActivity.class);

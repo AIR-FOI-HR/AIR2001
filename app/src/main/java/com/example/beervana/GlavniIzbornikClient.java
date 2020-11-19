@@ -14,5 +14,17 @@ public class GlavniIzbornikClient extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gl_izbornik_client);
 
+        Button button = (Button) findViewById(R.id.button7);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity2();
+            }
+        });
+    }
+
+    public void openActivity2(){
+        Intent intent = new Intent(this, IzbornikZaDodavanjeActivity.class);
+        startActivity(intent);
     }
 }
