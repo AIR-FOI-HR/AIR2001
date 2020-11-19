@@ -5,4 +5,6 @@
     <dimen name="zavrsnaMarginaTekstEditor">40dp</dimen>
     <dimen name="razmakIzmedjuRedakaTekstEditor">25dp</dimen>
     <dimen name="razmakZaGreske">5dp</dimen>
+    <dimen name="circleButton">60dp</dimen>
+    <dimen name="tastingMenuImageSize">150dp</dimen>
 </resources>
