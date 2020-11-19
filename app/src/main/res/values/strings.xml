@@ -26,7 +26,6 @@
     <string name="ulica">Ulica</string>
     <string name="kucni_broj">Kućni broj</string>
     <string name="oib_lokacije">OIB lokacije</string>
-<<<<<<< HEAD
     <string name="add_event">Add Event</string>
     <string name="event_name">Event name</string>
     <string name="slika_za_doga_aj">Slika za događaj</string>
@@ -35,22 +34,15 @@
     <string name="datumTekst">   / /   </string>
     <string name="start_date">Start Date:</string>
     <string name="end_date">End Date:</string>
-=======
     <string name="add_tasting_menu">Add tasting menu</string>
     <string name="imageTastingMenu">Add Image</string>
-    <string name="add_image">Add image</string>
     <string name="tastingMenuName">Menu name</string>
-    <string name="datumTekst">   / /   </string>
-    <string name="start_date">Start Date:</string>
-    <string name="end_date">End Date:</string>
     <string name="odaberite_pivu">Choose beer</string>
     <string name="tastingMenuDuration">Duration in days</string>
     <string name="menuNameMismatch">Wrong menu name</string>
     <string name="menuDurationMismatch">Wrong duration format. It must be only numbers representing days.</string>
     <string name="menuBeerPickError">At least one beer must be selected</string>
 
-
->>>>>>> origin/features/dodavanjeDegustacijskihMenija
 
 
     <string-array name="ListaUloga">
