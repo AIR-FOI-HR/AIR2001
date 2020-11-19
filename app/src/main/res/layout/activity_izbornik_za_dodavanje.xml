@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.Beervana.NoActionBar"
+    tools:context=".IzbornikZaDodavanjeActivity">
+
+
+    <Button
+        android:id="@+id/actionAddBeer"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="113dp"
+        android:background="@drawable/circle_button"
+        android:text="+"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelAddPromo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="106dp"
+        android:text="Add Promo"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/actionAddPromo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/labelAddEvent"
+        app:layout_constraintTop_toTopOf="@+id/actionAddPromo" />
+
+    <Button
+        android:id="@+id/actionAddTour"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="113dp"
+        android:background="@drawable/circle_button"
+        android:text="+"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/actionAddTastingMenu"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/actionAddTastingMenu" />
+
+    <Button
+        android:id="@+id/actionAddEvent"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/circle_button"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="@+id/actionAddPromo"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/actionAddPromo"
+        app:layout_constraintTop_toBottomOf="@+id/actionAddPromo" />
+
+    <TextView
+        android:id="@+id/labelAddTour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="136dp"
+        android:text="Add Tour"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/actionAddTour"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/actionAddTour" />
+
+    <Button
+        android:id="@+id/actionAddTastingMenu"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/circle_button"
+        android:text="+"
+        app:layout_constraintBottom_toBottomOf="@+id/labelAddTastingMenu"
+        app:layout_constraintEnd_toEndOf="@+id/actionAddEvent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/actionAddEvent"
+        app:layout_constraintTop_toTopOf="@+id/labelAddTastingMenu"
+        app:layout_constraintVertical_bias="0.675" />
+
+    <TextView
+        android:id="@+id/labelAddBeer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="134dp"
+        android:text="Add Beer"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/actionAddBeer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/labelAddPromo"
+        app:layout_constraintTop_toTopOf="@+id/actionAddBeer" />
+
+    <TextView
+        android:id="@+id/labelAddTastingMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="59dp"
+        android:text="Add Tasting menu"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/labelAddTour"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/labelAddTour" />
+
+    <ImageButton
+        android:id="@+id/actionBack"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_left_arrow_icon" />
+
+    <TextView
+        android:id="@+id/labelAddEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="122dp"
+        android:text="Add Event"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/actionAddEvent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/labelAddTastingMenu"
+        app:layout_constraintTop_toTopOf="@+id/actionAddEvent" />
+
+    <Button
+        android:id="@+id/actionAddPromo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/circle_button"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="@+id/actionAddBeer"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/actionAddBeer"
+        app:layout_constraintTop_toBottomOf="@+id/actionAddBeer" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
