@@ -12,8 +12,8 @@
         android:id="@+id/actionAddBeer"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="113dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="100dp"
         android:background="@drawable/circle_button"
         android:text="+"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,118 +23,77 @@
         android:id="@+id/labelAddPromo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="106dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="52dp"
         android:text="Add Promo"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/actionAddPromo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/labelAddEvent"
-        app:layout_constraintTop_toTopOf="@+id/actionAddPromo" />
-
-    <Button
-        android:id="@+id/actionAddTour"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginBottom="113dp"
-        android:background="@drawable/circle_button"
-        android:text="+"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/actionAddTastingMenu"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/actionAddTastingMenu" />
+        app:layout_constraintStart_toEndOf="@+id/actionAddPromo"
+        app:layout_constraintTop_toBottomOf="@+id/labelAddBeer" />
 
     <Button
         android:id="@+id/actionAddEvent"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/circle_button"
         android:text="+"
-        app:layout_constraintEnd_toEndOf="@+id/actionAddPromo"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/actionAddPromo"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actionAddPromo" />
-
-    <TextView
-        android:id="@+id/labelAddTour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="136dp"
-        android:text="Add Tour"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/actionAddTour"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/actionAddTour" />
-
-    <Button
-        android:id="@+id/actionAddTastingMenu"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:background="@drawable/circle_button"
-        android:text="+"
-        app:layout_constraintBottom_toBottomOf="@+id/labelAddTastingMenu"
-        app:layout_constraintEnd_toEndOf="@+id/actionAddEvent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/actionAddEvent"
-        app:layout_constraintTop_toTopOf="@+id/labelAddTastingMenu"
-        app:layout_constraintVertical_bias="0.675" />
 
     <TextView
         android:id="@+id/labelAddBeer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="134dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="136dp"
         android:text="Add Beer"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/actionAddBeer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/labelAddPromo"
-        app:layout_constraintTop_toTopOf="@+id/actionAddBeer" />
+        app:layout_constraintStart_toEndOf="@+id/actionAddBeer"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/labelAddTastingMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="59dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="72dp"
         android:text="Add Tasting menu"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/labelAddTour"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/labelAddTour" />
+        app:layout_constraintStart_toEndOf="@+id/actionAddTastingMenu"
+        app:layout_constraintTop_toBottomOf="@+id/labelAddEvent" />
 
-    <ImageButton
-        android:id="@+id/actionBack"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="52dp"
+    <Button
+        android:id="@+id/actionAddTastingMenu"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/circle_button"
+        android:text="+"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_left_arrow_icon" />
+        app:layout_constraintTop_toBottomOf="@+id/actionAddEvent" />
 
     <TextView
         android:id="@+id/labelAddEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="122dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="68dp"
         android:text="Add Event"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/actionAddEvent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/labelAddTastingMenu"
-        app:layout_constraintTop_toTopOf="@+id/actionAddEvent" />
+        app:layout_constraintStart_toEndOf="@+id/actionAddEvent"
+        app:layout_constraintTop_toBottomOf="@+id/labelAddPromo" />
 
     <Button
         android:id="@+id/actionAddPromo"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/circle_button"
         android:text="+"
-        app:layout_constraintEnd_toEndOf="@+id/actionAddBeer"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/actionAddBeer"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actionAddBeer" />
 
 
