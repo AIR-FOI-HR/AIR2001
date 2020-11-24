@@ -18,6 +18,11 @@
 
 
         </activity>
+
+        <activity android:name=".PrikazZaPodatkeOPivuActivity" ></activity>
+        <activity android:name=".BeerCatalogActivity">
+
+        </activity>
         <activity android:name=".AddBeers" />
 
         <activity android:name=".IzbornikZaDodavanjeActivity" />
@@ -32,7 +37,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter> 
         </activity>
         <activity android:name=".RegisterActivity">
             TODO promijeniti da opet pokrece od main activitya

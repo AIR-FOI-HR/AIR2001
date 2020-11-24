@@ -1,6 +1,5 @@
 package com.example.beervana;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -29,11 +28,11 @@ public class PrikazZaPodatkeOPivuActivity extends AppCompatActivity{
         Intent intent = getIntent();
         position = intent.getExtras().getInt("position");
 
-        beerName1.setText("Beer name: " + BeerCatalog.BeerArrayList.get(position).getNaziv_proizvoda());
-        beerName2.setText("Beer name: " + BeerCatalog.BeerArrayList.get(position).getNaziv_proizvoda());
-        beerTaste.setText("Beer taste: "+ BeerCatalog.BeerArrayList.get(position).getOkus());
-        beerDescription.setText("Beer price: " + BeerCatalog.BeerArrayList.get(position).getCijena_proizvoda());
-        String imageUri = BeerCatalog.BeerArrayList.get(position).getSlika();
+        beerName1.setText("Beer name: " + BeerCatalogActivity.BeerArrayList.get(position).getNaziv_proizvoda());
+        beerName2.setText("Beer name: " + BeerCatalogActivity.BeerArrayList.get(position).getNaziv_proizvoda());
+        beerTaste.setText("Beer taste: "+ BeerCatalogActivity.BeerArrayList.get(position).getOkus());
+        beerDescription.setText("Beer price: " + BeerCatalogActivity.BeerArrayList.get(position).getCijena_proizvoda());
+        String imageUri = BeerCatalogActivity.BeerArrayList.get(position).getSlika();
         Picasso.with(this).load(imageUri).into(beerImage);
 
 
