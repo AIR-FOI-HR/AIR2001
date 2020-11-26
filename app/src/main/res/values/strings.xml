@@ -44,7 +44,6 @@
     <string name="menuBeerPickError">At least one beer must be selected</string>
 
 
-
     <string-array name="ListaUloga">
         <item>Odaberite Ulogu</item>
         <item>Korisnik</item>
