@@ -10,10 +10,6 @@ public class GlavniIzbornikUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.glavni_izbornik_user_activity);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, GlavniIzbornikUserFragment.newInstance())
-                    .commitNow();
-        }
+
     }
 }
