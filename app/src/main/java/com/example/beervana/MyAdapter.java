@@ -33,9 +33,11 @@ public class MyAdapter extends ArrayAdapter<Beer> {
 
         TextView tvID = view.findViewById(R.id.txtIdPiva);
         TextView tvName = view.findViewById(R.id.txtNazivPiva);
+        TextView tvPrice = view.findViewById(R.id.txtPrice);
 
         tvID.setText(arrayListBeer.get(position).getId_proizvod());
         tvName.setText(arrayListBeer.get(position).getNaziv_proizvoda());
+        tvPrice.setText(arrayListBeer.get(position).getCijena_proizvoda());
 
         return view;
     }

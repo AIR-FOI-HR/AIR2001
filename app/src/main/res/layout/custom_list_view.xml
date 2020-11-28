@@ -17,13 +17,23 @@
         android:textColor="@color/white"
         android:background="@drawable/circle"/>
     <TextView
-        android:layout_width="fill_parent"
+        android:layout_width="250dp"
         android:layout_height="50dp"
         android:id="@+id/txtNazivPiva"
         android:text="Beer name"
         android:gravity="center_vertical"
         android:textSize="20sp"
         android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:id="@+id/txtPrice"
+        android:layout_marginLeft="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Price"
+        android:textSize="20sp"
+        android:gravity="center"
         />
 
 
