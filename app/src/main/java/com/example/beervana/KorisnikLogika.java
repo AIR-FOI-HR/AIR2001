@@ -1,5 +1,10 @@
 package com.example.beervana;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class KorisnikLogika {
@@ -124,5 +129,34 @@ public class KorisnikLogika {
     }
     public boolean SlovaHrkIRazmaci(String zaProvijeriti){
         return Pattern.matches("^([a-zA-ZčČćĆžŽđĐšŠ]+\\s)*[a-zA-ZčČćĆžŽđĐšŠ]+$",zaProvijeriti);
+    }
+
+    public User parsiranjePodatakaKorisnika(JSONObject jsonObject) {
+        JSONArray jsonArray = null;
+        try {
+            jsonArray = jsonObject.getJSONArray("body");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject object = jsonArray.getJSONObject(i);
+                int id_korisnik = Integer.parseInt(object.getString("id_korisnik"));
+                int id_uloga = Integer.parseInt(object.getString("id_uloga"));
+                int id_clanstvo = Integer.parseInt(object.getString("id_clanstvo"));
+                /*String ime = object.getString("ime_korisnika");
+                String prezime = object.getString("prezime_korisnika");
+                String adresa = object.getString("adresa_korisnika");
+                String email = object.getString("email");
+                String telefon = object.getString("telefon_korisnika");
+                String korisnicko_ime = object.getString("korsnicko_ime");
+                String slika = object.getString("slika_korisnika"); */
+
+                User user = new User(id_korisnik, id_uloga, id_clanstvo);
+                return user;
+
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

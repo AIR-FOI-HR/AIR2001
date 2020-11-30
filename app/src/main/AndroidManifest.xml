@@ -21,11 +21,7 @@
 
         <activity android:name=".PrikazZaPodatkeOPivuActivity" ></activity>
         <activity android:name=".BeerCatalogActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
         </activity>
         <activity android:name=".AddBeers" />
 
@@ -37,11 +33,11 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.Beervana.NoActionBar">
-            <!--<intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter> -->
+            </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity">
             TODO promijeniti da opet pokrece od main activitya
