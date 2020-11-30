@@ -1,20 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".PrikazZaEventPodatkeActivity">
+    tools:context=".PrikazZaEventPodatkeActivity"><![CDATA[
     >
 
+    ]]>
+
+    <TextView
+        android:id="@+id/prikazNazivDogadaja"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:text="Naziv Događaja"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:layout_marginTop="10dp"
         android:id="@+id/prikazSlikaDogadjaj"
         android:layout_width="match_parent"
         android:layout_height="175dp"
-        android:layout_marginTop="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prikazNazivDogadaja"
         app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+    <TextView
+        android:id="@+id/prikazOpisDogadaja"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="Opis događaja"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prikazSlikaDogadjaj" />
+
+    <ImageView
+        android:id="@+id/slikicaKalendar"
+        android:layout_width="40dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prikazOpisDogadaja"
+        app:srcCompat="@drawable/ic_calendar_date_icon" />
+
+    <TextView
+        android:id="@+id/prikazDatumOd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="13dp"
+        android:text="Datum Od"
+        app:layout_constraintStart_toEndOf="@+id/slikicaKalendar"
+        app:layout_constraintTop_toBottomOf="@+id/prikazOpisDogadaja" />
+    <ImageView
+        android:id="@+id/slikicaKalendar2"
+        android:layout_width="40dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slikicaKalendar"
+        app:srcCompat="@drawable/ic_calendar_date_icon" />
+
+    <TextView
+        android:id="@+id/prikazDatumDo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="13dp"
+        android:text="Datum Do"
+        app:layout_constraintStart_toEndOf="@+id/slikicaKalendar2"
+        app:layout_constraintTop_toBottomOf="@+id/slikicaKalendar" />
+
+    <ImageView
+        android:id="@+id/slikicaPinLokacija"
+        android:layout_width="40dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slikicaKalendar2"
+        app:srcCompat="@drawable/ic_location_pin_icon" />
+    <TextView
+        android:id="@+id/prikazNazivLokacije"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="13dp"
+        android:text="Naziv Lokacije"
+        app:layout_constraintStart_toEndOf="@+id/slikicaPinLokacija"
+        app:layout_constraintTop_toBottomOf="@+id/slikicaKalendar2" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
