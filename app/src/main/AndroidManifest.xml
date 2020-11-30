@@ -26,6 +26,8 @@
         <activity android:name=".AddBeers" />
 
         <activity android:name=".IzbornikZaDodavanjeActivity" />
+
+        <activity android:name=".PrikazZaEventPodatkeActivity"/>
         <activity android:name=".EventCatalogActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

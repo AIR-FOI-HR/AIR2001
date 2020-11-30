@@ -1,11 +1,13 @@
 package com.example.beervana;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -35,7 +37,25 @@ public class EventCatalogActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //startActivity(new Intent(getApplicationContext(),PrikazZaPodatkeOPivuActivity.class).putExtra("position",position));
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+
+                CharSequence[] dijalogStavke = {"View data","Edit data ","Delete data"};
+                builder.setTitle(eventDataList.get(position).dogadaj.getNazivDogadaj());
+                builder.setItems(dijalogStavke, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int odabir) {
+                        switch (odabir){
+                            case 0:
+                                startActivity(new Intent(getApplicationContext(),PrikazZaEventPodatkeActivity.class).putExtra("position",position));
+                                break;
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                        }
+                    }
+                });
+                builder.create().show();
             }
         });
         retrieveData();
