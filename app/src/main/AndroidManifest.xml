@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Beervana">
+        <activity android:name=".PrikazPodatakaOPivovariActivity"></activity>
         <activity android:name=".GlavniIzbornikClient"></activity>
         <activity
             android:name=".MainActivity"
