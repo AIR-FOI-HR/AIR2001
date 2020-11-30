@@ -98,39 +98,6 @@
             app:layout_constraintVertical_bias="0.058" />
 
         <TextView
-            android:id="@+id/textViewTourDesc2"
-            android:layout_width="235dp"
-            android:layout_height="59dp"
-            android:layout_marginTop="4dp"
-            android:text="Tour Description"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewTour2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.166"
-            app:layout_constraintStart_toEndOf="@+id/imageViewTour2"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTourTitle2"
-            app:layout_constraintVertical_bias="0.8" />
-
-        <ImageView
-            android:id="@+id/imageViewTour2"
-            android:layout_width="118dp"
-            android:layout_height="78dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewTour1"
-            app:srcCompat="@drawable/ic_picture_icon" />
-
-        <TextView
-            android:id="@+id/textViewTourTitle2"
-            android:layout_width="235dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="36dp"
-            android:text="Tour Title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageViewTour2"
-            app:layout_constraintTop_toTopOf="@+id/imageViewTour2" />
-
-        <TextView
             android:id="@+id/textViewTastingMDesc"
             android:layout_width="235dp"
             android:layout_height="59dp"
@@ -143,26 +110,6 @@
             app:layout_constraintStart_toEndOf="@+id/imageViewTastingM2"
             app:layout_constraintTop_toBottomOf="@+id/textViewTastingMTitle2"
             app:layout_constraintVertical_bias="0.0" />
-
-        <ImageView
-            android:id="@+id/imageViewTour1"
-            android:layout_width="112dp"
-            android:layout_height="82dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="60dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12"
-            app:srcCompat="@drawable/ic_picture_icon" />
-
-        <TextView
-            android:id="@+id/textViewTourTitle1"
-            android:layout_width="235dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="36dp"
-            android:text="Tour Title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageViewTour1"
-            app:layout_constraintTop_toTopOf="@+id/imageViewTour1" />
 
         <Button
             android:id="@+id/actionDetailsEvent"
@@ -177,18 +124,6 @@
             android:textSize="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewTastingMDesc" />
-
-        <TextView
-            android:id="@+id/textViewTourDesc1"
-            android:layout_width="235dp"
-            android:layout_height="59dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="36dp"
-            android:text="Tour Description"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewTour1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageViewTour1"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTourTitle1" />
 
         <TextView
             android:id="@+id/textViewTastingMTitle2"
@@ -215,13 +150,12 @@
             android:id="@+id/textViewPromoDesc2"
             android:layout_width="235dp"
             android:layout_height="59dp"
-            android:layout_marginEnd="36dp"
+            android:layout_marginTop="8dp"
             android:text="Promo Description"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewPromo2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageViewPromo2"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPromoTitle2"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPromoTitle2" />
 
         <ImageView
             android:id="@+id/imageViewTastingM1"
@@ -243,16 +177,6 @@
             app:layout_constraintStart_toEndOf="@+id/imageViewTastingM1"
             app:layout_constraintTop_toTopOf="@+id/imageViewTastingM1" />
 
-        <ImageView
-            android:id="@+id/imageViewPromo2"
-            android:layout_width="112dp"
-            android:layout_height="82dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="40dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPromo1"
-            app:srcCompat="@drawable/ic_picture_icon" />
-
         <TextView
             android:id="@+id/textViewTastingMDesc1"
             android:layout_width="235dp"
@@ -270,52 +194,42 @@
             android:id="@+id/textViewPromoTitle2"
             android:layout_width="235dp"
             android:layout_height="20dp"
-            android:layout_marginEnd="36dp"
+            android:layout_marginTop="32dp"
             android:text="Promo Title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageViewPromo2"
-            app:layout_constraintTop_toTopOf="@+id/imageViewPromo2" />
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPromoDesc1" />
 
         <TextView
             android:id="@+id/textViewPromoDesc1"
             android:layout_width="235dp"
             android:layout_height="59dp"
-            android:layout_marginEnd="36dp"
+            android:layout_marginTop="8dp"
             android:text="Promo Description"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewPromo1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageViewPromo1" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPromoTitle1" />
 
         <TextView
             android:id="@+id/textViewPromoTitle1"
             android:layout_width="235dp"
             android:layout_height="20dp"
-            android:layout_marginEnd="36dp"
+            android:layout_marginTop="16dp"
             android:text="Promo Title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageViewPromo1"
-            app:layout_constraintTop_toTopOf="@+id/imageViewPromo1" />
-
-        <ImageView
-            android:id="@+id/imageViewPromo1"
-            android:layout_width="112dp"
-            android:layout_height="82dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="28dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10"
-            app:srcCompat="@drawable/ic_picture_icon" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
         <TextView
-            android:id="@+id/textViewBeerDesc1"
-            android:layout_width="235dp"
-            android:layout_height="59dp"
-            android:layout_marginEnd="36dp"
+            android:id="@+id/textViewOkus1"
+            android:layout_width="94dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
             android:text="Beer Description"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewBeers1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/imageViewBeers1" />
+            app:layout_constraintStart_toEndOf="@+id/imageViewBeers1"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <ImageView
             android:id="@+id/imageViewBeers2"
@@ -347,16 +261,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
             app:srcCompat="@drawable/ic_picture_icon" />
-
-        <TextView
-            android:id="@+id/textViewBeerDesc2"
-            android:layout_width="235dp"
-            android:layout_height="59dp"
-            android:layout_marginEnd="28dp"
-            android:text="Beer Description"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewBeers2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageViewBeers2" />
 
         <TextView
             android:id="@+id/textViewBeerTitle1"
@@ -396,17 +300,18 @@
 
         <TextView
             android:id="@+id/noStarTextView2"
-            android:layout_width="63dp"
-            android:layout_height="22dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="28dp"
+            android:layout_width="33dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="36dp"
             android:text="/5"
             android:textColor="@color/black"
             android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/button8"
-            app:layout_constraintTop_toBottomOf="@+id/imageView13" />
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toEndOf="@+id/textView17"
+            app:layout_constraintTop_toBottomOf="@+id/imageView13"
+            app:layout_constraintVertical_bias="0.452" />
 
         <ImageView
             android:id="@+id/imageView13"
@@ -455,7 +360,7 @@
             android:textColor="@color/black"
             android:textSize="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewBeerDesc2" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewOkus4" />
 
         <View
             android:id="@+id/divider"
@@ -663,61 +568,26 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
         <ImageView
-            android:id="@+id/imageView10"
+            android:id="@+id/imageView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:layout_marginEnd="192dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider3"
             app:srcCompat="@drawable/untitled" />
 
         <TextView
-            android:id="@+id/textView12"
-            android:layout_width="251dp"
-            android:layout_height="34dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="120dp"
-            android:text="Tours"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider3" />
-
-        <View
-            android:id="@+id/divider4"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="250dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView10" />
-
-        <ImageView
-            android:id="@+id/imageView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="192dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider4"
-            app:srcCompat="@drawable/untitled" />
-
-        <TextView
             android:id="@+id/textView13"
             android:layout_width="251dp"
             android:layout_height="34dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="108dp"
             android:text="Ratings"
             android:textColor="@color/black"
             android:textSize="18dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider4" />
+            app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
         <View
             android:id="@+id/divider5"
@@ -761,6 +631,94 @@
             app:layout_constraintStart_toEndOf="@+id/imageView6"
             app:layout_constraintTop_toBottomOf="@+id/button"
             app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="12dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toStartOf="@+id/textView4"
+            app:layout_constraintHorizontal_bias="0.04"
+            app:layout_constraintStart_toEndOf="@+id/imageViewBeers1"
+            app:layout_constraintTop_toBottomOf="@+id/textViewBeerTitle1" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="100dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewBeerTitle1" />
+
+        <TextView
+            android:id="@+id/textViewOkus2"
+            android:layout_width="104dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="4dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.194"
+            app:layout_constraintStart_toEndOf="@+id/textViewOkus1"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toStartOf="@+id/textView15"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imageViewBeers2"
+            app:layout_constraintTop_toBottomOf="@+id/textViewBeerTitle2" />
+
+        <TextView
+            android:id="@+id/textViewOkus3"
+            android:layout_width="88dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/imageViewBeers2"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="96dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewBeerTitle2" />
+
+        <TextView
+            android:id="@+id/textViewOkus4"
+            android:layout_width="103dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="4dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textViewOkus3"
+            app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="32dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/button8"
+            app:layout_constraintTop_toBottomOf="@+id/imageView13"
+            app:layout_constraintVertical_bias="0.452" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
