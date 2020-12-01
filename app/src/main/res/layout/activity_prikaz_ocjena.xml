@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".PrikazOcjenaActivity">
+
+
+        <TextView
+            android:id="@+id/textViewReview5"
+            android:layout_width="83dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="49dp"
+            android:text="x/5"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewUser7"
+            app:layout_constraintTop_toBottomOf="@+id/textViewReview6" />
+
+        <ImageView
+            android:id="@+id/imageViewUser5"
+            android:layout_width="63dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewUser3"
+            app:srcCompat="@drawable/ic_user_icon" />
+
+        <ImageView
+            android:id="@+id/imageViewUser6"
+            android:layout_width="63dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewUser5"
+            app:srcCompat="@drawable/ic_user_icon" />
+
+        <ImageView
+            android:id="@+id/imageViewUser7"
+            android:layout_width="63dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="49dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewUser6"
+            app:srcCompat="@drawable/ic_user_icon" />
+
+        <TextView
+            android:id="@+id/textViewReview7"
+            android:layout_width="83dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="24dp"
+            android:text="x/5"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/imageViewUser5"
+            app:layout_constraintTop_toBottomOf="@+id/textViewReview3" />
+
+        <TextView
+            android:id="@+id/textViewComment5"
+            android:layout_width="200dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:text="Comment"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewReview7"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDateAndTime3" />
+
+        <TextView
+            android:id="@+id/textViewDateAndTime5"
+            android:layout_width="201dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="32dp"
+            android:text="Date and time"
+            android:textStyle="italic"
+            android:textColor="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewReview7"
+            app:layout_constraintTop_toBottomOf="@+id/textViewComment5" />
+
+        <TextView
+            android:id="@+id/textViewComment6"
+            android:layout_width="200dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:text="Comment"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewReview6"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDateAndTime5" />
+
+        <TextView
+            android:id="@+id/textViewDateAndTime6"
+            android:layout_width="201dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="32dp"
+            android:text="Date and time"
+            android:textStyle="italic"
+            android:textColor="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewReview6"
+            app:layout_constraintTop_toBottomOf="@+id/textViewComment6" />
+
+        <TextView
+            android:id="@+id/textViewComment7"
+            android:layout_width="200dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:text="Comment"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewReview5"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDateAndTime6" />
+
+        <TextView
+            android:id="@+id/textViewDateAndTime7"
+            android:layout_width="201dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="49dp"
+            android:text="Date and time"
+            android:textStyle="italic"
+            android:textColor="@color/gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewReview5"
+            app:layout_constraintTop_toBottomOf="@+id/textViewComment7" />
+
+        <TextView
+            android:id="@+id/textViewReview6"
+            android:layout_width="83dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="24dp"
+            android:text="x/5"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/imageViewUser6"
+            app:layout_constraintTop_toBottomOf="@+id/textViewReview7" />
+
+        <TextView
+            android:id="@+id/textViewReview3"
+            android:layout_width="83dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="24dp"
+            android:text="x/5"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/imageViewUser3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewReview4" />
+
+        <TextView
+            android:id="@+id/textViewDateAndTime4"
+            android:layout_width="201dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="32dp"
+            android:text="Date and time"
+            android:textStyle="italic"
+            android:textColor="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewReview4"
+            app:layout_constraintTop_toBottomOf="@+id/textViewComment4" />
+
+        <ImageView
+            android:id="@+id/imageViewUser4"
+            android:layout_width="63dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewUser2"
+            app:srcCompat="@drawable/ic_user_icon" />
+
+        <TextView
+            android:id="@+id/textViewReview4"
+            android:layout_width="83dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="24dp"
+            android:text="x/5"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/imageViewUser4"
+            app:layout_constraintTop_toBottomOf="@+id/textViewReview2" />
+
+        <TextView
+            android:id="@+id/textViewComment4"
+            android:layout_width="200dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:text="Comment"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewReview4"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDateAndTime2" />
+
+        <TextView
+            android:id="@+id/textViewDateAndTime3"
+            android:layout_width="201dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="32dp"
+            android:text="Date and time"
+            android:textStyle="italic"
+            android:textColor="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewReview3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewComment3" />
+
+        <ImageView
+            android:id="@+id/imageViewUser3"
+            android:layout_width="63dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewUser4"
+            app:srcCompat="@drawable/ic_user_icon" />
+
+        <TextView
+            android:id="@+id/textViewComment3"
+            android:layout_width="200dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:text="Comment"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewReview3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDateAndTime4" />
+
+        <TextView
+            android:id="@+id/textViewReview2"
+            android:layout_width="83dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="24dp"
+            android:text="x/5"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/imageViewUser2"
+            app:layout_constraintTop_toBottomOf="@+id/textViewReview1" />
+
+        <ImageView
+            android:id="@+id/imageViewUser2"
+            android:layout_width="63dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewUser1"
+            app:srcCompat="@drawable/ic_user_icon" />
+
+        <TextView
+            android:id="@+id/textViewDateAndTime2"
+            android:layout_width="201dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="32dp"
+            android:text="Date and time"
+            android:textStyle="italic"
+            android:textColor="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textViewReview2"
+            app:layout_constraintTop_toBottomOf="@+id/textViewComment2" />
+
+        <TextView
+            android:id="@+id/textViewComment2"
+            android:layout_width="200dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:text="Comment"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewReview2"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDateAndTime1" />
+
+        <TextView
+            android:id="@+id/textViewReview1"
+            android:layout_width="83dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="44dp"
+            android:text="x/5"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/imageViewUser1"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitleScreen" />
+
+        <TextView
+            android:id="@+id/textViewComment1"
+            android:layout_width="200dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="32dp"
+            android:text="Comment"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textViewReview1"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitleScreen" />
+
+        <TextView
+            android:id="@+id/textViewDateAndTime1"
+            android:layout_width="201dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="32dp"
+            android:text="Date and time"
+            android:textStyle="italic"
+            android:textColor="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textViewReview1"
+            app:layout_constraintTop_toBottomOf="@+id/textViewComment1" />
+
+        <ImageView
+            android:id="@+id/imageViewUser1"
+            android:layout_width="63dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="44dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitleScreen"
+            app:srcCompat="@drawable/ic_user_icon" />
+
+        <TextView
+            android:id="@+id/textViewTitleScreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="Location Ratings"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.515"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
