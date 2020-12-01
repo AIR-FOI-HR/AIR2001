@@ -4,12 +4,15 @@ public class ModelPodatakEventCatalog {
     Event dogadaj;
     private String nazivLokacije;
     private String idLokacije;
+    private String adresaLokacije;
     public ModelPodatakEventCatalog(){}
 
-    public ModelPodatakEventCatalog(Event dogadaj, String nazivLokacije,String idLokacije){
+    public ModelPodatakEventCatalog(Event dogadaj, String nazivLokacije,String idLokacije, String adresaLokacije){
         this.dogadaj = dogadaj;
         this.nazivLokacije = nazivLokacije;
         this.idLokacije = idLokacije;
+        this.adresaLokacije = adresaLokacije;
+
     }
 
 
@@ -27,5 +30,13 @@ public class ModelPodatakEventCatalog {
 
     public void setIdLokacije(String idLokacije) {
         this.idLokacije = idLokacije;
+    }
+
+    public String getAdresaLokacije() {
+        return adresaLokacije;
+    }
+
+    public void setAdresaLokacije(String adresaLokacije) {
+        this.adresaLokacije = adresaLokacije;
     }
 }

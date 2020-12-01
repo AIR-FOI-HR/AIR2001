@@ -24,8 +24,9 @@ public class EventCatalogLogika {
                 String id_korisnik = object.getString("id_korisnik");
                 String lokacija_id = object.getString("lokacija_id");
                 String naziv_lokacije = object.getString("naziv_lokacije");
+                String adresa_lokacije = object.getString("adresa_lokacije");
                 Event event = new Event(id_dogadaj,naziv_dogadaja,vizual_dogadaja,id_korisnik,opis_dogadaja,datum_od,datum_do);
-                ModelPodatakEventCatalog eventData= new ModelPodatakEventCatalog(event,naziv_lokacije,lokacija_id);
+                ModelPodatakEventCatalog eventData= new ModelPodatakEventCatalog(event,naziv_lokacije,lokacija_id, adresa_lokacije);
                 eventDataList.add(eventData);
 
 

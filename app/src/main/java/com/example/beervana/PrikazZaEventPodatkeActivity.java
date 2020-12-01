@@ -30,7 +30,7 @@ public class PrikazZaEventPodatkeActivity  extends AppCompatActivity {
         position = intent.getExtras().getInt("position");
 
         nazivDogadaja.setText(EventCatalogActivity.eventDataList.get(position).dogadaj.getNazivDogadaj());
-        nazivLokacije.setText(EventCatalogActivity.eventDataList.get(position).getNazivLokacije());
+        nazivLokacije.setText(EventCatalogActivity.eventDataList.get(position).getNazivLokacije()+", "+EventCatalogActivity.eventDataList.get(position).getAdresaLokacije());
         opisDogadaja.setText(EventCatalogActivity.eventDataList.get(position).dogadaj.getOpisDogadaja());
         datumOd.setText("Start: " + EventCatalogActivity.eventDataList.get(position).dogadaj.getDatumOd());
         datumDo.setText("End: "+ EventCatalogActivity.eventDataList.get(position).dogadaj.getDatumDo());
