@@ -55,6 +55,7 @@ public class EventCatalogActivity extends AppCompatActivity {
                                 startActivity(new Intent(getApplicationContext(),PrikazZaEventPodatkeActivity.class).putExtra("position",position));
                                 break;
                             case 1:
+                                startActivity(new Intent(getApplicationContext(),AddEventActivity.class).putExtra("position",position));
                                 break;
                             case 2:
                                 DeleteEvent(position);
@@ -80,6 +81,7 @@ public class EventCatalogActivity extends AppCompatActivity {
             public void onRequestFinished(Request<Object> request){
                 JSONObject odgovor = dohvatPodataka.getOdgovor();
                 if(odgovor != null){
+                    eventDataList.clear();
                     eventDataList.addAll(logikaEventCatalog.parsiranjePodatakaEventData(odgovor));
                     adapter.notifyDataSetChanged();
                 }

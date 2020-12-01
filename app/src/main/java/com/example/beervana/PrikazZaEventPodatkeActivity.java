@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 public class PrikazZaEventPodatkeActivity  extends AppCompatActivity {
@@ -36,6 +37,6 @@ public class PrikazZaEventPodatkeActivity  extends AppCompatActivity {
         datumDo.setText("End: "+ EventCatalogActivity.eventDataList.get(position).dogadaj.getDatumDo());
 
         String imageUri = EventCatalogActivity.eventDataList.get(position).dogadaj.getSlikaDogadaja();
-        Picasso.with(this).load(imageUri).into(slikaDogadaja);
+        Picasso.with(this).load(imageUri).memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE).into(slikaDogadaja);
     }
 }

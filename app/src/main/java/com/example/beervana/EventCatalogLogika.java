@@ -19,8 +19,8 @@ public class EventCatalogLogika {
                 String naziv_dogadaja = object.getString("naziv_dogadaja");
                 String opis_dogadaja = object.getString("opis_dogadaja");
                 String vizual_dogadaja = object.getString("vizual_dogadaja");
-                String datum_od = object.getString("datum_od");
-                String datum_do = object.getString("datum_do");
+                String datum_od = formatiratiDatum(object.getString("datum_od"));
+                String datum_do = formatiratiDatum(object.getString("datum_do"));
                 String id_korisnik = object.getString("id_korisnik");
                 String lokacija_id = object.getString("lokacija_id");
                 String naziv_lokacije = object.getString("naziv_lokacije");
@@ -38,6 +38,21 @@ public class EventCatalogLogika {
 
         return eventDataList;
 
+    }
 
+    public  String formatiratiDatum(String zaFormatirati){
+        String formatiratiDatum;
+        String [] poljeDatum;
+        String  vrijeme;
+        String dan;
+        String [] pomocnoPolje;
+        poljeDatum= zaFormatirati.split("-");
+        pomocnoPolje = poljeDatum[2].split(" ");
+        dan = pomocnoPolje[0];
+        pomocnoPolje = pomocnoPolje[1].split(":");
+        vrijeme = pomocnoPolje[0]+":"+pomocnoPolje[1];
+        formatiratiDatum = dan + "/"+poljeDatum[1]+"/"+poljeDatum[0]+" "+vrijeme;
+
+        return formatiratiDatum;
     }
 }
