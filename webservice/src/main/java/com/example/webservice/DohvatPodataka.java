@@ -52,11 +52,8 @@ public class DohvatPodataka {
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
                             //JSONArray jsonArray = jsonObject.getJSONArray("proizvod");
+                            odgovor = jsonObject;
 
-                            if(success.equals("1")){
-                                odgovor = jsonObject;
-
-                            }
                         }
                         catch (JSONException e){
                             e.printStackTrace();

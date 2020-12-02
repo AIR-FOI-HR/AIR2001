@@ -110,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
                         public void onRequestFinished(Request<Object> request) {
 
                             JSONObject odgovor = dohvatPodataka.getOdgovor();
-                            Toast noviToast = Toast.makeText(getApplicationContext(),odgovor.toString(),Toast.LENGTH_LONG);
-                            noviToast.show();
+                            //Toast noviToast = Toast.makeText(getApplicationContext(),odgovor.toString(),Toast.LENGTH_LONG);
+                            //noviToast.show();
                             //System.out.println(odgovor.toString());
                             try {
                                 //System.out.println(odgovor.getString("message"));
@@ -129,6 +129,12 @@ public class MainActivity extends AppCompatActivity {
 
                                     }
 
+                                }
+                                else if (odgovor.getString("message").equals("Wrong username or password")){
+                                    viewModel.setErrorLozinka(odgovor.getString("message"));
+                                    viewModel.errorLozinkaVidljivost = View.VISIBLE;
+                                    errorLozinka.setText(viewModel.getErrorLozinka());
+                                    errorLozinka.setVisibility(viewModel.errorLozinkaVidljivost);
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
