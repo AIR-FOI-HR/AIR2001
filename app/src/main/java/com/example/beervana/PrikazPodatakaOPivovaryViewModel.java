@@ -3,11 +3,8 @@ package com.example.beervana;
 public class PrikazPodatakaOPivovaryViewModel {
     private String naziv_proizvoda_1, naziv_proizvoda_2, okus_1, okus_2, litara_1, litara_2, naziv_dogadaja_1, naziv_dogadaja_2, opis_događaja_1, opis_događaja_2,naziv_menija_1, naziv_menija_2, opis_menija_1, opis_menija_2, ocjena_1, ocjena_2, komentar_1, komentar_2;
 
-    public void Beers(){
 
-    }
-
-    public void Beers(String naziv_proizvoda_1, String naziv_proizvoda_2, String okus_1, String okus_2, String litara_1, String litara_2, String naziv_dogadaja_1, String naziv_dogadaja_2, String opis_događaja_1, String opis_događaja_2, String naziv_menija_1, String naziv_menija_2, String opis_menija_1, String opis_menija_2, String ocjena_1, String ocjena_2, String komentar_1, String komentar_2){
+    public PrikazPodatakaOPivovaryViewModel (String naziv_proizvoda_1, String naziv_proizvoda_2, String okus_1, String okus_2, String litara_1, String litara_2, String naziv_dogadaja_1, String naziv_dogadaja_2, String opis_događaja_1, String opis_događaja_2, String naziv_menija_1, String naziv_menija_2, String opis_menija_1, String opis_menija_2, String ocjena_1, String ocjena_2, String komentar_1, String komentar_2){
         this.naziv_proizvoda_1 = naziv_proizvoda_1;
         this.naziv_proizvoda_2 = naziv_proizvoda_2;
         this.okus_1 = okus_1;

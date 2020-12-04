@@ -1,21 +1,47 @@
 package com.example.beervana;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.VoiceInteractor;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class PrikazPodatakaOPivovariActivity extends AppCompatActivity
 {
     TextView beerName1, beerName2, beerTaste1, beerTaste2, beerLitres2, beerLitres1, eventTitle1, eventTitle2, eventDesc1, eventDesc2,  menuTitle1,  menuTitle2, menuDesc1, menuDesc2, ocjena1, ocjena2, komentar1, komentar2;
     ImageView beerImage1,beerImage2,eventImage1,eventImage2;
-    int position;
+    PrikazPodatakaOPivovariAdapter adapter;
+    public static ArrayList<PrikazPodatakaOPivovaryViewModel> prikazPodatakaOPivovaryViewModelArrayList = new ArrayList<>();
+    String url = "https://beervana2020.000webhostapp.com/test/fetchInfoPivovare.php";
+    PrikazPodatakaOPivovaryViewModel pivo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_prikaz_podataka_o_pivovari);
+        //setContentView(R.layout.activity_prikaz_podataka_o_pivovari);
+
+        adapter = new PrikazPodatakaOPivovariAdapter(this, prikazPodatakaOPivovaryViewModelArrayList);
+
+        dohvatiPodatke1();
+
+
+
+        /*
         //podaci
         beerName1 = findViewById(R.id.textViewBeerTitle1);
         beerName2 = findViewById(R.id.textViewBeerTitle2);
@@ -43,7 +69,7 @@ public class PrikazPodatakaOPivovariActivity extends AppCompatActivity
         eventImage2 = findViewById(R.id.imageViewEvent2);
         //promoImage1 = findViewById(R.id.imageViewPromo1);
         //promoImage2 = findViewById(R.id.imageViewPromo2);
-        /*
+
         beerName1.setText(BeerCatalog.BeerArrayList.get(position).getNaziv_proizvoda_1());
         beerName2.setText(BeerCatalog.BeerArrayList.get(position).getNaziv_proizvoda_2());
         beerTaste1.setText(BeerCatalog.BeerArrayList.get(position).getOkus_1());
@@ -67,6 +93,55 @@ public class PrikazPodatakaOPivovariActivity extends AppCompatActivity
         Picasso.with(this).load(imageUri).into(beerImage);
 
          */
+
+    }
+    public void dohvatiPodatke1(){
+
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        prikazPodatakaOPivovaryViewModelArrayList.clear();
+                        try {
+
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                            JSONArray jsonArray = jsonObject.getJSONArray("piva");
+
+                            if(success.equals("1")){
+
+                                for (int i = 0; i<jsonArray.length();i++){
+
+                                    JSONObject object = jsonArray.getJSONObject(1);
+
+                                    String id = object.getString("id_proizvod");
+                                    String naziv = object.getString("naziv_proizvoda");
+                                    String okus = object.getString("okus");
+                                    String litara = object.getString("litara");
+                                    String slika = object.getString("slika");
+
+                                    pivo = new PrikazPodatakaOPivovaryViewModel(naziv, "a", okus, "b", litara, "c", "d", "e", "s", "s", "s", "s", "s", "s", "3", "2", "1", "2as" );
+                                    prikazPodatakaOPivovaryViewModelArrayList.add(pivo);
+                                    adapter.notifyDataSetChanged();
+                                }
+
+                            }
+
+                        }catch (JSONException e){
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(PrikazPodatakaOPivovariActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(request);
     }
 }
 

@@ -12,11 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Beervana">
         <activity android:name=".PrikazPodatakaOPivovariActivity">
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
         </activity>
         <activity android:name=".GlavniIzbornikClient"></activity>
         <activity
@@ -25,6 +21,16 @@
             android:theme="@style/Theme.Beervana.NoActionBar">
 
         </activity>
+
+        <activity android:name=".activites.Test">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
         <activity android:name=".RegisterActivity">
             TODO promijeniti da opet pokrece od main activitya
             <!--<intent-filter>
