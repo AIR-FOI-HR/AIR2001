@@ -11,33 +11,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Beervana">
-        <activity
-            android:name=".DodavanjeDegustacijskihMeniaActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.Beervana.NoActionBar">
 
 
-        </activity>
-
-        <activity android:name=".PrikazZaPodatkeOPivuActivity" ></activity>
-        <activity android:name=".BeerCatalogActivity">
+        <activity android:name=".BeerMenu.PrikazZaPodatkeOPivuActivity" ></activity>
+        <activity android:name=".BeerMenu.BeerCatalogActivity">
             <!-- <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter> -->
         </activity>
-        <activity android:name=".AddBeers" />
+        <activity android:name=".BeerMenu.AddBeers" />
 
         <activity android:name=".IzbornikZaDodavanjeActivity" />
 
         <activity android:name=".PrikazZaEventPodatkeActivity"/>
         <activity android:name=".EventCatalogActivity">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
 
         <activity android:name=".GlavniIzbornikClient" />
@@ -45,11 +39,11 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.Beervana.NoActionBar">
-              <intent-filter>
+              <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
         <activity android:name=".RegisterActivity">
             TODO promijeniti da opet pokrece od main activitya
@@ -67,6 +61,15 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter> -->
+        </activity>
+        <activity android:name=".TastingMenu.DodavanjeDegustacijskihMeniaActivity" />
+        <activity android:name=".TastingMenu.TastingMenuDetailsActivity" />
+        <activity android:name=".TastingMenu.TastingMenuActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

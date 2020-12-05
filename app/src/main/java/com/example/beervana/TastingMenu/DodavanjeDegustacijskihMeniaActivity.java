@@ -153,6 +153,11 @@ public class DodavanjeDegustacijskihMeniaActivity extends AppCompatActivity impl
 
             //TODO promijenit statičke podatke s pravim
             if (model.ProvjeriSvePodatke()) {
+                if (getIntent().getExtras() == null) {
+                    sendUrl = "https://beervana2020.000webhostapp.com/test/addMenu.php";
+                } else {
+                    sendUrl = "https://beervana2020.000webhostapp.com/test/UpdateTastingMenu.php";
+                }
                 requestQueue = Volley.newRequestQueue(getApplicationContext());
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("id_korisnik", "50");

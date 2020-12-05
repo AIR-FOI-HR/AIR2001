@@ -1,4 +1,4 @@
-package com.example.beervana;
+package com.example.beervana.BeerMenu;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.beervana.BeerMenu.BeerCatalogActivity;
+import com.example.beervana.R;
 import com.squareup.picasso.Picasso;
 
 public class PrikazZaPodatkeOPivuActivity extends AppCompatActivity{

@@ -1,4 +1,4 @@
-package com.example.beervana;
+package com.example.beervana.BeerMenu;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.beervana.BeerMenu.Beer;
+import com.example.beervana.R;
+
 import java.util.List;
 
 public class BeerCatalogAdapter extends ArrayAdapter<Beer> {
@@ -19,7 +22,7 @@ public class BeerCatalogAdapter extends ArrayAdapter<Beer> {
 
 
     public BeerCatalogAdapter(@NonNull Context context, List<Beer> arrayListBeer) {
-        super(context,R.layout.custom_list_view,arrayListBeer);
+        super(context, R.layout.custom_list_view,arrayListBeer);
 
         this.context=context;
         this.arrayListBeer = arrayListBeer;

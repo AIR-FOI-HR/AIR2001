@@ -1,4 +1,6 @@
-package com.example.beervana;
+package com.example.beervana.BeerMenu;
+
+import com.example.beervana.BeerMenu.Beer;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -1,4 +1,4 @@
-package com.example.beervana;
+package com.example.beervana.BeerMenu;
 
 import android.net.Uri;
 import android.view.View;

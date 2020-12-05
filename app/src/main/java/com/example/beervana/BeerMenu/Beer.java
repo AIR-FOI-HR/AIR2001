@@ -1,4 +1,4 @@
-package com.example.beervana;
+package com.example.beervana.BeerMenu;
 
 public class Beer {
     private String id_proizvod,id_kategorija,naziv_proizvoda,cijena_proizvoda, okus,litara,slika;

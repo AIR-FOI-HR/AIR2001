@@ -1,23 +1,18 @@
 package com.example.beervana.TastingMenu;
 
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.example.beervana.Beer;
-import com.example.beervana.BeerLogic;
+import com.example.beervana.BeerMenu.Beer;
+import com.example.beervana.BeerMenu.BeerLogic;
 import com.example.beervana.R;
 import com.example.webservice.DohvatPodataka;
 
