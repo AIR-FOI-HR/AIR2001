@@ -1,14 +1,9 @@
-package com.example.beervana;
+package com.example.beervana.TastingMenu;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class DegustacijskiMeniLogika {
-
-    public static boolean imagePicked(String image)
-    {
-        if(image != null && !image.trim().isEmpty()) return true;
-        return false;
-    }
 
     public static boolean menuName(String name)
     {
@@ -19,8 +14,10 @@ public class DegustacijskiMeniLogika {
 
     public static boolean menuDuration(String duration)
     {
-        if(duration!=null  && !duration.trim().isEmpty() && duration.matches("[0-9]+")) return true;
-        return false;
+        if(duration.equals("End Date:")){
+            return false;
+        }
+        return true;
     }
 
     public static boolean checkBeer(List<String> beers)
@@ -29,4 +26,9 @@ public class DegustacijskiMeniLogika {
         return false;
     }
 
+    public static boolean menuDescription(String description) {
+        if(description != null && !description.isEmpty() && description.length()>10)
+            return true;
+        return false;
+    }
 }

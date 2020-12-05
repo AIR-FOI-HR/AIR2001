@@ -51,4 +51,16 @@ dependencies {
     implementation project (':webservice')
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.github.pratikbutani:MultiSelectSpinner:-SNAPSHOT'
+
+    //expandable recyclerview and cardview
+    def recyclerview_version = "1.0.0"
+    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+    implementation "androidx.recyclerview:recyclerview-selection:$recyclerview_version"
+    implementation "androidx.cardview:cardview:$recyclerview_version"
+    implementation 'com.bignerdranch.android:expandablerecyclerview:3.0.0-RC1'
+
+
+    //ButterKnife
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
 }

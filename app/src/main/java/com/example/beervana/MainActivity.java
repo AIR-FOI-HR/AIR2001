@@ -3,24 +3,17 @@ package com.example.beervana;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.TastingMenu.DodavanjeDegustacijskihMeniaActivity;
 import com.example.beervana.databinding.ActivityMainBinding;
 import com.example.webservice.SlanjePodataka;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.View;
 
 import android.view.Menu;
@@ -29,12 +22,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -140,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void openDegMenu()
     {
-        Intent intent = new Intent(this,DodavanjeDegustacijskihMeniaActivity.class);
+        Intent intent = new Intent(this, DodavanjeDegustacijskihMeniaActivity.class);
         startActivity(intent);
     }
 

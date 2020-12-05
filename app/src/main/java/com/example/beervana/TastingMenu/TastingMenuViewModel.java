@@ -1,20 +1,37 @@
-package com.example.beervana;
+package com.example.beervana.TastingMenu;
 
 import android.net.Uri;
 
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class DodavanjeDegustacijskihMeniaViewModel extends ViewModel {
+public class TastingMenuViewModel extends ViewModel {
 
     private String slikaZaSlanje="";
     private Uri slika;
     private String menuName;
     private String menuDuration;
     private ArrayList<String> beers;
+    private String menuDescription;
+    private String location;
+
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getMenuDescription() {
+        return menuDescription;
+    }
+
+    public void setMenuDescription(String menuDescription) {
+        this.menuDescription = menuDescription;
+    }
 
     public String getSlikaZaSlanje() {
         return slikaZaSlanje;
@@ -61,7 +78,7 @@ public class DodavanjeDegustacijskihMeniaViewModel extends ViewModel {
         if(DegustacijskiMeniLogika.menuDuration(this.menuDuration)
             && DegustacijskiMeniLogika.menuName(this.menuName)
             && DegustacijskiMeniLogika.checkBeer(this.beers)
-            && DegustacijskiMeniLogika.imagePicked(this.getSlikaZaSlanje()))
+        )
                 return true;
         return false;
     }

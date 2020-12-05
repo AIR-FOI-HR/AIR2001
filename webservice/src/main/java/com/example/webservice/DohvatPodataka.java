@@ -15,9 +15,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Map;
+
 public class DohvatPodataka {
     private String sendUrl;
     private JSONObject odgovor = null;
+    private Map<String,String> parametri = null;
+
+    public void setParametri(Map<String, String> parametri) {
+        this.parametri = parametri;
+    }
+
 
     public JSONObject getOdgovor() {
         return odgovor;
@@ -59,7 +67,11 @@ public class DohvatPodataka {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(context,error.getMessage(),Toast.LENGTH_SHORT).show();
             }
-        });
+        }){
+            public Map<String, String> getParams() {
+                return parametri;
+            }
+        };
         request.setRetryPolicy(new DefaultRetryPolicy(10000, 1, 1.0f));
         requestQueue.add(request);
 
