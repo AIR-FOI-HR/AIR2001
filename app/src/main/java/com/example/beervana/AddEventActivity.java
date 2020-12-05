@@ -26,6 +26,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.databinding.ActivityAddeventBinding;
 import com.example.webservice.SlanjePodataka;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -59,6 +61,7 @@ public class AddEventActivity extends AppCompatActivity {
     private TimePickerDialog.OnTimeSetListener listenerZaVrijemeDo;
     private Calendar calendar = Calendar.getInstance();
     private AddEventActivityViewModel viewModel;
+    int position;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,11 +86,26 @@ public class AddEventActivity extends AppCompatActivity {
         errUnosDatumDo = binding.errUnosDatumDo;
         errUnosVrijemeDo = binding.errUnosVrijemeDo;
 
+        if(!viewModel.isAzuriraj()){
+            Intent intent = getIntent();
+            Bundle extras = intent.getExtras();
+            if(extras != null){
+                position = extras.getInt("position");
+                viewModel.setAzuriraj(true);
+                PostaviPodatkeUViewModel(position);
+                unosImedogadjaja.setText(viewModel.getUnosImedogadjaja());
+                unosOpisaDogadaja.setText(viewModel.getUnosOpisaDogadaja());
+
+            }
+        }
+
+
+
         prikazDatumaOd.setText(viewModel.getPrikazDatumaOd());
         prikazVremenaOd.setText(viewModel.getPrikazVremenaOd());
         prikazDatumaDo.setText(viewModel.getPrikazDatumaDo());
         prikazVremenaDo.setText(viewModel.getPrikazVremenaDo());
-        slikaDogadjaj.setImageURI(viewModel.getSlika());
+        Picasso.with(this).load(viewModel.getSlika()).memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE).into(slikaDogadjaj);
 
 
 
@@ -167,28 +185,56 @@ public class AddEventActivity extends AppCompatActivity {
                 viewModel.setUnosOpisaDogadaja(unosOpisaDogadaja.getText().toString());
                 //TODO promijenit statičke podatke s pravim
                 if(viewModel.ProvijeriSvePodatke()){
-                    requestQueue= Volley.newRequestQueue(getApplicationContext());
+                    boolean mozeSlanje = false;
                     Map<String, String> params=new HashMap<String, String>();
-                    params.put("id_korisnik","50");
-                    params.put("id_lokacija","8");
-                    params.put("slika",viewModel.getSlikaZaSlanje());
-                    params.put("naziv_dogadjaja",viewModel.getUnosImedogadjaja());
-                    params.put("opis_dogadjaja",viewModel.getUnosOpisaDogadaja());
-                    params.put("datum_pocetak",viewModel.FormirajDatum(viewModel.getPrikazDatumaOd(),viewModel.getPrikazVremenaOd()));
-                    params.put("datum_kraj",viewModel.FormirajDatum(viewModel.getPrikazDatumaDo(), viewModel.getPrikazVremenaDo()));
-
-                    sendUrl="https://beervana2020.000webhostapp.com/test/dodajDogadjajV2.php";
-                    SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
-                    slanjePodataka.setParametri(params);
-                    slanjePodataka.sendData(getApplicationContext(),requestQueue);
-                    requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
-                        @Override
-                        public void onRequestFinished(Request<Object> request) {
-                            String odgovor = slanjePodataka.getOdgovor();
-                            Toast toast = Toast.makeText(getApplicationContext(),odgovor,Toast.LENGTH_LONG);
+                    if(viewModel.isAzuriraj()){
+                        if(viewModel.DosloDoPromjene()){
+                            mozeSlanje = true;
+                            params.put("id_dogadaj",viewModel.getId_dogadaj());
+                            params.put("id_lokacija","8");
+                            params.put("naziv_dogadjaja",viewModel.getUnosImedogadjaja());
+                            params.put("opis_dogadjaja",viewModel.getUnosOpisaDogadaja());
+                            params.put("datum_pocetak",viewModel.FormirajDatum(viewModel.getPrikazDatumaOd(),viewModel.getPrikazVremenaOd()));
+                            params.put("datum_kraj",viewModel.FormirajDatum(viewModel.getPrikazDatumaDo(), viewModel.getPrikazVremenaDo()));
+                            if(viewModel.getSlikaZaSlanje() != ""){
+                                params.put("slika",viewModel.getSlikaZaSlanje());
+                            }
+                            sendUrl="https://beervana2020.000webhostapp.com/test/AzurirajDogadaj.php";
+                        }else{
+                            Toast toast = Toast.makeText(getApplicationContext(),"You didn't make any changes",Toast.LENGTH_LONG);
                             toast.show();
+                            openBeerCatalog();
                         }
-                    });
+
+                    }else{
+                        mozeSlanje = true;
+                        params.put("id_korisnik","50");
+                        params.put("id_lokacija","8");
+                        params.put("slika",viewModel.getSlikaZaSlanje());
+                        params.put("naziv_dogadjaja",viewModel.getUnosImedogadjaja());
+                        params.put("opis_dogadjaja",viewModel.getUnosOpisaDogadaja());
+                        params.put("datum_pocetak",viewModel.FormirajDatum(viewModel.getPrikazDatumaOd(),viewModel.getPrikazVremenaOd()));
+                        params.put("datum_kraj",viewModel.FormirajDatum(viewModel.getPrikazDatumaDo(), viewModel.getPrikazVremenaDo()));
+                        sendUrl="https://beervana2020.000webhostapp.com/test/dodajDogadjajV2.php";
+                    }
+                    if(mozeSlanje){
+                        requestQueue= Volley.newRequestQueue(getApplicationContext());
+                        SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
+                        slanjePodataka.setParametri(params);
+                        slanjePodataka.sendData(getApplicationContext(),requestQueue);
+                        requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+                            @Override
+                            public void onRequestFinished(Request<Object> request) {
+                                String odgovor = slanjePodataka.getOdgovor();
+                                Toast toast = Toast.makeText(getApplicationContext(),odgovor,Toast.LENGTH_LONG);
+                                toast.show();
+                                if(odgovor.equals("Succesfully updated an event.")){
+                                    openBeerCatalog();
+                                }
+                            }
+                        });
+                    }
+
                 }
                 PostaviGreske();
             }
@@ -218,7 +264,7 @@ public class AddEventActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 viewModel.setSlika(selectedImage);
-                slikaDogadjaj.setImageURI(viewModel.getSlika());
+                Picasso.with(this).load(viewModel.getSlika()).memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE).into(slikaDogadjaj);
             }else{
                 Toast toast = Toast.makeText(getApplicationContext(),"Error when inserting image",Toast.LENGTH_LONG);
                 toast.show();
@@ -264,6 +310,22 @@ public class AddEventActivity extends AppCompatActivity {
                 ,listener,sat,minuta,true);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable((Color.LTGRAY)));
         dialog.show();
+    }
+    private void PostaviPodatkeUViewModel(int position){
+        viewModel.podaciPrijeAzuriranja = EventCatalogActivity.eventDataList.get(position);
+        viewModel.setId_dogadaj(EventCatalogActivity.eventDataList.get(position).dogadaj.getIdDogadaj());
+        viewModel.setUnosOpisaDogadaja(EventCatalogActivity.eventDataList.get(position).dogadaj.getOpisDogadaja());
+        viewModel.setUnosImedogadjaja(EventCatalogActivity.eventDataList.get(position).dogadaj.getNazivDogadaj());
+        viewModel.setPrikazDatumaOd(EventCatalogActivity.eventDataList.get(position).dogadaj.getDatumOd().split(" ")[0]);
+        viewModel.setPrikazDatumaDo(EventCatalogActivity.eventDataList.get(position).dogadaj.getDatumDo().split(" ")[0]);
+        viewModel.setPrikazVremenaOd(EventCatalogActivity.eventDataList.get(position).dogadaj.getDatumOd().split(" ")[1]);
+        viewModel.setPrikazVremenaDo(EventCatalogActivity.eventDataList.get(position).dogadaj.getDatumDo().split(" ")[1]);
+        Uri imageUri = Uri.parse(EventCatalogActivity.eventDataList.get(position).dogadaj.getSlikaDogadaja());
+        viewModel.setSlika(imageUri);
+    }
+    public void openBeerCatalog(){
+        Intent intent = new Intent(this,EventCatalogActivity.class);
+        startActivity(intent);
     }
 
 }

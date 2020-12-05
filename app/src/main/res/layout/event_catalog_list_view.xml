@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    >
+    <ImageView
+        android:id="@+id/imgSlikaPrikazDogadaja"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="5dp"
+        />
+    <TextView
+        android:id="@+id/txtNazivLokacije"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgSlikaPrikazDogadaja"
+        android:layout_marginStart="15dp"
+        android:text="Naziv Lokacije"
+        android:textSize="15sp"
+        android:layout_marginTop="3dp"
+        />
+    <TextView
+        android:id="@+id/txtNazivDogadaja"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgSlikaPrikazDogadaja"
+        android:text="Naziv Događaja"
+        android:layout_below="@id/txtNazivLokacije"
+        android:layout_marginStart="15dp"
+        android:textSize="15sp"
+        android:layout_marginTop="3dp"
+        />
+    <TextView
+        android:id="@+id/txtDatumOd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgSlikaPrikazDogadaja"
+        android:text="20/11/2020 23:20:00"
+        android:layout_below="@id/txtNazivDogadaja"
+        android:layout_marginStart="15dp"
+        android:textSize="15sp"
+        android:layout_marginTop="3dp"
+        />
+    <TextView
+        android:id="@+id/txtDatumDo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgSlikaPrikazDogadaja"
+        android:text="20/11/2020 00:00:00"
+        android:layout_below="@id/txtDatumOd"
+        android:layout_marginStart="15dp"
+        android:textSize="15sp"
+        android:layout_marginTop="3dp"
+        />
+
+</RelativeLayout>

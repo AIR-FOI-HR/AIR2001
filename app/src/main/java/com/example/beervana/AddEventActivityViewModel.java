@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 
 
 public class AddEventActivityViewModel extends ViewModel {
+
     private Uri slika;
     private String slikaZaSlanje = "";
     private String unosImedogadjaja;
@@ -35,7 +36,27 @@ public class AddEventActivityViewModel extends ViewModel {
     private int errUnosVrijemeDoVisibility= gone;
 
     DogadajLogika logikaDogadjaj = new DogadajLogika();
+    ModelPodatakEventCatalog podaciPrijeAzuriranja;
 
+
+    boolean azuriraj = false;
+    String id_dogadaj;
+
+    public String getId_dogadaj() {
+        return id_dogadaj;
+    }
+
+    public void setId_dogadaj(String id_dogadaj) {
+        this.id_dogadaj = id_dogadaj;
+    }
+
+    public boolean isAzuriraj() {
+        return azuriraj;
+    }
+
+    public void setAzuriraj(boolean azuriraj) {
+        this.azuriraj = azuriraj;
+    }
 
     public String getSlikaZaSlanje() {
         return slikaZaSlanje;
@@ -195,7 +216,11 @@ public class AddEventActivityViewModel extends ViewModel {
         errUnosDatumDoVisibility = gone;
         errUnosVrijemeDoVisibility = gone;
 
-        errSlika = logikaDogadjaj.ProvjeraUnosaSlike(slikaZaSlanje);
+        if(azuriraj){
+            errSlika = logikaDogadjaj.ProvjeraUnosaSlike(slika.toString());
+        }else{
+            errSlika = logikaDogadjaj.ProvjeraUnosaSlike(slikaZaSlanje);
+        }
         errUnosImeDogadjaja = logikaDogadjaj.ProvjeraUnosaNazivaDogadjaja(unosImedogadjaja);
         errOpisaDogadjaja = logikaDogadjaj.ProvjeraUnosaOpisaDogadjaja(unosOpisaDogadaja);
         errUnosVrijemeOd = logikaDogadjaj.ProvjeraUpisaVremena(prikazVremenaOd);
@@ -242,6 +267,34 @@ public class AddEventActivityViewModel extends ViewModel {
         }
 
         return sveUredu;
+    }
+    public boolean DosloDoPromjene(){
+        boolean promjena = false;
+        if(!podaciPrijeAzuriranja.dogadaj.getNazivDogadaj().equals(unosImedogadjaja)){
+            podaciPrijeAzuriranja.dogadaj.setNazivDogadaj(unosImedogadjaja);
+            promjena = true;
+        }
+        if(!podaciPrijeAzuriranja.dogadaj.getOpisDogadaja().equals(unosOpisaDogadaja)){
+            podaciPrijeAzuriranja.dogadaj.setOpisDogadaja(unosOpisaDogadaja);
+            promjena = true;
+        }
+        String datOd = prikazDatumaOd+" "+prikazVremenaOd;
+
+        String datDo = prikazDatumaDo+" "+prikazVremenaDo;
+
+        if(!podaciPrijeAzuriranja.dogadaj.getDatumOd().equals(datOd)){
+            podaciPrijeAzuriranja.dogadaj.setDatumOd(datOd);
+            promjena = true;
+        }
+        if(!podaciPrijeAzuriranja.dogadaj.getDatumDo().equals(datDo)){
+            podaciPrijeAzuriranja.dogadaj.setDatumDo(datDo);
+            promjena = true;
+        }
+        if(!slikaZaSlanje.equals("")){
+            podaciPrijeAzuriranja.dogadaj.setSlikaDogadaja(slika.toString());
+            promjena = true;
+        }
+        return promjena;
     }
 
     public String FormirajDatum(String datum,String vrijeme) {
