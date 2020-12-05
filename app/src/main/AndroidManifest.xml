@@ -25,8 +25,8 @@
 
         <activity android:name=".IzbornikZaDodavanjeActivity" />
 
-        <activity android:name=".PrikazZaEventPodatkeActivity"/>
-        <activity android:name=".EventCatalogActivity">
+        <activity android:name=".EventMenu.PrikazZaEventPodatkeActivity"/>
+        <activity android:name=".EventMenu.EventCatalogActivity">
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -55,7 +55,7 @@
             </intent-filter>
             -->
         </activity>
-        <activity android:name=".AddEventActivity">
+        <activity android:name=".EventMenu.AddEventActivity">
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

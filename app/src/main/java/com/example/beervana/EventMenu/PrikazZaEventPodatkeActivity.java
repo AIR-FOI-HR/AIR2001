@@ -1,4 +1,4 @@
-package com.example.beervana;
+package com.example.beervana.EventMenu;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.beervana.EventMenu.EventCatalogActivity;
+import com.example.beervana.R;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 

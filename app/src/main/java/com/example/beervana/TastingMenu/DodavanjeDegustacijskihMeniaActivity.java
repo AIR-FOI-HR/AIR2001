@@ -20,11 +20,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.androidbuts.multispinnerfilter.KeyPairBoolData;
 import com.androidbuts.multispinnerfilter.MultiSpinnerSearch;
-import com.example.beervana.AddEventActivity;
 import com.example.beervana.R;
 import com.example.beervana.databinding.ActivityDodavanjeDegustacijskihMeniaBinding;
 import com.example.webservice.DohvatPodataka;

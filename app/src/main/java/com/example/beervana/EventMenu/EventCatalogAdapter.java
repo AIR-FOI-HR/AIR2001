@@ -1,4 +1,4 @@
-package com.example.beervana;
+package com.example.beervana.EventMenu;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.beervana.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class EventCatalogAdapter extends ArrayAdapter<ModelPodatakEventCatalog> 
 
 
     public EventCatalogAdapter(@NonNull Context context, List<ModelPodatakEventCatalog> arrayListDataEvent) {
-        super(context,R.layout.event_catalog_list_view,arrayListDataEvent);
+        super(context, R.layout.event_catalog_list_view,arrayListDataEvent);
 
         this.context=context;
         this.arrayListDataEvent = arrayListDataEvent;

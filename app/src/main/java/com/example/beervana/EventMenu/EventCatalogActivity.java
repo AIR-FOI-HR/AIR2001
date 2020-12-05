@@ -1,4 +1,4 @@
-package com.example.beervana;
+package com.example.beervana.EventMenu;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.R;
 import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;
 
@@ -52,10 +53,10 @@ public class EventCatalogActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int odabir) {
                         switch (odabir){
                             case 0:
-                                startActivity(new Intent(getApplicationContext(),PrikazZaEventPodatkeActivity.class).putExtra("position",position));
+                                startActivity(new Intent(getApplicationContext(), PrikazZaEventPodatkeActivity.class).putExtra("position",position));
                                 break;
                             case 1:
-                                startActivity(new Intent(getApplicationContext(),AddEventActivity.class).putExtra("position",position));
+                                startActivity(new Intent(getApplicationContext(), AddEventActivity.class).putExtra("position",position));
                                 break;
                             case 2:
                                 DeleteEvent(position);

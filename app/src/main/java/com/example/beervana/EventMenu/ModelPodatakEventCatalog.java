@@ -1,4 +1,6 @@
-package com.example.beervana;
+package com.example.beervana.EventMenu;
+
+import com.example.beervana.EventMenu.Event;
 
 public class ModelPodatakEventCatalog {
     Event dogadaj;

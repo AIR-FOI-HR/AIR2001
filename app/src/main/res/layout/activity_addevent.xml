@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:theme="@style/Theme.Beervana.NoActionBar"
     android:background="@color/white"
-    tools:context=".AddEventActivity">
+    tools:context=".EventMenu.AddEventActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

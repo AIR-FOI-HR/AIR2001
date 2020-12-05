@@ -1,4 +1,4 @@
-package com.example.beervana;
+package com.example.beervana.EventMenu;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -24,6 +24,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.R;
 import com.example.beervana.databinding.ActivityAddeventBinding;
 import com.example.webservice.SlanjePodataka;
 import com.squareup.picasso.MemoryPolicy;
@@ -296,7 +297,7 @@ public class AddEventActivity extends AppCompatActivity {
         int dan = calendar.get(calendar.DAY_OF_MONTH);
 
         DatePickerDialog dialog = new DatePickerDialog
-                (AddEventActivity.this,R.style.Theme_AppCompat_Light_Dialog_MinWidth,
+                (AddEventActivity.this, R.style.Theme_AppCompat_Light_Dialog_MinWidth,
                         listener,godina,mjesec,dan);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
         dialog.show();

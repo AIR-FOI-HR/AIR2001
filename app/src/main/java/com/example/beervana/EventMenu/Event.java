@@ -1,4 +1,4 @@
-package com.example.beervana;
+package com.example.beervana.EventMenu;
 
 public class Event {
     private String idDogadaj,nazivDogadaj, slikaDogadaja, idKorisnika, opisDogadaja, datumOd,datumDo;

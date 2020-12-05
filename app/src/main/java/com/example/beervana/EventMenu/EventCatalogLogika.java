@@ -1,11 +1,10 @@
-package com.example.beervana;
+package com.example.beervana.EventMenu;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class EventCatalogLogika {
     public ArrayList<ModelPodatakEventCatalog> parsiranjePodatakaEventData(JSONObject odgovor) {

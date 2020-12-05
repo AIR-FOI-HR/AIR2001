@@ -1,4 +1,4 @@
-package com.example.beervana;
+package com.example.beervana.EventMenu;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
