@@ -63,6 +63,7 @@ public class BeerCatalogActivity extends AppCompatActivity {
             public void onRequestFinished(Request<Object> request){
                 JSONObject odgovor = dohvatPodataka.getOdgovor();
                 if(odgovor != null){
+                    BeerArrayList.clear();
                     BeerArrayList.addAll(beerLogic.parsiranjePodatakaPiva(odgovor));
                     adapter.notifyDataSetChanged();
                 }

@@ -1,6 +1,7 @@
 package com.example.beervana;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -11,6 +12,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.databinding.ActivityMainBinding;
+import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -38,10 +40,11 @@ import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String sendUrl="https://beervana2020.000webhostapp.com/test/login.php";
+    private String sendUrl="https://beervana2020.000webhostapp.com/test/login_pokusaj.php";
     private RequestQueue requestQueue;
     private  static  final  String TAG=MainActivity.class.getSimpleName();
     int success;
+    SharedPreferences sp;
     private String TAG_SUCESS="success";
     private String TAG_MESSAGE="message";
     private String tag_json_obj="json_obj_req";
@@ -61,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(view);
 
         final MainActivityViewModel viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+
+        sp = getSharedPreferences("login",MODE_PRIVATE);
+
+        //if(sp.getBoolean("logged",false)){
+        //  openMainMenu();
+        //}
 
         korisnickoIme = binding.etUsername;
         lozinka = binding.etPassword;
@@ -90,20 +99,45 @@ public class MainActivity extends AppCompatActivity {
                     Map<String, String> params=new HashMap<String, String>();
                     params.put("korsnicko_ime",korisnickoIme.getText().toString());
                     params.put("lozinka",lozinka.getText().toString());
-                    SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
-                    slanjePodataka.setParametri(params);
-                    slanjePodataka.sendData(getApplicationContext(),requestQueue);
+                    DohvatPodataka dohvatPodataka = new DohvatPodataka();
+                    dohvatPodataka.setSendUrl(sendUrl);
+                    dohvatPodataka.setParametri(params);
+                    dohvatPodataka.retrieveData(getApplicationContext(),requestQueue);
                     //requestQueue = slanjePodataka.sendData(getApplicationContext());
 
                     requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
                         @Override
                         public void onRequestFinished(Request<Object> request) {
 
-                            String odgovor = slanjePodataka.getOdgovor();
-                            Toast noviToast = Toast.makeText(getApplicationContext(),odgovor,Toast.LENGTH_LONG);
-                            noviToast.show();
-                            if(odgovor.equals(" Successfully loged in")){
-                                openMainMenu();
+                            JSONObject odgovor = dohvatPodataka.getOdgovor();
+                            //Toast noviToast = Toast.makeText(getApplicationContext(),odgovor.toString(),Toast.LENGTH_LONG);
+                            //noviToast.show();
+                            //System.out.println(odgovor.toString());
+                            try {
+                                //System.out.println(odgovor.getString("message"));
+                                if(odgovor.getString("message").equals(" Successfully loged in")){
+                                    sp.edit().putBoolean("logged",true).apply();
+                                    openMainMenu();
+                                    KorisnikLogika korisnikLogika = new KorisnikLogika();
+                                    if(odgovor!=null){
+                                        User user = korisnikLogika.parsiranjePodatakaKorisnika(odgovor);
+                                        SharedPreferences.Editor editor = sp.edit();
+                                        editor.putInt("id_korisnik",user.getId_korisnik());
+                                        editor.putInt("id_clanstvo",user.getId_clanstvo());
+                                        editor.putInt("id_uloga",user.getId_uloga());
+                                        editor.apply();
+
+                                    }
+
+                                }
+                                else if (odgovor.getString("message").equals("Wrong username or password")){
+                                    viewModel.setErrorLozinka(odgovor.getString("message"));
+                                    viewModel.errorLozinkaVidljivost = View.VISIBLE;
+                                    errorLozinka.setText(viewModel.getErrorLozinka());
+                                    errorLozinka.setVisibility(viewModel.errorLozinkaVidljivost);
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
                         }
                     });
@@ -119,12 +153,12 @@ public class MainActivity extends AppCompatActivity {
                 errorLozinka.setVisibility(viewModel.errorLozinkaVidljivost);
             }
         });
-      binding.btnSignUp.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              openRegistration();
-          }
-      });
+        binding.btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openRegistration();
+            }
+        });
 
     }
 
