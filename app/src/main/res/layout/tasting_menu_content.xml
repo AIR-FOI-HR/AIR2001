@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tastingMenuContentName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_margin="@dimen/razmakIzmedjuRedakaTekstEditor"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/fab_margin"
+        android:weightSum="3"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/tastingMenuBeerContent"
+            android:layout_weight="1"
+            android:text="Beer name"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/tastingBeerName"
+            android:layout_margin="@dimen/tastingMenuBeerContent"
+            android:layout_weight="1"
+            android:text="Taste"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/tastingBeerDescription"
+            android:layout_margin="@dimen/tastingMenuBeerContent"
+            android:layout_weight="1"
+            android:text="Price"
+            />
+    </LinearLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tastingMenuContentList"
+        android:clickable="true"
+        android:focusable="true"/>
+
+</LinearLayout>

@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.example.beervana.TastingMenu.DodavanjeDegustacijskihMeniaActivity;
+
 public class IzbornikZaDodavanjeActivity extends AppCompatActivity{
 
     @Override

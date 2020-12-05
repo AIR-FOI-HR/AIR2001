@@ -83,5 +83,27 @@ public class BeerLogic {
         return beerArrayList;
     }
 
+    public ArrayList<Beer> parsiranjePodatakaPivaZaDegustacijskiMeni(JSONObject jsonObject) {
+        JSONArray jsonArray = null;
+        ArrayList<Beer> beerArrayList = new ArrayList<Beer>();
+        try {
+            jsonArray = jsonObject.getJSONArray("proizvod");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject object = jsonArray.getJSONObject(i);
+
+                String naziv_proizvoda = object.getString("naziv_proizvoda");
+                String cijena_proizvoda = object.getString("cijena_proizvoda");
+                String okus = object.getString("okus");
+
+                Beer beer = new Beer(naziv_proizvoda, cijena_proizvoda, okus);
+                beerArrayList.add(beer);
+            }
+        } catch (JSONException e) {
+            beerArrayList = null;
+            e.printStackTrace();
+        }
+
+        return beerArrayList;
+    }
 
 }

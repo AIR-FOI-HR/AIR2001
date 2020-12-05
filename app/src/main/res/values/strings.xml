@@ -40,9 +40,9 @@
     <string name="odaberite_pivu">Choose beer</string>
     <string name="tastingMenuDuration">Duration in days</string>
     <string name="menuNameMismatch">Wrong menu name</string>
-    <string name="menuDurationMismatch">Wrong duration format. It must be only numbers representing days.</string>
+    <string name="menuDurationMismatch">Please enter the date.</string>
     <string name="menuBeerPickError">At least one beer must be selected</string>
-
+    <string name="tastingMenuDescription">Tasting menu description</string>
 
 
     <string-array name="ListaUloga">

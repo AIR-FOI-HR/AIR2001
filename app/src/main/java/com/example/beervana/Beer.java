@@ -6,6 +6,13 @@ public class Beer {
     public Beer() {
     }
 
+    public Beer(String naziv_proizvoda, String cijena_proizvoda, String okus)
+    {
+        this.naziv_proizvoda = naziv_proizvoda;
+        this.cijena_proizvoda = cijena_proizvoda;
+        this.okus = okus;
+    }
+
     public Beer(String id_proizvod, String id_kategorija, String naziv_proizvoda, String cijena_proizvoda, String okus, String litara, String slika) {
         this.id_proizvod = id_proizvod;
         this.id_kategorija = id_kategorija;

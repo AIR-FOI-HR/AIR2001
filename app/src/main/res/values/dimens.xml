@@ -7,4 +7,7 @@
     <dimen name="razmakZaGreske">5dp</dimen>
     <dimen name="circleButton">60dp</dimen>
     <dimen name="tastingMenuImageSize">150dp</dimen>
+    <dimen name="icon_size">20dp</dimen>
+    <dimen name="tasingMenuBeerContent">5dp</dimen>
+    <dimen name="tastingMenuBeerContent">5dp</dimen>
 </resources>
