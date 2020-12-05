@@ -54,7 +54,7 @@ public class DodavanjeDegustacijskihMeniaActivity extends AppCompatActivity impl
     private Calendar calendar = Calendar.getInstance();
     ActivityDodavanjeDegustacijskihMeniaBinding binding;
     private DatePickerDialog.OnDateSetListener listenerZaDatumOd;
-    String sendUrl = "https://beervana2020.000webhostapp.com/test/addMenu.php";
+    String sendUrl = "https://beervana2020.000webhostapp.com/test/UpdateTastingMenu.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,7 +164,10 @@ public class DodavanjeDegustacijskihMeniaActivity extends AppCompatActivity impl
                 params.put("beersOnMenu", model.getBeers().toString().substring(1, model.getBeers().toString().length() - 1));
                 params.put("duration", model.getMenuDuration());
                 params.put("description", model.getMenuDescription());
-                params.put("oldName",  getIntent().getExtras().toString());
+                if (getIntent().getExtras() != null) {
+                    Bundle bundle = getIntent().getExtras();
+                    params.put("oldMenu", bundle.getString("com.example.beervana.TastingMenu.MESSAGE"));
+                }
                 SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
                 slanjePodataka.setParametri(params);
                 slanjePodataka.sendData(getApplicationContext(), requestQueue);
@@ -173,6 +176,10 @@ public class DodavanjeDegustacijskihMeniaActivity extends AppCompatActivity impl
                     Toast toast = Toast.makeText(getApplicationContext(), odgovor, Toast.LENGTH_LONG);
                     toast.show();
                 });
+                startActivity(
+                        new Intent(getApplicationContext(),
+                                TastingMenuActivity.class
+                        ));
             }
         });
 
@@ -225,8 +232,11 @@ public class DodavanjeDegustacijskihMeniaActivity extends AppCompatActivity impl
             try {
                 jsonObject = tastingMenu.getJSONObject(i);
                 menuName.setText(jsonObject.optString("tastingMenuName"));
+                model.setMenuName(jsonObject.optString("tastingMenuName"));
                 menuDescription.setText(jsonObject.getString("description"));
+                model.setMenuDescription(jsonObject.getString("description"));
                 menuDuration.setText(jsonObject.getString("duration"));
+                model.setMenuDuration(jsonObject.getString("duration"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
