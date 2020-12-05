@@ -12,13 +12,13 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
-public class MyAdapter extends ArrayAdapter<Beer> {
+public class BeerCatalogAdapter extends ArrayAdapter<Beer> {
 
     Context context;
     List<Beer> arrayListBeer;
 
 
-    public MyAdapter(@NonNull Context context, List<Beer> arrayListBeer) {
+    public BeerCatalogAdapter(@NonNull Context context, List<Beer> arrayListBeer) {
         super(context,R.layout.custom_list_view,arrayListBeer);
 
         this.context=context;

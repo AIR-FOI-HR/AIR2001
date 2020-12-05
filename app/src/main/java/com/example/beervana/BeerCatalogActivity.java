@@ -6,21 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.webservice.DohvatPodataka;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -29,7 +21,7 @@ public class BeerCatalogActivity extends AppCompatActivity {
 
     ListView listView;
     private RequestQueue requestQueue;
-    MyAdapter adapter;
+    BeerCatalogAdapter adapter;
     public static ArrayList<Beer> BeerArrayList = new ArrayList<>();
     String url = "https://beervana2020.000webhostapp.com/test/dohvacanjePiva.php";
     Beer beer;
@@ -39,7 +31,7 @@ public class BeerCatalogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_beer_catalog);
 
         listView = findViewById(R.id.ListViewBeer);
-        adapter = new MyAdapter(this,BeerArrayList);
+        adapter = new BeerCatalogAdapter(this,BeerArrayList);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
