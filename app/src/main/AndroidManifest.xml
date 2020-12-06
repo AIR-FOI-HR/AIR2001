@@ -17,7 +17,7 @@
         android:theme="@style/Theme.Beervana">
         <uses-library
             android:name="com.google.android.wearable"
-            android:required="true" />
+            android:required="false" />
 
         <!--
                Set to true if your app is Standalone, that is, it does not require the handheld
@@ -75,8 +75,9 @@
             -->
         </activity>
         <activity android:name=".RegisterActivity">
-            TODO promijeniti da opet pokrece od main activitya
+
             <!--
+            TODO promijeniti da opet pokrece od main activitya
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -97,11 +98,7 @@
         <activity android:name=".TastingMenu.DodavanjeDegustacijskihMeniaActivity" />
         <activity android:name=".TastingMenu.TastingMenuDetailsActivity" />
         <activity android:name=".TastingMenu.TastingMenuActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
