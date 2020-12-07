@@ -168,7 +168,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 viewModel.setGrad(grad.getText().toString());
                 viewModel.setUlica(ulica.getText().toString());
                 viewModel.setKucniBroj(kucniBroj.getText().toString());
-                if(viewModel.ProvijeriSvePodatke()){
+                if(viewModel.ProvijeriSvePodatke(getApplicationContext())){
                     requestQueue= Volley.newRequestQueue(getApplicationContext());
                     provjeraPostojeLiPodaci = true;
                     Map<String, String> params=new HashMap<String, String>();
@@ -180,7 +180,9 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                     params.put("uloga",uloga.getSelectedItem().toString());
                     params.put("nazivLokacije",nazivLokacije.getText().toString());
                     params.put("OIBLokacije",oibLokacije.getText().toString());
-                    params.put("adresaLokacije",ulica.getText().toString().concat(" ".concat(kucniBroj.getText().toString().concat(" ".concat(grad.getText().toString()))) ));
+                    params.put("Latituda", viewModel.getKoordinate().split(",")[0] );
+                    params.put("Longituda", viewModel.getKoordinate().split(",")[1] );
+                    params.put("adresaLokacije",ulica.getText().toString().concat(" ".concat(kucniBroj.getText().toString().concat(", ".concat(grad.getText().toString()))) ));
                     sendUrl="https://beervana2020.000webhostapp.com/test/email.php";
                     SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
                     slanjePodataka.setParametri(params);

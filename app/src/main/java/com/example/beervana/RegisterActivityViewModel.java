@@ -1,5 +1,6 @@
 package com.example.beervana;
 
+import android.content.Context;
 import android.view.View;
 
 import androidx.lifecycle.ViewModel;
@@ -19,6 +20,7 @@ public class RegisterActivityViewModel extends ViewModel {
     private String  grad;
     private String  ulica;
     private String  kucniBroj;
+    private String  koordinate;
 
     String errUnosIme ;
     String errUnosPrezime ;
@@ -55,6 +57,14 @@ public class RegisterActivityViewModel extends ViewModel {
 
     KorisnikLogika logikaKorisnika = new KorisnikLogika();
     LokacijaLogika logikaLokacija = new LokacijaLogika();
+
+    public String getKoordinate() {
+        return koordinate;
+    }
+
+    public void setKoordinate(String koordinate) {
+        this.koordinate = koordinate;
+    }
 
     public String getIme() {
         return ime;
@@ -236,7 +246,7 @@ public class RegisterActivityViewModel extends ViewModel {
         return errUnosKucniBroj;
     }
 
-    public Boolean ProvijeriSvePodatke(){
+    public Boolean ProvijeriSvePodatke(Context context){
         boolean sveUredu =true;
 
         errUnosIme=logikaKorisnika.ProvjeraUnosaIme(ime);
@@ -335,6 +345,14 @@ public class RegisterActivityViewModel extends ViewModel {
         if(!errSpinUloga.equals("")) {
             sveUredu=false;
             errSpinUlogaVidljivost = visible;
+        }
+        if(errUnosGrad.equals("") && errUnosUlica.equals("") && errUnosKucniBroj.equals("")){
+            koordinate = logikaLokacija.provjeraIDohvatLokacije(ulica.concat(" ".concat(kucniBroj.concat(", ".concat(grad)))),context);
+            if(koordinate==null){
+                sveUredu=false;
+                errUnosGrad="Error: Check your address, we couldn't find the coordinates.";
+                errUnosGradVidljivost=visible;
+            }
         }
 
         return sveUredu;

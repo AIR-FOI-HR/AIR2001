@@ -1,5 +1,12 @@
 package com.example.beervana;
 
+import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class LokacijaLogika {
@@ -92,5 +99,25 @@ public class LokacijaLogika {
     }
     public boolean SlovaHrkIRazmaci(String zaProvijeriti){
         return Pattern.matches("^([a-zA-ZčČćĆžŽđĐšŠ]+\\s)*[a-zA-ZčČćĆžŽđĐšŠ]+$",zaProvijeriti);
+    }
+
+    public String provjeraIDohvatLokacije(String strAddress, Context context){
+
+        Geocoder coder = new Geocoder(context);
+        List<Address> address;
+        String p1 = null;
+        try {
+            address = coder.getFromLocationName(strAddress,5);
+            if (address==null ||address.size()==0) {
+                return null;
+            }
+
+            Address location=address.get(0);
+            p1 = Objects.toString((double) (location.getLatitude() )) +','+ Objects.toString((double)(location.getLongitude()));
+            return p1;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return p1;
     }
 }
