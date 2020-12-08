@@ -12,6 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Beervana">
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+        <activity android:name=".Karta.KartaActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity android:name=".BeerMenu.PrikazZaPodatkeOPivuActivity" ></activity>
         <activity android:name=".BeerMenu.BeerCatalogActivity">
@@ -65,11 +75,11 @@
         <activity android:name=".TastingMenu.DodavanjeDegustacijskihMeniaActivity" />
         <activity android:name=".TastingMenu.TastingMenuDetailsActivity" />
         <activity android:name=".RegisterActivity">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
     </application>
 

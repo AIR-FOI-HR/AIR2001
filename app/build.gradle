@@ -32,6 +32,9 @@ android {
 }
 
 dependencies {
+    //karta
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

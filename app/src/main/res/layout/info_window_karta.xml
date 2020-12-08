@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txtInfoWindowNazivLokacije"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        android:text="Naziv Lokacije" />
+
+    <ImageView
+        android:id="@+id/imgInfoWindowZvijezdica"
+        android:layout_width="37dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="7dp"
+        android:layout_toEndOf="@+id/txtInfoWindowNazivLokacije"
+        app:srcCompat="@drawable/ic_star_icon" />
+    <TextView
+        android:id="@+id/txtInfoWindowOcjenaLokacije"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/imgInfoWindowZvijezdica"
+        android:text=":4" />
+
+    <TextView
+        android:id="@+id/txtInfoWindowAdresalokacije"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="17dp"
+        android:layout_below="@+id/txtInfoWindowNazivLokacije"
+        android:text="Adresa" />
+
+
+
+</RelativeLayout>
