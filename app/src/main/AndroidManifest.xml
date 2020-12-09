@@ -30,11 +30,7 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".BeerMenu.PrikazZaPodatkeOPivuActivity" />
         <activity android:name=".BeerMenu.BeerCatalogActivity">
@@ -99,6 +95,13 @@
         <activity android:name=".TastingMenu.TastingMenuDetailsActivity" />
         <activity android:name=".TastingMenu.TastingMenuActivity">
 
+        </activity>
+        <activity android:name=".BeerplaceHomepageActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
