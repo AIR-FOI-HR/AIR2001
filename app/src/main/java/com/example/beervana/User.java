@@ -1,13 +1,14 @@
 package com.example.beervana;
 
 public class User {
-    private int id_korisnik, id_uloga, id_clanstvo;
-    private String ime,prezime, adresa, email, telefon, korisnicko_ime,slika_korisnika;
+    private int id_korisnik, id_uloga, id_clanstvo ;
+    private String ime,prezime, adresa, email, telefon, korisnicko_ime,slika_korisnika,id_lokacija;
 
-    public User(int id_korisnik,int id_uloga, int id_clanstvo){
+    public User(int id_korisnik,int id_uloga, int id_clanstvo, String id_lokacija){
         this.id_korisnik = id_korisnik;
         this.id_uloga = id_uloga;
         this.id_clanstvo = id_clanstvo;
+        this.id_lokacija = id_lokacija;
     }
 
     public User(int id_korisnik, int id_uloga, int id_clanstvo, String ime, String prezime, String adresa, String email, String telefon, String korisnicko_ime, String slika_korisnika) {
@@ -21,6 +22,14 @@ public class User {
         this.telefon = telefon;
         this.korisnicko_ime = korisnicko_ime;
         this.slika_korisnika = slika_korisnika;
+    }
+
+    public String getId_lokacija() {
+        return id_lokacija;
+    }
+
+    public void setId_lokacija(String id_lokacija) {
+        this.id_lokacija = id_lokacija;
     }
 
     public int getId_korisnik() {

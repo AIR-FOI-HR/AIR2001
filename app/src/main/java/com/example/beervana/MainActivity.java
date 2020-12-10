@@ -1,7 +1,15 @@
 package com.example.beervana;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -14,11 +22,17 @@ import com.android.volley.toolbox.Volley;
 import com.example.beervana.databinding.ActivityMainBinding;
 import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.text.method.LinkMovementMethod;
@@ -34,20 +48,27 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LocationListener {
 
-    private String sendUrl="https://beervana2020.000webhostapp.com/test/login_pokusaj.php";
+    private String sendUrl = "https://beervana2020.000webhostapp.com/test/login_pokusaj.php";
+    private Boolean gotLocation = false;
+    protected LocationManager locationManager;
+    FusedLocationProviderClient fusedLocationProviderClient;
     private RequestQueue requestQueue;
-    private  static  final  String TAG=MainActivity.class.getSimpleName();
+    private static final String TAG = MainActivity.class.getSimpleName();
     int success;
-    SharedPreferences sp;
-    private String TAG_SUCESS="success";
-    private String TAG_MESSAGE="message";
-    private String tag_json_obj="json_obj_req";
+    private SharedPreferences.Editor editor;
+    private SharedPreferences sp;
+    private String TAG_SUCESS = "success";
+    private String TAG_MESSAGE = "message";
+    private String tag_json_obj = "json_obj_req";
 
     private EditText korisnickoIme;
     private EditText lozinka;
@@ -56,16 +77,37 @@ public class MainActivity extends AppCompatActivity {
     private TextView errorLozinka;
     private TextView signUp;
     ActivityMainBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        binding= ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         super.onCreate(savedInstanceState);
         setContentView(view);
 
+        // initialization fusedLocationProviderClient
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+        if (ActivityCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            //When permission granted
+           // getLocation();
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER,0,0,this);
+        }
+         else {
+            //When permission denied
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+
+        }
+        if (ActivityCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            //When permission granted
+            //getLocation();
+        }
         final MainActivityViewModel viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
-        sp = getSharedPreferences("login",MODE_PRIVATE);
+        sp = getSharedPreferences("login", MODE_PRIVATE);
 
         //if(sp.getBoolean("logged",false)){
         //  openMainMenu();
@@ -87,22 +129,22 @@ public class MainActivity extends AppCompatActivity {
         signUp.setMovementMethod(LinkMovementMethod.getInstance());
 
 
-
         binding.btnUserLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requestQueue= Volley.newRequestQueue(getApplicationContext());
+
+                requestQueue = Volley.newRequestQueue(getApplicationContext());
                 viewModel.setKorisnickoIme(korisnickoIme.getText().toString());
                 viewModel.setLozinka(lozinka.getText().toString());
                 if (viewModel.ProvjeriPodatke()) {
 
-                    Map<String, String> params=new HashMap<String, String>();
-                    params.put("korsnicko_ime",korisnickoIme.getText().toString());
-                    params.put("lozinka",lozinka.getText().toString());
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("korsnicko_ime", korisnickoIme.getText().toString());
+                    params.put("lozinka", lozinka.getText().toString());
                     DohvatPodataka dohvatPodataka = new DohvatPodataka();
                     dohvatPodataka.setSendUrl(sendUrl);
                     dohvatPodataka.setParametri(params);
-                    dohvatPodataka.retrieveData(getApplicationContext(),requestQueue);
+                    dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
                     //requestQueue = slanjePodataka.sendData(getApplicationContext());
 
                     requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
@@ -115,22 +157,22 @@ public class MainActivity extends AppCompatActivity {
                             //System.out.println(odgovor.toString());
                             try {
                                 //System.out.println(odgovor.getString("message"));
-                                if(odgovor.getString("message").equals(" Successfully loged in")){
-                                    sp.edit().putBoolean("logged",true).apply();
+                                if (odgovor.getString("message").equals(" Successfully loged in")) {
+                                    sp.edit().putBoolean("logged", true).apply();
                                     openMainMenu();
                                     KorisnikLogika korisnikLogika = new KorisnikLogika();
-                                    if(odgovor!=null){
+                                    if (odgovor != null) {
                                         User user = korisnikLogika.parsiranjePodatakaKorisnika(odgovor);
-                                        SharedPreferences.Editor editor = sp.edit();
-                                        editor.putInt("id_korisnik",user.getId_korisnik());
-                                        editor.putInt("id_clanstvo",user.getId_clanstvo());
-                                        editor.putInt("id_uloga",user.getId_uloga());
+                                        editor = sp.edit();
+                                        //editor.putInt("id_korisnik", user.getId_korisnik());
+                                        //editor.putInt("id_clanstvo", user.getId_clanstvo());
+                                        //editor.putInt("id_uloga", user.getId_uloga());
+                                        //editor.putString("id_lokacija", user.getId_lokacija());
                                         editor.apply();
-
+                                        //String a = sp.getString("id_lokacija", "");
                                     }
 
-                                }
-                                else if (odgovor.getString("message").equals("Wrong username or password")){
+                                } else if (odgovor.getString("message").equals("Wrong username or password")) {
                                     viewModel.setErrorLozinka(odgovor.getString("message"));
                                     viewModel.errorLozinkaVidljivost = View.VISIBLE;
                                     errorLozinka.setText(viewModel.getErrorLozinka());
@@ -143,8 +185,6 @@ public class MainActivity extends AppCompatActivity {
                     });
 
 
-
-
                 } else {
                     errorKorisnickoIme.setText(viewModel.getErrorKorisnickoIme());
                     errorLozinka.setText(viewModel.getErrorLozinka());
@@ -153,12 +193,33 @@ public class MainActivity extends AppCompatActivity {
                 errorLozinka.setVisibility(viewModel.errorLozinkaVidljivost);
             }
         });
-        binding.btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openRegistration();
-            }
-        });
+        binding.btnSignUp.setOnClickListener(v -> openRegistration());
+
+    }
+
+    private void getLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                @Override
+                public void onComplete(@NonNull Task<Location> task) {
+                    Location location = task.getResult();
+                    if(location!=null){
+                        Geocoder geocoder = new Geocoder(MainActivity.this,
+                                Locale.getDefault());
+                        try {
+                            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
+                            editor.putFloat("Latitude",(float)addresses.get(0).getLatitude());
+                            editor.putFloat("Longitude",(float)addresses.get(0).getLongitude());
+                            editor.putString("Country",addresses.get(0).getCountryName());
+                            editor.putString("City",addresses.get(0).getLocality());
+                            editor.putString("Address",addresses.get(0).getAddressLine(0));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
+        }
 
     }
 
@@ -201,5 +262,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+        if (location.getAccuracy() < 1000 && !gotLocation && location!=null) {
+            gotLocation = true;
+            double latitude, longitude;
+            Geocoder geocoder = new Geocoder(MainActivity.this,
+                    Locale.getDefault());
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
+            try {
+                List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+                editor.putFloat("Latitude", (float) addresses.get(0).getLatitude());
+                editor.putFloat("Longitude", (float) addresses.get(0).getLongitude());
+                editor.putString("Country", addresses.get(0).getCountryName());
+                editor.putString("City", addresses.get(0).getLocality());
+                editor.putString("Address", addresses.get(0).getAddressLine(0));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
