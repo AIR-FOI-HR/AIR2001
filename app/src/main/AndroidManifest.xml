@@ -96,7 +96,7 @@
         <activity android:name=".TastingMenu.TastingMenuActivity">
 
         </activity>
-        <activity android:name=".BeerplaceHomepageActivity">
+        <activity android:name=".BeerplacePage.BeerplaceHomepageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

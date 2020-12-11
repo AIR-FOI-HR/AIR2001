@@ -3,7 +3,7 @@ package com.example.beervana.EventMenu;
 import com.example.beervana.EventMenu.Event;
 
 public class ModelPodatakEventCatalog {
-    Event dogadaj;
+    public Event dogadaj;
     private String nazivLokacije;
     private String idLokacije;
     private String adresaLokacije;

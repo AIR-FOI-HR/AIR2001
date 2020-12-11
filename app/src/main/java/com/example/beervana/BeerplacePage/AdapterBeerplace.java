@@ -1,4 +1,4 @@
-package com.example.beervana;
+package com.example.beervana.BeerplacePage;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,18 +8,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.beervana.BeerMenu.Beer;
+import com.example.beervana.BeerMenu.BeerCatalogActivity;
+import com.example.beervana.R;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterBeerplace extends RecyclerView.Adapter<AdapterBeerplace.ViewHolder> {
-
+    private Context context;
     private LayoutInflater layoutInflater;
-    private List<String> data;
+    private ArrayList<Beer> data = new ArrayList<Beer>();
 
-    AdapterBeerplace(Context context, List<String> data) {
+    AdapterBeerplace(Context context, ArrayList<Beer> data) {
         this.layoutInflater = LayoutInflater.from(context);
         this.data = data;
+        this.context = context;
     }
 
     @NonNull
@@ -32,9 +40,11 @@ public class AdapterBeerplace extends RecyclerView.Adapter<AdapterBeerplace.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        String title = data.get(position);
-        holder.textTitle.setText(title);
+        Beer title = data.get(position);
+        holder.textTitle.setText(title.getNaziv_proizvoda());
 
+        String imageUri = title.getSlika();
+        Picasso.with(context).load(imageUri).into(holder.imageView);
 
 
     }
@@ -47,11 +57,12 @@ public class AdapterBeerplace extends RecyclerView.Adapter<AdapterBeerplace.View
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView textTitle, textDescription;
-
+        ImageView imageView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textTitle = itemView.findViewById(R.id.textView4);
             textDescription = itemView.findViewById(R.id.textView8);
+            imageView = itemView.findViewById(R.id.imageView6);
         }
     }
 
