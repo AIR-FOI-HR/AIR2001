@@ -1,4 +1,4 @@
-package com.example.beervana.BeerplacePage;
+package com.example.beervana;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,17 +7,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.beervana.BeerMenu.Beer;
-import com.example.beervana.BeerMenu.BeerCatalogActivity;
-import com.example.beervana.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AdapterBeerplace extends RecyclerView.Adapter<AdapterBeerplace.ViewHolder> {
     private Context context;
@@ -60,9 +56,10 @@ public class AdapterBeerplace extends RecyclerView.Adapter<AdapterBeerplace.View
         ImageView imageView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textTitle = itemView.findViewById(R.id.textView4);
-            textDescription = itemView.findViewById(R.id.textView8);
-            imageView = itemView.findViewById(R.id.imageView6);
+            textTitle = itemView.findViewById(R.id.komentar);
+            textDescription = itemView.findViewById(R.id.datum);
+
+
         }
     }
 

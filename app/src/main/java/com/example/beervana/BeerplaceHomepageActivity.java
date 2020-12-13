@@ -1,4 +1,4 @@
-package com.example.beervana.BeerplacePage;
+package com.example.beervana;
 
 import android.os.Bundle;
 
@@ -13,7 +13,6 @@ import com.example.beervana.BeerMenu.Beer;
 import com.example.beervana.BeerMenu.BeerLogic;
 import com.example.beervana.EventMenu.EventCatalogLogika;
 import com.example.beervana.EventMenu.ModelPodatakEventCatalog;
-import com.example.beervana.R;
 import com.example.webservice.DohvatPodataka;
 
 import org.json.JSONObject;
@@ -42,7 +41,9 @@ public class BeerplaceHomepageActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.idRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         loadBeers();
+
 
         recyclerViewEvents = findViewById(R.id.idRecyclerViewEvents);
         recyclerViewEvents.setLayoutManager(new LinearLayoutManager(this));

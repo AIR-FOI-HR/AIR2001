@@ -1,4 +1,4 @@
-package com.example.beervana.BeerplacePage;
+package com.example.beervana;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.beervana.EventMenu.ModelPodatakEventCatalog;
-import com.example.beervana.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -55,9 +54,9 @@ public class AdapterEventsRecyclerView extends RecyclerView.Adapter<AdapterEvent
         ImageView imageView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textTitle = itemView.findViewById(R.id.textView4);
-            textDescription = itemView.findViewById(R.id.textView8);
-            imageView = itemView.findViewById(R.id.imageView6);
+            textTitle = itemView.findViewById(R.id.komentar);
+            textDescription = itemView.findViewById(R.id.datum);
+
         }
     }
 }
