@@ -45,8 +45,8 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void openActivity2(){
-        //Intent intent = new Intent(this, AboutUsActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, AboutUsActivity.class);
+        startActivity(intent);
     }
 
     //I OVAJ DIO DODATI ZA TOOLBAR
