@@ -19,23 +19,21 @@ import com.example.beervana.TastingMenu.DodavanjeDegustacijskihMeniaActivity;
 import com.example.beervana.databinding.ActivityMainBinding;
 import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;
-<<<<<<< HEAD
-=======
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
->>>>>>> spremanjePodatakaOKorisniku
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-<<<<<<< HEAD
-=======
+
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
->>>>>>> spremanjePodatakaOKorisniku
+
 import androidx.lifecycle.ViewModelProvider;
 
 import android.text.method.LinkMovementMethod;

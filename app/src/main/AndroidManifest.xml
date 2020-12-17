@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.beervana">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,10 +14,9 @@
         android:theme="@style/Theme.Beervana">
         <activity android:name=".GlavniIzbornikUser"></activity>
         <activity
-            android:name=".DodavanjeDegustacijskihMeniaActivity"
+            android:name=".TastingMenu.DodavanjeDegustacijskihMeniaActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Beervana.NoActionBar"></activity>
-        <activity android:name=".AddBeers" />
+            ></activity>
         <activity android:name=".IzbornikZaDodavanjeActivity" />
         <activity android:name=".GlavniIzbornikClient" />
         <activity
@@ -30,25 +30,18 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity">
-            TODO promijeniti da opet pokrece od main activitya
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
         </activity>
-        <activity android:name=".AddEventActivity">
+        <activity android:name=".BeerMenu.AddBeers" />
+        <activity android:name=".BeerMenu.BeerCatalogActivity" />
+        <activity android:name=".BeerMenu.PrikazZaPodatkeOPivuActivity" />
+        <activity android:name=".EventMenu.AddEventActivity" />
+        <activity android:name=".EventMenu.EventCatalogActivity" />
+        <activity android:name=".EventMenu.PrikazZaEventPodatkeActivity" />
+        <activity android:name=".Karta.KartaActivity" />
+        <activity android:name=".TastingMenu.TastingMenuActivity" />
+        <activity android:name=".TastingMenu.TastingMenuDetailsActivity" />
+        <activity android:name=".PrikazPodatakaOPivovariActivity" />
 
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
-        </activity>
     </application>
 
 </manifest>
