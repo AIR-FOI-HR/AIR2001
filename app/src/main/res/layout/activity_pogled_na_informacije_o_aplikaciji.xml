@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AboutUsActivity">
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.Beervana.AppBarOverlay"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/aboutTextView1"
+            android:layout_width="89dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="156dp"
+            android:text="About"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+        <ImageView
+            android:id="@+id/userPicture1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="164dp"
+            app:layout_constraintBottom_toTopOf="@+id/aboutTextView1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_information_icon" />
+
+        <TextView
+            android:id="@+id/fullTextAboutTextView2"
+            android:layout_width="307dp"
+            android:layout_height="209dp"
+            android:layout_marginTop="40dp"
+            android:text="Beervana is a project that we want to
+introduce ourselves to the market for
+implementation of applications and their
+maintenance. The purpose of the application is to
+enable the user to find new crafts beers and cafes
+where they are sold. The application is intended for
+use by ordinary people or brewers"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/aboutTextView1" />
+
+        <TextView
+            android:id="@+id/ContactUsTextView2"
+            android:layout_width="311dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="16dp"
+            android:text="Contact us:"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fullTextAboutTextView2" />
+
+        <TextView
+            android:id="@+id/ContactUsBroj1TextView2"
+            android:layout_width="311dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="16dp"
+            android:text="0800 123 123"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ContactUsTextView2" />
+
+        <TextView
+            android:id="@+id/ContactUsBroj2TextView2"
+            android:layout_width="311dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="+385 (1) 123 4567"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ContactUsBroj1TextView2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
