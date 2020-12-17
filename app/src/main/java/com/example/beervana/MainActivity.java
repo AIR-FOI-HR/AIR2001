@@ -164,10 +164,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                     if (odgovor != null) {
                                         User user = korisnikLogika.parsiranjePodatakaKorisnika(odgovor);
                                         editor = sp.edit();
-                                        //editor.putInt("id_korisnik", user.getId_korisnik());
-                                        //editor.putInt("id_clanstvo", user.getId_clanstvo());
-                                        //editor.putInt("id_uloga", user.getId_uloga());
-                                        //editor.putString("id_lokacija", user.getId_lokacija());
+                                        editor.putInt("id_korisnik", user.getId_korisnik());
+                                        editor.putInt("id_clanstvo", user.getId_clanstvo());
+                                        editor.putInt("id_uloga", user.getId_uloga());
+                                        editor.putString("id_lokacija", user.getId_lokacija());
                                         editor.apply();
                                         //String a = sp.getString("id_lokacija", "");
                                     }
@@ -273,11 +273,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             longitude = location.getLongitude();
             try {
                 List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+                editor = sp.edit();
                 editor.putFloat("Latitude", (float) addresses.get(0).getLatitude());
                 editor.putFloat("Longitude", (float) addresses.get(0).getLongitude());
                 editor.putString("Country", addresses.get(0).getCountryName());
                 editor.putString("City", addresses.get(0).getLocality());
                 editor.putString("Address", addresses.get(0).getAddressLine(0));
+                editor.apply();
             } catch (IOException e) {
                 e.printStackTrace();
             }
