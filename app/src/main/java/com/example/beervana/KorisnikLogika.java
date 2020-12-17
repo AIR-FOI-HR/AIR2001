@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class KorisnikLogika {
@@ -133,13 +134,25 @@ public class KorisnikLogika {
 
     public User parsiranjePodatakaKorisnika(JSONObject jsonObject) {
         JSONArray jsonArray = null;
+        JSONArray jsonArray1 = null;
         try {
             jsonArray = jsonObject.getJSONArray("body");
+            jsonArray1 = jsonObject.getJSONArray("bodyLocation");
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject object = jsonArray.getJSONObject(i);
                 int id_korisnik = Integer.parseInt(object.getString("id_korisnik"));
                 int id_uloga = Integer.parseInt(object.getString("id_uloga"));
                 int id_clanstvo = Integer.parseInt(object.getString("id_clanstvo"));
+                String id_lokacija = "";
+                for(int j = 0; j<jsonArray1.length();j++){
+                    JSONObject object1 = jsonArray1.getJSONObject(j);
+                    if(j==0) {
+                        id_lokacija = object1.getString("id_lokacija");
+                    }
+                    else{
+                        id_lokacija = id_lokacija.concat("," .concat(object1.getString("id_lokacija")));
+                    }
+                }
                 /*String ime = object.getString("ime_korisnika");
                 String prezime = object.getString("prezime_korisnika");
                 String adresa = object.getString("adresa_korisnika");
@@ -147,12 +160,11 @@ public class KorisnikLogika {
                 String telefon = object.getString("telefon_korisnika");
                 String korisnicko_ime = object.getString("korsnicko_ime");
                 String slika = object.getString("slika_korisnika"); */
-
-                User user = new User(id_korisnik, id_uloga, id_clanstvo);
+                User user = new User(id_korisnik, id_uloga, id_clanstvo,id_lokacija);
                 return user;
-
-
             }
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
