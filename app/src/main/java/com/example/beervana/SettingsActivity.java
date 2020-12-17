@@ -26,6 +26,15 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        Button logout = (Button) findViewById(R.id.buttonLogOut);
+        logout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i);
+            }
+        });
         //OVAJ DIO DODATI ZA TOOLBAR
         ImageView mImageView = (ImageView)findViewById(R.id.settings_icon);
         mImageView.setOnClickListener(v -> openActivity3());
@@ -40,7 +49,6 @@ public class SettingsActivity extends AppCompatActivity {
         */
 
         //
-
 
     }
 
