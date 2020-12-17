@@ -12,7 +12,7 @@ import com.example.beervana.BeerMenu.AddBeers;
 import com.example.beervana.EventMenu.AddEventActivity;
 import com.example.beervana.TastingMenu.DodavanjeDegustacijskihMeniaActivity;
 
-public class PogledNaInformacijeOAplikacijiActivity extends AppCompatActivity{
+public class AboutUsActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
