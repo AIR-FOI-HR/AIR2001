@@ -15,7 +15,7 @@ public class IzbornikZaDodavanjeActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_izbornik_za_dodavanje);
-
+        /*
         Button button = (Button) findViewById(R.id.actionAddBeer);
         button.setOnClickListener(v -> openAddBeers());
 
@@ -35,10 +35,12 @@ public class IzbornikZaDodavanjeActivity extends AppCompatActivity{
          */
     }
 
-    public void openAddBeers(){
+    /*public void openAddBeers(){
         Intent intent = new Intent(this, AddBeers.class);
         startActivity(intent);
     }
+    */
+     /*
 
     public void openAddEvents(){
         Intent intent = new Intent(this, AddEventActivity.class);

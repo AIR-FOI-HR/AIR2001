@@ -3,7 +3,7 @@
     package="com.example.beervana">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,75 +11,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Beervana">
+        <activity android:name=".PrikazPodatakaOPivovariActivity">
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-        <activity android:name=".Karta.KartaActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-
-        <activity android:name=".BeerMenu.PrikazZaPodatkeOPivuActivity" ></activity>
-        <activity android:name=".BeerMenu.BeerCatalogActivity">
-            <!-- <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter> -->
-        </activity>
-        <activity android:name=".BeerMenu.AddBeers" />
-
-        <activity android:name=".IzbornikZaDodavanjeActivity" />
-
-        <activity android:name=".EventMenu.PrikazZaEventPodatkeActivity"/>
-        <activity android:name=".EventMenu.EventCatalogActivity">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
-
-        <activity android:name=".GlavniIzbornikClient" />
+        <activity android:name=".GlavniIzbornikClient"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.Beervana.NoActionBar">
-              <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
         </activity>
-        <activity android:name=".TastingMenu.TastingMenuActivity">
-            TODO promijeniti da opet pokrece od main activitya
-            <!--
+
+        <activity android:name=".activites.Test">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            -->
         </activity>
-        <activity android:name=".EventMenu.AddEventActivity">
+
+
+        <activity android:name=".RegisterActivity">
+            TODO promijeniti da opet pokrece od main activitya
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter> -->
-        </activity>
-        <activity android:name=".TastingMenu.DodavanjeDegustacijskihMeniaActivity" />
-        <activity android:name=".TastingMenu.TastingMenuDetailsActivity" />
-        <activity android:name=".RegisterActivity">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
         </activity>
     </application>
 
