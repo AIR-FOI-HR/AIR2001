@@ -3,7 +3,10 @@ package com.example.beervana.BeerMenu;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceGroup;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -11,12 +14,15 @@ import android.widget.ListView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.MainActivity;
 import com.example.beervana.R;
 import com.example.webservice.DohvatPodataka;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BeerCatalogActivity extends AppCompatActivity {
 
@@ -26,6 +32,8 @@ public class BeerCatalogActivity extends AppCompatActivity {
     public static ArrayList<Beer> BeerArrayList = new ArrayList<>();
     String url = "https://beervana2020.000webhostapp.com/test/dohvacanjePiva.php";
     Beer beer;
+    String idLokacija;
+    SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +42,8 @@ public class BeerCatalogActivity extends AppCompatActivity {
         listView = findViewById(R.id.ListViewBeer);
         adapter = new BeerCatalogAdapter(this,BeerArrayList);
         listView.setAdapter(adapter);
-
+        sp = getSharedPreferences("login", MODE_PRIVATE);
+        idLokacija = sp.getString("id_lokacija","Nema Lokacija").split(",")[0];
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -48,6 +57,9 @@ public class BeerCatalogActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         BeerLogic beerLogic = new BeerLogic();
         DohvatPodataka dohvatPodataka = new DohvatPodataka();
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("id_lokacija",idLokacija);
+        dohvatPodataka.setParametri(params);
         dohvatPodataka.setSendUrl(url);
         dohvatPodataka.retrieveData(getApplicationContext(),requestQueue);
 

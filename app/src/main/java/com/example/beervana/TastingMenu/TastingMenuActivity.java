@@ -3,6 +3,7 @@ package com.example.beervana.TastingMenu;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,12 +33,16 @@ public class TastingMenuActivity extends AppCompatActivity {
     TastingMenuAdapter adapter;
     public static ArrayList<TastingMenu> tastingMenuArray= new ArrayList<>();
     String url = "https://beervana2020.000webhostapp.com/test/dohvacanjeDegMenia.php";
+    private SharedPreferences sp;
+    private String idLokacija;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tasting_menu);
 
+        sp = getSharedPreferences("login", MODE_PRIVATE);
+        idLokacija = sp.getString("id_lokacija","Nema Lokacija").split(",")[0];
         listView = findViewById(R.id.tastingMenuList);
         adapter = new TastingMenuAdapter(this, tastingMenuArray);
         listView.setAdapter(adapter);
@@ -102,6 +107,9 @@ public class TastingMenuActivity extends AppCompatActivity {
     private void retriveData() {
         RequestQueue requestQueue  = Volley.newRequestQueue(getApplicationContext());
         DohvatPodataka dohvatPodataka = new DohvatPodataka();
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("id_lokacija",idLokacija);
+        dohvatPodataka.setParametri(params);
         dohvatPodataka.setSendUrl(url);
         dohvatPodataka.retrieveData(getApplicationContext(),requestQueue);
         LoadTastingMenu loadTastingMenu = new LoadTastingMenu();

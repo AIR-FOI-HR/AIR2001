@@ -2,6 +2,7 @@ package com.example.beervana.EventMenu;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,11 +33,16 @@ public class EventCatalogActivity extends AppCompatActivity {
     public static ArrayList<ModelPodatakEventCatalog> eventDataList = new ArrayList<>();
     String url = "https://beervana2020.000webhostapp.com/test/DohvacanjeDogadaja.php";
     String urlBrisanje = "https://beervana2020.000webhostapp.com/test/ObrisiDogadaj.php";
+    private SharedPreferences sp;
+    private String idLokacija;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_catalog);
 
+        sp = getSharedPreferences("login", MODE_PRIVATE);
+        idLokacija = sp.getString("id_lokacija","Nema Lokacija").split(",")[0];
         listView = findViewById(R.id.ListViewEvent);
         adapter = new EventCatalogAdapter(this,eventDataList);
         listView.setAdapter(adapter);
@@ -74,6 +80,9 @@ public class EventCatalogActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         EventCatalogLogika logikaEventCatalog = new EventCatalogLogika();
         DohvatPodataka dohvatPodataka = new DohvatPodataka();
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("id_lokacija",idLokacija);
+        dohvatPodataka.setParametri(params);
         dohvatPodataka.setSendUrl(url);
         dohvatPodataka.retrieveData(getApplicationContext(),requestQueue);
 
