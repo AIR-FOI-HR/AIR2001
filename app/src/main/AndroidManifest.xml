@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
 
     <application
         android:allowBackup="true"
@@ -37,11 +39,44 @@
         <activity android:name=".EventMenu.AddEventActivity" />
         <activity android:name=".EventMenu.EventCatalogActivity" />
         <activity android:name=".EventMenu.PrikazZaEventPodatkeActivity" />
-        <activity android:name=".Karta.KartaActivity" />
+        <activity android:name=".Karta.KartaActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".TastingMenu.TastingMenuActivity" />
         <activity android:name=".TastingMenu.TastingMenuDetailsActivity" />
-        <activity android:name=".PrikazPodatakaOPivovariActivity" />
+        <activity android:name=".AboutUsActivity" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity android:name=".BeerplaceHomepageActivity" />
+        <activity android:name=".BeerplacePage.BeerplaceHomepageActivityNew">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity android:name=".BeerplacePage.MapsActivity" />
+        <activity android:name=".BeerplacePage.ReviewsActivity" />
+        <activity android:name=".SettingsActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
     </application>
 
 </manifest>
