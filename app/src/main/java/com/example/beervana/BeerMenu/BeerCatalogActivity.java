@@ -1,6 +1,8 @@
 package com.example.beervana.BeerMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,32 +26,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BeerCatalogActivity extends AppCompatActivity {
+public class BeerCatalogActivity extends AppCompatActivity implements BeerCatalogRecyclerAdapter.onPivoListener{
 
-    ListView listView;
+    RecyclerView beerRecyclerView;
     private RequestQueue requestQueue;
-    BeerCatalogAdapter adapter;
+    BeerCatalogRecyclerAdapter adapter;
     public static ArrayList<Beer> BeerArrayList = new ArrayList<>();
     String url = "https://beervana2020.000webhostapp.com/test/dohvacanjePiva.php";
     Beer beer;
     String idLokacija;
     SharedPreferences sp;
+    View view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beer_catalog);
-
-        listView = findViewById(R.id.ListViewBeer);
-        adapter = new BeerCatalogAdapter(this,BeerArrayList);
-        listView.setAdapter(adapter);
+        view = findViewById(android.R.id.content).getRootView();
+        beerRecyclerView = findViewById(R.id.RecyclerBeerCatalog);
+        beerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         sp = getSharedPreferences("login", MODE_PRIVATE);
         idLokacija = sp.getString("id_lokacija","Nema Lokacija").split(",")[0];
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(getApplicationContext(), PrikazZaPodatkeOPivuActivity.class).putExtra("position",position));
-            }
-        });
+
         retrieveData();
     }
 
@@ -70,6 +67,8 @@ public class BeerCatalogActivity extends AppCompatActivity {
                 if(odgovor != null){
                     BeerArrayList.clear();
                     BeerArrayList.addAll(beerLogic.parsiranjePodatakaPiva(odgovor));
+                    adapter = new BeerCatalogRecyclerAdapter(BeerCatalogActivity.this,BeerArrayList,BeerCatalogActivity.this);
+                    beerRecyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -78,6 +77,8 @@ public class BeerCatalogActivity extends AppCompatActivity {
     }
 
 
-
-
+    @Override
+    public void onBeerClick(int position) {
+        startActivity(new Intent(getApplicationContext(), PrikazZaPodatkeOPivuActivity.class).putExtra("position",position));
+    }
 }

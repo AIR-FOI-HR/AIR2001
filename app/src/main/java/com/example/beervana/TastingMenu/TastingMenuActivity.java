@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.EventMenu.EventCatalogActivity;
+import com.example.beervana.EventMenu.EventCatalogRecyclerAdapter;
 import com.example.beervana.R;
 import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;
@@ -32,7 +34,7 @@ import java.util.Map;
 public class TastingMenuActivity extends AppCompatActivity implements RecyclerTastingMenuAdapter.onTastingMenuListener {
     public static final String EXTRA_MESSAGE = "com.example.beervana.TastingMenu.MESSAGE";
     RecyclerView tastingMenuRecyclerView;
-    TastingMenuAdapter adapter;
+    RecyclerTastingMenuAdapter adapter;
     public static ArrayList<TastingMenu> tastingMenuArray = new ArrayList<>();
     String url = "https://beervana2020.000webhostapp.com/test/dohvacanjeDegMenia.php";
     private SharedPreferences sp;
@@ -91,6 +93,8 @@ public class TastingMenuActivity extends AppCompatActivity implements RecyclerTa
                 if (odgovor != null) {
                     tastingMenuArray.clear();
                     tastingMenuArray.addAll(loadTastingMenu.loadTastingMenu(odgovor));
+                    adapter = new RecyclerTastingMenuAdapter(TastingMenuActivity.this, tastingMenuArray,TastingMenuActivity.this);
+                    tastingMenuRecyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }
             }
