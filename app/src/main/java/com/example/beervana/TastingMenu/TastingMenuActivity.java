@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,58 +29,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TastingMenuActivity extends AppCompatActivity {
+public class TastingMenuActivity extends AppCompatActivity implements RecyclerTastingMenuAdapter.onTastingMenuListener {
     public static final String EXTRA_MESSAGE = "com.example.beervana.TastingMenu.MESSAGE";
-    ListView listView;
+    RecyclerView tastingMenuRecyclerView;
     TastingMenuAdapter adapter;
-    public static ArrayList<TastingMenu> tastingMenuArray= new ArrayList<>();
+    public static ArrayList<TastingMenu> tastingMenuArray = new ArrayList<>();
     String url = "https://beervana2020.000webhostapp.com/test/dohvacanjeDegMenia.php";
     private SharedPreferences sp;
     private String idLokacija;
+    View view;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tasting_menu);
-
+        view = findViewById(android.R.id.content).getRootView();
         sp = getSharedPreferences("login", MODE_PRIVATE);
-        idLokacija = sp.getString("id_lokacija","Nema Lokacija").split(",")[0];
-        listView = findViewById(R.id.tastingMenuList);
-        adapter = new TastingMenuAdapter(this, tastingMenuArray);
-        listView.setAdapter(adapter);
+        idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
+        tastingMenuRecyclerView = findViewById(R.id.tastingMenuList);
+        tastingMenuRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                ProgressDialog progressDialog = new ProgressDialog(view.getContext());
-                CharSequence [] dialogItem = {"View data", "Edit data", " Delete data"};
-                builder.setTitle(tastingMenuArray.get(position).getName());
-                builder.setItems(dialogItem, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which){
-                            case 0:
-                                startActivity(
-                                    new Intent(getApplicationContext(),
-                                        TastingMenuDetailsActivity.class
-                                    ).putExtra(EXTRA_MESSAGE, tastingMenuArray.get(position).getName()));
-                                break;
-                            case 1:
-                                startActivity(
-                                   new Intent(getApplicationContext(),
-                                        DodavanjeDegustacijskihMeniaActivity.class
-                                   ).putExtra(EXTRA_MESSAGE, tastingMenuArray.get(position).getName()));
-                                break;
-                            case 2:
-                                DeleteMenu(position);
-                                break;
-                        }
-                    }
-                });
-                   builder.create().show();
-            }
-        });
+
         retriveData();
     }
 
@@ -86,43 +57,74 @@ public class TastingMenuActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         String urlBrisanje = "https://beervana2020.000webhostapp.com/test/DeleteTastingMenu.php";
         SlanjePodataka slanjePodataka = new SlanjePodataka(urlBrisanje);
-        Map<String, String> params=new HashMap<String, String>();
+        Map<String, String> params = new HashMap<String, String>();
         params.put("tastingMenuName", tastingMenuArray.get(position).getName());
         slanjePodataka.setParametri(params);
-        slanjePodataka.sendData(getApplicationContext(),requestQueue);
+        slanjePodataka.sendData(getApplicationContext(), requestQueue);
         requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
             @Override
-            public void onRequestFinished(Request<Object> request){
+            public void onRequestFinished(Request<Object> request) {
                 String odgovor = slanjePodataka.getOdgovor();
-                if (odgovor.equals("Successfully deleted an tasting menu")){
+                if (odgovor.equals("Successfully deleted an tasting menu")) {
                     tastingMenuArray.remove(position);
                     adapter.notifyDataSetChanged();
                 }
-                Toast toast = Toast.makeText(getApplicationContext(),odgovor,Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getApplicationContext(), odgovor, Toast.LENGTH_LONG);
                 toast.show();
             }
         });
     }
 
     private void retriveData() {
-        RequestQueue requestQueue  = Volley.newRequestQueue(getApplicationContext());
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         DohvatPodataka dohvatPodataka = new DohvatPodataka();
         Map<String, String> params = new HashMap<String, String>();
-        params.put("id_lokacija",idLokacija);
+        params.put("id_lokacija", idLokacija);
         dohvatPodataka.setParametri(params);
         dohvatPodataka.setSendUrl(url);
-        dohvatPodataka.retrieveData(getApplicationContext(),requestQueue);
+        dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
         LoadTastingMenu loadTastingMenu = new LoadTastingMenu();
         requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
             @Override
-            public void onRequestFinished(Request<Object> request){
+            public void onRequestFinished(Request<Object> request) {
                 JSONObject odgovor = dohvatPodataka.getOdgovor();
-                if(odgovor != null){
+                if (odgovor != null) {
                     tastingMenuArray.clear();
                     tastingMenuArray.addAll(loadTastingMenu.loadTastingMenu(odgovor));
                     adapter.notifyDataSetChanged();
                 }
             }
         });
+    }
+
+    @Override
+    public void onTastingMenuClick(int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+        ProgressDialog progressDialog = new ProgressDialog(view.getContext());
+        CharSequence[] dialogItem = {"View data", "Edit data", " Delete data"};
+        builder.setTitle(tastingMenuArray.get(position).getName());
+        builder.setItems(dialogItem, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                        startActivity(
+                                new Intent(getApplicationContext(),
+                                        TastingMenuDetailsActivity.class
+                                ).putExtra(EXTRA_MESSAGE, tastingMenuArray.get(position).getName()));
+                        break;
+                    case 1:
+                        startActivity(
+                                new Intent(getApplicationContext(),
+                                        DodavanjeDegustacijskihMeniaActivity.class
+                                ).putExtra(EXTRA_MESSAGE, tastingMenuArray.get(position).getName()));
+                        break;
+                    case 2:
+                        DeleteMenu(position);
+                        break;
+                }
+            }
+        });
+        builder.create().show();
     }
 }
