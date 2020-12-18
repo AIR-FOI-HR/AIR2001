@@ -31,7 +31,7 @@ public class AdapterEventsRecyclerView extends RecyclerView.Adapter<AdapterEvent
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.custom_beerplace_view,parent,false);
-        return  new ViewHolder(view);
+        return new ViewHolder(view);
 
     }
 
@@ -56,6 +56,7 @@ public class AdapterEventsRecyclerView extends RecyclerView.Adapter<AdapterEvent
             super(itemView);
             textTitle = itemView.findViewById(R.id.komentar);
             textDescription = itemView.findViewById(R.id.datum);
+            imageView = itemView.findViewById(R.id.imageView6);
 
         }
     }
