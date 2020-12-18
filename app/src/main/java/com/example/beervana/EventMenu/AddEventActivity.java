@@ -3,6 +3,7 @@ package com.example.beervana.EventMenu;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -24,6 +25,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.GlavniIzbornikClient;
 import com.example.beervana.R;
 import com.example.beervana.databinding.ActivityAddeventBinding;
 import com.example.webservice.SlanjePodataka;
@@ -63,12 +65,19 @@ public class AddEventActivity extends AppCompatActivity {
     private Calendar calendar = Calendar.getInstance();
     private AddEventActivityViewModel viewModel;
     int position;
+    private String idKorisnik;
+    private String idLokacija;
+    private SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAddeventBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        sp = getSharedPreferences("login", MODE_PRIVATE);
+        idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
+        idKorisnik = Integer.toString(sp.getInt("id_korisnik",0));
         //final AddEventActivityViewModel viewModel = new ViewModelProvider(this).get(AddEventActivityViewModel.class);
         viewModel = new ViewModelProvider(this).get(AddEventActivityViewModel.class);
 
@@ -192,7 +201,7 @@ public class AddEventActivity extends AppCompatActivity {
                         if(viewModel.DosloDoPromjene()){
                             mozeSlanje = true;
                             params.put("id_dogadaj",viewModel.getId_dogadaj());
-                            params.put("id_lokacija","8");
+                            params.put("id_lokacija",idLokacija);
                             params.put("naziv_dogadjaja",viewModel.getUnosImedogadjaja());
                             params.put("opis_dogadjaja",viewModel.getUnosOpisaDogadaja());
                             params.put("datum_pocetak",viewModel.FormirajDatum(viewModel.getPrikazDatumaOd(),viewModel.getPrikazVremenaOd()));
@@ -209,8 +218,8 @@ public class AddEventActivity extends AppCompatActivity {
 
                     }else{
                         mozeSlanje = true;
-                        params.put("id_korisnik","50");
-                        params.put("id_lokacija","8");
+                        params.put("id_korisnik",idKorisnik);
+                        params.put("id_lokacija",idLokacija);
                         params.put("slika",viewModel.getSlikaZaSlanje());
                         params.put("naziv_dogadjaja",viewModel.getUnosImedogadjaja());
                         params.put("opis_dogadjaja",viewModel.getUnosOpisaDogadaja());
@@ -231,6 +240,9 @@ public class AddEventActivity extends AppCompatActivity {
                                 toast.show();
                                 if(odgovor.equals("Succesfully updated an event.")){
                                     openBeerCatalog();
+                                }
+                                if(odgovor.equals("Succesfully added an event")){
+                                    openMenuClient();
                                 }
                             }
                         });
@@ -326,6 +338,10 @@ public class AddEventActivity extends AppCompatActivity {
     }
     public void openBeerCatalog(){
         Intent intent = new Intent(this,EventCatalogActivity.class);
+        startActivity(intent);
+    }
+    public void openMenuClient(){
+        Intent intent = new Intent(this, GlavniIzbornikClient.class);
         startActivity(intent);
     }
 
