@@ -44,8 +44,15 @@ public class BeerCatalogActivity extends AppCompatActivity implements BeerCatalo
         view = findViewById(android.R.id.content).getRootView();
         beerRecyclerView = findViewById(R.id.RecyclerBeerCatalog);
         beerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        sp = getSharedPreferences("login", MODE_PRIVATE);
-        idLokacija = sp.getString("id_lokacija","Nema Lokacija").split(",")[0];
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if(extras != null){
+            idLokacija = extras.getString("id_lokacija");
+        }else{
+            sp = getSharedPreferences("login", MODE_PRIVATE);
+            idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
+        }
 
         retrieveData();
     }

@@ -46,8 +46,16 @@ public class TastingMenuActivity extends AppCompatActivity implements RecyclerTa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tasting_menu);
         view = findViewById(android.R.id.content).getRootView();
-        sp = getSharedPreferences("login", MODE_PRIVATE);
-        idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if(extras != null){
+            idLokacija = extras.getString("id_lokacija");
+        }else{
+            sp = getSharedPreferences("login", MODE_PRIVATE);
+            idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
+        }
+
         tastingMenuRecyclerView = findViewById(R.id.tastingMenuList);
         tastingMenuRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 

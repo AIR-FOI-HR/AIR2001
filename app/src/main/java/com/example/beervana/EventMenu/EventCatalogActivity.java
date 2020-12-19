@@ -39,6 +39,7 @@ public class EventCatalogActivity extends AppCompatActivity implements EventCata
     String urlBrisanje = "https://beervana2020.000webhostapp.com/test/ObrisiDogadaj.php";
     private SharedPreferences sp;
     private String idLokacija;
+
     View view;
 
     @Override
@@ -47,8 +48,15 @@ public class EventCatalogActivity extends AppCompatActivity implements EventCata
         setContentView(R.layout.activity_event_catalog);
         view = findViewById(android.R.id.content).getRootView();
         eventDataList = new ArrayList<>();
-        sp = getSharedPreferences("login", MODE_PRIVATE);
-        idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if(extras != null){
+            idLokacija = extras.getString("id_lokacija");
+        }else{
+            sp = getSharedPreferences("login", MODE_PRIVATE);
+            idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
+        }
+
         eventsRecyclerView = findViewById(R.id.eventsRecyclerView);
         eventsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         retrieveData();

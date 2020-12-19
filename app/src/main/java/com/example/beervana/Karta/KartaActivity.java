@@ -1,5 +1,6 @@
 package com.example.beervana.Karta;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -37,6 +38,9 @@ public class KartaActivity extends AppCompatActivity implements OnMapReadyCallba
     KartaActivityViewModel viewModel;
     boolean kartaSpremna = false;
     boolean podaciSpremni = false;
+    private SharedPreferences sp;
+    private float KorisnikLongituda;
+    private float KorisnikLatituda;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +87,11 @@ public class KartaActivity extends AppCompatActivity implements OnMapReadyCallba
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         kartaSpremna = true;
-        LatLng korisnik = new LatLng(46.308012, 16.337895);
+
+        sp = getSharedPreferences("login", MODE_PRIVATE);
+        KorisnikLongituda = sp.getFloat("Longitude", (float)0.0);
+        KorisnikLatituda = sp.getFloat("Latitude", (float)0.0);
+        LatLng korisnik = new LatLng(KorisnikLatituda, KorisnikLongituda);
         BitmapDescriptor ikona = BitmapDescriptorFactory.fromResource(R.drawable.ikonica);
         mMap.addMarker(new MarkerOptions().position(korisnik).title("Korisnik").snippet("Pozicija Korisnika").icon(ikona));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(korisnik,16.0F));
