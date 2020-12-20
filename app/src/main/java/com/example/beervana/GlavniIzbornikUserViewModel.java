@@ -19,12 +19,28 @@ public class GlavniIzbornikUserViewModel extends ViewModel {
     private ArrayList<Review> recenzijeMoje = null;
     private LokacijaLogika lokacijaLogika = new LokacijaLogika();
 
-    public void ParsiranjeLokacijeZaGlavniIzbornikUser(JSONObject odgovor){
+    public void ParsiranjeLokacijeZaGlavniIzbornikUser(JSONObject odgovor, int broj){
         odgovorParsiranja = lokacijaLogika.ParsiranjeLokacijeZaGlavniIzbornikUser(odgovor);
-        if(odgovorParsiranja!=null){
-            lokacijaNajnovija = odgovorParsiranja.get(0);
+        if (odgovorParsiranja != null) {
+            switch (broj) {
+                case (1):
+                    lokacijaNajnovija = odgovorParsiranja.get(0);
+                    break;
+                case (2):
+                    lokacijaMjeseca = odgovorParsiranja.get(0);
+                    break;
+            }
         }
     }
+
+    public void ParsiranjeLokacijeZaGlavniIzbornikUserZaLokacijeUBlizini(JSONObject odgovor){
+        odgovorParsiranja = lokacijaLogika.ParsiranjeNajblizeLokacijeZaKorisnika(odgovor);
+        if(odgovorParsiranja!=null){
+            lokacijeUBlizini = odgovorParsiranja;
+        }
+    }
+
+
 
     public ModelPodatakaLokacijaSOcjenom getLokacijaNajnovija() {
         return lokacijaNajnovija;

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,7 +15,11 @@ import com.example.beervana.TastingMenu.TastingMenu;
 import com.example.beervana.TastingMenu.TastingMenuActivity;
 
 public class BeerplaceHomepageActivityNew extends AppCompatActivity {
-    private String id_lokacija = "8";
+    private String id_lokacija ;
+    private String naziv_lokacije;
+    private String ocjena_lokacije;
+    private TextView naziv , ocjena;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +39,18 @@ public class BeerplaceHomepageActivityNew extends AppCompatActivity {
 
         ImageView pImageView = (ImageView)findViewById(R.id.imageView17);
         pImageView.setOnClickListener(v -> openActivityReviews());
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        id_lokacija = extras.getString("id_lokacija","");
+        naziv_lokacije = extras.getString("naziv_lokacije","");
+        ocjena_lokacije = extras.getString("ocjena_lokacije","");
+
+        naziv = (TextView)findViewById(R.id.textView17);
+        naziv.setText(naziv_lokacije);
+
+        ocjena = (TextView)findViewById(R.id.textView18);
+        ocjena.setText(ocjena_lokacije);
 
 
     }
