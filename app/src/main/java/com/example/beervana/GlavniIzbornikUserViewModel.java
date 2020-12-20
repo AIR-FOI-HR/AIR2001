@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.beervana.BeerMenu.Beer;
 import com.example.beervana.BeerplacePage.Review;
+import com.example.beervana.BeerplacePage.ReviewsLogic;
 
 import org.json.JSONObject;
 
@@ -18,6 +19,8 @@ public class GlavniIzbornikUserViewModel extends ViewModel {
     private ArrayList<Beer> piveMoje = null;
     private ArrayList<Review> recenzijeMoje = null;
     private LokacijaLogika lokacijaLogika = new LokacijaLogika();
+    private ReviewsLogic RecenzijaLogika = new ReviewsLogic();
+    private ArrayList<Review> odgovorParsiranjaRecenzija;
 
     public void ParsiranjeLokacijeZaGlavniIzbornikUser(JSONObject odgovor, int broj){
         odgovorParsiranja = lokacijaLogika.ParsiranjeLokacijeZaGlavniIzbornikUser(odgovor);
@@ -40,7 +43,12 @@ public class GlavniIzbornikUserViewModel extends ViewModel {
         }
     }
 
-
+    public void ParsiranjeRecenzijeZaGlavniIzbornikUser(JSONObject odgovor){
+        odgovorParsiranjaRecenzija = RecenzijaLogika.parsiranjePodatakaReviewaZaGlavniIzbornikUser(odgovor);
+        if(odgovorParsiranjaRecenzija!= null){
+            recenzijeMoje = odgovorParsiranjaRecenzija;
+        }
+    }
 
     public ModelPodatakaLokacijaSOcjenom getLokacijaNajnovija() {
         return lokacijaNajnovija;

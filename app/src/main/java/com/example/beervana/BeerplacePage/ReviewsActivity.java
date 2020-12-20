@@ -18,6 +18,8 @@ import com.example.webservice.DohvatPodataka;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ReviewsActivity extends AppCompatActivity {
 
@@ -25,6 +27,7 @@ public class ReviewsActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     public ArrayList<Review> reviews;
     private RequestQueue requestQueue;
+    private Integer id_korisnika;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,9 @@ public class ReviewsActivity extends AppCompatActivity {
         reviews = new ArrayList<Review>();
         recyclerView = findViewById(R.id.reviewRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        id_korisnika = extras.getInt("id_korisnika",0);
         loadReviews();
     }
 
@@ -42,9 +47,12 @@ public class ReviewsActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         ReviewsLogic reviewsLogic = new ReviewsLogic();
         DohvatPodataka dohvatPodataka = new DohvatPodataka();
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("id_korisnik", Integer.toString(id_korisnika));
+        dohvatPodataka.setParametri(params);
+
         dohvatPodataka.setSendUrl(url);
         dohvatPodataka.retrieveData(getApplicationContext(),requestQueue);
-
         requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
             @Override
             public void onRequestFinished(Request<Object> request){

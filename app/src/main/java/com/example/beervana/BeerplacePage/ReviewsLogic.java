@@ -37,4 +37,28 @@ public class ReviewsLogic {
 
         return reviewsArrayList;
     }
+
+    public static ArrayList<Review> parsiranjePodatakaReviewaZaGlavniIzbornikUser(JSONObject jsonObject) {
+        JSONArray jsonArray = null;
+        ArrayList<Review> reviewsArrayList = new ArrayList<Review>();
+        try {
+            jsonArray = jsonObject.getJSONArray("body");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject object = jsonArray.getJSONObject(i);
+                String ocjena = object.getString("ocjena");
+                String komentar = object.getString("komentar");
+                String datum_i_vrijeme_recenzije = object.getString("datum_i_vrijeme_recenzije");
+
+                Review review = new Review("", "", "", "", ocjena, komentar, datum_i_vrijeme_recenzije);
+                reviewsArrayList.add(review);
+
+
+            }
+        } catch (JSONException e) {
+            reviewsArrayList = null;
+            e.printStackTrace();
+        }
+
+        return reviewsArrayList;
+    }
 }
