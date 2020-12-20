@@ -35,7 +35,7 @@ public class SettingsActivity extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
 
-                SharedPreferences preferences =getSharedPreferences("loginPrefs",MODE_PRIVATE);
+                SharedPreferences preferences =getSharedPreferences("login",MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.clear();
                 editor.apply();
