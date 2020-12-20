@@ -37,6 +37,7 @@ public class BeerCatalogActivity extends AppCompatActivity implements BeerCatalo
     String idLokacija;
     SharedPreferences sp;
     View view;
+    private int korisnik=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,10 +48,11 @@ public class BeerCatalogActivity extends AppCompatActivity implements BeerCatalo
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
+        sp = getSharedPreferences("login", MODE_PRIVATE);
         if(extras != null){
             idLokacija = extras.getString("id_lokacija");
+            korisnik = sp.getInt("id_uloga", 0);
         }else{
-            sp = getSharedPreferences("login", MODE_PRIVATE);
             idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
         }
 

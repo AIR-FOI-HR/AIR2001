@@ -46,6 +46,9 @@ public class KartaActivity extends AppCompatActivity implements OnMapReadyCallba
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_karta);
+        sp = getSharedPreferences("login", MODE_PRIVATE);
+        KorisnikLongituda = sp.getFloat("Longitude", (float)0.0);
+        KorisnikLatituda = sp.getFloat("Latitude", (float)0.0);
         viewModel = new ViewModelProvider(this).get(KartaActivityViewModel.class);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -59,8 +62,8 @@ public class KartaActivity extends AppCompatActivity implements OnMapReadyCallba
         EventCatalogLogika logikaEventCatalog = new EventCatalogLogika();
         DohvatPodataka dohvatPodataka = new DohvatPodataka();
         //TODO Promijenit sa lokacijom korisnika
-        String latituda = "46.308012";
-        String longituda = "16.337895";
+        String latituda = Float.toString(KorisnikLatituda);
+        String longituda = Float.toString(KorisnikLongituda);
         Map<String, String> params = new HashMap<String, String>();
         params.put("Latituda",latituda);
         params.put("Longituda",longituda);
@@ -88,9 +91,7 @@ public class KartaActivity extends AppCompatActivity implements OnMapReadyCallba
         mMap = googleMap;
         kartaSpremna = true;
 
-        sp = getSharedPreferences("login", MODE_PRIVATE);
-        KorisnikLongituda = sp.getFloat("Longitude", (float)0.0);
-        KorisnikLatituda = sp.getFloat("Latitude", (float)0.0);
+
         LatLng korisnik = new LatLng(KorisnikLatituda, KorisnikLongituda);
         BitmapDescriptor ikona = BitmapDescriptorFactory.fromResource(R.drawable.ikonica);
         mMap.addMarker(new MarkerOptions().position(korisnik).title("Korisnik").snippet("Pozicija Korisnika").icon(ikona));

@@ -40,6 +40,7 @@ public class TastingMenuActivity extends AppCompatActivity implements RecyclerTa
     private SharedPreferences sp;
     private String idLokacija;
     View view;
+    private int korisnik = 0;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,10 +50,11 @@ public class TastingMenuActivity extends AppCompatActivity implements RecyclerTa
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
+        sp = getSharedPreferences("login", MODE_PRIVATE);
         if(extras != null){
             idLokacija = extras.getString("id_lokacija");
+            korisnik = sp.getInt("id_uloga",0);
         }else{
-            sp = getSharedPreferences("login", MODE_PRIVATE);
             idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
         }
 
@@ -111,6 +113,12 @@ public class TastingMenuActivity extends AppCompatActivity implements RecyclerTa
 
     @Override
     public void onTastingMenuClick(int position) {
+        if(korisnik == 1){
+            startActivity(
+                    new Intent(getApplicationContext(),
+                            TastingMenuDetailsActivity.class
+                    ).putExtra(EXTRA_MESSAGE, tastingMenuArray.get(position).getName()));
+        }else{
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
         ProgressDialog progressDialog = new ProgressDialog(view.getContext());
         CharSequence[] dialogItem = {"View data", "Edit data", " Delete data"};
@@ -138,5 +146,6 @@ public class TastingMenuActivity extends AppCompatActivity implements RecyclerTa
             }
         });
         builder.create().show();
+    }
     }
 }

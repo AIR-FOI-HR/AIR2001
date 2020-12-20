@@ -34,11 +34,12 @@ public class EventCatalogActivity extends AppCompatActivity implements EventCata
     private RequestQueue requestQueue;
     private RequestQueue requestQueueBrisanje;
     EventCatalogRecyclerAdapter adapter;
-    public static ArrayList<ModelPodatakEventCatalog> eventDataList ;
+    public static ArrayList<ModelPodatakEventCatalog> eventDataList;
     String url = "https://beervana2020.000webhostapp.com/test/DohvacanjeDogadaja.php";
     String urlBrisanje = "https://beervana2020.000webhostapp.com/test/ObrisiDogadaj.php";
     private SharedPreferences sp;
     private String idLokacija;
+    private int korisnik = 0;
 
     View view;
 
@@ -50,10 +51,11 @@ public class EventCatalogActivity extends AppCompatActivity implements EventCata
         eventDataList = new ArrayList<>();
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        if(extras != null){
+        sp = getSharedPreferences("login", MODE_PRIVATE);
+        if (extras != null) {
             idLokacija = extras.getString("id_lokacija");
-        }else{
-            sp = getSharedPreferences("login", MODE_PRIVATE);
+            korisnik = sp.getInt("id_uloga",0);
+        } else {
             idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
         }
 
@@ -82,7 +84,7 @@ public class EventCatalogActivity extends AppCompatActivity implements EventCata
                     adapter.notifyDataSetChanged();*/
                     eventDataList.clear();
                     eventDataList.addAll(logikaEventCatalog.parsiranjePodatakaEventData(odgovor));
-                    adapter = new EventCatalogRecyclerAdapter(EventCatalogActivity.this, eventDataList,EventCatalogActivity.this);
+                    adapter = new EventCatalogRecyclerAdapter(EventCatalogActivity.this, eventDataList, EventCatalogActivity.this);
                     eventsRecyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
 
@@ -116,26 +118,30 @@ public class EventCatalogActivity extends AppCompatActivity implements EventCata
 
     @Override
     public void onEventClick(int position) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+        if (korisnik == 1) {
+            startActivity(new Intent(getApplicationContext(), PrikazZaEventPodatkeActivity.class).putExtra("position", position));
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
 
-        CharSequence[] dijalogStavke = {"View data", "Edit data ", "Delete data"};
-        builder.setTitle(eventDataList.get(position).dogadaj.getNazivDogadaj());
-        builder.setItems(dijalogStavke, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int odabir) {
-                switch (odabir) {
-                    case 0:
-                        startActivity(new Intent(getApplicationContext(), PrikazZaEventPodatkeActivity.class).putExtra("position", position));
-                        break;
-                    case 1:
-                        startActivity(new Intent(getApplicationContext(), AddEventActivity.class).putExtra("position", position));
-                        break;
-                    case 2:
-                        DeleteEvent(position);
-                        break;
+            CharSequence[] dijalogStavke = {"View data", "Edit data ", "Delete data"};
+            builder.setTitle(eventDataList.get(position).dogadaj.getNazivDogadaj());
+            builder.setItems(dijalogStavke, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int odabir) {
+                    switch (odabir) {
+                        case 0:
+                            startActivity(new Intent(getApplicationContext(), PrikazZaEventPodatkeActivity.class).putExtra("position", position));
+                            break;
+                        case 1:
+                            startActivity(new Intent(getApplicationContext(), AddEventActivity.class).putExtra("position", position));
+                            break;
+                        case 2:
+                            DeleteEvent(position);
+                            break;
+                    }
                 }
-            }
-        });
-        builder.create().show();
+            });
+            builder.create().show();
+        }
     }
 }
