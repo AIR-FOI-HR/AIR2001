@@ -14,9 +14,6 @@ import com.example.webservice.DohvatPodataka;
 
 import org.json.JSONObject;
 
-
-
-
 public class GlavniIzbornikUser extends AppCompatActivity {
     private GlavniIzbornikUserViewModel viewModel;
     private RequestQueue requestQueue;
