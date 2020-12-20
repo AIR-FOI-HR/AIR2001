@@ -61,7 +61,6 @@ public class KartaActivity extends AppCompatActivity implements OnMapReadyCallba
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         EventCatalogLogika logikaEventCatalog = new EventCatalogLogika();
         DohvatPodataka dohvatPodataka = new DohvatPodataka();
-        //TODO Promijenit sa lokacijom korisnika
         String latituda = Float.toString(KorisnikLatituda);
         String longituda = Float.toString(KorisnikLongituda);
         Map<String, String> params = new HashMap<String, String>();

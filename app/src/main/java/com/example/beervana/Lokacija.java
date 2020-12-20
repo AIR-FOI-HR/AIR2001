@@ -3,6 +3,7 @@ package com.example.beervana;
 public class Lokacija {
     private String id_lokacija, nazivLokacija,oibLokacija,adresaLokacija,latitudaLokacija, longitudaLokacija;
 
+    public Lokacija(){}
     public Lokacija(String id_lokacija,String nazivLokacija, String oibLokacija, String adresaLokacija, String latitudaLokacija, String longitudaLokacija){
         this.id_lokacija = id_lokacija;
         this.nazivLokacija = nazivLokacija;

@@ -4,7 +4,14 @@ import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 
+import com.example.beervana.Karta.KartaModelPodataka;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -120,4 +127,32 @@ public class LokacijaLogika {
         }
         return p1;
     }
+    public ArrayList<ModelPodatakaLokacijaSOcjenom> ParsiranjeLokacijeZaGlavniIzbornikUser(JSONObject odgovor){
+        ArrayList<ModelPodatakaLokacijaSOcjenom> podaciZaPrikaz = new ArrayList<ModelPodatakaLokacijaSOcjenom>();
+        JSONArray jsonArray = null;
+        try {
+            jsonArray = odgovor.getJSONArray("body");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject object = jsonArray.getJSONObject(i);
+                String idLokacija = object.getString("id_lokacija");
+                String nazivLokacija = object.getString("naziv_lokacije");
+                String ocjenaLokacije = object.optString("ocjena");
+                if(ocjenaLokacije.equals("null")){
+                    ocjenaLokacije= "-";
+                }
+                Lokacija lokacija =  new Lokacija(idLokacija,nazivLokacija,"","","","");
+                ModelPodatakaLokacijaSOcjenom podatak = new ModelPodatakaLokacijaSOcjenom(lokacija,ocjenaLokacije);
+                podaciZaPrikaz.add(podatak);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+        if(podaciZaPrikaz.size() == 0){
+            return null;
+        }
+        return podaciZaPrikaz;
+    }
+
+
 }
