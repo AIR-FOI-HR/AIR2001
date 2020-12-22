@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.beervana.BaseActivity;
 import com.example.beervana.BeerMenu.BeerCatalogActivity;
 import com.example.beervana.EventMenu.EventCatalogActivity;
 import com.example.beervana.R;
@@ -15,7 +16,7 @@ import com.example.beervana.SettingsActivity;
 import com.example.beervana.TastingMenu.TastingMenu;
 import com.example.beervana.TastingMenu.TastingMenuActivity;
 
-public class BeerplaceHomepageActivityNew extends AppCompatActivity {
+public class BeerplaceHomepageActivityNew extends BaseActivity {
     private String id_lokacija ;
     private String naziv_lokacije;
     private String ocjena_lokacije;
@@ -25,6 +26,7 @@ public class BeerplaceHomepageActivityNew extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beerplace_homepage_new);
+        initToolbar();
 
         Button button = (Button) findViewById(R.id.button4);
         button.setOnClickListener(v -> openMapsActivity());
@@ -53,20 +55,7 @@ public class BeerplaceHomepageActivityNew extends AppCompatActivity {
         ocjena = (TextView)findViewById(R.id.textView18);
         ocjena.setText(ocjena_lokacije);
 
-        //OVAJ DIO DODATI ZA TOOLBAR
-        ImageView yImageView = (ImageView)findViewById(R.id.settings_icon);
-        yImageView.setOnClickListener(v -> openActivity3());
 
-        //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
-        /*
-        ImageView mImageView = (ImageView)findViewById(R.id.user_icon);
-        mImageView.setOnClickListener(v -> openActivity4());
-
-        ImageView mImageView = (ImageView)findViewById(R.id.search_icon);
-        mImageView.setOnClickListener(v -> openActivity5());
-        */
-
-        //
 
     }
 
@@ -97,23 +86,6 @@ public class BeerplaceHomepageActivityNew extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //I OVAJ DIO DODATI ZA TOOLBAR
-    public void openActivity3(){
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
-    }
 
-    //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
-    /*
-    public void openActivity4(){
-        Intent intent = new Intent(this, UserActivity.class);
-        startActivity(intent);
-    }
-    public void openActivity5(){
-        Intent intent = new Intent(this, SearchActivity.class);
-        startActivity(intent);
-    }
-     */
 
-    //KRAJ
 }

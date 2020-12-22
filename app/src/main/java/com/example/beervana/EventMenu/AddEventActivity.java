@@ -25,6 +25,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.BaseActivity;
 import com.example.beervana.GlavniIzbornikClient;
 import com.example.beervana.R;
 import com.example.beervana.databinding.ActivityAddeventBinding;
@@ -39,7 +40,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class AddEventActivity extends AppCompatActivity {
+public class AddEventActivity extends BaseActivity {
     private String sendUrl;
     private RequestQueue requestQueue;
     private ActivityAddeventBinding binding;
@@ -74,6 +75,7 @@ public class AddEventActivity extends AppCompatActivity {
         binding = ActivityAddeventBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        initToolbar();
 
         sp = getSharedPreferences("login", MODE_PRIVATE);
         idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];

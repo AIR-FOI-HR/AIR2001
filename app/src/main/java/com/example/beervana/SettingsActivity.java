@@ -11,12 +11,13 @@ import android.widget.ImageView;
 import androidx.appcompat.widget.Toolbar;
 
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        initToolbar();
 
         Button button = (Button) findViewById(R.id.buttonAboutUs);
         button.setOnClickListener(new View.OnClickListener() {
@@ -35,20 +36,7 @@ public class SettingsActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        //OVAJ DIO DODATI ZA TOOLBAR
-        ImageView mImageView = (ImageView)findViewById(R.id.settings_icon);
-        mImageView.setOnClickListener(v -> openActivity3());
 
-        //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
-        /*
-        ImageView mImageView = (ImageView)findViewById(R.id.user_icon);
-        mImageView.setOnClickListener(v -> openActivity4());
-
-        ImageView mImageView = (ImageView)findViewById(R.id.search_icon);
-        mImageView.setOnClickListener(v -> openActivity5());
-        */
-
-        //
 
     }
 
@@ -57,24 +45,5 @@ public class SettingsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //I OVAJ DIO DODATI ZA TOOLBAR
-    public void openActivity3(){
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
-    }
-
-    //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
-    /*
-    public void openActivity4(){
-        Intent intent = new Intent(this, UserActivity.class);
-        startActivity(intent);
-    }
-    public void openActivity5(){
-        Intent intent = new Intent(this, SearchActivity.class);
-        startActivity(intent);
-    }
-     */
-
-    //KRAJ
 
 }

@@ -16,6 +16,7 @@ import android.widget.ListView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.BaseActivity;
 import com.example.beervana.MainActivity;
 import com.example.beervana.R;
 import com.example.webservice.DohvatPodataka;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BeerCatalogActivity extends AppCompatActivity implements BeerCatalogRecyclerAdapter.onPivoListener{
+public class BeerCatalogActivity extends BaseActivity implements BeerCatalogRecyclerAdapter.onPivoListener{
 
     RecyclerView beerRecyclerView;
     private RequestQueue requestQueue;
@@ -42,6 +43,7 @@ public class BeerCatalogActivity extends AppCompatActivity implements BeerCatalo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beer_catalog);
+        initToolbar();
         view = findViewById(android.R.id.content).getRootView();
         beerRecyclerView = findViewById(R.id.RecyclerBeerCatalog);
         beerRecyclerView.setLayoutManager(new LinearLayoutManager(this));

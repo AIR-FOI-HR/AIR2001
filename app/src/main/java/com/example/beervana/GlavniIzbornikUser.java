@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GlavniIzbornikUser extends AppCompatActivity {
+public class GlavniIzbornikUser extends BaseActivity {
     private GlavniIzbornikUserViewModel viewModel;
     private RequestQueue requestQueue;
     private TextView prikazNajnovijeLokacije, prikazNazivaNajboljeLokacije, prikazOcjeneNajboljeLokacije, prikazNajblizeLokacije1, prikazNajblizeLokacije2,
@@ -50,6 +50,7 @@ public class GlavniIzbornikUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.glavni_izbornik_user_activity);
+        initToolbar();
         prikazNajnovijeLokacije = (TextView) findViewById(R.id.textViewNajnovijaLokacija);
         prikazNazivaNajboljeLokacije = (TextView) findViewById(R.id.textView8);
         prikazOcjeneNajboljeLokacije = (TextView) findViewById(R.id.textView15);
@@ -80,7 +81,7 @@ public class GlavniIzbornikUser extends AppCompatActivity {
         if (viewModel.getLokacijeUBlizini() != null) {
             PostaviPodatkeNajblizihPivovara();
         }
-        if (viewModel.getRecenzijeMoje() != null ) {
+        if (viewModel.getRecenzijeMoje() != null) {
             PostaviPodatkeRecenzija();
         }
         retrieveData();
@@ -115,20 +116,7 @@ public class GlavniIzbornikUser extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), ReviewsActivity.class).putExtra("id_korisnika", idKorisnika));
             }
         });
-        //OVAJ DIO DODATI ZA TOOLBAR
-        ImageView mImageView = (ImageView)findViewById(R.id.settings_icon);
-        mImageView.setOnClickListener(v -> openActivity3());
 
-        //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
-        /*
-        ImageView mImageView = (ImageView)findViewById(R.id.user_icon);
-        mImageView.setOnClickListener(v -> openActivity4());
-
-        ImageView mImageView = (ImageView)findViewById(R.id.search_icon);
-        mImageView.setOnClickListener(v -> openActivity5());
-        */
-
-        //
     }
 
     private void retrieveData() {
@@ -232,23 +220,6 @@ public class GlavniIzbornikUser extends AppCompatActivity {
         ModelPodatakaLokacijaSOcjenom lokacijaNajnovija = new ModelPodatakaLokacijaSOcjenom(viewModel.getLokacijaNajnovija().getLokacija(), viewModel.getLokacijaNajnovija().getOcjena());
         prikazNajnovijeLokacije.setText(lokacijaNajnovija.getLokacija().getNazivLokacija().concat("\nOcjena: ").concat(lokacijaNajnovija.getOcjena()));
     }
-    //I OVAJ DIO DODATI ZA TOOLBAR
-    public void openActivity3(){
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
-    }
 
-    //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
-    /*
-    public void openActivity4(){
-        Intent intent = new Intent(this, UserActivity.class);
-        startActivity(intent);
-    }
-    public void openActivity5(){
-        Intent intent = new Intent(this, SearchActivity.class);
-        startActivity(intent);
-    }
-     */
 
-    //KRAJ
 }

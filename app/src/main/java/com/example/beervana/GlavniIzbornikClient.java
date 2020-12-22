@@ -12,13 +12,13 @@ import com.example.beervana.BeerMenu.BeerCatalogActivity;
 import com.example.beervana.EventMenu.EventCatalogActivity;
 import com.example.beervana.TastingMenu.TastingMenuActivity;
 
-public class GlavniIzbornikClient extends AppCompatActivity {
+public class GlavniIzbornikClient extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gl_izbornik_client);
-
+        initToolbar();
         Button button = (Button) findViewById(R.id.button7);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,20 +47,7 @@ public class GlavniIzbornikClient extends AppCompatActivity {
                 OpenActivityTastingMeni();
             }
         });
-        //OVAJ DIO DODATI ZA TOOLBAR
-        ImageView mImageView = (ImageView)findViewById(R.id.settings_icon);
-        mImageView.setOnClickListener(v -> openActivity3());
 
-        //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
-        /*
-        ImageView mImageView = (ImageView)findViewById(R.id.user_icon);
-        mImageView.setOnClickListener(v -> openActivity4());
-
-        ImageView mImageView = (ImageView)findViewById(R.id.search_icon);
-        mImageView.setOnClickListener(v -> openActivity5());
-        */
-
-        //
     }
 
     public void openActivity2(){
@@ -79,23 +66,7 @@ public class GlavniIzbornikClient extends AppCompatActivity {
         Intent intent = new Intent(this, TastingMenuActivity.class);
         startActivity(intent);
     }
-    //I OVAJ DIO DODATI ZA TOOLBAR
-    public void openActivity3(){
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
-    }
 
-    //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
-    /*
-    public void openActivity4(){
-        Intent intent = new Intent(this, UserActivity.class);
-        startActivity(intent);
-    }
-    public void openActivity5(){
-        Intent intent = new Intent(this, SearchActivity.class);
-        startActivity(intent);
-    }
-     */
 
-    //KRAJ
+
 }

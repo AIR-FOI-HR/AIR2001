@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.BaseActivity;
 import com.example.beervana.BeerMenu.Beer;
 import com.example.beervana.BeerMenu.BeerLogic;
 import com.example.beervana.R;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReviewsActivity extends AppCompatActivity {
+public class ReviewsActivity extends BaseActivity {
 
     private static final String url = "https://beervana2020.000webhostapp.com/test/fetchReviews.php";
     RecyclerView recyclerView;
@@ -35,6 +36,7 @@ public class ReviewsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviews);
+        initToolbar();
 
         reviews = new ArrayList<Review>();
         recyclerView = findViewById(R.id.reviewRecyclerView);
@@ -44,20 +46,7 @@ public class ReviewsActivity extends AppCompatActivity {
         id_korisnika = extras.getInt("id_korisnika",0);
         loadReviews();
 
-        //OVAJ DIO DODATI ZA TOOLBAR
-        ImageView yImageView = (ImageView)findViewById(R.id.settings_icon);
-        yImageView.setOnClickListener(v -> openActivity3());
 
-        //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
-        /*
-        ImageView mImageView = (ImageView)findViewById(R.id.user_icon);
-        mImageView.setOnClickListener(v -> openActivity4());
-
-        ImageView mImageView = (ImageView)findViewById(R.id.search_icon);
-        mImageView.setOnClickListener(v -> openActivity5());
-        */
-
-        //
     }
 
     private void loadReviews() {
@@ -85,23 +74,6 @@ public class ReviewsActivity extends AppCompatActivity {
         });
     }
 
-    //I OVAJ DIO DODATI ZA TOOLBAR
-    public void openActivity3(){
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
-    }
 
-    //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
-    /*
-    public void openActivity4(){
-        Intent intent = new Intent(this, UserActivity.class);
-        startActivity(intent);
-    }
-    public void openActivity5(){
-        Intent intent = new Intent(this, SearchActivity.class);
-        startActivity(intent);
-    }
-     */
 
-    //KRAJ
 }

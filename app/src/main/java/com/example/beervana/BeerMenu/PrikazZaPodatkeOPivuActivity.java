@@ -7,12 +7,13 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.beervana.BaseActivity;
 import com.example.beervana.BeerMenu.BeerCatalogActivity;
 import com.example.beervana.R;
 import com.example.beervana.SettingsActivity;
 import com.squareup.picasso.Picasso;
 
-public class PrikazZaPodatkeOPivuActivity extends AppCompatActivity{
+public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
 
     TextView beerName1, beerPrice, beerTaste,beerLitres;
     ImageView beerImage;
@@ -21,6 +22,7 @@ public class PrikazZaPodatkeOPivuActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prikaz_za_podatke_o_pivu);
+        initToolbar();
 
         beerName1 = findViewById(R.id.beerNameTextView1);
         beerPrice = findViewById(R.id.textView19);
@@ -38,38 +40,8 @@ public class PrikazZaPodatkeOPivuActivity extends AppCompatActivity{
         String imageUri = BeerCatalogActivity.BeerArrayList.get(position).getSlika();
         Picasso.with(this).load(imageUri).into(beerImage);
 
-        //OVAJ DIO DODATI ZA TOOLBAR
-        ImageView mImageView = (ImageView)findViewById(R.id.settings_icon);
-        mImageView.setOnClickListener(v -> openActivity3());
 
-        //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
-        /*
-        ImageView mImageView = (ImageView)findViewById(R.id.user_icon);
-        mImageView.setOnClickListener(v -> openActivity4());
-
-        ImageView mImageView = (ImageView)findViewById(R.id.search_icon);
-        mImageView.setOnClickListener(v -> openActivity5());
-        */
-
-        //
-    }
-    //I OVAJ DIO DODATI ZA TOOLBAR
-    public void openActivity3(){
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
     }
 
-    //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
-    /*
-    public void openActivity4(){
-        Intent intent = new Intent(this, UserActivity.class);
-        startActivity(intent);
-    }
-    public void openActivity5(){
-        Intent intent = new Intent(this, SearchActivity.class);
-        startActivity(intent);
-    }
-     */
 
-    //KRAJ
 }

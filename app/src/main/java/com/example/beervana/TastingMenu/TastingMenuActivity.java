@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.BaseActivity;
 import com.example.beervana.EventMenu.EventCatalogActivity;
 import com.example.beervana.EventMenu.EventCatalogRecyclerAdapter;
 import com.example.beervana.R;
@@ -33,7 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TastingMenuActivity extends AppCompatActivity implements RecyclerTastingMenuAdapter.onTastingMenuListener {
+public class TastingMenuActivity extends BaseActivity implements RecyclerTastingMenuAdapter.onTastingMenuListener {
     public static final String EXTRA_MESSAGE = "com.example.beervana.TastingMenu.MESSAGE";
     RecyclerView tastingMenuRecyclerView;
     RecyclerTastingMenuAdapter adapter;
@@ -48,6 +49,7 @@ public class TastingMenuActivity extends AppCompatActivity implements RecyclerTa
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tasting_menu);
+        initToolbar();
         view = findViewById(android.R.id.content).getRootView();
 
         Intent intent = getIntent();
@@ -66,20 +68,7 @@ public class TastingMenuActivity extends AppCompatActivity implements RecyclerTa
 
         retriveData();
 
-        //OVAJ DIO DODATI ZA TOOLBAR
-        ImageView mImageView = (ImageView)findViewById(R.id.settings_icon);
-        mImageView.setOnClickListener(v -> openActivity3());
 
-        //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
-        /*
-        ImageView mImageView = (ImageView)findViewById(R.id.user_icon);
-        mImageView.setOnClickListener(v -> openActivity4());
-
-        ImageView mImageView = (ImageView)findViewById(R.id.search_icon);
-        mImageView.setOnClickListener(v -> openActivity5());
-        */
-
-        //
     }
 
     private void DeleteMenu(int position) {
@@ -165,23 +154,7 @@ public class TastingMenuActivity extends AppCompatActivity implements RecyclerTa
         builder.create().show();
     }
     }
-    //I OVAJ DIO DODATI ZA TOOLBAR
-    public void openActivity3(){
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
-    }
 
-    //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
-    /*
-    public void openActivity4(){
-        Intent intent = new Intent(this, UserActivity.class);
-        startActivity(intent);
-    }
-    public void openActivity5(){
-        Intent intent = new Intent(this, SearchActivity.class);
-        startActivity(intent);
-    }
-     */
 
-    //KRAJ
+
 }

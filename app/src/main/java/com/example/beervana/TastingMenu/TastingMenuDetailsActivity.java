@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.BaseActivity;
 import com.example.beervana.BeerMenu.Beer;
 import com.example.beervana.BeerMenu.BeerLogic;
 import com.example.beervana.R;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TastingMenuDetailsActivity extends AppCompatActivity {
+public class TastingMenuDetailsActivity extends BaseActivity {
     ListView listView;
     TastingMenuContentAdapter adapter;
     TextView tastingMenuName;
@@ -34,6 +35,7 @@ public class TastingMenuDetailsActivity extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tasting_menu_content);
+        initToolbar();
         Intent intent = getIntent();
         String message = intent.getStringExtra(TastingMenuActivity.EXTRA_MESSAGE);
         tastingMenuName = findViewById(R.id.tastingMenuContentName);
@@ -61,10 +63,12 @@ public class TastingMenuDetailsActivity extends AppCompatActivity {
             public void onRequestFinished(Request<Object> request) {
                 JSONObject odgovor = dohvatPodataka.getOdgovor();
                 try {
-                    if (odgovor.getString("message").equals(" Beers successfully loaded")) {
-                        tastingMenuContentArray.clear();
-                        tastingMenuContentArray.addAll(beers.parsiranjePodatakaPivaZaDegustacijskiMeni(odgovor));
-                        adapter.notifyDataSetChanged();
+                    if(odgovor!=null) {
+                        if (odgovor.getString("message").equals(" Beers successfully loaded")) {
+                            tastingMenuContentArray.clear();
+                            tastingMenuContentArray.addAll(beers.parsiranjePodatakaPivaZaDegustacijskiMeni(odgovor));
+                            adapter.notifyDataSetChanged();
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
