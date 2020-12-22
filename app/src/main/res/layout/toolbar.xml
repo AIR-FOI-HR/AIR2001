@@ -21,6 +21,15 @@
         app:titleTextAppearance="@android:style/TextAppearance.DeviceDefault.Large"
         app:titleTextColor="@color/black">
 
+        <EditText
+            android:id="@+id/txtpretrazivanje"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Search"
+/>
         <ImageView
             android:id="@+id/settings_icon"
             android:layout_width="25dp"

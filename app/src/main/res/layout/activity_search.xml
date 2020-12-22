@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchActivity">
+    <include
+        android:id="@+id/my_toolbar"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </include>
+    <TextView
+        android:id="@+id/txtPretrazivanjeLokacija"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        android:text="Locations:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/my_toolbar"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerLocationSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtPretrazivanjeLokacija" />
+    <TextView
+        android:id="@+id/txtPretrazivanjeNemaPivnica"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        android:visibility="gone"
+        android:text="No locations found for the search term."
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/RecyclerLocationSearch"/>
+    <TextView
+        android:id="@+id/txtPretrazivanjePiva"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        android:text="Beers:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/txtPretrazivanjeNemaPivnica"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerBeerSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtPretrazivanjePiva" />
+    <TextView
+        android:id="@+id/txtPretrazivanjeNemaPiva"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        android:visibility="gone"
+        android:text="No bears found for the search term."
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/RecyclerBeerSearch"/>
+
+</RelativeLayout>

@@ -179,6 +179,33 @@ public class LokacijaLogika {
         }
         return podaciZaPrikaz;
     }
+    public ArrayList<ModelPodatakaLokacijaSOcjenom> ParsiranjeLokacijeZaPretrazivanje(JSONObject odgovor){
+        ArrayList<ModelPodatakaLokacijaSOcjenom> podaciZaPrikaz = new ArrayList<ModelPodatakaLokacijaSOcjenom>();
+        JSONArray jsonArray = null;
+        try {
+            jsonArray = odgovor.getJSONArray("body");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject object = jsonArray.getJSONObject(i);
+                String idLokacija = object.getString("id_lokacija");
+                String nazivLokacija = object.getString("naziv_lokacije");
+                String ocjenaLokacije = object.optString("ocjena");
+                String adresaLokacije = object.optString("adresa_lokacije");
+                if(ocjenaLokacije.equals("null")){
+                    ocjenaLokacije= "-";
+                }
+                Lokacija lokacija =  new Lokacija(idLokacija,nazivLokacija,"",adresaLokacije,"","");
+                ModelPodatakaLokacijaSOcjenom podatak = new ModelPodatakaLokacijaSOcjenom(lokacija,ocjenaLokacije);
+                podaciZaPrikaz.add(podatak);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+        if(podaciZaPrikaz.size() == 0){
+            return null;
+        }
+        return podaciZaPrikaz;
+    }
 
 
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/lblNazivLokacije"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:text="Naziv lokacije: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lblOcjenaLokacije"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="7dp"
+        android:text="Ocjena Lokacije: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblNazivLokacije" />
+
+    <TextView
+        android:id="@+id/lblAdresaLokacije"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="15dp"
+        android:text="Adresa Lokacije: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblOcjenaLokacije" />
+
+    <TextView
+        android:id="@+id/txtNazivLokacijePretrazivanje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Naziv Lokacije"
+        app:layout_constraintBaseline_toBaselineOf="@+id/lblNazivLokacije"
+        app:layout_constraintStart_toEndOf="@+id/lblNazivLokacije" />
+
+    <TextView
+        android:id="@+id/txtOcjenaLokacijePretrazivanje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ocjena Lokacije"
+        app:layout_constraintBaseline_toBaselineOf="@+id/lblOcjenaLokacije"
+        app:layout_constraintStart_toEndOf="@+id/lblOcjenaLokacije" />
+
+    <TextView
+        android:id="@+id/txtAdresaLokacijePretrazivanje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AdresaLokacije"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/lblAdresaLokacije"
+        app:layout_constraintStart_toEndOf="@+id/lblAdresaLokacije" />
+</androidx.constraintlayout.widget.ConstraintLayout>
