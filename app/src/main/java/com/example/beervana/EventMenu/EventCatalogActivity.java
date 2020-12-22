@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.beervana.AdapterEventsRecyclerView;
 import com.example.beervana.BeerplaceHomepageActivity;
 import com.example.beervana.R;
+import com.example.beervana.SettingsActivity;
 import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;
 
@@ -62,6 +64,20 @@ public class EventCatalogActivity extends AppCompatActivity implements EventCata
         eventsRecyclerView = findViewById(R.id.eventsRecyclerView);
         eventsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         retrieveData();
+        //OVAJ DIO DODATI ZA TOOLBAR
+        ImageView mImageView = (ImageView)findViewById(R.id.settings_icon);
+        mImageView.setOnClickListener(v -> openActivity3());
+
+        //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
+        /*
+        ImageView mImageView = (ImageView)findViewById(R.id.user_icon);
+        mImageView.setOnClickListener(v -> openActivity4());
+
+        ImageView mImageView = (ImageView)findViewById(R.id.search_icon);
+        mImageView.setOnClickListener(v -> openActivity5());
+        */
+
+        //
     }
 
     private void retrieveData() {
@@ -144,4 +160,23 @@ public class EventCatalogActivity extends AppCompatActivity implements EventCata
             builder.create().show();
         }
     }
+    //I OVAJ DIO DODATI ZA TOOLBAR
+    public void openActivity3(){
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
+    //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
+    /*
+    public void openActivity4(){
+        Intent intent = new Intent(this, UserActivity.class);
+        startActivity(intent);
+    }
+    public void openActivity5(){
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
+    }
+     */
+
+    //KRAJ
 }

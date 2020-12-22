@@ -12,17 +12,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <include
+            android:id="@+id/my_toolbar"
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </include>
+
         <TextView
             android:id="@+id/txtAddEvent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:padding="15dp"
             android:text="@string/add_event"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="36sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/slikaDogadjaj"
             android:layout_width="match_parent"
@@ -277,8 +288,6 @@
             android:id="@+id/prikazVremenaDo"
             android:layout_below="@id/errUnosDatumDo"
             android:background="@drawable/edit_text_border"
-
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -13,6 +14,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.beervana.BeerMenu.Beer;
 import com.example.beervana.BeerMenu.BeerLogic;
 import com.example.beervana.R;
+import com.example.beervana.SettingsActivity;
 import com.example.webservice.DohvatPodataka;
 
 import org.json.JSONObject;
@@ -41,6 +43,21 @@ public class ReviewsActivity extends AppCompatActivity {
         Bundle extras = intent.getExtras();
         id_korisnika = extras.getInt("id_korisnika",0);
         loadReviews();
+
+        //OVAJ DIO DODATI ZA TOOLBAR
+        ImageView yImageView = (ImageView)findViewById(R.id.settings_icon);
+        yImageView.setOnClickListener(v -> openActivity3());
+
+        //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
+        /*
+        ImageView mImageView = (ImageView)findViewById(R.id.user_icon);
+        mImageView.setOnClickListener(v -> openActivity4());
+
+        ImageView mImageView = (ImageView)findViewById(R.id.search_icon);
+        mImageView.setOnClickListener(v -> openActivity5());
+        */
+
+        //
     }
 
     private void loadReviews() {
@@ -68,5 +85,23 @@ public class ReviewsActivity extends AppCompatActivity {
         });
     }
 
+    //I OVAJ DIO DODATI ZA TOOLBAR
+    public void openActivity3(){
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
 
+    //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
+    /*
+    public void openActivity4(){
+        Intent intent = new Intent(this, UserActivity.class);
+        startActivity(intent);
+    }
+    public void openActivity5(){
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
+    }
+     */
+
+    //KRAJ
 }

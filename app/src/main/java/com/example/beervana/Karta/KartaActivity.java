@@ -1,8 +1,10 @@
 package com.example.beervana.Karta;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +16,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.EventMenu.EventCatalogLogika;
 import com.example.beervana.R;
+import com.example.beervana.SettingsActivity;
 import com.example.webservice.DohvatPodataka;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -55,6 +58,20 @@ public class KartaActivity extends AppCompatActivity implements OnMapReadyCallba
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         retrieveData();
+        //OVAJ DIO DODATI ZA TOOLBAR
+        ImageView mImageView = (ImageView)findViewById(R.id.settings_icon);
+        mImageView.setOnClickListener(v -> openActivity3());
+
+        //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
+        /*
+        ImageView mImageView = (ImageView)findViewById(R.id.user_icon);
+        mImageView.setOnClickListener(v -> openActivity4());
+
+        ImageView mImageView = (ImageView)findViewById(R.id.search_icon);
+        mImageView.setOnClickListener(v -> openActivity5());
+        */
+
+        //
     }
 
     private void retrieveData() {
@@ -159,4 +176,23 @@ public class KartaActivity extends AppCompatActivity implements OnMapReadyCallba
         Toast.makeText(this, "Info window clicked"+marker.getTitle(),
                 Toast.LENGTH_SHORT).show();
     }
+    //I OVAJ DIO DODATI ZA TOOLBAR
+    public void openActivity3(){
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
+    //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
+    /*
+    public void openActivity4(){
+        Intent intent = new Intent(this, UserActivity.class);
+        startActivity(intent);
+    }
+    public void openActivity5(){
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
+    }
+     */
+
+    //KRAJ
 }

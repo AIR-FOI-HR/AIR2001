@@ -4,6 +4,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -13,6 +14,7 @@ import com.example.beervana.BeerMenu.BeerCatalogActivity;
 import com.example.beervana.BeerMenu.BeerCatalogRecyclerAdapter;
 import com.example.beervana.BeerMenu.BeerLogic;
 import com.example.beervana.R;
+import com.example.beervana.SettingsActivity;
 import com.example.webservice.DohvatPodataka;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -50,6 +52,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             idLokacija = extras.getString("id_lokacija");
             retrieveData();
         }
+        //OVAJ DIO DODATI ZA TOOLBAR
+        ImageView yImageView = (ImageView)findViewById(R.id.settings_icon);
+        yImageView.setOnClickListener(v -> openActivity3());
+
+        //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
+        /*
+        ImageView mImageView = (ImageView)findViewById(R.id.user_icon);
+        mImageView.setOnClickListener(v -> openActivity4());
+
+        ImageView mImageView = (ImageView)findViewById(R.id.search_icon);
+        mImageView.setOnClickListener(v -> openActivity5());
+        */
+
+        //
     }
 
     private void retrieveData() {
@@ -93,4 +109,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         prikaziLokaciju();
 
     }
+    //I OVAJ DIO DODATI ZA TOOLBAR
+    public void openActivity3(){
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
+    //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
+    /*
+    public void openActivity4(){
+        Intent intent = new Intent(this, UserActivity.class);
+        startActivity(intent);
+    }
+    public void openActivity5(){
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
+    }
+     */
+
+    //KRAJ
 }
