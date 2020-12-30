@@ -110,7 +110,7 @@ public class SearchActivity extends BaseActivity implements SearchActivityRecycl
                 putExtra("id_proizvod",pronadjenePive.get(position).getId_proizvod()).
                 putExtra("naziv_proizvoda",pronadjenePive.get(position).getNaziv_proizvoda()).
                 putExtra("cijena_proizvoda",pronadjenePive.get(position).getCijena_proizvoda()).
-                putExtra("slka_proizvoda",pronadjenePive.get(position).getSlika()).
+                putExtra("slika_proizvoda",pronadjenePive.get(position).getSlika()).
                 putExtra("okus",pronadjenePive.get(position).getOkus()).
                 putExtra("litara",pronadjenePive.get(position).getLitara()));
 

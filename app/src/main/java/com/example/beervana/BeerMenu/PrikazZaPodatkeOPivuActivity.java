@@ -32,13 +32,24 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
 
         Intent intent = getIntent();
         position = intent.getExtras().getInt("position");
+        if(intent.getExtras().getInt("position")!=0){
+            beerName1.setText("Beer name: " + BeerCatalogActivity.BeerArrayList.get(position).getNaziv_proizvoda());
+            beerPrice.setText("Beer price: " + BeerCatalogActivity.BeerArrayList.get(position).getCijena_proizvoda());
+            beerTaste.setText("Beer taste: "+ BeerCatalogActivity.BeerArrayList.get(position).getOkus());
+            beerLitres.setText("Beer litres: " + BeerCatalogActivity.BeerArrayList.get(position).getLitara());
+            String imageUri = BeerCatalogActivity.BeerArrayList.get(position).getSlika();
+            Picasso.with(this).load(imageUri).into(beerImage);
+        }
+        else{
+            beerName1.setText("Beer name: " + intent.getExtras().getString("naziv_proizvoda"));
+            beerPrice.setText("Beer price: " + intent.getExtras().getString("cijena_proizvoda"));
+            beerTaste.setText("Beer taste: "+ intent.getExtras().getString("okus"));
+            beerLitres.setText("Beer litres: " + intent.getExtras().getString("litara"));
+            String imageUri = intent.getExtras().getString("slika_proizvoda");
+            Picasso.with(this).load(imageUri).into(beerImage);
+        }
 
-        beerName1.setText("Beer name: " + BeerCatalogActivity.BeerArrayList.get(position).getNaziv_proizvoda());
-        beerPrice.setText("Beer price: " + BeerCatalogActivity.BeerArrayList.get(position).getCijena_proizvoda());
-        beerTaste.setText("Beer taste: "+ BeerCatalogActivity.BeerArrayList.get(position).getOkus());
-        beerLitres.setText("Beer litres: " + BeerCatalogActivity.BeerArrayList.get(position).getLitara());
-        String imageUri = BeerCatalogActivity.BeerArrayList.get(position).getSlika();
-        Picasso.with(this).load(imageUri).into(beerImage);
+
 
 
     }
