@@ -18,9 +18,12 @@ public class GlavniIzbornikUserViewModel extends ViewModel {
     private ArrayList<ModelPodatakaLokacijaSOcjenom> odgovorParsiranja;
     private ArrayList<Beer> piveMoje = null;
     private ArrayList<Review> recenzijeMoje = null;
+    private ArrayList<ModelPodatakaLokacijaSOcjenom> najdrazeLokacije = null;
     private LokacijaLogika lokacijaLogika = new LokacijaLogika();
     private ReviewsLogic RecenzijaLogika = new ReviewsLogic();
     private ArrayList<Review> odgovorParsiranjaRecenzija;
+
+
 
     public void ParsiranjeLokacijeZaGlavniIzbornikUser(JSONObject odgovor, int broj){
         odgovorParsiranja = lokacijaLogika.ParsiranjeLokacijeZaGlavniIzbornikUser(odgovor);
@@ -48,6 +51,16 @@ public class GlavniIzbornikUserViewModel extends ViewModel {
         if(odgovorParsiranjaRecenzija!= null){
             recenzijeMoje = odgovorParsiranjaRecenzija;
         }
+    }
+
+    public void ParsiranjeNajdrazihLokacija(JSONObject odgovor){
+        odgovorParsiranja = lokacijaLogika.ParsiranjeLokacijeZaPretrazivanje(odgovor);
+        if(odgovorParsiranja!= null){
+            najdrazeLokacije = odgovorParsiranja;
+        }
+    }
+    public ArrayList<ModelPodatakaLokacijaSOcjenom> getNajdrazeLokacije() {
+        return najdrazeLokacije;
     }
 
     public ModelPodatakaLokacijaSOcjenom getLokacijaNajnovija() {
@@ -96,5 +109,8 @@ public class GlavniIzbornikUserViewModel extends ViewModel {
 
     public void setRecenzijeMoje(ArrayList<Review> recenzijeMoje) {
         this.recenzijeMoje = recenzijeMoje;
+    }
+    public void setNajdrazeLokacije(ArrayList<ModelPodatakaLokacijaSOcjenom> najdrazeLokacije) {
+        this.najdrazeLokacije = najdrazeLokacije;
     }
 }

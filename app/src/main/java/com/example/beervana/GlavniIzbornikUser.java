@@ -35,12 +35,13 @@ public class GlavniIzbornikUser extends BaseActivity {
     private GlavniIzbornikUserViewModel viewModel;
     private RequestQueue requestQueue;
     private TextView prikazNajnovijeLokacije, prikazNazivaNajboljeLokacije, prikazOcjeneNajboljeLokacije, prikazNajblizeLokacije1, prikazNajblizeLokacije2,
-            udaljenost1, udaljenost2, recenzijaTekst, recenzijaDatum, recenzijaOcjena;
+            udaljenost1, udaljenost2, recenzijaTekst, recenzijaDatum, recenzijaOcjena, omiljenaLokacijaPrva, omiljenaLokacijaDruga;
     String urlNajnovijaPivovara = "https://beervana2020.000webhostapp.com/test/zadnjaPivnica.php";
     String urlNajboljaPivoavara = "https://beervana2020.000webhostapp.com/test/NajboljaPivnicaMjeseca.php";
     String urlNajblizeLokacije = "https://beervana2020.000webhostapp.com/test/NajblizePivnice.php";
     String urlRecenzije = "https://beervana2020.000webhostapp.com/test/getReviewByUser.php";
-    Button idiNaNajnovijuPivovaru, idiNaNajboljuPivovaru, prikaziNajblizeLokacije, recenzijaGumb;
+    String urlNajdrazeLokacije= "https://beervana2020.000webhostapp.com/test/MojeLokacijeGlavniIzbornik.php";
+    Button idiNaNajnovijuPivovaru, idiNaNajboljuPivovaru, prikaziNajblizeLokacije, recenzijaGumb, prikaziNajdrazeLokacije;
     private SharedPreferences sp;
     private float KorisnikLongituda;
     private float KorisnikLatituda;
@@ -58,9 +59,13 @@ public class GlavniIzbornikUser extends BaseActivity {
         prikazNajblizeLokacije2 = (TextView) findViewById(R.id.textView20);
         udaljenost1 = (TextView) findViewById(R.id.textView18);
         udaljenost2 = (TextView) findViewById(R.id.textView21);
+        omiljenaLokacijaPrva = (TextView) findViewById(R.id.textView25);
+        omiljenaLokacijaDruga = (TextView) findViewById(R.id.textView26);
+
         idiNaNajnovijuPivovaru = (Button) findViewById(R.id.button4);
         idiNaNajboljuPivovaru = (Button) findViewById(R.id.button9);
         prikaziNajblizeLokacije = (Button) findViewById(R.id.button10);
+        prikaziNajdrazeLokacije = (Button) findViewById(R.id.button12);
 
         recenzijaTekst = (TextView) findViewById(R.id.textView24);
         recenzijaDatum = (TextView) findViewById(R.id.textView34);
@@ -71,7 +76,7 @@ public class GlavniIzbornikUser extends BaseActivity {
         sp = getSharedPreferences("login", MODE_PRIVATE);
         KorisnikLongituda = sp.getFloat("Longitude", (float) 0.0);
         KorisnikLatituda = sp.getFloat("Latitude", (float) 0.0);
-        idKorisnika = sp.getInt("id_korisnik", 0);
+        idKorisnika = sp.getInt("id_korisnik", 20);
         if (viewModel.getLokacijaNajnovija() != null) {
             PostaviPodatkeNajnovijaPivovara();
         }
@@ -84,6 +89,9 @@ public class GlavniIzbornikUser extends BaseActivity {
         if (viewModel.getRecenzijeMoje() != null) {
             PostaviPodatkeRecenzija();
         }
+        if(viewModel.getNajdrazeLokacije()!=null){
+            postaviPodatkeNajdrazihLokacija();
+        }
         retrieveData();
         idiNaNajnovijuPivovaru.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +99,13 @@ public class GlavniIzbornikUser extends BaseActivity {
                 startActivity(new Intent(getApplicationContext(), BeerplaceHomepageActivityNew.class).putExtra("id_lokacija", viewModel.getLokacijaNajnovija().getLokacija().getId_lokacija())
                         .putExtra("naziv_lokacije", viewModel.getLokacijaNajnovija().getLokacija().getNazivLokacija())
                         .putExtra("ocjena_lokacije", viewModel.getLokacijaNajnovija().getOcjena()));
+            }
+        });
+
+        prikaziNajdrazeLokacije.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ViewMyFavoriteLocationsActivity.class));
             }
         });
 
@@ -164,12 +179,46 @@ public class GlavniIzbornikUser extends BaseActivity {
                     } else if (odgovor.getString("message").equals("Succesfully retrived reviews")) {
                         viewModel.ParsiranjeRecenzijeZaGlavniIzbornikUser(odgovor);
                         PostaviPodatkeRecenzija();
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("id_korisnik", Integer.toString(idKorisnika));
+                        dohvatPodataka.setParametri(params);
+                        dohvatPodataka.setSendUrl(urlNajdrazeLokacije);
+                        dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
+
+                    } else if (odgovor.getString("message").equals("Successfully retrieved my locations")){
+                        viewModel.ParsiranjeNajdrazihLokacija(odgovor);
+                        postaviPodatkeNajdrazihLokacija();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         });
+    }
+
+    private void postaviPodatkeNajdrazihLokacija() {
+
+        if(viewModel.getNajdrazeLokacije() != null && viewModel.getNajdrazeLokacije().size() != 0){
+            ModelPodatakaLokacijaSOcjenom modelPodatakaLokacijaSOcjenom = viewModel.getNajdrazeLokacije().get(0);
+            omiljenaLokacijaPrva.setText("Naziv lokacije: ".concat(modelPodatakaLokacijaSOcjenom.getLokacija().getNazivLokacija()).concat("\n Adresa lokacije: ")
+                    .concat(modelPodatakaLokacijaSOcjenom.getLokacija().getAdresaLokacija()).concat("\n Ocjena lokacije: ")
+                    .concat(modelPodatakaLokacijaSOcjenom.getOcjena()));
+            if(viewModel.getNajdrazeLokacije().size()>1){
+                ModelPodatakaLokacijaSOcjenom modelPodatakaLokacijaSOcjenom1 = viewModel.getNajdrazeLokacije().get(1);
+                omiljenaLokacijaDruga.setText("Naziv lokacije: ".concat(modelPodatakaLokacijaSOcjenom1.getLokacija().getNazivLokacija()).concat("\n Adresa lokacije: ")
+                        .concat(modelPodatakaLokacijaSOcjenom1.getLokacija().getAdresaLokacija()).concat("\n Ocjena lokacije: ")
+                        .concat(modelPodatakaLokacijaSOcjenom1.getOcjena()));
+            }
+            else{
+                omiljenaLokacijaDruga.setVisibility(View.GONE);
+            }
+
+
+        }
+        else{
+            omiljenaLokacijaPrva.setVisibility(View.GONE);
+            omiljenaLokacijaDruga.setVisibility(View.GONE);
+        }
     }
 
     private void PostaviPodatkeRecenzija() {

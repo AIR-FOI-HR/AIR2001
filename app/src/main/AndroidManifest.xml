@@ -26,6 +26,7 @@
             android:label="@string/app_name"
             ></activity>
         <activity android:name=".IzbornikZaDodavanjeActivity" />
+        <activity android:name=".ViewMyFavoriteLocationsActivity" />
         <activity android:name=".GlavniIzbornikClient" />
         <activity android:name=".SearchActivity"></activity>
         <activity
