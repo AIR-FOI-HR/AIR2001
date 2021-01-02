@@ -27,10 +27,11 @@ import java.util.Map;
 
 public class AddReviewsActivity extends BaseActivity {
     private String idLokacija;
+    private String idProizvod;
     EditText komentar;
     RatingBar ocjena;
     TextView errOcjena, errKomentar;
-
+    boolean isLokacija = true;
     private AddReviewsViewModel viewModel;
 
     ArrayList<String> lista = new ArrayList<>();
@@ -50,8 +51,11 @@ public class AddReviewsActivity extends BaseActivity {
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        if(extras != null){
+        if(extras.containsKey("id_lokacija")){
             idLokacija = extras.getString("id_lokacija");
+        } else{
+            idProizvod = extras.getString("id_proizvod");
+            isLokacija = false;
         }
         requestQueue = Volley.newRequestQueue(this);
 
@@ -67,7 +71,10 @@ public class AddReviewsActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //viewModel.setIdKorisnik(Integer.valueOf(idKorisnik.toString()));
-                viewModel.setIdLokacija(Integer.valueOf(idLokacija));
+                if(isLokacija)
+                    viewModel.setIdLokacija(Integer.valueOf(idLokacija));
+                else
+                    viewModel.setIdProizvod(Integer.valueOf(idProizvod));
                 viewModel.setOcjena(Double.valueOf(ocjena.getRating()));
                 viewModel.setKomentar(komentar.getText().toString());
                 if(viewModel.ProvjeriPodatke()) {
@@ -79,7 +86,10 @@ public class AddReviewsActivity extends BaseActivity {
                     params.put("komentar", viewModel.getKomentar());
                     */
                     params.put("id_korisnik", "20");
-                    params.put("id_lokacija", String.valueOf(viewModel.getIdLokacija()));
+                    if(isLokacija)
+                        params.put("id_lokacija", String.valueOf(viewModel.getIdLokacija()));
+                    else
+                        params.put("id_proizvod", String.valueOf(viewModel.getIdProizvod()));
                     params.put("ocjena", String.valueOf(viewModel.getOcjena()));
                     params.put("komentar", viewModel.getKomentar());
 

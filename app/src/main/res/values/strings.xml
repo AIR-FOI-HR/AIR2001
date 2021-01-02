@@ -73,4 +73,5 @@
     <string name="title_activity_beerplace_homepage_new">BeerplaceHomepageActivityNew</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_single_review">SingleReviewActivity</string>
+    <string name="add_review_button">add review</string>
 </resources>

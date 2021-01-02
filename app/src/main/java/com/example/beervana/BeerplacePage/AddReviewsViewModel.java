@@ -5,7 +5,7 @@ import android.view.View;
 import androidx.lifecycle.ViewModel;
 
 public class AddReviewsViewModel extends ViewModel {
-    private Integer idKorisnik, idLokacija;
+    private Integer idKorisnik, idLokacija, idProizvod;
     private Double ocjena;
     private String komentar, errOcjena, errKomentar;
 
@@ -102,5 +102,13 @@ public class AddReviewsViewModel extends ViewModel {
 
 
         return sveUredu;
+    }
+
+    public Integer getIdProizvod() {
+        return idProizvod;
+    }
+
+    public void setIdProizvod(Integer idProizvod) {
+        this.idProizvod = idProizvod;
     }
 }
