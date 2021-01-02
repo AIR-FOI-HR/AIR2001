@@ -192,10 +192,10 @@
             android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/beerImage"
-            app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+            app:layout_constraintTop_toBottomOf="@+id/addToFavorites" />
 
         <ImageView
-            android:id="@+id/imageView12"
+            android:id="@+id/addToFavorites"
             android:layout_width="64dp"
             android:layout_height="58dp"
             android:layout_marginTop="108dp"
@@ -204,7 +204,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/beerImage"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_star_icon" />
+            app:srcCompat="@drawable/addtofavorites" />
 
         <View
             android:id="@+id/divider11"
