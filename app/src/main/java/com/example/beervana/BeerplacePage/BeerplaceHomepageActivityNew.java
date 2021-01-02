@@ -31,6 +31,9 @@ public class BeerplaceHomepageActivityNew extends BaseActivity {
         Button button = (Button) findViewById(R.id.button4);
         button.setOnClickListener(v -> openMapsActivity());
 
+        Button button1 = (Button) findViewById(R.id.button14);
+        button1.setOnClickListener(v -> openReviewsActivity());
+
         ImageView mImageView = (ImageView)findViewById(R.id.imageView14);
         mImageView.setOnClickListener(v -> openActivityBeerCatalog());
 
@@ -59,13 +62,17 @@ public class BeerplaceHomepageActivityNew extends BaseActivity {
 
     }
 
+    private void openReviewsActivity() {
+        Intent intent = new Intent(this, AddReviewsActivity.class).putExtra("id_lokacija", id_lokacija);
+        startActivity(intent);
+    }
+
     private void openMapsActivity() {
         Intent intent = new Intent(this, MapsActivity.class).putExtra("id_lokacija", id_lokacija);
         startActivity(intent);
 
     }
 
-    //TODO još povezati s recenzijama kad se naprave
     private void openActivityReviews() {
         Intent intent = new Intent(this, ReviewsActivity.class).putExtra("id_lokacija", id_lokacija);
         startActivity(intent);

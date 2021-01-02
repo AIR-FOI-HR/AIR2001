@@ -10,6 +10,25 @@ import java.util.ArrayList;
 
 public class ReviewsLogic {
 
+    public static String ProvjeraUnosaKomentara(String komentar) {
+        if (komentar.equals("")) {
+            return "Error: you must enter a textual review.";
+        }
+
+        return "";
+    }
+
+    public static String ProvjeraUnosaOcjene(Double ocjena) {
+
+        if (ocjena.equals("")) {
+            return "Error: you must give your rating.";
+        }
+
+        return "";
+    }
+
+
+
     public static ArrayList<Review> parsiranjePodatakaReviewa(JSONObject jsonObject) {
         JSONArray jsonArray = null;
         ArrayList<Review> reviewsArrayList = new ArrayList<Review>();
