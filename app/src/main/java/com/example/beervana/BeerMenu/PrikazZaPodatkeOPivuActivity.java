@@ -2,6 +2,7 @@ package com.example.beervana.BeerMenu;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
 import com.example.beervana.BeerMenu.BeerCatalogActivity;
+import com.example.beervana.BeerplacePage.AddReviewsActivity;
 import com.example.beervana.R;
 import com.example.beervana.SettingsActivity;
 import com.example.webservice.SlanjePodataka;
@@ -27,6 +29,7 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
     ImageView beerImage;
     String beerId;
     int position;
+<<<<<<< HEAD
     private ImageView addToFavorites;
     private boolean favorite;
     SlanjePodataka slanjePodataka;
@@ -34,6 +37,10 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
     private String AddToFavoritesUrl = "https://beervana2020.000webhostapp.com/test/addFavoriteBeer.php";
     private String RemoveFromFavoritesUrl = "https://beervana2020.000webhostapp.com/test/removeFavoriteBeer.php";
 
+=======
+    Button addReviews;
+    String id_proizvod="12";
+>>>>>>> features/AddReviewBeerplace
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +52,7 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
         beerLitres = findViewById(R.id.alcoholPercentageTextView);
         beerImage = findViewById(R.id.beerImage);
         beerTaste = findViewById(R.id.descriptionTextView);
+        addReviews = findViewById(R.id.addReview);
 
         Intent intent = getIntent();
         position = intent.getExtras().getInt("position");
@@ -71,6 +79,7 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
         CheckIfFavoriteBeer();
     }
 
+<<<<<<< HEAD
     private void CheckIfFavoriteBeer() {
         slanjePodataka = new SlanjePodataka(CheckFavoriteBeer);
         RequestQueue requestQueueCheck = Volley.newRequestQueue(getApplicationContext());
@@ -79,6 +88,15 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
         params.put("id_korisnik","20");
         slanjePodataka.setParametri(params);
         slanjePodataka.sendData(this,requestQueueCheck);
+=======
+        beerName1.setText("Beer name: " + BeerCatalogActivity.BeerArrayList.get(position).getNaziv_proizvoda());
+        beerPrice.setText("Beer price: " + BeerCatalogActivity.BeerArrayList.get(position).getCijena_proizvoda());
+        beerTaste.setText("Beer taste: "+ BeerCatalogActivity.BeerArrayList.get(position).getOkus());
+        beerLitres.setText("Beer litres: " + BeerCatalogActivity.BeerArrayList.get(position).getLitara());
+        String imageUri = BeerCatalogActivity.BeerArrayList.get(position).getSlika();
+        Picasso.with(this).load(imageUri).into(beerImage);
+        addReviews.setOnClickListener(v -> openReviewsActivity());
+>>>>>>> features/AddReviewBeerplace
 
         requestQueueCheck.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
             @Override
@@ -95,6 +113,7 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
             }
         });
     }
+<<<<<<< HEAD
 
     private void AddToFavoriteLocations() {
         if(!favorite){
@@ -132,5 +151,10 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
                 }
             }
         });
+=======
+    private void openReviewsActivity() {
+        Intent intent = new Intent(this, AddReviewsActivity.class).putExtra("id_proizvod", id_proizvod);
+        startActivity(intent);
+>>>>>>> features/AddReviewBeerplace
     }
 }
