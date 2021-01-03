@@ -39,7 +39,8 @@
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".BeerMenu.AddBeers" />
         <activity android:name=".BeerMenu.BeerCatalogActivity" />
-        <activity android:name=".BeerMenu.PrikazZaPodatkeOPivuActivity" />
+        <activity android:name=".BeerMenu.PrikazZaPodatkeOPivuActivity"
+            android:theme="@style/Theme.Beervana.NoActionBar"/>
         <activity android:name=".EventMenu.AddEventActivity" />
         <activity android:name=".EventMenu.EventCatalogActivity" />
         <activity android:name=".EventMenu.PrikazZaEventPodatkeActivity" />
