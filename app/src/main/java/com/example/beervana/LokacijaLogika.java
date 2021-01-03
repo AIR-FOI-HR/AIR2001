@@ -187,6 +187,7 @@ public class LokacijaLogika {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject object = jsonArray.getJSONObject(i);
                 String idLokacija = object.getString("id_lokacija");
+                if(idLokacija=="null") break;
                 String nazivLokacija = object.getString("naziv_lokacije");
                 String ocjenaLokacije = object.optString("ocjena");
                 String adresaLokacije = object.optString("adresa_lokacije");

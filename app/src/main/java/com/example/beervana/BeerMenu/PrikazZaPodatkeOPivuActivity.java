@@ -33,7 +33,7 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
     private boolean favorite;
     SlanjePodataka slanjePodataka;
     private String CheckFavoriteBeer = "https://beervana2020.000webhostapp.com/test/isFavoriteBeer.php";
-    ;
+
     private String AddToFavoritesUrl = "https://beervana2020.000webhostapp.com/test/addFavoriteBeer.php";
     private String RemoveFromFavoritesUrl = "https://beervana2020.000webhostapp.com/test/removeFavoriteBeer.php";
 
@@ -55,7 +55,7 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
 
         Intent intent = getIntent();
         position = intent.getExtras().getInt("position");
-        if (intent.getExtras().getInt("position") != 0) {
+        if (intent.getExtras().containsKey("position")) {
             beerName1.setText("Beer name: " + BeerCatalogActivity.BeerArrayList.get(position).getNaziv_proizvoda());
             beerPrice.setText("Beer price: " + BeerCatalogActivity.BeerArrayList.get(position).getCijena_proizvoda());
             beerTaste.setText("Beer taste: " + BeerCatalogActivity.BeerArrayList.get(position).getOkus());
@@ -74,7 +74,9 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
         }
         addToFavorites = (ImageView) findViewById(R.id.addToFavorites);
         addToFavorites.setOnClickListener(v -> AddToFavoriteLocations());
+        addReviews.setOnClickListener(v -> openReviewsActivity());
         CheckIfFavoriteBeer();
+
     }
 
     private void CheckIfFavoriteBeer() {
@@ -85,13 +87,7 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
         params.put("id_korisnik", "20");
         slanjePodataka.setParametri(params);
         slanjePodataka.sendData(this, requestQueueCheck);
-        beerName1.setText("Beer name: " + BeerCatalogActivity.BeerArrayList.get(position).getNaziv_proizvoda());
-        beerPrice.setText("Beer price: " + BeerCatalogActivity.BeerArrayList.get(position).getCijena_proizvoda());
-        beerTaste.setText("Beer taste: " + BeerCatalogActivity.BeerArrayList.get(position).getOkus());
-        beerLitres.setText("Beer litres: " + BeerCatalogActivity.BeerArrayList.get(position).getLitara());
-        String imageUri = BeerCatalogActivity.BeerArrayList.get(position).getSlika();
-        Picasso.with(this).load(imageUri).into(beerImage);
-        addReviews.setOnClickListener(v -> openReviewsActivity());
+
 
         requestQueueCheck.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
             @Override

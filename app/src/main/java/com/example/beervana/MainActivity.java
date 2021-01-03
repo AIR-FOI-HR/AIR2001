@@ -79,6 +79,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        sp = getSharedPreferences("login", MODE_PRIVATE);
+        Boolean loggedIn = sp.getBoolean("logged", false);
+
+        if(loggedIn){
+            ProvjeriUlogu();
+        }
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         super.onCreate(savedInstanceState);
@@ -106,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
         final MainActivityViewModel viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
-        sp = getSharedPreferences("login", MODE_PRIVATE);
+
 
         //if(sp.getBoolean("logged",false)){
         //  openMainMenu();
@@ -158,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                 //System.out.println(odgovor.getString("message"));
                                 if (odgovor.getString("message").equals(" Successfully loged in")) {
                                     sp.edit().putBoolean("logged", true).apply();
-                                    openMainMenu();
                                     KorisnikLogika korisnikLogika = new KorisnikLogika();
                                     if (odgovor != null) {
                                         User user = korisnikLogika.parsiranjePodatakaKorisnika(odgovor);
@@ -169,6 +176,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                         editor.putString("id_lokacija", user.getId_lokacija());
                                         editor.apply();
                                         //String a = sp.getString("id_lokacija", "");
+                                        ProvjeriUlogu();
                                     }
 
                                 } else if (odgovor.getString("message").equals("Wrong username or password")) {
@@ -177,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                     errorLozinka.setText(viewModel.getErrorLozinka());
                                     errorLozinka.setVisibility(viewModel.errorLozinkaVidljivost);
                                 }
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -194,6 +203,26 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         });
         binding.btnSignUp.setOnClickListener(v -> openRegistration());
 
+    }
+
+    private void ProvjeriUlogu() {
+        Integer uloga= sp.getInt("id_uloga",0);
+        if(uloga == 1){
+            openGlavniIzbornikKorisnik();
+        }
+        else{
+            openGlavniIzbornikKlijent();
+        }
+    }
+
+    private void openGlavniIzbornikKlijent() {
+        Intent intent = new Intent(this,GlavniIzbornikClient.class);
+        startActivity(intent);
+    }
+
+    private void openGlavniIzbornikKorisnik() {
+        Intent intent = new Intent(this,GlavniIzbornikUser.class);
+        startActivity(intent);
     }
 
     private void getLocation() {

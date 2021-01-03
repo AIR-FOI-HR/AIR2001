@@ -216,7 +216,8 @@ public class GlavniIzbornikUser extends BaseActivity {
 
         }
         else{
-            omiljenaLokacijaPrva.setVisibility(View.GONE);
+            prikaziNajdrazeLokacije.setVisibility(View.GONE);
+            omiljenaLokacijaPrva.setText("Currently you don't have any favourite locations added");
             omiljenaLokacijaDruga.setVisibility(View.GONE);
         }
     }

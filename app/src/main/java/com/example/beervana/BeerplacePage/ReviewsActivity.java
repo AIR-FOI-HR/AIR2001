@@ -30,7 +30,7 @@ public class ReviewsActivity extends BaseActivity {
     RecyclerView recyclerView;
     public ArrayList<Review> reviews;
     private RequestQueue requestQueue;
-    private Integer id_korisnika;
+    private String id_lokacija;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class ReviewsActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        id_korisnika = extras.getInt("id_korisnika",0);
+        id_lokacija = extras.getString("id_lokacija","");
         loadReviews();
 
 
@@ -54,7 +54,7 @@ public class ReviewsActivity extends BaseActivity {
         ReviewsLogic reviewsLogic = new ReviewsLogic();
         DohvatPodataka dohvatPodataka = new DohvatPodataka();
         Map<String, String> params = new HashMap<String, String>();
-        params.put("id_korisnik", Integer.toString(id_korisnika));
+        params.put("id_lokacija", id_lokacija);
         dohvatPodataka.setParametri(params);
 
         dohvatPodataka.setSendUrl(url);

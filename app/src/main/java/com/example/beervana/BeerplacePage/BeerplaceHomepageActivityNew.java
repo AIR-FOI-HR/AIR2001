@@ -49,6 +49,7 @@ public class BeerplaceHomepageActivityNew extends BaseActivity {
 
 
         sp = getSharedPreferences("login", MODE_PRIVATE);
+
         idKorisnik = Integer.toString(sp.getInt("id_korisnik", 0));
 
         Button button = (Button) findViewById(R.id.button4);
