@@ -1,7 +1,10 @@
 package com.example.beervana;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +32,12 @@ public class AboutUsActivity extends BaseActivity{
                 String s = "tel:" + phone;
                 Intent intent = new Intent(Intent.ACTION_CALL);
                 intent.setData(Uri.parse(s));
+
+                if (ActivityCompat.checkSelfPermission(AboutUsActivity.this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+
                 startActivity(intent);
             }
         });
@@ -41,6 +50,12 @@ public class AboutUsActivity extends BaseActivity{
                 String str = "tel:" + phone;
                 Intent intent = new Intent(Intent.ACTION_CALL);
                 intent.setData(Uri.parse(str));
+
+                if (ActivityCompat.checkSelfPermission(AboutUsActivity.this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+
                 startActivity(intent);
             }
         });
