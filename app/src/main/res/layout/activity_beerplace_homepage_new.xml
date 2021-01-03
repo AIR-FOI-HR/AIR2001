@@ -331,7 +331,6 @@
         app:layout_constraintVertical_bias="0.319"
         app:srcCompat="@drawable/_0758" />
 
-<<<<<<< HEAD
     <ImageView
         android:id="@+id/addToFavorites"
         android:layout_width="43dp"
@@ -356,7 +355,6 @@
         app:layout_constraintVertical_bias="1.0"
         android:visibility="gone"
         app:srcCompat="@drawable/removefromfavorites" />
-=======
     <Button
         android:id="@+id/button14"
         android:layout_width="193dp"
@@ -370,7 +368,6 @@
         app:layout_constraintHorizontal_bias="0.128"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
->>>>>>> features/AddReviewBeerplace
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
