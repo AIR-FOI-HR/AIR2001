@@ -128,7 +128,7 @@ public class GlavniIzbornikUser extends BaseActivity {
         recenzijaGumb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ReviewsActivity.class).putExtra("id_korisnika", idKorisnika));
+                startActivity(new Intent(getApplicationContext(), ReviewsActivity.class).putExtra("id_korisnika", String.valueOf(idKorisnika)));
             }
         });
 

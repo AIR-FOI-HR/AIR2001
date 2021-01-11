@@ -6,8 +6,10 @@ import androidx.lifecycle.ViewModel;
 
 public class AddReviewsViewModel extends ViewModel {
     private Integer idKorisnik, idLokacija, idProizvod;
-    private Double ocjena;
+    private Double ocjena,staraOcijena;
     private String komentar, errOcjena, errKomentar;
+    private String stariKomentar,idRecenzija;
+    private  boolean azuriraj = false;
 
     int gone = View.GONE;
     int visible = View.VISIBLE;
@@ -17,6 +19,37 @@ public class AddReviewsViewModel extends ViewModel {
 
     ReviewsLogic reviewsLogic = new ReviewsLogic();
 
+    public String getIdRecenzija() {
+        return idRecenzija;
+    }
+
+    public void setIdRecenzija(String idRecenzija) {
+        this.idRecenzija = idRecenzija;
+    }
+
+    public boolean isAzuriraj() {
+        return azuriraj;
+    }
+
+    public void setAzuriraj(boolean azuriraj) {
+        this.azuriraj = azuriraj;
+    }
+
+    public String getStariKomentar() {
+        return stariKomentar;
+    }
+
+    public void setStariKomentar(String stariKomentar) {
+        this.stariKomentar = stariKomentar;
+    }
+
+    public Double getStaraOcijena() {
+        return staraOcijena;
+    }
+
+    public void setStaraOcijena(Double staraOcijena) {
+        this.staraOcijena = staraOcijena;
+    }
 
     public Integer getIdKorisnik() {
         return idKorisnik;
@@ -102,6 +135,12 @@ public class AddReviewsViewModel extends ViewModel {
 
 
         return sveUredu;
+    }
+    public boolean DosloDoPromijene(){
+        if(!komentar.equals(stariKomentar) || Double.compare(staraOcijena,ocjena) != 0){
+            return true;
+        }
+        return false;
     }
 
     public Integer getIdProizvod() {
