@@ -9,7 +9,7 @@ import com.example.beervana.BaseActivity;
 import com.example.beervana.MainActivity;
 import com.example.beervana.R;
 
-public class AddPromotions extends BaseActivity implements AddPromotionsRecylcerAdapter.onAddPromosListener{
+public class AddPromotionsActivity extends BaseActivity implements AddPromotionsRecylcerAdapter.onAddPromosListener{
     RecyclerView recyclerView;
     AddPromotionsRecylcerAdapter adapter;
 
@@ -23,14 +23,14 @@ public class AddPromotions extends BaseActivity implements AddPromotionsRecylcer
 
 
     }
-
+    
     @Override
-    public void onAddPromosClick(int position) {
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 
     @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
+    public void onPromotionClick(int position) {
 
     }
 }

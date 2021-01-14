@@ -1,4 +1,66 @@
 package com.example.beervana.BeerplacePage.Modularnost;
 
-public class AddPromotionsRecylcerAdapter {
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.beervana.EventMenu.EventCatalogRecyclerAdapter;
+import com.example.beervana.EventMenu.ModelPodatakEventCatalog;
+import com.example.beervana.R;
+
+import java.util.List;
+
+public class AddPromotionsRecylcerAdapter extends RecyclerView.Adapter<AddPromotionsRecylcerAdapter.ViewHolder >{
+    private Context context;
+    private LayoutInflater layoutInflater;
+    private List<ModelPodatakEventCatalog> events;
+    private AddPromotionsRecylcerAdapter.onAddPromosListener onAddPromosListener;
+
+    public AddPromotionsRecylcerAdapter(Context context, List<ModelPodatakEventCatalog> events, AddPromotionsRecylcerAdapter.onAddPromosListener onAddPromosListener){
+        this.context = context;
+        this.layoutInflater = LayoutInflater.from(context);
+        this.events = events;
+        this.onAddPromosListener = onAddPromosListener;
+    }
+    @NonNull
+    @Override
+    public AddPromotionsRecylcerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = layoutInflater.inflate(R.layout.modul_list_item,parent,false);
+        return new AddPromotionsRecylcerAdapter.ViewHolder(view,onAddPromosListener);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull AddPromotionsRecylcerAdapter.ViewHolder holder, int position) {
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return 0;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView txtNazivModula,txtOpisMoudla;
+        onAddPromosListener promocijeListener;
+        public ViewHolder(@NonNull View itemView, onAddPromosListener onAddPromoListener) {
+            super(itemView);
+            txtNazivModula = itemView.findViewById(R.id.naslov);
+            txtOpisMoudla = itemView.findViewById(R.id.opis);
+            this.promocijeListener = onAddPromoListener;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            onAddPromosListener.onPromotionClick(getAdapterPosition());
+        }
+    }
+    interface onAddPromosListener{
+        void onPromotionClick(int position);
+    }
 }

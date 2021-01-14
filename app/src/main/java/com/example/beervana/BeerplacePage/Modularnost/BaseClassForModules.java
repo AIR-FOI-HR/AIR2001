@@ -1,4 +1,6 @@
 package com.example.beervana.BeerplacePage.Modularnost;
 
-public class BaseClassForModule {
+import com.example.beervana.BaseActivity;
+
+public class BaseClassForModules extends BaseActivity {
 }
