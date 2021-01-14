@@ -9,10 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.beervana.EventMenu.EventCatalogRecyclerAdapter;
-import com.example.beervana.EventMenu.ModelPodatakEventCatalog;
+import com.example.basemodule.BaseClassForModules;
 import com.example.beervana.R;
-import com.example.beervana.TastingMenu.TastingMenu;
 
 import java.util.List;
 

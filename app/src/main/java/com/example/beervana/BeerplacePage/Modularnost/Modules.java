@@ -1,5 +1,8 @@
 package com.example.beervana.BeerplacePage.Modularnost;
 
+import com.example.basemodule.BaseClassForModules;
+import com.example.modul2.Modul2;
+
 import java.util.ArrayList;
 import java.util.List;
 

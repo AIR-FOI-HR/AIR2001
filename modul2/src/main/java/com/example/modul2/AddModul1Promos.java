@@ -1,4 +1,4 @@
-package com.example.beervana.BeerplacePage.Modularnost;
+package com.example.modul2;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,8 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.beervana.R;
-
 public class AddModul1Promos extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -18,6 +16,4 @@ public class AddModul1Promos extends Fragment {
 
         return view;
     }
-
-
 }

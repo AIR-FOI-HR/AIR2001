@@ -1,11 +1,11 @@
-package com.example.beervana.BeerplacePage.Modularnost;
+package com.example.modul2;
 
 import com.example.basemodule.BaseClassForModules;
 
-public class Modul1 extends BaseClassForModules {
+public class Modul2 extends BaseClassForModules {
     @Override
     public String getNaslov() {
-        return "mod1";
+        return "mod2";
     }
 
     @Override
@@ -15,7 +15,7 @@ public class Modul1 extends BaseClassForModules {
 
     @Override
     public String getOpis() {
-        return "opis1";
+        return "opis2";
     }
 
     @Override
@@ -25,7 +25,7 @@ public class Modul1 extends BaseClassForModules {
 
     @Override
     public String AddPromos() {
-        return AddModul1Promos.class.getName();
+        return null;
     }
 
     @Override
