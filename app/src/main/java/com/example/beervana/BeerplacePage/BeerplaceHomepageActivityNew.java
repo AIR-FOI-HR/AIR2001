@@ -13,7 +13,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
 import com.example.beervana.BeerMenu.BeerCatalogActivity;
-import com.example.beervana.BeerplacePage.Modularnost.AddPromotions;
+import com.example.beervana.BeerplacePage.Modularnost.AddPromotionsActivity;
 import com.example.beervana.EventMenu.EventCatalogActivity;
 import com.example.beervana.R;
 import com.example.beervana.TastingMenu.TastingMenuActivity;
@@ -92,7 +92,7 @@ public class BeerplaceHomepageActivityNew extends BaseActivity {
     }
 
     private void AddPromos() {
-        Intent intent = new Intent(this, AddPromotions.class).putExtra("id_lokacija", id_lokacija);
+        Intent intent = new Intent(this, AddPromotionsActivity.class).putExtra("id_lokacija", id_lokacija);
         startActivity(intent);
     }
 

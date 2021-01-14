@@ -1,3 +1,4 @@
+include ':modul2'
 include ':webservice'
 include ':app'
 rootProject.name = "Beervana"

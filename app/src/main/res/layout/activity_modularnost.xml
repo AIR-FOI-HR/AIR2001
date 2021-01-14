@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BeerplacePage.Modularnost.AddPromotions">
+    tools:context=".BeerplacePage.Modularnost.AddPromotionsActivity">
 
     <include
         android:id="@+id/my_toolbar"
@@ -17,7 +17,7 @@
     </include>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RecyclerBeerCatalog"
+        android:id="@+id/AddPromos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/my_toolbar" />

@@ -85,7 +85,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BeerplacePage.Modularnost.AddPromotions" />
+        <activity android:name=".BeerplacePage.Modularnost.AddPromotionsActivity" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity android:name=".BeerplacePage.Modularnost.LoadModuleFragmentActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

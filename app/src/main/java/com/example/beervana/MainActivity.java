@@ -15,6 +15,7 @@ import android.os.Bundle;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.BeerplacePage.Modularnost.Modules;
 import com.example.beervana.TastingMenu.DodavanjeDegustacijskihMeniaActivity;
 import com.example.beervana.databinding.ActivityMainBinding;
 import com.example.webservice.DohvatPodataka;
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        Modules.getInstance();
         sp = getSharedPreferences("login", MODE_PRIVATE);
         Boolean loggedIn = sp.getBoolean("logged", false);
 

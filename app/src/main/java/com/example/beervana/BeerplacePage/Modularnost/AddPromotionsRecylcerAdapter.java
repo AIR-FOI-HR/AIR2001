@@ -12,19 +12,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.beervana.EventMenu.EventCatalogRecyclerAdapter;
 import com.example.beervana.EventMenu.ModelPodatakEventCatalog;
 import com.example.beervana.R;
+import com.example.beervana.TastingMenu.TastingMenu;
 
 import java.util.List;
 
 public class AddPromotionsRecylcerAdapter extends RecyclerView.Adapter<AddPromotionsRecylcerAdapter.ViewHolder >{
     private Context context;
     private LayoutInflater layoutInflater;
-    private List<ModelPodatakEventCatalog> events;
+    private List<BaseClassForModules> modules;
     private AddPromotionsRecylcerAdapter.onAddPromosListener onAddPromosListener;
 
-    public AddPromotionsRecylcerAdapter(Context context, List<ModelPodatakEventCatalog> events, AddPromotionsRecylcerAdapter.onAddPromosListener onAddPromosListener){
+    public AddPromotionsRecylcerAdapter(Context context, List<BaseClassForModules> modules, AddPromotionsRecylcerAdapter.onAddPromosListener onAddPromosListener){
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
-        this.events = events;
+        this.modules = modules;
         this.onAddPromosListener = onAddPromosListener;
     }
     @NonNull
@@ -36,12 +37,15 @@ public class AddPromotionsRecylcerAdapter extends RecyclerView.Adapter<AddPromot
 
     @Override
     public void onBindViewHolder(@NonNull AddPromotionsRecylcerAdapter.ViewHolder holder, int position) {
+        BaseClassForModules module = modules.get(position);
 
+        holder.txtNazivModula.setText(module.getNaslov());
+        holder.txtOpisMoudla.setText(module.getOpis());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return modules.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
