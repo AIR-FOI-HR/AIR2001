@@ -1,21 +1,18 @@
 package com.example.beervana.BeerplacePage;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
-import com.example.beervana.BeerMenu.Beer;
-import com.example.beervana.BeerMenu.BeerLogic;
 import com.example.beervana.R;
-import com.example.beervana.SettingsActivity;
+import com.example.modulzamodule.Review;
+import com.example.modulzamodule.ReviewsLogic;
 import com.example.webservice.DohvatPodataka;
 
 import org.json.JSONObject;

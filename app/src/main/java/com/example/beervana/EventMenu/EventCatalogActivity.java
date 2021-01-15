@@ -5,24 +5,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.example.beervana.AdapterEventsRecyclerView;
 import com.example.beervana.BaseActivity;
-import com.example.beervana.BeerplaceHomepageActivity;
 import com.example.beervana.R;
-import com.example.beervana.SettingsActivity;
+import com.example.modulzamodule.EventCatalogLogika;
+import com.example.modulzamodule.ModelPodatakEventCatalog;
 import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;
 

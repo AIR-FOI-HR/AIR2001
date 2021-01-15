@@ -1,6 +1,8 @@
 package com.example.beervana.TastingMenu;
 
 
+import com.example.modulzamodule.TastingMenu;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,6 +18,7 @@ public class LoadTastingMenu {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject object = jsonArray.getJSONObject(i);
                 TastingMenu tastingMenu = new TastingMenu(
+                        object.getString("id_degustacijski_meni"),
                         object.getString("naziv_menija"),
                         object.getString("trajanje"),
                         object.getString("opis_menija"),

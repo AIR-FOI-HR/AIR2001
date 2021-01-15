@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.beervana.R;
+import com.example.modulzamodule.ModelPodatakEventCatalog;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

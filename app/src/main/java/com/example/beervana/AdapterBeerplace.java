@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.beervana.BeerMenu.Beer;
+import com.example.modulzamodule.Beer;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

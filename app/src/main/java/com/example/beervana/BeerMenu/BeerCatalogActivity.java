@@ -1,24 +1,20 @@
 package com.example.beervana.BeerMenu;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceGroup;
-import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
-import com.example.beervana.MainActivity;
 import com.example.beervana.R;
+import com.example.modulzamodule.Beer;
+import com.example.modulzamodule.BeerLogic;
 import com.example.webservice.DohvatPodataka;
 
 import org.json.JSONObject;

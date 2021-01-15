@@ -10,9 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.beervana.BeerMenu.Beer;
-import com.example.beervana.EventMenu.EventCatalogRecyclerAdapter;
-import com.example.beervana.EventMenu.ModelPodatakEventCatalog;
+import com.example.modulzamodule.Beer;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

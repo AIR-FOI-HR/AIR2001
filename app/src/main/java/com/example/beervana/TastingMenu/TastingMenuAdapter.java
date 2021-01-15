@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.beervana.R;
+import com.example.modulzamodule.TastingMenu;
 
 import java.util.List;
 

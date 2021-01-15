@@ -1,12 +1,12 @@
 package com.example.beervana.BeerplacePage.Modularnost;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.basemodule.BaseClassForModules;
+
 import com.example.beervana.BaseActivity;
 import com.example.beervana.R;
 
@@ -22,9 +22,18 @@ public class LoadModuleFragmentActivity extends BaseActivity {
         setContentView(R.layout.activity_load_module_fragment);
         initToolbar();
 
-        Modul1 m = new Modul1();
-        String fragment = m.AddPromos();
-        Class<?> c = null;
+        BaseClassForModules m = null;
+        try {
+            m = Modules.getModulesList().get(1).getClass().newInstance();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+
+
+        String fragment =   m.AddPromos();
+        Class<? > c = null;
         try {
             c = Class.forName(fragment);
         } catch (ClassNotFoundException e) {

@@ -25,7 +25,7 @@ public class Modul2 extends BaseClassForModules {
 
     @Override
     public String AddPromos() {
-        return null;
+        return AddModul1Promos.class.getName();
     }
 
     @Override

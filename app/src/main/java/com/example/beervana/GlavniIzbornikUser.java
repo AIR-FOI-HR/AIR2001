@@ -1,6 +1,5 @@
 package com.example.beervana;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -8,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -16,11 +14,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
 import com.example.beervana.BeerplacePage.BeerplaceHomepageActivityNew;
-import com.example.beervana.BeerplacePage.Review;
+import com.example.modulzamodule.GlavniIzbornikUserViewModel;
+import com.example.modulzamodule.ModelPodatakaLokacijaSOcjenom;
 import com.example.beervana.BeerplacePage.ReviewsActivity;
-import com.example.beervana.BeerplacePage.ReviewsLogic;
-import com.example.beervana.EventMenu.ModelPodatakEventCatalog;
-import com.example.beervana.EventMenu.PrikazZaEventPodatkeActivity;
 import com.example.beervana.Karta.KartaActivity;
 import com.example.webservice.DohvatPodataka;
 

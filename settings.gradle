@@ -1,3 +1,5 @@
+include ':ModulZaModule'
+include ':Modul1'
 include ':BaseModule'
 include ':Modul2'
 include ':webservice'

@@ -1,13 +1,11 @@
 package com.example.beervana.BeerplacePage;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -19,6 +17,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
 import com.example.beervana.R;
 import com.example.beervana.databinding.AddReviewsActivityBinding;
+import com.example.modulzamodule.AddReviewsViewModel;
 import com.example.webservice.SlanjePodataka;
 
 import java.util.ArrayList;

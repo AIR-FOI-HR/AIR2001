@@ -6,14 +6,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
-import com.example.beervana.BeerMenu.Beer;
-import com.example.beervana.BeerMenu.BeerLogic;
+import com.example.modulzamodule.Beer;
+import com.example.modulzamodule.BeerLogic;
 import com.example.beervana.R;
 import com.example.webservice.DohvatPodataka;
 
@@ -37,7 +36,8 @@ public class TastingMenuDetailsActivity extends BaseActivity {
         setContentView(R.layout.tasting_menu_content);
         initToolbar();
         Intent intent = getIntent();
-        String message = intent.getStringExtra(TastingMenuActivity.EXTRA_MESSAGE);
+        String message = intent.getStringExtra("menu name");
+        String menuId = intent.getStringExtra("menuId");
         tastingMenuName = findViewById(R.id.tastingMenuContentName);
         tastingMenuName.setText(message);
 
@@ -46,14 +46,14 @@ public class TastingMenuDetailsActivity extends BaseActivity {
         listView.setAdapter(adapter);
 
 
-        retriveData(message);
+        retriveData(menuId);
     }
 
     private void retriveData(String message) {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         DohvatPodataka dohvatPodataka = new DohvatPodataka();
         Map<String, String> params = new HashMap<String, String>();
-        params.put("tastingMenuName", message);
+        params.put("id_meni", message);
         dohvatPodataka.setParametri(params);
         dohvatPodataka.setSendUrl(url);
         dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);

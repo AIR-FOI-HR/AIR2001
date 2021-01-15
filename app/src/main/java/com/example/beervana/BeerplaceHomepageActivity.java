@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.example.beervana.BeerMenu.Beer;
-import com.example.beervana.BeerMenu.BeerLogic;
-import com.example.beervana.EventMenu.EventCatalogLogika;
-import com.example.beervana.EventMenu.ModelPodatakEventCatalog;
+import com.example.modulzamodule.Beer;
+import com.example.modulzamodule.BeerLogic;
+import com.example.modulzamodule.EventCatalogLogika;
+import com.example.modulzamodule.ModelPodatakEventCatalog;
 import com.example.webservice.DohvatPodataka;
 
 import org.json.JSONObject;

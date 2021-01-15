@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.beervana.R;
+import com.example.modulzamodule.Review;
 
 import java.util.ArrayList;
 

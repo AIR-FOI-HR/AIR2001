@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.beervana.R;
+import com.example.modulzamodule.TastingMenu;
 
 import java.util.List;
 

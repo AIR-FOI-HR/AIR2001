@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -23,7 +25,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.R;
 import com.example.beervana.SettingsActivity;
+
 import com.example.beervana.databinding.AddBeersActivityBinding;
+import com.example.modulzamodule.AddBeersViewModel;
 import com.example.webservice.SlanjePodataka;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -60,8 +64,10 @@ public class AddBeers extends AppCompatActivity {
     String pozicija;
     Integer pozicija_int;
 
-    FloatingActionButton podnesi;
+    Button podnesi;
     String sendUrl = "https://beervana2020.000webhostapp.com/test/addBeers.php";
+    SharedPreferences sp;
+    String idLokacija;
 
     AddBeersActivityBinding binding;
     @Override
@@ -72,7 +78,8 @@ public class AddBeers extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         viewModel=new ViewModelProvider(this).get(AddBeersViewModel.class);
-
+        sp = getSharedPreferences("login", MODE_PRIVATE);
+        idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
         naziv_proizvoda=binding.editTextTextPersonName;
         cijena_proizvoda= binding.editTextNumberDecimal;
         okus = binding.editTextTextPersonName3;
@@ -140,7 +147,7 @@ public class AddBeers extends AppCompatActivity {
 
 
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("id_lokacija","8");
+                    params.put("id_lokacija",idLokacija);
                     params.put("naziv_proizvoda", viewModel.getNazivPiva());
                     params.put("cijena_proizvoda", String.valueOf(viewModel.getCijenaPiva()));
                     params.put("vrsta_proizvoda", viewModel.getOkusPiva());

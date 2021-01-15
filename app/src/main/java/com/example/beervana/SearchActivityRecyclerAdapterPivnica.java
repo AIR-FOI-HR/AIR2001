@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.modulzamodule.ModelPodatakaLokacijaSOcjenom;
+
 import java.util.List;
 
 public class SearchActivityRecyclerAdapterPivnica extends RecyclerView.Adapter<SearchActivityRecyclerAdapterPivnica.ViewHolder> {
