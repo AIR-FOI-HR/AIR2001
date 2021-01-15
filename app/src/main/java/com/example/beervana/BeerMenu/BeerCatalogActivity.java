@@ -118,10 +118,7 @@ public class BeerCatalogActivity extends BaseActivity implements BeerCatalogRecy
     @Override
     public void onBeerClick(int position) {
         if(korisnik == 1){
-            startActivity(
-                    new Intent(getApplicationContext(),
-                            PrikazZaPodatkeOPivuActivity.class
-                    ).putExtra(EXTRA_MESSAGE, BeerArrayList.get(position).getNaziv_proizvoda()));
+            startActivity(new Intent(getApplicationContext(), PrikazZaPodatkeOPivuActivity.class).putExtra("position",position));
         }else{
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
             CharSequence[] dialogItem = {"View data", "Edit data", "Delete data"};
