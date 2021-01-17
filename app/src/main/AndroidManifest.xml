@@ -13,7 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Beervana">
-        <activity android:name=".BeerplacePage.AddReviewsActivity"></activity>
+        <activity
+            android:name=".UserData.UserActivity"
+            android:label="@string/title_activity_user"
+            android:theme="@style/Theme.Beervana.NoActionBar"></activity>
+        <activity android:name=".UserData.UserDataActivity" />
+        <activity android:name=".BeerplacePage.AddReviewsActivity" />
         <activity android:name=".GlavniIzbornikUser">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +32,7 @@
         <activity android:name=".IzbornikZaDodavanjeActivity" />
         <activity android:name=".ViewMyFavoriteLocationsActivity" />
         <activity android:name=".GlavniIzbornikClient" />
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".SearchActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -38,10 +43,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".BeerMenu.AddBeers" />
         <activity android:name=".BeerMenu.BeerCatalogActivity" />
-        <activity android:name=".BeerMenu.PrikazZaPodatkeOPivuActivity"
+        <activity
+            android:name=".BeerMenu.PrikazZaPodatkeOPivuActivity"
             android:theme="@style/Theme.Beervana.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

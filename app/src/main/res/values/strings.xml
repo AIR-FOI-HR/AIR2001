@@ -75,4 +75,5 @@
     <string name="title_activity_single_review">SingleReviewActivity</string>
     <string name="add_review_button">add review</string>
     <string name="see_all_beer_reviews">see all</string>
+    <string name="title_activity_user">UserActivity</string>
 </resources>
