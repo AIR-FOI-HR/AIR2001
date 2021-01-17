@@ -1,5 +1,6 @@
 package com.example.beervana.BeerplacePage.Modularnost;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ViewStub;
 
@@ -9,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import com.example.basemodule.BaseClassForModules;
 
 import com.example.beervana.BaseActivity;
+import com.example.beervana.GlavniIzbornikClient;
 import com.example.beervana.R;
 
 import java.util.List;
@@ -22,6 +24,13 @@ public class LoadModuleFragmentActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load_module_fragment);
         initToolbar();
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if(extras.containsKey("glavni_izbornik")){
+            Intent premjesti = new Intent(this, GlavniIzbornikClient.class);
+            startActivity(premjesti);
+        }
 
         BaseClassForModules m = null;
         try {

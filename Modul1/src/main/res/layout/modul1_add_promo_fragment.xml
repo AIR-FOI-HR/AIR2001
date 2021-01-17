@@ -12,12 +12,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.androidbuts.multispinnerfilter.SingleSpinnerSearch
-        android:id="@+id/odabirPiva"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        app:hintText="Single Selection Spinner" />
+
 
 
 
@@ -108,8 +103,79 @@
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
         android:text="" />
     <TextView
-        android:id="@+id/txtStartDate"
+        android:id="@+id/txtOdaberiProizvod"
         android:layout_below="@id/errUnosOpisPromocije"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="15dp"
+        android:text="Odaberite proizvod i popust (%)"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+    <com.androidbuts.multispinnerfilter.SingleSpinnerSearch
+        android:id="@+id/odabirPiva"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        app:hintText="Choose beer"
+        android:layout_below="@id/txtOdaberiProizvod"/>
+    <TextView
+        android:id="@+id/errUnosProizvoda"
+        android:layout_below="@id/odabirPiva"
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="@dimen/razmakZaGreske"
+        android:layout_marginEnd="50dp"
+        android:textColor="@android:color/holo_red_light"
+        android:visibility="gone"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:text="" />
+    <EditText
+        android:importantForAutofill="no"
+        android:id="@+id/unosPopustPromocija"
+        android:layout_below="@id/errUnosProizvoda"
+        android:hint="Popust u postocima"
+        android:textColorHint="@color/black"
+        android:inputType="number"
+        android:textColor="@color/black"
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/edit_text_border"
+        android:ellipsize="start"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:paddingTop="@dimen/paddingTekstEditor"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+    <TextView
+        android:id="@+id/errUnosPopusta"
+        android:layout_below="@id/unosPopustPromocija"
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="@dimen/razmakZaGreske"
+        android:layout_marginEnd="50dp"
+        android:textColor="@android:color/holo_red_light"
+        android:visibility="gone"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:text="" />
+    <TextView
+        android:id="@+id/txtStartDate"
+        android:layout_below="@id/errUnosPopusta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
