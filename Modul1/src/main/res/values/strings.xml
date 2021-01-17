@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="naziv_promocije">Naziv promocije</string>
+    <string name="name_of_promotions">Name of promotions</string>
+    <string name="promotions_description">Promotions description</string>
+    <string name="start_date">Start date</string>
+    <string name="end_date">End date</string>
+    <string name="add_promotion">Add promotion</string>
+</resources>

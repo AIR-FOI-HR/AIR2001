@@ -1,6 +1,7 @@
 package com.example.beervana.BeerplacePage.Modularnost;
 
 import android.os.Bundle;
+import android.view.ViewStub;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -24,7 +25,7 @@ public class LoadModuleFragmentActivity extends BaseActivity {
 
         BaseClassForModules m = null;
         try {
-            m = Modules.getModulesList().get(1).getClass().newInstance();
+            m = Modules.getModulesList().get(0).getClass().newInstance();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {
@@ -44,5 +45,6 @@ public class LoadModuleFragmentActivity extends BaseActivity {
                 .replace(R.id.staticFragment, (Class<? extends Fragment>) c, null, "tag")
                 .setReorderingAllowed(true)
                 .commit();
+
     }
 }

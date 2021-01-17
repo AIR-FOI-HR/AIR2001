@@ -1,11 +1,298 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.Beervana.NoActionBar"
+    android:background="@color/white"
+    tools:context=".AddModul1Promos">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.androidbuts.multispinnerfilter.SingleSpinnerSearch
+        android:id="@+id/odabirPiva"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        app:hintText="Single Selection Spinner" />
+
+
 
     <TextView
+        android:id="@+id/txtAddPromotion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:padding="15dp"
+        android:text="@string/add_promotion"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:importantForAutofill="no"
+        android:id="@+id/nazivPromocije"
+        android:layout_below="@id/txtAddPromotion"
+        android:hint="@string/name_of_promotions"
+        android:textColorHint="@color/black"
+        android:inputType="text"
+        android:textColor="@color/black"
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/edit_text_border"
+        android:ellipsize="start"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:paddingTop="@dimen/paddingTekstEditor"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+    <TextView
+        android:id="@+id/errNazivPromocije"
+        android:layout_below="@id/nazivPromocije"
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="@dimen/razmakZaGreske"
+        android:layout_marginEnd="50dp"
+        android:textColor="@android:color/holo_red_light"
+        android:visibility="gone"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:text="" />
+    <EditText
+        android:importantForAutofill="no"
+        android:id="@+id/unosOpisPromocije"
+        android:layout_below="@id/errNazivPromocije"
+        android:hint="@string/promotions_description"
+        android:textColorHint="@color/black"
+        android:inputType="text"
+        android:textColor="@color/black"
+
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/edit_text_border"
+        android:ellipsize="start"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:paddingTop="@dimen/paddingTekstEditor"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+    <TextView
+        android:id="@+id/errUnosOpisPromocije"
+        android:layout_below="@id/unosOpisPromocije"
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="@dimen/razmakZaGreske"
+        android:layout_marginEnd="50dp"
+        android:textColor="@android:color/holo_red_light"
+        android:visibility="gone"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:text="" />
+    <TextView
+        android:id="@+id/txtStartDate"
+        android:layout_below="@id/errUnosOpisPromocije"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="15dp"
+        android:text="@string/start_date"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+    <TextView
+        android:id="@+id/prikazDatumaOd"
+        android:layout_below="@id/txtStartDate"
+        android:background="@drawable/edit_text_border"
+
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="je"></TextView>
+        android:gravity="center"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="50dp"
+        android:textColor="@color/black"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:text=" / / / " />
+    <Button
+        android:id="@+id/btnOdaberiDatumOd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/txtStartDate"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@id/prikazDatumaOd"
+        android:text="Date" />
+    <TextView
+        android:id="@+id/errUnosDatumOd"
+        android:layout_below="@id/prikazDatumaOd"
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="@dimen/razmakZaGreske"
+        android:layout_marginEnd="50dp"
+        android:textColor="@android:color/holo_red_light"
+        android:visibility="gone"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:text="" />
+    <TextView
+        android:id="@+id/prikazVremenaOd"
+        android:layout_below="@id/errUnosDatumOd"
+        android:background="@drawable/edit_text_border"
+
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="50dp"
+        android:textColor="@color/black"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:text="    :    " />
+    <Button
+        android:id="@+id/btnOdaberiVrijemeOd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/errUnosDatumOd"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@id/prikazVremenaOd"
+        android:text="Time" />
+    <TextView
+        android:id="@+id/errUnosVrijemeOd"
+        android:layout_below="@id/prikazVremenaOd"
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="@dimen/razmakZaGreske"
+        android:layout_marginEnd="50dp"
+        android:textColor="@android:color/holo_red_light"
+        android:visibility="gone"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:text="" />
+    <TextView
+        android:id="@+id/txtEndDate"
+        android:layout_below="@id/errUnosVrijemeOd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="15dp"
+        android:text="@string/end_date"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+    <TextView
+        android:id="@+id/prikazDatumaDo"
+        android:layout_below="@id/txtEndDate"
+        android:background="@drawable/edit_text_border"
+
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="50dp"
+        android:textColor="@color/black"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:text="/ / / " />
+    <Button
+        android:id="@+id/btnOdaberiDatumDo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/txtEndDate"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@id/prikazDatumaDo"
+        android:text="Date" />
+    <TextView
+        android:id="@+id/errUnosDatumDo"
+        android:layout_below="@id/prikazDatumaDo"
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="@dimen/razmakZaGreske"
+        android:layout_marginEnd="50dp"
+        android:textColor="@android:color/holo_red_light"
+        android:visibility="gone"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:text="" />
+    <TextView
+        android:id="@+id/prikazVremenaDo"
+        android:layout_below="@id/errUnosDatumDo"
+        android:background="@drawable/edit_text_border"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="50dp"
+        android:textColor="@color/black"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:text="    :    " />
+    <Button
+        android:id="@+id/btnOdaberiVrijemeDo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/errUnosDatumDo"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@id/prikazVremenaDo"
+        android:text="Time" />
+    <TextView
+        android:id="@+id/errUnosVrijemeDo"
+        android:layout_below="@id/prikazVremenaDo"
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="@dimen/razmakZaGreske"
+        android:layout_marginEnd="50dp"
+        android:textColor="@android:color/holo_red_light"
+        android:visibility="gone"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:text="" />
+    <Button
+        android:id="@+id/btnDodajPromociju"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/errUnosVrijemeDo"
+        android:layout_marginTop="30dp"
+        android:text="Add Promotion" />
 </RelativeLayout>
+
+</ScrollView>
