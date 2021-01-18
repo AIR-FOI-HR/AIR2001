@@ -222,10 +222,7 @@ public class AddModul1Promos extends Fragment {
     }
 
     private void openMenuClient() {
-
-            Intent intent = new Intent(getActivity(),getActivity().getClass()).putExtra("glavni_izbornik",1);
-            startActivity(intent);
-
+            getActivity().onBackPressed();
     }
 
     private void PostaviGreske() {

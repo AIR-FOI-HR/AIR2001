@@ -27,10 +27,7 @@ public class LoadModuleFragmentActivity extends BaseActivity {
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        if(extras.containsKey("glavni_izbornik")){
-            Intent premjesti = new Intent(this, GlavniIzbornikClient.class);
-            startActivity(premjesti);
-        }
+
 
         BaseClassForModules m = null;
         try {
