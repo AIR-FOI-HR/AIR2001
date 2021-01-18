@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.basemodule.BaseClassForModules;
 import com.example.beervana.BaseActivity;
 import com.example.beervana.EventMenu.AddEventActivity;
 import com.example.beervana.EventMenu.EventCatalogActivity;
@@ -30,6 +31,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PromotionCatalogActivity extends BaseActivity implements PromotionCatalogRecyclerAdapter.onAddPromosListener {
@@ -37,6 +39,7 @@ public class PromotionCatalogActivity extends BaseActivity implements PromotionC
     private RequestQueue requestQueue;
     private RequestQueue requestQueueBrisanje;
     PromotionCatalogRecyclerAdapter adapter;
+    String pozicija;
     public static ArrayList<Promotion> promotionDataList;
     String url = "https://beervana2020.000webhostapp.com/test/DohvatiPromocijeKatalog.php";
     String urlBrisanje = "https://beervana2020.000webhostapp.com/test/ObrisiPromociju.php";
@@ -107,7 +110,12 @@ public class PromotionCatalogActivity extends BaseActivity implements PromotionC
             startActivity(new Intent(getApplicationContext(), PrikazZaEventPodatkeActivity.class).putExtra("position", position));
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-
+            List<BaseClassForModules> modulesList = Modules.getModulesList();
+            for(int i = 0; i<modulesList.size();i++){
+                if(modulesList.get(i).getNaslov().equals(promotionDataList.get(position).getTip_promocije())){
+                    pozicija = String.valueOf(i);
+                }
+            }
             CharSequence[] dijalogStavke = {"View data", "Edit data ", "Delete data"};
             builder.setTitle(promotionDataList.get(position).getNaziv_promocije());
             builder.setItems(dijalogStavke, new DialogInterface.OnClickListener() {
@@ -115,10 +123,10 @@ public class PromotionCatalogActivity extends BaseActivity implements PromotionC
                 public void onClick(DialogInterface dialog, int odabir) {
                     switch (odabir) {
                         case 0:
-                            startActivity(new Intent(getApplicationContext(), PrikazZaEventPodatkeActivity.class).putExtra("position", position));
+                            startActivity(new Intent(getApplicationContext(), PrikazZaEventPodatkeActivity.class).putExtra("position", pozicija));
                             break;
                         case 1:
-                            startActivity(new Intent(getApplicationContext(), AddPromotionsActivity.class).putExtra("position", position)
+                            startActivity(new Intent(getApplicationContext(), LoadModuleFragmentActivity.class).putExtra("position", pozicija)
                                     .putExtra("id_lokacija",idLokacija).putExtra("id_promocija",promotionDataList.get(position).getId_promocija()));
                             break;
                         case 2:

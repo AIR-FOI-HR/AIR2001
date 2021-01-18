@@ -30,9 +30,10 @@ public class AddPromotionsActivity extends BaseActivity implements AddPromotions
         view = findViewById(android.R.id.content).getRootView();
         recyclerView = findViewById(R.id.AddPromos);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //TODO makunti instanciranje
         Modules.getInstance();
         sp = getSharedPreferences("login", MODE_PRIVATE);
-        idLokacija = sp.getString("id_lokacija", "Nema Lokacija");
+        idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
         modulesList = Modules.getModulesList();
         loadPromos();
 
@@ -51,7 +52,7 @@ public class AddPromotionsActivity extends BaseActivity implements AddPromotions
 
     @Override
     public void onPromotionClick(int position) {
-        Intent intent = new Intent(this, LoadModuleFragmentActivity.class).putExtra("position", position).putExtra("id_promocija",0)
+        Intent intent = new Intent(this, LoadModuleFragmentActivity.class).putExtra("position", position).putExtra("id_promocija","0")
                 .putExtra("id_lokacija",idLokacija);
         startActivity(intent);
     }

@@ -64,6 +64,7 @@ public class AddModul1Promos extends Fragment {
     ArrayList<String> pickedBeers = new ArrayList<>();
     //TODO oi, check your default mate.
     private String idLokacija = "";
+    private String idPromocija = "";
     private RequestQueue requestQueue;
     private ArrayList<String> beerList = new ArrayList<>();
     private ArrayAdapter<String> listaAdapter;
@@ -78,6 +79,7 @@ public class AddModul1Promos extends Fragment {
         Intent intent = getActivity().getIntent();
         position = intent.getExtras().getInt("position");
         idLokacija = intent.getExtras().getString("id_lokacija");
+        idPromocija = intent.getExtras().getString("id_promocija");
         super.onCreate(savedInstanceState);
         binding = Modul1AddPromoFragmentBinding.inflate(getLayoutInflater());
         view = binding.getRoot();
@@ -106,7 +108,10 @@ public class AddModul1Promos extends Fragment {
         beerSpin = binding.odabirPiva;
 
         model = new ViewModelProvider(this).get(AddPromotion1ViewModel.class);
-
+        if(!idPromocija.equals("0")){
+            model.setAzuriranje(true);
+            model.setIdPromocija(idPromocija);
+        }
         retrieveData();
         odDatum.setText(model.getPrikazDatumaOd());
         odVrijeme.setText(model.getPrikazVremenaOd());
@@ -191,6 +196,16 @@ public class AddModul1Promos extends Fragment {
                 model.setUnosPopust(unosPopustPromocija.getText().toString());
                 if(model.ProvijeriPodatke()){
                     Map<String, String> params=new HashMap<String, String>();
+                    if(model.isAzuriranje()){
+                        if(!model.DosloDoPromijene()){
+                            Toast toast = Toast.makeText(getActivity(),"You didn't change anything.",Toast.LENGTH_LONG);
+                            toast.show();
+                            return;
+                        }
+                        sendUrl = "https://beervana2020.000webhostapp.com/test/AzurirajPromociju.php";
+                        params.put("id_promocija",model.getIdPromocija());
+                    }
+
                     params.put("tip_promocije","PopustNaPivo");
                     params.put("id_lokacije",idLokacija);
                     params.put("naziv_promocije",model.getUnosImePromocije());
@@ -209,7 +224,8 @@ public class AddModul1Promos extends Fragment {
                             Toast toast = Toast.makeText(getActivity(),odgovor,Toast.LENGTH_LONG);
                             toast.show();
                             if(odgovor.equals("Succesfully updated a promotion.")){
-
+                                Toast.makeText(getActivity(),"Succesfully updated a promotion.",Toast.LENGTH_LONG);
+                                openMenuClient();
                             }
                             if(odgovor.equals("Succesfully added a promotion.")){
                                 Toast.makeText(getActivity(),"Succesfully added a promotion.",Toast.LENGTH_LONG);
@@ -253,8 +269,13 @@ public class AddModul1Promos extends Fragment {
         DohvatPodataka dohvatPodataka = new DohvatPodataka();
         String url;
         Map<String, String> params = new HashMap<>();
-        url = "https://beervana2020.000webhostapp.com/test/dohvacanjePiva.php";
-        params.put("id_lokacija", idLokacija);
+        if(model.isAzuriranje()){
+            url = "https://beervana2020.000webhostapp.com/test/GetPromotionInfo.php";
+            params.put("id_promocija", idPromocija);
+        }else{
+            url = "https://beervana2020.000webhostapp.com/test/dohvacanjePiva.php";
+            params.put("id_lokacija", idLokacija);
+        }
         requestQueue = Volley.newRequestQueue(getActivity());
         dohvatPodataka.setParametri(params);
         dohvatPodataka.setSendUrl(url);
@@ -271,10 +292,34 @@ public class AddModul1Promos extends Fragment {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                    try {
+                        JSONArray body = odgovor.getJSONArray("promocija");
+                        model.PostaviModel(body);
+                        postaviPogled();
+                        dohvatPodataka.setSendUrl("https://beervana2020.000webhostapp.com/test/dohvacanjePiva.php");
+                        Map<String, String> params = new HashMap<>();
+                        params.put("id_lokacija", idLokacija);
+                        dohvatPodataka.setParametri(params);
+                        dohvatPodataka.retrieveData(getActivity(),requestQueue);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
     }
+
+    private void postaviPogled() {
+        nazivPromocije.setText((model.getUnosImePromocije()));
+        opisPromocije.setText(model.getUnosOpisPromocije());
+        unosPopustPromocija.setText(model.getUnosPopust());
+        odDatum.setText(model.getPrikazDatumaOd());
+        odVrijeme.setText(model.getPrikazVremenaOd());
+        doDatum.setText(model.getPrikazDatumaDo());
+        doVrijeme.setText(model.getPrikazVremenaDo());
+    }
+
 
     private void setBeers(JSONArray jsonArray) {
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -292,6 +337,11 @@ public class AddModul1Promos extends Fragment {
                 KeyPairBoolData h = new KeyPairBoolData();
                 h.setId(Long.parseLong(id_proizvoda));
                 h.setName(naziv_proizvoda);
+                if(model.isAzuriranje()){
+                    if(id_proizvoda.equals(model.getIdOdabranaPiva())){
+                        h.setSelected(true);
+                    }
+                }
                 listArray.add(h);
             } catch (JSONException e) {
                 e.printStackTrace();

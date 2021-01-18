@@ -29,7 +29,11 @@ public class AddPromotion1ViewModel extends ViewModel {
     private String errUnosPopusta = "";
     private String idOdabranaPiva = "";
     private String Json;
+    boolean Azuriranje = false;
 
+    private String staroUnosImePromocije,staroUnosOpisPromocije,
+            staroPrikazDatumaOd,staroPrikazVremenaOd,staroPrikazDatumaDo,
+            staroPrikazVremenaDo,staroUnosPopust,staroIdOdabranaPiva,idPromocija;
 
     int gone = View.GONE;
     int visible = View.VISIBLE;
@@ -43,6 +47,22 @@ public class AddPromotion1ViewModel extends ViewModel {
     private int errUnosProizvodaVisibility = gone;
     private int errUnosPopustaVisibility = gone;
     Promotion1Logic logika = new Promotion1Logic();
+
+    public String getIdPromocija() {
+        return idPromocija;
+    }
+
+    public void setIdPromocija(String idPromocija) {
+        this.idPromocija = idPromocija;
+    }
+
+    public boolean isAzuriranje() {
+        return Azuriranje;
+    }
+
+    public void setAzuriranje(boolean azuriranje) {
+        Azuriranje = azuriranje;
+    }
 
     public String getUnosPopust() {
         return unosPopust;
@@ -352,5 +372,63 @@ public class AddPromotion1ViewModel extends ViewModel {
         }
 
         return promocijaObj.toString();
+    }
+    public void PostaviModel(JSONArray promocija) throws JSONException {
+        for (int i = 0; i < promocija.length(); i++) {
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = promocija.getJSONObject(i);
+                unosImePromocije=jsonObject.optString("naziv");
+                staroUnosImePromocije = unosImePromocije;
+                unosOpisPromocije=jsonObject.getString("opis");
+                staroUnosOpisPromocije = unosOpisPromocije;
+                prikazDatumaOd = logika.formatiratiDatum(jsonObject.getString("datum_od")).split(" ")[0];
+                staroPrikazDatumaOd = prikazDatumaOd;
+                prikazVremenaOd = logika.formatiratiDatum(jsonObject.getString("datum_od")).split(" ")[1];
+                staroPrikazVremenaOd = prikazVremenaOd;
+                prikazDatumaDo = logika.formatiratiDatum(jsonObject.getString("datum_do")).split(" ")[0];
+                staroPrikazDatumaDo = prikazDatumaDo;
+                prikazVremenaDo = logika.formatiratiDatum(jsonObject.getString("datum_do")).split(" ")[1];
+                staroPrikazVremenaDo = prikazVremenaDo;
+                String opisPromocije=jsonObject.getString("opis_o_promociji");
+                JSONObject promos = new JSONObject(opisPromocije);
+                String medukorak = promos.getString("Promocija");
+                JSONArray popust = new JSONArray(medukorak);
+                JSONObject  popustObj =  popust.getJSONObject(0);
+                idOdabranaPiva = popustObj.getString("id_proizvod");
+                staroIdOdabranaPiva = idOdabranaPiva;
+                unosPopust = popustObj.getString("popust");
+                staroUnosPopust = unosPopust;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public Boolean DosloDoPromijene(){
+        if(!staroUnosImePromocije.equals(unosImePromocije)){
+            return true;
+        }
+        if(!staroUnosOpisPromocije.equals(unosOpisPromocije)){
+            return true;
+        }
+        if(!staroIdOdabranaPiva.equals(idOdabranaPiva)){
+            return true;
+        }
+        if(!staroUnosPopust.equals((unosPopust))){
+            return true;
+        }
+        if(!staroPrikazDatumaOd.equals(prikazDatumaOd)){
+            return true;
+        }
+        if(!staroPrikazDatumaDo.equals(prikazDatumaDo)){
+            return true;
+        }
+        if(!staroPrikazVremenaOd.equals(prikazVremenaOd)){
+            return true;
+        }
+        if(!staroPrikazVremenaDo.equals(prikazVremenaDo)){
+            return true;
+        }
+        return false;
     }
 }

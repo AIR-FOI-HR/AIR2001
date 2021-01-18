@@ -16,18 +16,20 @@ import com.example.beervana.R;
 import java.util.List;
 
 public class LoadModuleFragmentActivity extends BaseActivity {
-    List<BaseClassForModules> modulesList = Modules.getModulesList();
-
+    List<BaseClassForModules> modulesList;
+    int pozicija;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load_module_fragment);
         initToolbar();
-
+        //TODO remove line under
+        Modules.getInstance();
+        modulesList = Modules.getModulesList();
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-
+        pozicija = extras.getInt("position");
 
         BaseClassForModules m = null;
         try {

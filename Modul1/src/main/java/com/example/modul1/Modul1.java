@@ -6,7 +6,7 @@ import com.example.basemodule.BaseClassForModules;
 public class Modul1 extends BaseClassForModules {
     @Override
     public String getNaslov() {
-        return "mod1";
+        return "PopustNaPivo";
     }
 
     @Override
@@ -16,7 +16,7 @@ public class Modul1 extends BaseClassForModules {
 
     @Override
     public String getOpis() {
-        return "opis1";
+        return "Popust u postocima na pivo.";
     }
 
     @Override
