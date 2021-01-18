@@ -36,7 +36,6 @@ public class AddPromotionsRecylcerAdapter extends RecyclerView.Adapter<AddPromot
     @Override
     public void onBindViewHolder(@NonNull AddPromotionsRecylcerAdapter.ViewHolder holder, int position) {
         BaseClassForModules module = modules.get(position);
-
         holder.txtNazivModula.setText(module.getNaslov());
         holder.txtOpisMoudla.setText(module.getOpis());
     }

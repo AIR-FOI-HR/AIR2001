@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/cardview_default_radius"
+    app:cardCornerRadius="@dimen/cardview_default_radius"
+    android:foreground="?android:selectableItemBackground"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/fab_margin"
+        >
+
+        <TextView
+            android:id="@+id/promotionItemName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textStyle="bold"
+            android:layout_margin="@dimen/razmakZaGreske"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/promotionItemDescription"
+            android:layout_below="@+id/promotionItemName"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:layout_margin="@dimen/razmakZaGreske"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/promotionItemType"
+            android:layout_below="@+id/promotionItemDescription"/>
+        <ImageView
+            android:id="@+id/promotionMenuItemCalendar_icon"
+            android:src="@drawable/ic_calendar_date_icon"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_below="@id/promotionItemType"
+            android:layout_margin="@dimen/razmakZaGreske"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/promotionItemDuration"
+            android:layout_toEndOf="@id/promotionMenuItemCalendar_icon"
+            android:layout_below="@+id/promotionItemType"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:layout_margin="@dimen/razmakZaGreske"
+            />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,6 +1,7 @@
 package com.example.beervana.BeerplacePage.Modularnost;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -17,7 +18,9 @@ public class AddPromotionsActivity extends BaseActivity implements AddPromotions
     RecyclerView recyclerView;
     AddPromotionsRecylcerAdapter adapter;
     List<BaseClassForModules> modulesList;
+    SharedPreferences sp;
     View view;
+    String idLokacija;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,8 @@ public class AddPromotionsActivity extends BaseActivity implements AddPromotions
         recyclerView = findViewById(R.id.AddPromos);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Modules.getInstance();
+        sp = getSharedPreferences("login", MODE_PRIVATE);
+        idLokacija = sp.getString("id_lokacija", "Nema Lokacija");
         modulesList = Modules.getModulesList();
         loadPromos();
 
@@ -47,7 +52,7 @@ public class AddPromotionsActivity extends BaseActivity implements AddPromotions
     @Override
     public void onPromotionClick(int position) {
         Intent intent = new Intent(this, LoadModuleFragmentActivity.class).putExtra("position", position).putExtra("id_promocija",0)
-                .putExtra("id_lokacija",8);
+                .putExtra("id_lokacija",idLokacija);
         startActivity(intent);
     }
 }

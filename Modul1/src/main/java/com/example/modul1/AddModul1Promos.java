@@ -48,6 +48,7 @@ import java.util.Map;
 
 
 public class AddModul1Promos extends Fragment {
+    int position;
     private DatePickerDialog.OnDateSetListener listenerZaDatumOd;
     private TimePickerDialog.OnTimeSetListener listenerZaVrijemeOd;
     private DatePickerDialog.OnDateSetListener listenerZaDatumDo;
@@ -62,7 +63,7 @@ public class AddModul1Promos extends Fragment {
     Modul1AddPromoFragmentBinding binding;
     ArrayList<String> pickedBeers = new ArrayList<>();
     //TODO oi, check your default mate.
-    private String idLokacija = "8";
+    private String idLokacija = "";
     private RequestQueue requestQueue;
     private ArrayList<String> beerList = new ArrayList<>();
     private ArrayAdapter<String> listaAdapter;
@@ -74,6 +75,9 @@ public class AddModul1Promos extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.modul1_add_promo_fragment,container,false);
+        Intent intent = getActivity().getIntent();
+        position = intent.getExtras().getInt("position");
+        idLokacija = intent.getExtras().getString("id_lokacija");
         super.onCreate(savedInstanceState);
         binding = Modul1AddPromoFragmentBinding.inflate(getLayoutInflater());
         view = binding.getRoot();
