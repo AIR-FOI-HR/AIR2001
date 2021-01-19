@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
 import com.example.beervana.BeerplacePage.AdapterReview;
@@ -20,9 +23,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.beervana.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -30,7 +37,8 @@ import java.util.Map;
 
 public class UserActivity extends BaseActivity {
     private String id_korisnik;
-    ConstraintLayout constraintLayout;
+    private TextView username1;
+    private TextView lozinka1;
     private static final String url = "https://beervana2020.000webhostapp.com/test/fetchUserData.php";
     private RequestQueue requestQueue;
 
@@ -40,31 +48,37 @@ public class UserActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
         initToolbar();
+        username1 = findViewById(R.id.username1);
+        lozinka1 = findViewById(R.id.password1);
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         id_korisnik = extras.getString("id_korisnik","20");
+        id_korisnik = "20";
         loadUserData();
     }
 
     private void loadUserData() {
-        requestQueue = Volley.newRequestQueue(getApplicationContext());
-        ReviewsLogic reviewsLogic = new ReviewsLogic();
-        DohvatPodataka dohvatPodataka = new DohvatPodataka();
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("id_korisnik", id_korisnik);
-        dohvatPodataka.setParametri(params);
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
+            try {
+                JSONArray array = response.getJSONArray("korisnik");
+                String data = " ";
+                String data1 = " ";
+                for(int i = 0; i < array.length(); i++){
+                    JSONObject object = (JSONObject) array.get(i);
+                    data = object.getString("korsnicko_ime");
+                    data1 = object.getString("lozinka");
 
-        dohvatPodataka.setSendUrl(url);
-        dohvatPodataka.retrieveData(getApplicationContext(),requestQueue);
-        requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
-            @Override
-            public void onRequestFinished(Request<Object> request){
-                JSONObject odgovor = dohvatPodataka.getOdgovor();
-                if(odgovor != null){
-                    //TODO
                 }
+                username1.setText(data);
+                lozinka1.setText(data1);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+        }, error -> {
+            Toast.makeText(UserActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
         });
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(request);
     }
 }

@@ -12,6 +12,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.beervana.UserData.UserActivity;
+import com.example.beervana.UserData.UserDataActivity;
+
 import org.json.JSONException;
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -29,10 +32,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         mImageView.setOnClickListener(v -> openActivity3());
 
         //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
-        /*
-        ImageView mImageView = (ImageView)findViewById(R.id.user_icon);
-        mImageView.setOnClickListener(v -> openActivity4());
-        */
+
+        ImageView mImageView1 = (ImageView)findViewById(R.id.user_icon);
+        mImageView1.setOnClickListener(v -> openActivity4());
+
         ImageView imageViewPretrazivanje = (ImageView)findViewById(R.id.search_icon);
         imageViewPretrazivanje.setOnClickListener(v -> openActivity5());
         pretrazivanje = (EditText) findViewById(R.id.txtpretrazivanje);
@@ -48,11 +51,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
-    /*
+
     public void openActivity4(){
-        Intent intent = new Intent(this, UserActivity.class);
+        Intent intent = new Intent(this, UserDataActivity.class);
         startActivity(intent);
-    }*/
+    }
     public void openActivity5(){
         if(!pretrazivanje.getText().toString().equals("")&&!pretrazivanje.getText().toString().equals(" ")){
             Intent intent = new Intent(this, SearchActivity.class).putExtra("search",pretrazivanje.getText().toString());

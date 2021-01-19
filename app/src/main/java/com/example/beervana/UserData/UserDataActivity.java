@@ -27,16 +27,17 @@ public class UserDataActivity extends BaseActivity {
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        id_korisnik = extras.getString("id_korisnik", "20");
+        //id_korisnik = extras.getString("id_korisnik", "20");
+        id_korisnik = "20";
     }
 
     private void openActivityUserStatistics() {
-        Intent intent = new Intent(this, ReviewsActivity.class).putExtra("id_korisnik", id_korisnik);
+        Intent intent = new Intent(this, UserActivity.class).putExtra("id_korisnik", id_korisnik);
         startActivity(intent);
     }
 
     private void openActivityUserSettings() {
-        Intent intent = new Intent(this, ReviewsActivity.class).putExtra("id_korisnik", id_korisnik);
+        Intent intent = new Intent(this, UserActivity.class).putExtra("id_korisnik", id_korisnik);
         startActivity(intent);
     }
 }
