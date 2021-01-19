@@ -41,7 +41,7 @@ public class LoadModuleFragmentActivity extends BaseActivity {
         }
 
 
-        String fragment =   m.AddPromos();
+        String fragment =   m.ViewPromos();
         Class<? > c = null;
         try {
             c = Class.forName(fragment);

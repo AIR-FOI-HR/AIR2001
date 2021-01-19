@@ -35,7 +35,7 @@ public class Modul1 extends BaseClassForModules {
     }
 
     @Override
-    public void ViewPromos() {
-
+    public String ViewPromos() {
+        return Modul1View.class.getName();
     }
 }

@@ -46,6 +46,7 @@ public class PromotionCatalogActivity extends BaseActivity implements PromotionC
     private SharedPreferences sp;
     private String idLokacija;
     private int korisnik = 0;
+    private int korisnikId = 0;
 
     View view;
 
@@ -62,6 +63,8 @@ public class PromotionCatalogActivity extends BaseActivity implements PromotionC
         if (extras != null) {
             idLokacija = extras.getString("id_lokacija");
             korisnik = sp.getInt("id_uloga",0);
+            //TODO staviti default na 0
+            korisnikId = sp.getInt("id_korisnik", 50);
         } else {
             idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
         }
@@ -107,13 +110,16 @@ public class PromotionCatalogActivity extends BaseActivity implements PromotionC
     @Override
     public void onPromotionClick(int position) {
         List<BaseClassForModules> modulesList = Modules.getModulesList();
+        //TODO Ukloniti ovu liniju
+        korisnikId = 50;
         for(int i = 0; i<modulesList.size();i++){
             if(modulesList.get(i).getNaslov().equals(promotionDataList.get(position).getTip_promocije())){
                 pozicija = String.valueOf(i);
             }
         }
         if (korisnik == 1) {
-            startActivity(new Intent(getApplicationContext(), PrikazZaEventPodatkeActivity.class).putExtra("position", pozicija).putExtra("id_promocija",promotionDataList.get(position).getId_promocija()));
+            startActivity(new Intent(getApplicationContext(), LoadModuleFragmentActivity.class).putExtra("position", pozicija).putExtra("id_promocija",promotionDataList.get(position).getId_promocija())
+                    .putExtra("id_korisnik",String.valueOf(korisnikId)));
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
             CharSequence[] dijalogStavke = {"View data", "Edit data ", "Delete data"};
@@ -123,7 +129,8 @@ public class PromotionCatalogActivity extends BaseActivity implements PromotionC
                 public void onClick(DialogInterface dialog, int odabir) {
                     switch (odabir) {
                         case 0:
-                            startActivity(new Intent(getApplicationContext(), PrikazZaEventPodatkeActivity.class).putExtra("position", pozicija).putExtra("id_promocija",promotionDataList.get(position).getId_promocija()));
+                            startActivity(new Intent(getApplicationContext(), LoadModuleFragmentActivity.class).putExtra("position", pozicija).putExtra("id_promocija",promotionDataList.get(position).getId_promocija())
+                            .putExtra("id_korisnik",String.valueOf(korisnikId)));
                             break;
                         case 1:
                             startActivity(new Intent(getApplicationContext(), LoadModuleFragmentActivity.class).putExtra("position", pozicija)

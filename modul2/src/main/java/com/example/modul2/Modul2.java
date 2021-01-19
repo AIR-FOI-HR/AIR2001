@@ -34,7 +34,7 @@ public class Modul2 extends BaseClassForModules {
     }
 
     @Override
-    public void ViewPromos() {
-
+    public String ViewPromos() {
+        return "";
     }
 }

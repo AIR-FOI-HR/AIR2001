@@ -14,6 +14,6 @@ public abstract class BaseClassForModules{
 
     public abstract String AddPromos();
     public abstract void UpdatePromos();
-    public abstract void ViewPromos();
+    public abstract String ViewPromos();
 
 }
