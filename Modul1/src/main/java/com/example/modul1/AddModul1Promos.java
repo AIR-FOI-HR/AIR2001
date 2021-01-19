@@ -64,7 +64,7 @@ public class AddModul1Promos extends Fragment {
     ArrayList<String> pickedBeers = new ArrayList<>();
     //TODO oi, check your default mate.
     private String idLokacija = "";
-    private String idPromocija = "";
+    private String idPromocija = "0";
     private RequestQueue requestQueue;
     private ArrayList<String> beerList = new ArrayList<>();
     private ArrayAdapter<String> listaAdapter;
@@ -79,7 +79,9 @@ public class AddModul1Promos extends Fragment {
         Intent intent = getActivity().getIntent();
         position = intent.getExtras().getInt("position");
         idLokacija = intent.getExtras().getString("id_lokacija");
-        idPromocija = intent.getExtras().getString("id_promocija");
+        if(intent.hasExtra("id_promocija")){
+            idPromocija = intent.getExtras().getString("id_promocija");
+        }
         super.onCreate(savedInstanceState);
         binding = Modul1AddPromoFragmentBinding.inflate(getLayoutInflater());
         view = binding.getRoot();

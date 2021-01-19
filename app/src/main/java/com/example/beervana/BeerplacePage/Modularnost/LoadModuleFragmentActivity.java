@@ -39,9 +39,16 @@ public class LoadModuleFragmentActivity extends BaseActivity {
         } catch (InstantiationException e) {
             e.printStackTrace();
         }
+        String fragment= "";
+        if(intent.hasExtra("id_promocija") && intent.hasExtra("id_korisnik")){
+            fragment =   m.ViewPromos();
+        }else if(intent.hasExtra("id_promocija") && intent.hasExtra("id_lokacija")){
+            fragment = m.UpdatePromos();
+        }else if(intent.hasExtra("id_lokacija")){
+            fragment = m.AddPromos();
+        }
 
 
-        String fragment =   m.ViewPromos();
         Class<? > c = null;
         try {
             c = Class.forName(fragment);

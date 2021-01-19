@@ -13,7 +13,7 @@ public abstract class BaseClassForModules{
     public abstract void setOpis(String opis);
 
     public abstract String AddPromos();
-    public abstract void UpdatePromos();
+    public abstract String UpdatePromos();
     public abstract String ViewPromos();
 
 }

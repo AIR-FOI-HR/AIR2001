@@ -30,8 +30,8 @@ public class Modul1 extends BaseClassForModules {
     }
 
     @Override
-    public void UpdatePromos() {
-
+    public String UpdatePromos() {
+        return AddModul1Promos.class.getName();
     }
 
     @Override
