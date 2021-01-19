@@ -106,16 +106,16 @@ public class PromotionCatalogActivity extends BaseActivity implements PromotionC
 
     @Override
     public void onPromotionClick(int position) {
+        List<BaseClassForModules> modulesList = Modules.getModulesList();
+        for(int i = 0; i<modulesList.size();i++){
+            if(modulesList.get(i).getNaslov().equals(promotionDataList.get(position).getTip_promocije())){
+                pozicija = String.valueOf(i);
+            }
+        }
         if (korisnik == 1) {
-            startActivity(new Intent(getApplicationContext(), PrikazZaEventPodatkeActivity.class).putExtra("position", position));
+            startActivity(new Intent(getApplicationContext(), PrikazZaEventPodatkeActivity.class).putExtra("position", pozicija).putExtra("id_promocija",promotionDataList.get(position).getId_promocija()));
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-            List<BaseClassForModules> modulesList = Modules.getModulesList();
-            for(int i = 0; i<modulesList.size();i++){
-                if(modulesList.get(i).getNaslov().equals(promotionDataList.get(position).getTip_promocije())){
-                    pozicija = String.valueOf(i);
-                }
-            }
             CharSequence[] dijalogStavke = {"View data", "Edit data ", "Delete data"};
             builder.setTitle(promotionDataList.get(position).getNaziv_promocije());
             builder.setItems(dijalogStavke, new DialogInterface.OnClickListener() {
@@ -123,7 +123,7 @@ public class PromotionCatalogActivity extends BaseActivity implements PromotionC
                 public void onClick(DialogInterface dialog, int odabir) {
                     switch (odabir) {
                         case 0:
-                            startActivity(new Intent(getApplicationContext(), PrikazZaEventPodatkeActivity.class).putExtra("position", pozicija));
+                            startActivity(new Intent(getApplicationContext(), PrikazZaEventPodatkeActivity.class).putExtra("position", pozicija).putExtra("id_promocija",promotionDataList.get(position).getId_promocija()));
                             break;
                         case 1:
                             startActivity(new Intent(getApplicationContext(), LoadModuleFragmentActivity.class).putExtra("position", pozicija)
