@@ -71,7 +71,7 @@ public class UserDataActivity extends BaseActivity {
     }
 
     private void openActivityUserStatistics() {
-        Intent intent = new Intent(this, UserActivity.class).putExtra("id_korisnik", id_korisnik);
+        Intent intent = new Intent(this, StatisticsActivity.class).putExtra("id_korisnik", id_korisnik);
         startActivity(intent);
     }
 

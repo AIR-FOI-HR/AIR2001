@@ -76,4 +76,5 @@
     <string name="add_review_button">add review</string>
     <string name="see_all_beer_reviews">see all</string>
     <string name="title_activity_user">UserActivity</string>
+    <string name="title_activity_statistics">StatisticsActivity</string>
 </resources>

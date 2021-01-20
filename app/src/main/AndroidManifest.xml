@@ -14,9 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Beervana">
         <activity
+            android:name=".UserData.StatisticsActivity"
+            android:label="@string/title_activity_statistics"
+            android:theme="@style/Theme.Beervana.NoActionBar"></activity>
+        <activity
             android:name=".UserData.UserActivity"
             android:label="@string/title_activity_user"
-            android:theme="@style/Theme.Beervana.NoActionBar"></activity>
+            android:theme="@style/Theme.Beervana.NoActionBar" />
         <activity android:name=".UserData.UserDataActivity" />
         <activity android:name=".BeerplacePage.AddReviewsActivity" />
         <activity android:name=".GlavniIzbornikUser">
