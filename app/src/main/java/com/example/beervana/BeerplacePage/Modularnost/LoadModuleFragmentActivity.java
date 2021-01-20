@@ -29,11 +29,11 @@ public class LoadModuleFragmentActivity extends BaseActivity {
         modulesList = Modules.getModulesList();
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        pozicija = extras.getInt("position");
+        pozicija = Integer.parseInt(extras.getString("position"));
 
         BaseClassForModules m = null;
         try {
-            m = Modules.getModulesList().get(0).getClass().newInstance();
+            m = Modules.getModulesList().get(pozicija).getClass().newInstance();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {

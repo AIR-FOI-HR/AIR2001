@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="add_promotion">Add promotion</string>
+    <string name="promotion_name">Promotion name</string>
+    <string name="promotion_description">Promotion description</string>
+    <string name="start_date">Start date</string>
+    <string name="end_date">End date</string>
+    <string name="this_many">How many bought produtcts</string>
+    <string name="this_many_free">+ how many free</string>
+</resources>

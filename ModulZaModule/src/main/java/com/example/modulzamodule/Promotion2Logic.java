@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Promotion1Logic {
+public class Promotion2Logic {
     public String ProvjeraUnosaNazivaPromocije(String nazivPromocije) {
 
         if (nazivPromocije.equals("")) {
@@ -31,11 +31,19 @@ public class Promotion1Logic {
         return "";
     }
 
-    public String ProvijeriPopust(String popust) {
-        if (popust.equals("")) {
-            return "Error: you have to enter a discount.";
-        } else if (Integer.parseInt(popust) < 0 || Integer.parseInt(popust) > 100) {
-            return "Error: the discount must be between 1 and 99 percent.";
+    public String ProvijeriKolicinu(String kolicina) {
+        if (kolicina.equals("")) {
+            return "Error: you have to enter the amount of products.";
+        } else if (Integer.parseInt(kolicina) < 2 || Integer.parseInt(kolicina) > 10) {
+            return "Error: the amount must be between 2 and 10.";
+        }
+        return "";
+    }
+    public String ProvijeriGratis(String gratis,String kolicina) {
+        if (gratis.equals("")) {
+            return "Error: you have to enter the amount of free products.";
+        } else if (Integer.parseInt(gratis) > Integer.parseInt(kolicina)) {
+            return "Error: the amount of free produts must be lower than amount of products";
         }
         return "";
     }

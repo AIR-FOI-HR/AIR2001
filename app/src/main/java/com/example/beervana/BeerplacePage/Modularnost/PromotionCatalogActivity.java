@@ -109,11 +109,13 @@ public class PromotionCatalogActivity extends BaseActivity implements PromotionC
 
     @Override
     public void onPromotionClick(int position) {
+        //TODO ukloniti i ovu linuju
+        Modules.getInstance();
         List<BaseClassForModules> modulesList = Modules.getModulesList();
         //TODO Ukloniti ovu liniju
         korisnikId = 50;
         for(int i = 0; i<modulesList.size();i++){
-            if(modulesList.get(i).getNaslov().equals(promotionDataList.get(position).getTip_promocije())){
+            if(modulesList.get(i).getTip().equals(promotionDataList.get(position).getTip_promocije())){
                 pozicija = String.valueOf(i);
             }
         }
