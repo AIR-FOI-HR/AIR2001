@@ -71,4 +71,20 @@ dependencies {
     //ButterKnife
     implementation 'com.jakewharton:butterknife:10.2.3'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
+
+    //Braintree
+    implementation 'com.braintreepayments.api:braintree:2.22.0'
+    implementation 'com.braintreepayments.api:drop-in:5.0.2'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'androidx.appcompat:appcompat:1.2.0-alpha02'
+
+    repositories {
+        maven {
+            url "https://cardinalcommerce.bintray.com/android"
+            credentials {
+                username 'braintree-team-sdk@cardinalcommerce'
+                password '220cc9476025679c4e5c843666c27d97cfb0f951'
+            }
+        }
+    }
 }
