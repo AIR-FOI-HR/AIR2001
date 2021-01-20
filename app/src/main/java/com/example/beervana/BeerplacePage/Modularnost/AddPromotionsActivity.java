@@ -52,7 +52,7 @@ public class AddPromotionsActivity extends BaseActivity implements AddPromotions
 
     @Override
     public void onPromotionClick(int position) {
-        Intent intent = new Intent(this, LoadModuleFragmentActivity.class).putExtra("position", position)
+        Intent intent = new Intent(this, LoadModuleFragmentActivity.class).putExtra("position", String.valueOf(position))
                 .putExtra("id_lokacija",idLokacija);
         startActivity(intent);
     }

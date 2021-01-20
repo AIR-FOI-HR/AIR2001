@@ -11,9 +11,10 @@ import org.json.JSONObject;
 public class Model2ViewViewModel  extends ViewModel {
     private String idKorisnik;
     private String idPromocija;
-    String nazivPromocije,opisPromocije,proizvodNaziv,kolicina,gratis,datumOd,datumDo,idOdabranaPiva;
+    String nazivPromocije,opisPromocije,proizvodNaziv,kolicina,gratis,datumOd,datumDo,idOdabranaPiva,lozinka;
     Boolean iskoristeno;
     Promotion1Logic logika = new Promotion1Logic();
+
 
     public String getIdOdabranaPiva() {
         return idOdabranaPiva;
@@ -102,6 +103,12 @@ public class Model2ViewViewModel  extends ViewModel {
     public void setIskoristeno(Boolean iskoristeno) {
         this.iskoristeno = iskoristeno;
     }
+    public boolean provijeriLozinku(String korisnikLozinka){
+        if(korisnikLozinka.equals(lozinka)){
+            return true;
+        }
+        return false;
+    }
     public void PostaviModel(JSONArray promocija) throws JSONException {
         for (int i = 0; i < promocija.length(); i++) {
             JSONObject jsonObject = null;
@@ -119,6 +126,7 @@ public class Model2ViewViewModel  extends ViewModel {
                 idOdabranaPiva = popustObj.getString("id_proizvod");
                 kolicina = popustObj.getString("kolicina");
                 gratis = popustObj.getString("gratis");
+                lozinka = popustObj.getString("lozinka");
                 String iskoristenostString = jsonObject.getString("id_korisnik");
                 if(iskoristenostString.equals("null")){
                     iskoristeno = false;

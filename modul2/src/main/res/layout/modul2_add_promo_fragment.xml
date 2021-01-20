@@ -372,12 +372,61 @@
             android:visibility="gone"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
             android:text="" />
+        <TextView
+            android:id="@+id/txtUsagePassword"
+            android:layout_below="@id/errUnosVrijemeDo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="15dp"
+            android:text="Usage password"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+        <EditText
+            android:importantForAutofill="no"
+            android:id="@+id/unosUsagePassword"
+            android:layout_below="@id/txtUsagePassword"
+            android:hint="Usage password"
+            android:textColorHint="@color/black"
+            android:inputType="text"
+            android:textColor="@color/black"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/edit_text_border"
+            android:ellipsize="start"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/paddingTekstEditor"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+        <TextView
+            android:id="@+id/errUsagePassword"
+            android:layout_below="@id/unosUsagePassword"
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="@dimen/razmakZaGreske"
+            android:layout_marginEnd="50dp"
+            android:textColor="@android:color/holo_red_light"
+            android:visibility="gone"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:text="" />
         <Button
             android:id="@+id/btnDodajPromociju"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/errUnosVrijemeDo"
+            android:layout_below="@id/errUsagePassword"
             android:layout_marginTop="30dp"
             android:text="Add Promotion" />
     </RelativeLayout>

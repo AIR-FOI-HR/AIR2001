@@ -30,7 +30,15 @@ public class Promotion2Logic {
         }
         return "";
     }
+    public String ProvjeraUnosaLozinke(String lozinka) {
 
+        if (lozinka.equals("")) {
+            return "Error: you have enter a password.";
+        } else if (lozinka.length()<6 || lozinka.length()>30) {
+            return "Error: password must be between 6 and 30 characters long";
+        }
+        return "";
+    }
     public String ProvijeriKolicinu(String kolicina) {
         if (kolicina.equals("")) {
             return "Error: you have to enter the amount of products.";

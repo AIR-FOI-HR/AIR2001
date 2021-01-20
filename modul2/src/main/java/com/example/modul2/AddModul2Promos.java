@@ -55,10 +55,10 @@ public class AddModul2Promos extends Fragment {
     private Calendar calendar = Calendar.getInstance();
     Button potvrdi, odDatumPostavi, doDatumPostavi, odVrijemePostavi, doVrijemePostavi;
     SingleSpinnerSearch beerSpin;
-    EditText opisPromocije,nazivPromocije,unosKolicina,unosGratis;
+    EditText opisPromocije,nazivPromocije,unosKolicina,unosGratis,lozinka;
     TextView odDatum, doDatum, odVrijeme, doVrijeme, errorOpisPromocije,
             errorNazivPromocije, errorOdDatum, errorDoDatum,
-            errorOdVrijeme, errorDoVrijeme,errorOdabirProizvoda, errorPonuda;
+            errorOdVrijeme, errorDoVrijeme,errorOdabirProizvoda, errorPonuda,errorPassword;
     Modul2AddPromoFragmentBinding binding;
     ArrayList<String> pickedBeers = new ArrayList<>();
     //TODO oi, check your default mate.
@@ -97,6 +97,7 @@ public class AddModul2Promos extends Fragment {
         doVrijeme = binding.prikazVremenaDo;
         unosKolicina = binding.unosKolicinaProizvoda;
         unosGratis = binding.unosGratisPromocija;
+        lozinka =binding.unosUsagePassword;
 
         errorOpisPromocije = binding.errUnosOpisPromocije;
         errorNazivPromocije = binding.errNazivPromocije;
@@ -106,6 +107,7 @@ public class AddModul2Promos extends Fragment {
         errorDoVrijeme = binding.errUnosVrijemeDo;
         errorOdabirProizvoda = binding.errUnosProizvoda;
         errorPonuda = binding.errUnosPonude;
+        errorPassword = binding.errUsagePassword;
 
         beerSpin = binding.odabirPiva;
 
@@ -197,6 +199,7 @@ public class AddModul2Promos extends Fragment {
                 model.setUnosImePromocije(nazivPromocije.getText().toString());
                 model.setUnosGratis(unosGratis.getText().toString());
                 model.setUnosKolicina(unosKolicina.getText().toString());
+                model.setLozinkaZaIskoristenje(lozinka.getText().toString());
                 if(model.ProvijeriPodatke()){
                     Map<String, String> params=new HashMap<String, String>();
                     if(model.isAzuriranje()){
@@ -257,6 +260,7 @@ public class AddModul2Promos extends Fragment {
         errorDoVrijeme.setText(model.getErrUnosVrijemeDo());
         errorOdabirProizvoda.setText(model.getErrUnosProizvoda());
         errorPonuda.setText(model.getErrPonuda());
+        errorPassword.setText(model.getErrLozinka());
 
         errorNazivPromocije.setVisibility(model.getErrUnosImePromocijeVisibility());
         errorOpisPromocije.setVisibility(model.getErrOpisaPromocijeVisibility());
@@ -266,6 +270,7 @@ public class AddModul2Promos extends Fragment {
         errorDoVrijeme.setVisibility(model.getErrUnosVrijemeDoVisibility());
         errorOdabirProizvoda.setVisibility(model.getErrUnosProizvodaVisibility());
         errorPonuda.setVisibility(model.getErrUnosPonudaVisibility());
+        errorPassword.setVisibility(model.getErrLozinkaVisibility());
     }
 
     private void retrieveData() {
@@ -322,6 +327,7 @@ public class AddModul2Promos extends Fragment {
         odVrijeme.setText(model.getPrikazVremenaOd());
         doDatum.setText(model.getPrikazDatumaDo());
         doVrijeme.setText(model.getPrikazVremenaDo());
+        lozinka.setText(model.getLozinkaZaIskoristenje());
     }
 
 

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class Modul2View extends Fragment {
     String iskoristiUrl = "https://beervana2020.000webhostapp.com/test/IskoristiPromociju.php";
     Modul2ViewPromosFragmentBinding binding;
     TextView nazivPromocije,opisPromocije,proizvodNaziv,kolicina,gratis,datumOd,datumDo;
+    EditText lozinka;
     Button iskoristiPromociju;
     RequestQueue requestQueue;
     RequestQueue requestQueueSlanje;
@@ -57,30 +59,36 @@ public class Modul2View extends Fragment {
         gratis = binding.txtGratis;
         datumDo = binding.txtDatumDo;
         datumOd = binding.txtDatumOd;
+        lozinka = binding.unosUsagePassword;
         iskoristiPromociju = binding.btnIskoristiPopust;
         iskoristiPromociju.setEnabled(false);
         RetriveData();
         iskoristiPromociju.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requestQueueSlanje = Volley.newRequestQueue(getActivity());
-                slanjePodataka = new SlanjePodataka(iskoristiUrl);
-                Map<String, String> params = new HashMap<>();
-                params.put("id_korisnik", model.getIdKorisnik());
-                params.put("id_promocija", model.getIdPromocija());
-                slanjePodataka.setParametri(params);
-                slanjePodataka.sendData(getActivity(),requestQueueSlanje);
-                requestQueueSlanje.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
-                    @Override
-                    public void onRequestFinished(Request<Object> request) {
-                        String odgovor = slanjePodataka.getOdgovor();
-                        Toast toast = Toast.makeText(getActivity(),odgovor,Toast.LENGTH_LONG);
-                        toast.show();
-                        if(odgovor.equals("Succesfully used a promotion")){
-                            iskoristiPromociju.setEnabled(false);
+                if(model.provijeriLozinku(lozinka.getText().toString())){
+                    requestQueueSlanje = Volley.newRequestQueue(getActivity());
+                    slanjePodataka = new SlanjePodataka(iskoristiUrl);
+                    Map<String, String> params = new HashMap<>();
+                    params.put("id_korisnik", model.getIdKorisnik());
+                    params.put("id_promocija", model.getIdPromocija());
+                    slanjePodataka.setParametri(params);
+                    slanjePodataka.sendData(getActivity(),requestQueueSlanje);
+                    requestQueueSlanje.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+                        @Override
+                        public void onRequestFinished(Request<Object> request) {
+                            String odgovor = slanjePodataka.getOdgovor();
+                            Toast toast = Toast.makeText(getActivity(),odgovor,Toast.LENGTH_LONG);
+                            toast.show();
+                            if(odgovor.equals("Succesfully used a promotion")){
+                                iskoristiPromociju.setEnabled(false);
+                            }
                         }
-                    }
-                });
+                    });
+                }else{
+                    Toast toast = Toast.makeText(getActivity(),"The password is not correct",Toast.LENGTH_LONG);
+                    toast.show();
+                }
             }
         });
 

@@ -20,6 +20,7 @@ public class AddPromotion2ViewModel extends ViewModel {
     private String prikazVremenaDo = "    :    ";
     private String unosKolicina;
     private String unosGratis;
+    private String lozinkaZaIskoristenje;
     private String errUnosImePromocije;
     private String errOpisaPromocije;
     private String errUnosDatumOd = "";
@@ -28,13 +29,14 @@ public class AddPromotion2ViewModel extends ViewModel {
     private String errUnosVrijemeDo;
     private String errUnosProizvoda;
     private String errPonuda = "";
+    private String errLozinka = "";
     private String idOdabranaPiva = "";
     private String Json;
     boolean Azuriranje = false;
 
     private String staroUnosImePromocije,staroUnosOpisPromocije,
             staroPrikazDatumaOd,staroPrikazVremenaOd,staroPrikazDatumaDo,
-            staroPrikazVremenaDo,staroUnosKolicina,staroUnosGratis,staroIdOdabranaPiva,idPromocija;
+            staroPrikazVremenaDo,staroUnosKolicina,staroUnosGratis,staroIdOdabranaPiva,idPromocija,staraLozinka;
 
     int gone = View.GONE;
     int visible = View.VISIBLE;
@@ -47,7 +49,32 @@ public class AddPromotion2ViewModel extends ViewModel {
     private int errUnosVrijemeDoVisibility = gone;
     private int errUnosProizvodaVisibility = gone;
     private int errUnosPonudaVisibility = gone;
+    private int errLozinkaVisibility = gone;
     Promotion2Logic logika = new Promotion2Logic();
+
+    public String getLozinkaZaIskoristenje() {
+        return lozinkaZaIskoristenje;
+    }
+
+    public void setLozinkaZaIskoristenje(String lozinkaZaIskoristenje) {
+        this.lozinkaZaIskoristenje = lozinkaZaIskoristenje;
+    }
+
+    public int getErrLozinkaVisibility() {
+        return errLozinkaVisibility;
+    }
+
+    public void setErrLozinkaVisibility(int errLozinkaVisibility) {
+        this.errLozinkaVisibility = errLozinkaVisibility;
+    }
+
+    public String getErrLozinka() {
+        return errLozinka;
+    }
+
+    public void setErrLozinka(String errLozinka) {
+        this.errLozinka = errLozinka;
+    }
 
     public String getIdPromocija() {
         return idPromocija;
@@ -299,7 +326,9 @@ public class AddPromotion2ViewModel extends ViewModel {
         errUnosVrijemeDoVisibility = gone;
         errUnosProizvodaVisibility = gone;
         errUnosPonudaVisibility = gone;
+        errLozinkaVisibility = gone;
 
+        errLozinka = logika.ProvjeraUnosaLozinke(lozinkaZaIskoristenje);
         errUnosImePromocije = logika.ProvjeraUnosaNazivaPromocije(unosImePromocije);
         errOpisaPromocije = logika.ProvjeraUnosOpisaPromocije(unosOpisPromocije);
         errPonuda = logika.ProvijeriKolicinu(unosKolicina);
@@ -352,6 +381,10 @@ public class AddPromotion2ViewModel extends ViewModel {
             errUnosPonudaVisibility = visible;
             sveUredu = false;
         }
+        if(!errLozinka.equals("")){
+            errLozinkaVisibility = visible;
+            sveUredu = false;
+        }
         return sveUredu;
     }
 
@@ -370,6 +403,7 @@ public class AddPromotion2ViewModel extends ViewModel {
             promocija.put("id_proizvod", idOdabranaPiva);
             promocija.put("kolicina", unosKolicina);
             promocija.put("gratis",unosGratis);
+            promocija.put("lozinka",lozinkaZaIskoristenje);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -414,6 +448,8 @@ public class AddPromotion2ViewModel extends ViewModel {
                 staroUnosGratis = unosGratis;
                 unosKolicina = popustObj.getString("kolicina");
                 staroUnosKolicina = unosKolicina;
+                lozinkaZaIskoristenje = popustObj.getString("lozinka");
+                staraLozinka = lozinkaZaIskoristenje;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -445,6 +481,9 @@ public class AddPromotion2ViewModel extends ViewModel {
             return true;
         }
         if(!staroPrikazVremenaDo.equals(prikazVremenaDo)){
+            return true;
+        }
+        if(!staraLozinka.equals(lozinkaZaIskoristenje)){
             return true;
         }
         return false;
