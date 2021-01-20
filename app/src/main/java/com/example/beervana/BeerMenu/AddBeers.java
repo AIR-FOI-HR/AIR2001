@@ -21,6 +21,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.BaseActivity;
 import com.example.beervana.R;
 import com.example.beervana.SettingsActivity;
 import com.example.beervana.databinding.AddBeersActivityBinding;
@@ -37,7 +38,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddBeers extends AppCompatActivity {
+public class AddBeers extends BaseActivity {
 
     ImageView slika;
     EditText naziv_proizvoda;
@@ -68,6 +69,7 @@ public class AddBeers extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_beers_activity);
+        initToolbar();
         binding = AddBeersActivityBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
@@ -168,20 +170,6 @@ public class AddBeers extends AppCompatActivity {
             }
         });
 
-        //OVAJ DIO DODATI ZA TOOLBAR
-        ImageView mImageView = (ImageView)findViewById(R.id.settings_icon);
-        mImageView.setOnClickListener(v -> openActivity3());
-
-        //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
-        /*
-        ImageView mImageView = (ImageView)findViewById(R.id.user_icon);
-        mImageView.setOnClickListener(v -> openActivity4());
-
-        ImageView mImageView = (ImageView)findViewById(R.id.search_icon);
-        mImageView.setOnClickListener(v -> openActivity5());
-        */
-
-        //
     }
 
     @Override
@@ -227,23 +215,4 @@ public class AddBeers extends AppCompatActivity {
         errCijena.setVisibility(viewModel.getErrUnosCijenePivaVisibility());
     }
 
-    //I OVAJ DIO DODATI ZA TOOLBAR
-    public void openActivity3(){
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
-    }
-
-    //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
-    /*
-    public void openActivity4(){
-        Intent intent = new Intent(this, UserActivity.class);
-        startActivity(intent);
-    }
-    public void openActivity5(){
-        Intent intent = new Intent(this, SearchActivity.class);
-        startActivity(intent);
-    }
-     */
-
-    //KRAJ
 }
