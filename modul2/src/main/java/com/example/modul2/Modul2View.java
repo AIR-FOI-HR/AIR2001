@@ -107,7 +107,7 @@ public class Modul2View extends Fragment {
                         jsonArray = odgovor.getJSONArray("proizvod");
                         JSONObject objekt = jsonArray.getJSONObject(0);
                         model.setProizvodNaziv(objekt.getString("naziv_proizvoda"));
-                        proizvodNaziv.setText(model.getNazivPromocije());
+                        proizvodNaziv.setText(model.getProizvodNaziv());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
