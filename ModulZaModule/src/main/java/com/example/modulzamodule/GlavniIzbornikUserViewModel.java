@@ -15,9 +15,12 @@ public class GlavniIzbornikUserViewModel extends ViewModel {
     private ArrayList<Beer> piveMoje = null;
     private ArrayList<Review> recenzijeMoje = null;
     private ArrayList<ModelPodatakaLokacijaSOcjenom> najdrazeLokacije = null;
+    private ArrayList<ModelPodatakaPivoSOcjenom> najdrazaPiva = null;
     private LokacijaLogika lokacijaLogika = new LokacijaLogika();
+    private BeerLogic beerLogic = new BeerLogic();
     private ReviewsLogic RecenzijaLogika = new ReviewsLogic();
     private ArrayList<Review> odgovorParsiranjaRecenzija;
+    private ArrayList<ModelPodatakaPivoSOcjenom> odgovorParsiranjaNajdrazaPiva;
 
 
 
@@ -55,6 +58,14 @@ public class GlavniIzbornikUserViewModel extends ViewModel {
             najdrazeLokacije = odgovorParsiranja;
         }
     }
+
+    public void ParsiranjeNajdrazihPiva(JSONObject odgovor){
+        odgovorParsiranjaNajdrazaPiva = beerLogic.parsiranjePivaZaNajdrazaPiva(odgovor);
+        if(odgovorParsiranjaNajdrazaPiva!=null){
+            najdrazaPiva = odgovorParsiranjaNajdrazaPiva;
+        }
+    }
+
     public ArrayList<ModelPodatakaLokacijaSOcjenom> getNajdrazeLokacije() {
         return najdrazeLokacije;
     }
@@ -108,5 +119,13 @@ public class GlavniIzbornikUserViewModel extends ViewModel {
     }
     public void setNajdrazeLokacije(ArrayList<ModelPodatakaLokacijaSOcjenom> najdrazeLokacije) {
         this.najdrazeLokacije = najdrazeLokacije;
+    }
+
+    public ArrayList<ModelPodatakaPivoSOcjenom> getNajdrazaPiva() {
+        return najdrazaPiva;
+    }
+
+    public void setNajdrazaPiva(ArrayList<ModelPodatakaPivoSOcjenom> najdrazaPiva) {
+        this.najdrazaPiva = najdrazaPiva;
     }
 }
