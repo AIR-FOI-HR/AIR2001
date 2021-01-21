@@ -1,19 +1,37 @@
 package com.example.beervana;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.example.beervana.BeerMenu.BeerCatalogActivity;
 import com.example.beervana.EventMenu.EventCatalogActivity;
+import com.example.beervana.EventMenu.EventCatalogRecyclerAdapter;
+import com.example.beervana.Statistika.StatistikaViewModel;
 import com.example.beervana.TastingMenu.TastingMenuActivity;
+import com.example.webservice.DohvatPodataka;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class GlavniIzbornikClient extends BaseActivity {
-
+    DohvatPodataka dohvatPodataka;
+    RequestQueue requestQueue;
+    String urlStatistika1 = "https://beervana2020.000webhostapp.com/test/DohvatStatistikaOcjena.php";
+    StatistikaViewModel model;
+    GraphView graphOcjena;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +65,37 @@ public class GlavniIzbornikClient extends BaseActivity {
                 OpenActivityTastingMeni();
             }
         });
+        graphOcjena = (GraphView) findViewById(R.id.graphOcjena);
+        graphOcjena.setVisibility(View.VISIBLE);
+        model = new ViewModelProvider(this).get(StatistikaViewModel.class);
+        ReceiveData();
+    }
 
+    private void ReceiveData() {
+        requestQueue = Volley.newRequestQueue(this);
+        dohvatPodataka = new DohvatPodataka();
+        dohvatPodataka.setSendUrl(urlStatistika1);
+        Map<String, String> params = new HashMap<String, String>();
+        //TODO Zamjeni sa pravom lokacijom
+        params.put("id_lokacija", "8");
+        dohvatPodataka.setParametri(params);
+        dohvatPodataka.retrieveData(this,requestQueue);
+        requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+            @Override
+            public void onRequestFinished(Request<Object> request) {
+                JSONObject odgovor = dohvatPodataka.getOdgovor();
+                if (odgovor != null) {
+                    model.PostaviPodatke(odgovor);
+                    PostaviGrafStatOcjena();
+                }
+            }
+        });
+
+    }
+
+    private void PostaviGrafStatOcjena() {
+        LineGraphSeries <DataPoint> series  = new LineGraphSeries<>(model.getPodaci());
+        graphOcjena.addSeries(series);
     }
 
     public void openActivity2(){
