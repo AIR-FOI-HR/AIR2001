@@ -77,6 +77,7 @@ dependencies {
     implementation 'com.braintreepayments.api:drop-in:5.0.2'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'androidx.appcompat:appcompat:1.2.0-alpha02'
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
 
     repositories {
         maven {
