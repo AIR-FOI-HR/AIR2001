@@ -66,7 +66,7 @@ public class PaymentActivity extends BaseActivity {
     RequestQueue requestQueue, requestQueueDatum;
     DateFormat df;
     String date;
-
+    String stariDatum;
     TextView statusPretplate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +95,7 @@ public class PaymentActivity extends BaseActivity {
         btn_pay.setOnClickListener(v -> submitPayment());
     }
 
-    private void checkStatus(String datum, String id_korisnik) {
+    private void checkStatus(String datum1, String id_korisnik) {
         requestQueueDatum = Volley.newRequestQueue(getApplicationContext());
         PaymentLogika paymentLogika = new PaymentLogika();
 
@@ -112,20 +112,22 @@ public class PaymentActivity extends BaseActivity {
                 JSONObject odgovor = dohvatPodataka.getOdgovor();
                 if (odgovor != null) {
                     Payment payment = paymentLogika.parsiranjePodatakaDatuma(odgovor);
-                    String stariDatum = payment.datum;
+                    stariDatum = payment.datum;
+                    ProvjeriDatum(stariDatum, datum1);
                 }
             }
         });
 
-        String stariDatum1 = "2021-01-03";
+    }
+
+    private void ProvjeriDatum(String stariDatum, String datum) {
         LocalDate datumPretplate = LocalDate.parse(datum);
-        LocalDate stariDatum2 = LocalDate.parse(stariDatum1);
+        LocalDate stariDatum2 = LocalDate.parse(stariDatum);
         if(stariDatum2.isBefore(datumPretplate)){
             statusPretplate.setText("Inactive");
         } else{
             statusPretplate.setText("Active");
         }
-
     }
 
     private void submitPayment() {
