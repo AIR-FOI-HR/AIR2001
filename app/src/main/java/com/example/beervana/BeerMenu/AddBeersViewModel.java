@@ -12,11 +12,50 @@ public class AddBeersViewModel extends ViewModel {
     private double cijenaPiva;
     private String okusPiva;
     private double litraPiva;
+    private String idPivo;
+
+    public String getIdKategorija() {
+        return idKategorija;
+    }
+
+    public void setIdKategorija(String idKategorija) {
+        this.idKategorija = idKategorija;
+    }
+
+    private String idKategorija;
+
+    public String getIdPivo() {
+        return idPivo;
+    }
+
+    public void setIdPivo(String idPivo) {
+        this.idPivo = idPivo;
+    }
+
+    public String getId_Lokacija() {
+        return id_Lokacija;
+    }
+
+    public void setId_Lokacija(String id_Lokacija) {
+        this.id_Lokacija = id_Lokacija;
+    }
+
     private String errSlika;
     private String errNaziv;
     private String errCijena;
     private String errOkus;
     private String errLitra;
+    private String id_Lokacija;
+    boolean azurirajPivo = false;
+    Beer pivoPrijeAzuriranja;
+
+    public boolean isAzurirajPivo() {
+        return azurirajPivo;
+    }
+
+    public void setAzurirajPivo(boolean azurirajPivo) {
+        this.azurirajPivo = azurirajPivo;
+    }
 
     int gone = View.GONE;
     int visible = View.VISIBLE;
@@ -166,12 +205,16 @@ public class AddBeersViewModel extends ViewModel {
         errUnosokusaPivaVisibility = gone;
         errUnosLitreVisibility = gone;
 
-        errSlika = beerLogic.ProvjeraUnosaSlike(slikaZaSlanje);
         errCijena = beerLogic.ProvjeraUnosaCijenePiva(cijenaPiva);
         errLitra = beerLogic.ProvjeraUnosaLitara(litraPiva);
         errNaziv = beerLogic.ProvjeraUnosaNazivaPiva(nazivPiva);
         errOkus = beerLogic.ProvjeraUnosaOkusa(okusPiva);
 
+        if(azurirajPivo){
+            errSlika = beerLogic.ProvjeraUnosaSlike(slika.toString());
+        }else {
+            errSlika = beerLogic.ProvjeraUnosaSlike(slikaZaSlanje);
+        }
         if(!errSlika.equals("")){
             sveUredu=false;
             errSlikaVisibility = visible;
@@ -198,5 +241,33 @@ public class AddBeersViewModel extends ViewModel {
         }
 
         return sveUredu;
+    }
+    public boolean Promjena(int pozicija){
+        boolean promjena = false;
+        if (!pivoPrijeAzuriranja.getNaziv_proizvoda().equals(nazivPiva)) {
+            pivoPrijeAzuriranja.setNaziv_proizvoda(nazivPiva);
+            promjena = true;
+        }
+        if (!pivoPrijeAzuriranja.getCijena_proizvoda().equals(cijenaPiva)) {
+            pivoPrijeAzuriranja.setCijena_proizvoda(String.valueOf(cijenaPiva));
+            promjena = true;
+        }
+        if (!pivoPrijeAzuriranja.getOkus().equals(okusPiva)) {
+            pivoPrijeAzuriranja.setOkus(okusPiva);
+            promjena = true;
+        }
+        if (!pivoPrijeAzuriranja.getLitara().equals(litraPiva)) {
+            pivoPrijeAzuriranja.setLitara(String.valueOf(litraPiva));
+            promjena = true;
+        }
+        if (!pivoPrijeAzuriranja.getId_kategorija().equals(String.valueOf(pozicija))){
+            pivoPrijeAzuriranja.setId_kategorija(String.valueOf(pozicija));
+            promjena = true;
+        }
+        if (!slikaZaSlanje.equals("")){
+            pivoPrijeAzuriranja.setSlika(slika.toString());
+            promjena = true;
+        }
+        return promjena;
     }
 }

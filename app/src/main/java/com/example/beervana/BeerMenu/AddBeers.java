@@ -37,6 +37,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
+
 public class AddBeers extends AppCompatActivity {
 
     ImageView slika;
@@ -63,6 +66,8 @@ public class AddBeers extends AppCompatActivity {
     FloatingActionButton podnesi;
     String sendUrl = "https://beervana2020.000webhostapp.com/test/addBeers.php";
 
+    int position;
+
     AddBeersActivityBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,22 @@ public class AddBeers extends AppCompatActivity {
         //final AddBeersViewModel viewModel = new ViewModelProvider(this).get(AddBeersViewModel.class);
 
         //PostaviGreske();
+
+        if (!viewModel.isAzurirajPivo()){
+            Intent intent = getIntent();
+            Bundle extras = intent.getExtras();
+            if(extras != null){
+                position = extras.getInt("position");
+                viewModel.setAzurirajPivo(true);
+                DohvatiPodatkezaPivo(position);
+            }
+        }
+
+    naziv_proizvoda.setText(viewModel.getNazivPiva());
+        cijena_proizvoda.setText(String.valueOf(viewModel.getCijenaPiva()));
+        okus.setText(viewModel.getOkusPiva());
+        kolicina.setText(String.valueOf(viewModel.getLitraPiva()));
+        Picasso.with(this).load(viewModel.getSlika()).memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE).into(slika);
 
 
         binding.button8.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +146,8 @@ public class AddBeers extends AppCompatActivity {
                 viewModel.setCijenaPiva(Double.parseDouble(cijena_proizvoda.getText().toString()));
                 viewModel.setLitraPiva(Double.parseDouble(kolicina.getText().toString()));
                 viewModel.setOkusPiva(okus.getText().toString());
-                if(viewModel.ProvjeriPodatke()) {
+                if (viewModel.ProvjeriPodatke()) {
+                    boolean slanje = false;
                     requestQueue = Volley.newRequestQueue(getApplicationContext());
                     pozicija = (String) spinner1.getSelectedItem();
                     if (pozicija.equals("Svijetla")) {
@@ -140,31 +162,63 @@ public class AddBeers extends AppCompatActivity {
 
 
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("id_lokacija","8");
-                    params.put("naziv_proizvoda", viewModel.getNazivPiva());
-                    params.put("cijena_proizvoda", String.valueOf(viewModel.getCijenaPiva()));
-                    params.put("vrsta_proizvoda", viewModel.getOkusPiva());
-                    params.put("kolicina_proizvoda", String.valueOf(viewModel.getLitraPiva()));
-                    params.put("id_kategorija", pozicija_int.toString());
-                    params.put("slika",viewModel.getSlikaZaSlanje());
-
-                    SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
-                    slanjePodataka.setParametri(params);
-                    slanjePodataka.sendData(getApplicationContext(), requestQueue);
-
-                    requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
-                        @Override
-                        public void onRequestFinished(Request<Object> request) {
-                            String odgovor = slanjePodataka.getOdgovor();
-                            if (odgovor.equals("Succesfully added a beer")) {
-                                Toast toast = Toast.makeText(getApplicationContext(), "Successfully added a beer! ", Toast.LENGTH_LONG);
-                                toast.show();
-
+                    if (viewModel.isAzurirajPivo()) {
+                        if (viewModel.Promjena(pozicija_int)) {
+                            slanje = true;
+                            params.put("id_proizvoda",viewModel.getIdPivo());
+                            params.put("id_lokacija", "8");
+                            params.put("naziv_proizvoda", viewModel.getNazivPiva());
+                            params.put("cijena_proizvoda", String.valueOf(viewModel.getCijenaPiva()));
+                            params.put("vrsta_proizvoda", viewModel.getOkusPiva());
+                            params.put("kolicina_proizvoda", String.valueOf(viewModel.getLitraPiva()));
+                            params.put("id_kategorija", pozicija_int.toString());
+                            if (viewModel.getSlikaZaSlanje() != "") {
+                                params.put("slika", viewModel.getSlikaZaSlanje());
                             }
+                            sendUrl = "https://beervana2020.000webhostapp.com/test/AzurirajProizvod.php";
+                        } else {
+                            Toast toast = Toast.makeText(getApplicationContext(), "Didn't make change!", Toast.LENGTH_LONG);
+                            toast.show();
+                            return;
                         }
-                    });
+                    } else {
+                        slanje = true;
+                        params.put("id_proizvoda",viewModel.getIdPivo());
+                        params.put("id_lokacija", "8");
+                        params.put("naziv_proizvoda", viewModel.getNazivPiva());
+                        params.put("cijena_proizvoda", String.valueOf(viewModel.getCijenaPiva()));
+                        params.put("vrsta_proizvoda", viewModel.getOkusPiva());
+                        params.put("kolicina_proizvoda", String.valueOf(viewModel.getLitraPiva()));
+                        params.put("id_kategorija", pozicija_int.toString());
+                        //if (viewModel.getSlikaZaSlanje() != "") {
+                            params.put("slika", viewModel.getSlikaZaSlanje());
+                        //}
+                        sendUrl = "https://beervana2020.000webhostapp.com/test/addBeers.php";
+                    }
+                    if (slanje) {
+                        SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
+                        slanjePodataka.setParametri(params);
+                        slanjePodataka.sendData(getApplicationContext(), requestQueue);
+
+                        requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+                            @Override
+                            public void onRequestFinished(Request<Object> request) {
+                                String odgovor = slanjePodataka.getOdgovor();
+                                if (odgovor.equals("Succesfully added a beer")) {
+                                    Toast toast = Toast.makeText(getApplicationContext(), "Successfully added a beer! ", Toast.LENGTH_LONG);
+                                    toast.show();
+
+                                }
+                                if (odgovor.equals("Succesfully updated a beer")) {
+                                    Toast toast = Toast.makeText(getApplicationContext(), "Successfully updated a beer! ", Toast.LENGTH_LONG);
+                                    toast.show();
+
+                                }
+                            }
+                        });
+                    }
+                    //PostaviGreske();
                 }
-                //PostaviGreske();
             }
         });
 
@@ -182,6 +236,18 @@ public class AddBeers extends AppCompatActivity {
         */
 
         //
+    }
+
+    private void DohvatiPodatkezaPivo(int position) {
+        viewModel.pivoPrijeAzuriranja = BeerCatalogActivity.BeerArrayList.get(position);
+        viewModel.setIdPivo(BeerCatalogActivity.BeerArrayList.get(position).getId_proizvod());
+        viewModel.setNazivPiva(BeerCatalogActivity.BeerArrayList.get(position).getNaziv_proizvoda());
+        viewModel.setCijenaPiva(Double.parseDouble(BeerCatalogActivity.BeerArrayList.get(position).getCijena_proizvoda()));
+        viewModel.setOkusPiva(BeerCatalogActivity.BeerArrayList.get(position).getOkus());
+        viewModel.setLitraPiva(Double.parseDouble(BeerCatalogActivity.BeerArrayList.get(position).getLitara()));
+        viewModel.setIdKategorija(BeerCatalogActivity.BeerArrayList.get(position).getId_kategorija());
+        Uri slikaZaSlanje = Uri.parse(BeerCatalogActivity.BeerArrayList.get(position).getSlika());
+        viewModel.setSlika(slikaZaSlanje);
     }
 
     @Override
