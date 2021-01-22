@@ -18,6 +18,7 @@ import com.example.beervana.Statistika.StatistikaViewModel;
 import com.example.beervana.TastingMenu.TastingMenuActivity;
 import com.example.webservice.DohvatPodataka;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -30,8 +31,9 @@ public class GlavniIzbornikClient extends BaseActivity {
     DohvatPodataka dohvatPodataka;
     RequestQueue requestQueue;
     String urlStatistika1 = "https://beervana2020.000webhostapp.com/test/DohvatStatistikaOcjena.php";
+    String urlStatistika2 = "https://beervana2020.000webhostapp.com/test/DohvatStatistikaOmiljena.php";
     StatistikaViewModel model;
-    GraphView graphOcjena;
+    GraphView graphOcjena,graphOmiljena;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +69,8 @@ public class GlavniIzbornikClient extends BaseActivity {
         });
         graphOcjena = (GraphView) findViewById(R.id.graphOcjena);
         graphOcjena.setVisibility(View.VISIBLE);
+        graphOmiljena = (GraphView) findViewById(R.id.graphOmiljena);
+        graphOmiljena.setVisibility(View.VISIBLE);
         model = new ViewModelProvider(this).get(StatistikaViewModel.class);
         ReceiveData();
     }
@@ -80,22 +84,43 @@ public class GlavniIzbornikClient extends BaseActivity {
         params.put("id_lokacija", "8");
         dohvatPodataka.setParametri(params);
         dohvatPodataka.retrieveData(this,requestQueue);
+
         requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
             @Override
             public void onRequestFinished(Request<Object> request) {
                 JSONObject odgovor = dohvatPodataka.getOdgovor();
+                String url = dohvatPodataka.getSendUrl();
                 if (odgovor != null) {
-                    model.PostaviPodatke(odgovor);
-                    PostaviGrafStatOcjena();
+                    if(url.contains("Ocjena")){
+                        model.PostaviPodatke(odgovor);
+                        PostaviGrafStatOcjena();
+                        dohvatPodataka.setSendUrl(urlStatistika2);
+                        dohvatPodataka.retrieveData(GlavniIzbornikClient.this,requestQueue);
+                    }else{
+                        model.PostaviPodatke(odgovor);
+                        PostaviGrafStatOmiljena();
+                    }
+
                 }
             }
         });
 
     }
 
+    private void PostaviGrafStatOmiljena() {
+        LineGraphSeries <DataPoint> series  = new LineGraphSeries<>(model.getPodaci());
+        graphOmiljena.addSeries(series);
+        graphOmiljena.getGridLabelRenderer().setHorizontalAxisTitle("Month");
+        graphOmiljena.getGridLabelRenderer().setVerticalAxisTitle("Omiljena Lokacija");
+        graphOmiljena.getGridLabelRenderer().setPadding(55);
+    }
+
     private void PostaviGrafStatOcjena() {
         LineGraphSeries <DataPoint> series  = new LineGraphSeries<>(model.getPodaci());
         graphOcjena.addSeries(series);
+        graphOcjena.getGridLabelRenderer().setHorizontalAxisTitle("Month");
+        graphOcjena.getGridLabelRenderer().setVerticalAxisTitle("Average Grade");
+        graphOcjena.getGridLabelRenderer().setPadding(55);
     }
 
     public void openActivity2(){

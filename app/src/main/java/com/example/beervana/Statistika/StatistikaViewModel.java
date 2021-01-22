@@ -13,6 +13,7 @@ public class StatistikaViewModel extends ViewModel {
     ArrayList<DataPoint> podaciArray = new ArrayList<>();
     StatistikaLogika logika = new StatistikaLogika();
     public void PostaviPodatke(JSONObject object){
+        podaciArray.clear();
         podaciArray.addAll(logika.parsiranjePodatakaStatistika(object));
         podaci = new DataPoint[podaciArray.size()];
         for(int i = 0;i<podaciArray.size();i++){

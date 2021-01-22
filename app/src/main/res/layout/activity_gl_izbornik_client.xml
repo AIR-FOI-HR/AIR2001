@@ -220,7 +220,7 @@
             android:layout_width="251dp"
             android:layout_height="35dp"
             android:layout_marginEnd="120dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="70dp"
             android:text="My statistics"
             android:textColor="@color/black"
             android:background="@drawable/gradient1"
@@ -230,14 +230,27 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <com.jjoe64.graphview.GraphView
+            android:id="@+id/graphOmiljena"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintTop_toBottomOf="@id/textView10"
+            app:layout_constraintBottom_toTopOf="@id/graphOcjena"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.jjoe64.graphview.GraphView
             android:id="@+id/graphOcjena"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginBottom="30dp"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintBottom_toTopOf="@id/textView11"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_marginEnd="15dp"
+            app:layout_constraintBottom_toTopOf="@id/divider2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <View
             android:id="@+id/divider2"
