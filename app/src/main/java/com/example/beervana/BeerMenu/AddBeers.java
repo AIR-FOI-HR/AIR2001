@@ -190,9 +190,9 @@ public class AddBeers extends AppCompatActivity {
                         params.put("vrsta_proizvoda", viewModel.getOkusPiva());
                         params.put("kolicina_proizvoda", String.valueOf(viewModel.getLitraPiva()));
                         params.put("id_kategorija", pozicija_int.toString());
-                        //if (viewModel.getSlikaZaSlanje() != "") {
+                        if (viewModel.getSlikaZaSlanje() != "") {
                             params.put("slika", viewModel.getSlikaZaSlanje());
-                        //}
+                        }
                         sendUrl = "https://beervana2020.000webhostapp.com/test/addBeers.php";
                     }
                     if (slanje) {
@@ -207,11 +207,13 @@ public class AddBeers extends AppCompatActivity {
                                 if (odgovor.equals("Succesfully added a beer")) {
                                     Toast toast = Toast.makeText(getApplicationContext(), "Successfully added a beer! ", Toast.LENGTH_LONG);
                                     toast.show();
+                                    Open();
 
                                 }
                                 if (odgovor.equals("Succesfully updated a beer")) {
                                     Toast toast = Toast.makeText(getApplicationContext(), "Successfully updated a beer! ", Toast.LENGTH_LONG);
                                     toast.show();
+                                    Open();
 
                                 }
                             }
@@ -236,6 +238,11 @@ public class AddBeers extends AppCompatActivity {
         */
 
         //
+    }
+
+    private void Open() {
+        Intent intent = new Intent(this, BeerCatalogActivity.class);
+        startActivity(intent);
     }
 
     private void DohvatiPodatkezaPivo(int position) {
