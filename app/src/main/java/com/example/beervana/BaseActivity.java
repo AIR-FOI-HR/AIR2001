@@ -67,5 +67,30 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
+    public void blockToolbar(){
+        ImageView mImageView = (ImageView)findViewById(R.id.settings_icon);
+        mImageView.setEnabled(false);
+
+        ImageView mImageView1 = (ImageView)findViewById(R.id.user_icon);
+        mImageView1.setEnabled(false);
+
+        ImageView imageViewPretrazivanje = (ImageView)findViewById(R.id.search_icon);
+        imageViewPretrazivanje.setEnabled(false);
+        pretrazivanje = (EditText) findViewById(R.id.txtpretrazivanje);
+        pretrazivanje.setEnabled(false);
+    }
+    public void unBlockToolbar(){
+        ImageView mImageView = (ImageView)findViewById(R.id.settings_icon);
+        mImageView.setEnabled(true);
+
+        ImageView mImageView1 = (ImageView)findViewById(R.id.user_icon);
+        mImageView1.setEnabled(true);
+
+        ImageView imageViewPretrazivanje = (ImageView)findViewById(R.id.search_icon);
+        imageViewPretrazivanje.setEnabled(true);
+        pretrazivanje = (EditText) findViewById(R.id.txtpretrazivanje);
+        pretrazivanje.setEnabled(true);
+    }
+
 
 }

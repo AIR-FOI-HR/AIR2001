@@ -21,6 +21,7 @@ import com.braintreepayments.api.models.PaymentMethodNonce;
 import com.example.beervana.BaseActivity;
 import com.example.beervana.EventMenu.EventCatalogActivity;
 import com.example.beervana.EventMenu.EventCatalogRecyclerAdapter;
+import com.example.beervana.GlavniIzbornikClient;
 import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -73,6 +74,7 @@ public class PaymentActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         initToolbar();
+        blockToolbar();
 
         df = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -127,6 +129,7 @@ public class PaymentActivity extends BaseActivity {
             statusPretplate.setText("Inactive");
         } else{
             statusPretplate.setText("Active");
+            unBlockToolbar();
         }
     }
 
@@ -178,9 +181,11 @@ public class PaymentActivity extends BaseActivity {
                 requestQueue.addRequestFinishedListener(request -> {
                     String odgovor = slanjePodataka.getOdgovor();
                     if (odgovor.equals("Succesfully updated your payment!")) {
+                        //statusPretplate.setText("Active");
+                        //unBlockToolbar();
                         Toast toast = Toast.makeText(getApplicationContext(), "Succesfully updated your payment!", Toast.LENGTH_LONG);
                         toast.show();
-
+                        posaljiNaIzbornik();
                     }
                 });
 
@@ -217,6 +222,11 @@ public class PaymentActivity extends BaseActivity {
         queue.add(stringRequest);
 
 
+    }
+
+    private void posaljiNaIzbornik() {
+        Intent intent = new Intent(this, GlavniIzbornikClient.class);
+        startActivity(intent);
     }
 
     private class getToken extends AsyncTask {
