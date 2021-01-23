@@ -86,9 +86,7 @@ public class GlavniIzbornikUser extends BaseActivity {
         sp = getSharedPreferences("login", MODE_PRIVATE);
         KorisnikLongituda = sp.getFloat("Longitude", (float) 0.0);
         KorisnikLatituda = sp.getFloat("Latitude", (float) 0.0);
-        //TODO promijeniti nazad na dinamičke podatke
-        //idKorisnika = sp.getInt("id_korisnik", 20);
-        idKorisnika = 20;
+        idKorisnika = sp.getInt("id_korisnik", 0);
         if (viewModel.getLokacijaNajnovija() != null) {
             PostaviPodatkeNajnovijaPivovara();
         }

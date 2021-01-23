@@ -14,6 +14,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
 import com.example.beervana.BeerMenu.BeerCatalogActivity;
 import com.example.beervana.BeerplacePage.Modularnost.AddPromotionsActivity;
+import com.example.beervana.BeerplacePage.Modularnost.PromotionCatalogActivity;
 import com.example.beervana.EventMenu.EventCatalogActivity;
 import com.example.beervana.R;
 import com.example.beervana.TastingMenu.TastingMenuActivity;
@@ -68,6 +69,9 @@ public class BeerplaceHomepageActivityNew extends BaseActivity {
         ImageView pImageView = (ImageView) findViewById(R.id.imageView17);
         pImageView.setOnClickListener(v -> openActivityReviews());
 
+        ImageView promImageView = (ImageView) findViewById(R.id.imageViewPromocija);
+        promImageView.setOnClickListener(v -> openActivityPromotionCatalog());
+
         addToFavorites = (ImageView) findViewById(R.id.addToFavorites);
         addToFavorites.setOnClickListener(v -> AddToFavoriteLocations());
 
@@ -83,12 +87,15 @@ public class BeerplaceHomepageActivityNew extends BaseActivity {
         ocjena = (TextView) findViewById(R.id.textView18);
         ocjena.setText(ocjena_lokacije);
 
-        promocije = findViewById(R.id.promocije);
-        promocije.setOnClickListener(v -> AddPromos());
 
         CheckIfFavoriteLocation();
 
 
+    }
+
+    private void openActivityPromotionCatalog() {
+        Intent intent = new Intent(this, PromotionCatalogActivity.class).putExtra("id_lokacija", id_lokacija);
+        startActivity(intent);
     }
 
     private void AddPromos() {

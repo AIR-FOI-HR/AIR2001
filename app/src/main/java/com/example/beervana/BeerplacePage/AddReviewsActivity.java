@@ -3,6 +3,7 @@ package com.example.beervana.BeerplacePage;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -42,7 +43,8 @@ public class AddReviewsActivity extends BaseActivity {
     String sendUrl = "https://beervana2020.000webhostapp.com/test/addReviews.php";
 
     AddReviewsActivityBinding binding;
-
+    SharedPreferences sp;
+    String idKorisnik;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -52,6 +54,9 @@ public class AddReviewsActivity extends BaseActivity {
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
+        sp = getSharedPreferences("login", MODE_PRIVATE);
+
+        idKorisnik = Integer.toString(sp.getInt("id_korisnik", 0));
         if(extras.containsKey("id_lokacija")){
             idLokacija = extras.getString("id_lokacija");
         } else{
@@ -99,8 +104,7 @@ public class AddReviewsActivity extends BaseActivity {
                             trebaSlati = false;
                             Toast toast = Toast.makeText(getApplicationContext(), "You didn't make any changes!", Toast.LENGTH_LONG);
                             toast.show();
-                            //TODO promijeniti sa dinamičkim podatkom
-                            startActivity(new Intent(getApplicationContext(), ReviewsActivity.class).putExtra("id_korisnika","50"));
+                            startActivity(new Intent(getApplicationContext(), ReviewsActivity.class).putExtra("id_korisnika",idKorisnik));
                         }
                     }else{
                     /*
@@ -109,7 +113,7 @@ public class AddReviewsActivity extends BaseActivity {
                     params.put("ocjena", String.valueOf(viewModel.getOcjena()));
                     params.put("komentar", viewModel.getKomentar());
                     */
-                        params.put("id_korisnik", "20");
+                        params.put("id_korisnik", idKorisnik);
                         if(isLokacija)
                             params.put("id_lokacija", String.valueOf(viewModel.getIdLokacija()));
                         else
@@ -132,8 +136,7 @@ public class AddReviewsActivity extends BaseActivity {
                                 }else if(odgovor.equals("Succesfully updated your review!")){
                                     Toast toast = Toast.makeText(getApplicationContext(), "Succesfully updated your review!", Toast.LENGTH_LONG);
                                     toast.show();
-                                    //TODO promijeniti sa dinamičkim podatkom
-                                    startActivity(new Intent(getApplicationContext(), ReviewsActivity.class).putExtra("id_korisnika","50"));
+                                    startActivity(new Intent(getApplicationContext(), ReviewsActivity.class).putExtra("id_korisnika",idKorisnik));
                                 }
                             }
                         });

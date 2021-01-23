@@ -18,6 +18,7 @@ import com.example.beervana.BeerplacePage.AddReviewsActivity;
 import com.example.beervana.R;
 import com.example.beervana.SettingsActivity;
 import com.example.webservice.SlanjePodataka;
+import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -61,7 +62,7 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
             beerTaste.setText("Beer taste: " + BeerCatalogActivity.BeerArrayList.get(position).getOkus());
             beerLitres.setText("Beer litres: " + BeerCatalogActivity.BeerArrayList.get(position).getLitara());
             String imageUri = BeerCatalogActivity.BeerArrayList.get(position).getSlika();
-            Picasso.with(this).load(imageUri).into(beerImage);
+            Picasso.with(this).load(imageUri).memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE).into(beerImage);
             beerId = BeerCatalogActivity.BeerArrayList.get(position).getId_proizvod();
         } else {
             beerName1.setText(intent.getExtras().getString("naziv_proizvoda"));
@@ -69,7 +70,7 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
             beerTaste.setText("Beer taste: " + intent.getExtras().getString("okus"));
             beerLitres.setText("Beer litres: " + intent.getExtras().getString("litara"));
             String imageUri = intent.getExtras().getString("slika_proizvoda");
-            Picasso.with(this).load(imageUri).into(beerImage);
+            Picasso.with(this).load(imageUri).memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE).into(beerImage);
             beerId = intent.getExtras().getString("id_proizvod");
         }
         addToFavorites = (ImageView) findViewById(R.id.addToFavorites);

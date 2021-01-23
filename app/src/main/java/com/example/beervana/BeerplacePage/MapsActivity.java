@@ -94,7 +94,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (mapaSpremna && podaciSpremni){
             LatLng Beerplace = new LatLng(Double.parseDouble(koordinate.get(0)), Double.parseDouble(koordinate.get(1)));
             map.addMarker(new MarkerOptions().position(Beerplace).title("Beerplace"));
-            map.moveCamera(CameraUpdateFactory.newLatLng(Beerplace));
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(Beerplace,16.0F));
+
         }
     }
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.BeerMenu.BeerCatalogActivity;
+import com.example.beervana.BeerplacePage.Modularnost.PromotionCatalogActivity;
 import com.example.beervana.EventMenu.EventCatalogActivity;
 import com.example.beervana.EventMenu.EventCatalogRecyclerAdapter;
 import com.example.beervana.Statistika.StatistikaViewModel;
@@ -34,11 +36,15 @@ public class GlavniIzbornikClient extends BaseActivity {
     String urlStatistika2 = "https://beervana2020.000webhostapp.com/test/DohvatStatistikaOmiljena.php";
     StatistikaViewModel model;
     GraphView graphOcjena,graphOmiljena;
+    SharedPreferences sp;
+    String idLokacija;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gl_izbornik_client);
         initToolbar();
+        sp = getSharedPreferences("login", MODE_PRIVATE);
+        idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
         Button button = (Button) findViewById(R.id.button7);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +73,13 @@ public class GlavniIzbornikClient extends BaseActivity {
                 OpenActivityTastingMeni();
             }
         });
+        Button buttonPromocije = (Button) findViewById(R.id.button5);
+        buttonPromocije.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenActivityPromotionCatalog();
+            }
+        });
         graphOcjena = (GraphView) findViewById(R.id.graphOcjena);
         graphOcjena.setVisibility(View.VISIBLE);
         graphOmiljena = (GraphView) findViewById(R.id.graphOmiljena);
@@ -75,13 +88,14 @@ public class GlavniIzbornikClient extends BaseActivity {
         ReceiveData();
     }
 
+
+
     private void ReceiveData() {
         requestQueue = Volley.newRequestQueue(this);
         dohvatPodataka = new DohvatPodataka();
         dohvatPodataka.setSendUrl(urlStatistika1);
         Map<String, String> params = new HashMap<String, String>();
-        //TODO Zamjeni sa pravom lokacijom
-        params.put("id_lokacija", "8");
+        params.put("id_lokacija", idLokacija);
         dohvatPodataka.setParametri(params);
         dohvatPodataka.retrieveData(this,requestQueue);
 
@@ -139,7 +153,10 @@ public class GlavniIzbornikClient extends BaseActivity {
         Intent intent = new Intent(this, TastingMenuActivity.class);
         startActivity(intent);
     }
-
+    private void OpenActivityPromotionCatalog() {
+        Intent intent = new Intent(this, PromotionCatalogActivity.class);
+        startActivity(intent);
+    }
 
 
 }

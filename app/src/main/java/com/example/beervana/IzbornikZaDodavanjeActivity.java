@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.beervana.BeerMenu.AddBeers;
+import com.example.beervana.BeerplacePage.Modularnost.AddPromotionsActivity;
 import com.example.beervana.EventMenu.AddEventActivity;
 import com.example.beervana.TastingMenu.DodavanjeDegustacijskihMeniaActivity;
 
@@ -23,10 +24,10 @@ public class IzbornikZaDodavanjeActivity extends BaseActivity{
 
         Button button1 = (Button) findViewById(R.id.actionAddEvent);
         button1.setOnClickListener(v -> openAddEvents());
-        /*
+
         Button button3 = (Button) findViewById(R.id.actionAddPromo);
         button3.setOnClickListener(v -> openAddPromo());
-         */
+
 
         Button button4 = (Button) findViewById(R.id.actionAddTastingMenu);
         button4.setOnClickListener(v -> openAddTastingMenu());
@@ -46,11 +47,11 @@ public class IzbornikZaDodavanjeActivity extends BaseActivity{
         startActivity(intent);
     }
 
-    /*
+
     public void openAddPromo(){
-        Intent intent = new Intent(this, AddPromoActivity.class);
+        Intent intent = new Intent(this, AddPromotionsActivity.class);
         startActivity(intent);
-    }*/
+    }
 
 
     public void openAddTastingMenu(){

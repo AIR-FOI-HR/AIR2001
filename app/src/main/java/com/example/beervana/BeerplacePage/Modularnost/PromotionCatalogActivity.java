@@ -60,11 +60,10 @@ public class PromotionCatalogActivity extends BaseActivity implements PromotionC
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         sp = getSharedPreferences("login", MODE_PRIVATE);
+        korisnik = sp.getInt("id_uloga",0);
+        korisnikId = sp.getInt("id_korisnik", 0);
         if (extras != null) {
             idLokacija = extras.getString("id_lokacija");
-            korisnik = sp.getInt("id_uloga",0);
-            //TODO staviti default na 0
-            korisnikId = sp.getInt("id_korisnik", 50);
         } else {
             idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
         }
@@ -109,11 +108,8 @@ public class PromotionCatalogActivity extends BaseActivity implements PromotionC
 
     @Override
     public void onPromotionClick(int position) {
-        //TODO ukloniti i ovu linuju
-        Modules.getInstance();
+
         List<BaseClassForModules> modulesList = Modules.getModulesList();
-        //TODO Ukloniti ovu liniju
-        korisnikId = 50;
         for(int i = 0; i<modulesList.size();i++){
             if(modulesList.get(i).getTip().equals(promotionDataList.get(position).getTip_promocije())){
                 pozicija = String.valueOf(i);
