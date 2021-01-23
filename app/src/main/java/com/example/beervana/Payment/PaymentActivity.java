@@ -170,7 +170,6 @@ public class PaymentActivity extends BaseActivity {
             }
             else{
                 Exception error = (Exception) data.getSerializableExtra(DropInActivity.EXTRA_ERROR);
-                Log.d("EDMT_ERROR", error.toString());
             }
         }
     }
@@ -238,6 +237,7 @@ public class PaymentActivity extends BaseActivity {
     private void posaljiNaIzbornik() {
         Intent intent = new Intent(this, GlavniIzbornikClient.class);
         startActivity(intent);
+        finish();
     }
 
     private class getToken extends AsyncTask {

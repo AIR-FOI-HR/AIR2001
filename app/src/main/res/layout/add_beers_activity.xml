@@ -29,24 +29,25 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Beer name"
+        android:hint="Beer name"
         app:layout_constraintTop_toBottomOf="@id/imageView11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:ems="10"
-        android:layout_marginTop="25sp"
-        android:inputType="textPersonName"
-        android:hint="Beer type"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <EditText
+            android:id="@+id/editTextTextPersonName3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Beer taste"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal" />
 
-    <EditText
+        <EditText
         android:id="@+id/editTextTextPersonName4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,7 +55,7 @@
         android:ems="10"
         android:layout_marginTop="25sp"
         android:inputType="numberDecimal"
-        android:hint="Beer size"
+        android:hint="Beer quantity in litres"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

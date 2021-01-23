@@ -282,6 +282,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         toast.show();
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
+        finishAffinity();
     }
 
     @Override

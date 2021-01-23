@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.BeerMenu.BeerCatalogActivity;
+import com.example.beervana.BeerMenu.PrikazZaPodatkeOPivuActivity;
 import com.example.beervana.BeerplacePage.BeerplaceHomepageActivityNew;
 import com.example.modulzamodule.BeerLogic;
 import com.example.modulzamodule.ModelPodatakaPivoSOcjenom;
@@ -78,7 +80,7 @@ public class ViewMyFavouriteBeersActivity extends BaseActivity implements Activi
 
     @Override
     public void onBeerClick(int position) {
-        startActivity(new Intent(getApplicationContext(), BeerplaceHomepageActivityNew.class)
+        startActivity(new Intent(getApplicationContext(), PrikazZaPodatkeOPivuActivity.class)
                 .putExtra("id_lokacija",pronadjenaPiva.get(position).getId_lokacije()));
     }
 }

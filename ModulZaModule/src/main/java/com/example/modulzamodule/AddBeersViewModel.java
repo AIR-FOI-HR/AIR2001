@@ -47,7 +47,7 @@ public class AddBeersViewModel extends ViewModel {
     private String errLitra;
     private String id_Lokacija;
     boolean azurirajPivo = false;
-    Beer pivoPrijeAzuriranja;
+    public Beer pivoPrijeAzuriranja;
 
     public boolean isAzurirajPivo() {
         return azurirajPivo;

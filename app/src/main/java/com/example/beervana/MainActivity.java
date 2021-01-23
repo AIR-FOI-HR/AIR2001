@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         if (ActivityCompat.checkSelfPermission(MainActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             //When permission granted
-           // getLocation();
+            //getLocation();
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER,0,0,this);
         }
@@ -238,11 +238,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private void openGlavniIzbornikKlijent() {
         Intent intent = new Intent(this,GlavniIzbornikClient.class);
         startActivity(intent);
+        finish();
     }
 
     private void openGlavniIzbornikKorisnik() {
         Intent intent = new Intent(this,GlavniIzbornikUser.class);
         startActivity(intent);
+        finish();
     }
 
     private void getLocation() {
@@ -273,17 +275,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     public void openRegistration(){
         Intent intent = new Intent(this,RegisterActivity.class);
-        startActivity(intent);
-    }
-
-    public void openMainMenu(){
-        Intent intent = new Intent(this,GlavniIzbornikClient.class);
-        startActivity(intent);
-    }
-
-    public void openDegMenu()
-    {
-        Intent intent = new Intent(this, DodavanjeDegustacijskihMeniaActivity.class);
         startActivity(intent);
     }
 
@@ -375,5 +366,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private void openPlacanje() {
         Intent intent = new Intent(this, PaymentActivity.class);
         startActivity(intent);
+        finish();
     }
 }
