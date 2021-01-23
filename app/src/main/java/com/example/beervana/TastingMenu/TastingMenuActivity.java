@@ -118,10 +118,16 @@ public class TastingMenuActivity extends BaseActivity implements RecyclerTasting
                     new Intent(getApplicationContext(),
                             TastingMenuDetailsActivity.class
                     ).putExtra(EXTRA_MESSAGE, tastingMenuArray.get(position).getName())
+                            .putExtra("menu name",
+                                    tastingMenuArray
+                                            .get(position)
+                                            .getName())
                             .putExtra("menuId",
                                     tastingMenuArray
                                             .get(position)
-                                            .getId()));
+                                            .getId())
+                            .putExtra("menuDescription", tastingMenuArray
+                                    .get(position).getDescription()));
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
             ProgressDialog progressDialog = new ProgressDialog(view.getContext());

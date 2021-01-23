@@ -152,92 +152,109 @@
             app:layout_constraintStart_toEndOf="@+id/beerImage"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/addtofavorites" />
-
-        <ImageView
-            android:id="@+id/userPicture1"
-            android:layout_width="47dp"
-            android:layout_height="61dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="28dp"
-            app:layout_constraintEnd_toStartOf="@+id/userReviewTextView1"
-            app:layout_constraintHorizontal_bias="0.04"
+        <TextView
+            android:id="@+id/komentar"
+            android:layout_width="202dp"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_marginTop="30sp"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toStartOf="@+id/ocjena"
+            app:layout_constraintHorizontal_bias="0.56"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView24"
-            app:srcCompat="@drawable/ic_user_icon" />
+         />
 
         <TextView
-            android:id="@+id/userReviewTextView1"
-            android:layout_width="46dp"
-            android:layout_height="62dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="32dp"
-            android:text="Review"
-            android:textColor="@color/black"
-            android:textSize="14dp"
-            app:layout_constraintEnd_toStartOf="@+id/commentTextView1"
-            app:layout_constraintTop_toBottomOf="@+id/imageView24" />
-
-        <TextView
-            android:id="@+id/commentTextView1"
-            android:layout_width="222dp"
-            android:layout_height="62dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="24dp"
-            android:text="Comment"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView24" />
+            android:id="@+id/ocjena"
+            android:layout_width="wrap_content"
+            android:layout_height="73dp"
+            android:text="TextView12"
+            android:textColor="@android:color/black"
+            android:textSize="40sp"
+            android:layout_marginTop="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/zvijezda"
+            app:layout_constraintTop_toBottomOf="@+id/imageView24"
+            app:layout_constraintVertical_bias="0.289" />
 
         <ImageView
-            android:id="@+id/userPicture2"
-            android:layout_width="47dp"
-            android:layout_height="61dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="28dp"
-            app:layout_constraintEnd_toStartOf="@+id/userReviewTextView2"
-            app:layout_constraintHorizontal_bias="0.04"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userPicture1"
-            app:srcCompat="@drawable/ic_user_icon" />
-
-        <TextView
-            android:id="@+id/userReviewTextView2"
-            android:layout_width="46dp"
-            android:layout_height="62dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="32dp"
-            android:text="Review"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/commentTextView2"
-            app:layout_constraintTop_toBottomOf="@+id/userReviewTextView1" />
-
-        <TextView
-            android:id="@+id/commentTextView2"
-            android:layout_width="222dp"
-            android:layout_height="62dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:text="Comment"
-            android:textColor="@color/black"
-            android:textSize="14sp"
+            android:id="@+id/zvijezda"
+            android:layout_width="63dp"
+            android:layout_height="49dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/imageView24"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/commentTextView1" />
+            android:layout_marginTop="15sp"
+            app:srcCompat="@drawable/ic_star_icon" />
+
+        <TextView
+            android:id="@+id/datum"
+            android:layout_width="197dp"
+            android:layout_height="29dp"
+            android:text="TextView"
+            android:layout_marginTop="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.153"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/komentar" />
+
+        <TextView
+            android:id="@+id/komentar2"
+            android:layout_width="202dp"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_marginTop="30sp"
+            android:textColor="@android:color/black"
+
+            app:layout_constraintEnd_toStartOf="@+id/ocjena2"
+            app:layout_constraintHorizontal_bias="0.56"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/datum"/>
+
+        <TextView
+            android:id="@+id/ocjena2"
+            android:layout_width="wrap_content"
+            android:layout_height="73dp"
+            android:text="TextView12"
+            android:textColor="@android:color/black"
+            android:textSize="40sp"
+            android:layout_marginTop="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/zvijezda2"
+            app:layout_constraintTop_toBottomOf="@+id/datum"
+            app:layout_constraintVertical_bias="0.289" />
+
+        <ImageView
+            android:id="@+id/zvijezda2"
+            android:layout_width="63dp"
+            android:layout_height="49dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/datum"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20sp"
+            app:srcCompat="@drawable/ic_star_icon" />
+
+        <TextView
+            android:id="@+id/datum2"
+            android:layout_width="197dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="30sp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.153"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/komentar2" />
 
         <Button
             android:id="@+id/allReviews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:text="@string/see_all_beer_reviews"
             android:textColor="@color/black"
             android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/divider11"
+            app:layout_constraintTop_toBottomOf="@+id/datum2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.925"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/commentTextView2" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <View
             android:id="@+id/divider11"
