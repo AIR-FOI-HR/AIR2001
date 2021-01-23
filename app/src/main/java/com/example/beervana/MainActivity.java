@@ -15,6 +15,9 @@ import android.os.Bundle;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.Payment.Payment;
+import com.example.beervana.Payment.PaymentActivity;
+import com.example.beervana.Payment.PaymentLogika;
 import com.example.beervana.TastingMenu.DodavanjeDegustacijskihMeniaActivity;
 import com.example.beervana.databinding.ActivityMainBinding;
 import com.example.webservice.DohvatPodataka;
@@ -47,8 +50,13 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.threeten.bp.LocalDate;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -57,10 +65,12 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity implements LocationListener {
 
     private String sendUrl = "https://beervana2020.000webhostapp.com/test/login_pokusaj.php";
+    private static final String url1 = "https://beervana2020.000webhostapp.com/test/getPayment.php";
+
     private Boolean gotLocation = false;
     protected LocationManager locationManager;
     FusedLocationProviderClient fusedLocationProviderClient;
-    private RequestQueue requestQueue;
+    private RequestQueue requestQueue, requestQueueDatum;
     private static final String TAG = MainActivity.class.getSimpleName();
     int success;
     private SharedPreferences.Editor editor;
@@ -76,6 +86,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private TextView errorLozinka;
     private TextView signUp;
     ActivityMainBinding binding;
+    String date;
+    DateFormat df;
+    String stariDatum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -211,7 +224,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             openGlavniIzbornikKorisnik();
         }
         else{
-            openGlavniIzbornikKlijent();
+            df = new SimpleDateFormat("yyyy-MM-dd");
+
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.MONTH, -1);
+            Date result = cal.getTime();
+            date = df.format(result);
+            String id_korisnik = String.valueOf(sp.getInt("id_korisnik", 50));
+            checkStatus(date, id_korisnik);
+
         }
     }
 
@@ -312,5 +333,48 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 e.printStackTrace();
             }
         }
+    }
+
+    //provjera pretplate
+    private void checkStatus(String datum1, String id_korisnik) {
+        requestQueueDatum = Volley.newRequestQueue(getApplicationContext());
+        PaymentLogika paymentLogika = new PaymentLogika();
+
+        DohvatPodataka dohvatPodataka = new DohvatPodataka();
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("id_korisnik", id_korisnik);
+        dohvatPodataka.setParametri(params);
+        dohvatPodataka.setSendUrl(url1);
+        dohvatPodataka.retrieveData(getApplicationContext(), requestQueueDatum);
+
+        requestQueueDatum.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+            @Override
+            public void onRequestFinished(Request<Object> request) {
+                JSONObject odgovor = dohvatPodataka.getOdgovor();
+                if (odgovor != null) {
+                    Payment payment = paymentLogika.parsiranjePodatakaDatuma(odgovor);
+                    stariDatum = payment.datum;
+                    if(stariDatum.equals("null")){
+                        stariDatum = "1998-12-02";
+                    }
+                    ProvjeriDatum(stariDatum, datum1);
+                }
+            }
+        });
+
+    }
+    private void ProvjeriDatum(String stariDatum, String datum) {
+        LocalDate datumPretplate = LocalDate.parse(datum);
+        LocalDate stariDatum2 = LocalDate.parse(stariDatum);
+        if(stariDatum2.isBefore(datumPretplate)){
+            openPlacanje();
+        } else{
+            openGlavniIzbornikKlijent();
+        }
+    }
+
+    private void openPlacanje() {
+        Intent intent = new Intent(this, PaymentActivity.class);
+        startActivity(intent);
     }
 }
