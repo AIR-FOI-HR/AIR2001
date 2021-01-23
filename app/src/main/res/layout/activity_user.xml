@@ -34,7 +34,7 @@
     <TextView
         android:id="@+id/password1"
         android:layout_width="105dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="36dp"
         android:text="Password: "
@@ -101,7 +101,7 @@
     <EditText
         android:id="@+id/editTextTextPassword"
         android:layout_width="207dp"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:ems="10"
         android:inputType="textPassword"
@@ -122,7 +122,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.186"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password1" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 
     <EditText
         android:id="@+id/editTextTextPassword3"

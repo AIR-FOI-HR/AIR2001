@@ -16,21 +16,23 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class SearchActivityRecyclerAdapterPivo extends RecyclerView.Adapter<SearchActivityRecyclerAdapterPivo.ViewHolder> {
-    private Context context;
-    private LayoutInflater layoutInflater;
-    private List<Beer> pive;
-    private onPivaListener onPivaListener;
+    private final Context context;
+    private final LayoutInflater layoutInflater;
+    private final List<Beer> pive;
+    private final onPivaListener onPivaListener;
+
     public SearchActivityRecyclerAdapterPivo(Context context, List<Beer> pive, onPivaListener onPivaListener) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
         this.pive = pive;
         this.onPivaListener = onPivaListener;
     }
+
     @NonNull
     @Override
     public SearchActivityRecyclerAdapterPivo.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.custom_beer_view,parent,false);
-        return new ViewHolder(view,onPivaListener);
+        View view = layoutInflater.inflate(R.layout.custom_beer_view, parent, false);
+        return new ViewHolder(view, onPivaListener);
     }
 
     @Override
@@ -49,15 +51,16 @@ public class SearchActivityRecyclerAdapterPivo extends RecyclerView.Adapter<Sear
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView nazivPiva,cijenaPiva,okusPiva;
+        TextView nazivPiva, cijenaPiva, okusPiva;
         ImageView slikaPiva;
         onPivaListener pivaListener;
-        public ViewHolder(@NonNull View itemView,onPivaListener pivaListener) {
+
+        public ViewHolder(@NonNull View itemView, onPivaListener pivaListener) {
             super(itemView);
-            nazivPiva=itemView.findViewById(R.id.txtNazivPivaPretrazivanje);
-            cijenaPiva=itemView.findViewById(R.id.txtCijenaPivaPretrazivanje);
-            okusPiva=itemView.findViewById(R.id.txtOkusPivaPretrazivanje);
-            slikaPiva= itemView.findViewById(R.id.slikaPiva);
+            nazivPiva = itemView.findViewById(R.id.txtNazivPivaPretrazivanje);
+            cijenaPiva = itemView.findViewById(R.id.txtCijenaPivaPretrazivanje);
+            okusPiva = itemView.findViewById(R.id.txtOkusPivaPretrazivanje);
+            slikaPiva = itemView.findViewById(R.id.slikaPiva);
             this.pivaListener = pivaListener;
             itemView.setOnClickListener(this);
         }
@@ -67,7 +70,8 @@ public class SearchActivityRecyclerAdapterPivo extends RecyclerView.Adapter<Sear
             pivaListener.onBeerClick(getAdapterPosition());
         }
     }
-    public interface onPivaListener{
+
+    public interface onPivaListener {
         void onBeerClick(int position);
     }
 }

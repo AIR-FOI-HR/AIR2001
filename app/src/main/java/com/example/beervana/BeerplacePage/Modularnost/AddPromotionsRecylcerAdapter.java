@@ -14,23 +14,24 @@ import com.example.beervana.R;
 
 import java.util.List;
 
-public class AddPromotionsRecylcerAdapter extends RecyclerView.Adapter<AddPromotionsRecylcerAdapter.ViewHolder >{
-    private Context context;
-    private LayoutInflater layoutInflater;
-    private List<BaseClassForModules> modules;
-    private AddPromotionsRecylcerAdapter.onAddPromosListener onAddPromosListener;
+public class AddPromotionsRecylcerAdapter extends RecyclerView.Adapter<AddPromotionsRecylcerAdapter.ViewHolder> {
+    private final Context context;
+    private final LayoutInflater layoutInflater;
+    private final List<BaseClassForModules> modules;
+    private final AddPromotionsRecylcerAdapter.onAddPromosListener onAddPromosListener;
 
-    public AddPromotionsRecylcerAdapter(Context context, List<BaseClassForModules> modules, AddPromotionsRecylcerAdapter.onAddPromosListener onAddPromosListener){
+    public AddPromotionsRecylcerAdapter(Context context, List<BaseClassForModules> modules, AddPromotionsRecylcerAdapter.onAddPromosListener onAddPromosListener) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
         this.modules = modules;
         this.onAddPromosListener = onAddPromosListener;
     }
+
     @NonNull
     @Override
     public AddPromotionsRecylcerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.modul_list_item,parent,false);
-        return new AddPromotionsRecylcerAdapter.ViewHolder(view,onAddPromosListener);
+        View view = layoutInflater.inflate(R.layout.modul_list_item, parent, false);
+        return new AddPromotionsRecylcerAdapter.ViewHolder(view, onAddPromosListener);
     }
 
     @Override
@@ -46,8 +47,9 @@ public class AddPromotionsRecylcerAdapter extends RecyclerView.Adapter<AddPromot
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView txtNazivModula,txtOpisMoudla;
+        TextView txtNazivModula, txtOpisMoudla;
         onAddPromosListener promocijeListener;
+
         public ViewHolder(@NonNull View itemView, onAddPromosListener onAddPromoListener) {
             super(itemView);
             txtNazivModula = itemView.findViewById(R.id.naslov);
@@ -61,7 +63,8 @@ public class AddPromotionsRecylcerAdapter extends RecyclerView.Adapter<AddPromot
             onAddPromosListener.onPromotionClick(getAdapterPosition());
         }
     }
-    interface onAddPromosListener{
+
+    interface onAddPromosListener {
         void onPromotionClick(int position);
     }
 }

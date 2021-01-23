@@ -17,9 +17,9 @@ import java.util.List;
 
 public class AdapterEventsRecyclerView extends RecyclerView.Adapter<AdapterEventsRecyclerView.ViewHolder> {
 
-    private Context context;
-    private LayoutInflater layoutInflater;
-    private List<ModelPodatakEventCatalog> events;
+    private final Context context;
+    private final LayoutInflater layoutInflater;
+    private final List<ModelPodatakEventCatalog> events;
 
     public AdapterEventsRecyclerView(Context context, List<ModelPodatakEventCatalog> events) {
         this.layoutInflater = LayoutInflater.from(context);
@@ -30,7 +30,7 @@ public class AdapterEventsRecyclerView extends RecyclerView.Adapter<AdapterEvent
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.custom_beerplace_view,parent,false);
+        View view = layoutInflater.inflate(R.layout.custom_beerplace_view, parent, false);
         return new ViewHolder(view);
 
     }
@@ -49,9 +49,10 @@ public class AdapterEventsRecyclerView extends RecyclerView.Adapter<AdapterEvent
         return events.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView textTitle, textDescription;
         ImageView imageView;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textTitle = itemView.findViewById(R.id.komentar);

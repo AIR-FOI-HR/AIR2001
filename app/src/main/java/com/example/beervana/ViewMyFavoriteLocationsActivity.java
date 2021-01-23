@@ -23,16 +23,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ViewMyFavoriteLocationsActivity extends BaseActivity implements  SearchActivityRecyclerAdapterPivnica.onLokacijaListener{
+public class ViewMyFavoriteLocationsActivity extends BaseActivity implements SearchActivityRecyclerAdapterPivnica.onLokacijaListener {
     private ArrayList<ModelPodatakaLokacijaSOcjenom> pronadjeneLokacije;
     private RequestQueue requestQueue;
-    private LokacijaLogika logikaLokacija= new LokacijaLogika();
+    private final LokacijaLogika logikaLokacija = new LokacijaLogika();
     private SharedPreferences sp;
     private int idKorisnika;
-    private String urlMojeNajdrazeLokacije = "https://beervana2020.000webhostapp.com/test/MojeLokacije.php";
+    private final String urlMojeNajdrazeLokacije = "https://beervana2020.000webhostapp.com/test/MojeLokacije.php";
     View view;
     RecyclerView locationRecyclerView;
     private SearchActivityRecyclerAdapterPivnica adapterPivnica;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,10 +61,10 @@ public class ViewMyFavoriteLocationsActivity extends BaseActivity implements  Se
             public void onRequestFinished(Request<Object> request) {
                 JSONObject odgovor = dohvatPodataka.getOdgovor();
                 try {
-                    if(odgovor.getString("message").equals("Successfully retrieved my locations")){
+                    if (odgovor.getString("message").equals("Successfully retrieved my locations")) {
                         pronadjeneLokacije.clear();
                         pronadjeneLokacije.addAll(logikaLokacija.ParsiranjeLokacijeZaPretrazivanje(odgovor));
-                        adapterPivnica = new SearchActivityRecyclerAdapterPivnica(ViewMyFavoriteLocationsActivity.this,pronadjeneLokacije,ViewMyFavoriteLocationsActivity.this);
+                        adapterPivnica = new SearchActivityRecyclerAdapterPivnica(ViewMyFavoriteLocationsActivity.this, pronadjeneLokacije, ViewMyFavoriteLocationsActivity.this);
                         locationRecyclerView.setAdapter(adapterPivnica);
                         adapterPivnica.notifyDataSetChanged();
                     }
@@ -77,9 +78,9 @@ public class ViewMyFavoriteLocationsActivity extends BaseActivity implements  Se
     @Override
     public void onLocationClick(int position) {
         startActivity(new Intent(getApplicationContext(), BeerplaceHomepageActivityNew.class).
-                putExtra("id_lokacija",pronadjeneLokacije.get(position).getLokacija().getId_lokacija()).
-                putExtra("naziv_lokacije",pronadjeneLokacije.get(position).getLokacija().getNazivLokacija()).
-                putExtra("ocjena_lokacije",pronadjeneLokacije.get(position).getOcjena()));
+                putExtra("id_lokacija", pronadjeneLokacije.get(position).getLokacija().getId_lokacija()).
+                putExtra("naziv_lokacije", pronadjeneLokacije.get(position).getLokacija().getNazivLokacija()).
+                putExtra("ocjena_lokacije", pronadjeneLokacije.get(position).getOcjena()));
     }
 }
 

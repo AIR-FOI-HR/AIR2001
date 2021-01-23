@@ -18,12 +18,12 @@ import java.util.List;
 
 public class EventCatalogRecyclerAdapter extends RecyclerView.Adapter<EventCatalogRecyclerAdapter.ViewHolder> {
 
-    private Context context;
-    private LayoutInflater layoutInflater;
-    private List<ModelPodatakEventCatalog> events;
-    private onDogadajListener onDogadajListener;
+    private final Context context;
+    private final LayoutInflater layoutInflater;
+    private final List<ModelPodatakEventCatalog> events;
+    private final onDogadajListener onDogadajListener;
 
-    public EventCatalogRecyclerAdapter(Context context, List<ModelPodatakEventCatalog> events,onDogadajListener onDogadajListener) {
+    public EventCatalogRecyclerAdapter(Context context, List<ModelPodatakEventCatalog> events, onDogadajListener onDogadajListener) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
         this.events = events;
@@ -33,8 +33,8 @@ public class EventCatalogRecyclerAdapter extends RecyclerView.Adapter<EventCatal
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.event_catalog_list_view,parent,false);
-        return new ViewHolder(view,onDogadajListener);
+        View view = layoutInflater.inflate(R.layout.event_catalog_list_view, parent, false);
+        return new ViewHolder(view, onDogadajListener);
     }
 
     @Override
@@ -53,10 +53,11 @@ public class EventCatalogRecyclerAdapter extends RecyclerView.Adapter<EventCatal
         return events.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView txtNazivLokacije, txtNazivDogadaja, txtDatumOd,txtDatumDo;
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView txtNazivLokacije, txtNazivDogadaja, txtDatumOd, txtDatumDo;
         ImageView imageView;
         onDogadajListener dogadajListener;
+
         public ViewHolder(@NonNull View itemView, onDogadajListener dogadajListener) {
             super(itemView);
             txtNazivLokacije = itemView.findViewById(R.id.txtNazivLokacije);
@@ -73,7 +74,8 @@ public class EventCatalogRecyclerAdapter extends RecyclerView.Adapter<EventCatal
             dogadajListener.onEventClick(getAdapterPosition());
         }
     }
-    public interface onDogadajListener{
+
+    public interface onDogadajListener {
         void onEventClick(int position);
     }
 

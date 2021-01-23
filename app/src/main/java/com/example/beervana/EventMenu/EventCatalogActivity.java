@@ -53,7 +53,7 @@ public class EventCatalogActivity extends BaseActivity implements EventCatalogRe
         sp = getSharedPreferences("login", MODE_PRIVATE);
         if (extras != null) {
             idLokacija = extras.getString("id_lokacija");
-            korisnik = sp.getInt("id_uloga",0);
+            korisnik = sp.getInt("id_uloga", 0);
         } else {
             idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
         }

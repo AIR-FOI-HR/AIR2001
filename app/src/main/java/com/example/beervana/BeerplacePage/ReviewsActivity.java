@@ -1,25 +1,20 @@
 package com.example.beervana.BeerplacePage;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
-import com.example.beervana.EventMenu.AddEventActivity;
-import com.example.beervana.EventMenu.PrikazZaEventPodatkeActivity;
 import com.example.beervana.R;
-import com.example.beervana.SettingsActivity;
 import com.example.modulzamodule.Review;
 import com.example.modulzamodule.ReviewsLogic;
 import com.example.webservice.DohvatPodataka;
@@ -39,10 +34,10 @@ public class ReviewsActivity extends BaseActivity implements AdapterReview.onRec
     private RequestQueue requestQueue;
     private String id_lokacija;
     private String id_korisnik;
-    private boolean is_user= false;
+    private boolean is_user = false;
     View view;
     AdapterReview adapterReview;
-    private String sendUrl = "https://beervana2020.000webhostapp.com/test/deleteReview.php";
+    private final String sendUrl = "https://beervana2020.000webhostapp.com/test/deleteReview.php";
     private RequestQueue requestQueueBrisanje;
 
     @Override
@@ -57,9 +52,9 @@ public class ReviewsActivity extends BaseActivity implements AdapterReview.onRec
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        if(extras.containsKey("id_lokacija")){
+        if (extras.containsKey("id_lokacija")) {
             id_lokacija = extras.getString("id_lokacija");
-        } else if (extras.containsKey("id_korisnika")){
+        } else if (extras.containsKey("id_korisnika")) {
             id_korisnik = extras.getString("id_korisnika");
             is_user = true;
         }
@@ -73,23 +68,22 @@ public class ReviewsActivity extends BaseActivity implements AdapterReview.onRec
         ReviewsLogic reviewsLogic = new ReviewsLogic();
         DohvatPodataka dohvatPodataka = new DohvatPodataka();
         Map<String, String> params = new HashMap<String, String>();
-        if(is_user){
+        if (is_user) {
             params.put("id_korisnik", id_korisnik);
             String urlKorisnik = "https://beervana2020.000webhostapp.com/test/fetchMyReviews.php";
             dohvatPodataka.setSendUrl(urlKorisnik);
-        }
-        else{
+        } else {
             params.put("id_lokacija", id_lokacija);
             dohvatPodataka.setSendUrl(url);
         }
 
         dohvatPodataka.setParametri(params);
-        dohvatPodataka.retrieveData(getApplicationContext(),requestQueue);
+        dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
         requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
             @Override
-            public void onRequestFinished(Request<Object> request){
+            public void onRequestFinished(Request<Object> request) {
                 JSONObject odgovor = dohvatPodataka.getOdgovor();
-                if(odgovor != null){
+                if (odgovor != null) {
                     reviews.clear();
                     reviews.addAll(ReviewsLogic.parsiranjePodatakaReviewa(odgovor));
                     adapterReview = new AdapterReview(ReviewsActivity.this, reviews, ReviewsActivity.this);
@@ -103,7 +97,7 @@ public class ReviewsActivity extends BaseActivity implements AdapterReview.onRec
 
     @Override
     public void onReviewClick(int position) {
-        if(is_user){
+        if (is_user) {
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
 
             CharSequence[] dijalogStavke = {"Edit data ", "Delete data"};
@@ -113,18 +107,18 @@ public class ReviewsActivity extends BaseActivity implements AdapterReview.onRec
                 public void onClick(DialogInterface dialog, int odabir) {
                     switch (odabir) {
                         case 0:
-                            if(reviews.get(position).getId_lokacija()!=null){
+                            if (reviews.get(position).getId_lokacija() != null) {
                                 startActivity(new Intent(getApplicationContext(), AddReviewsActivity.class).putExtra("id_lokacija", reviews.get(position).getId_lokacija())
                                         .putExtra("komentar", reviews.get(position).getKomentar())
-                                        .putExtra("ocjena",reviews.get(position).getOcjena()).putExtra("id_recenzija",reviews.get(position).getId_recenzija()));
-                            }else{
+                                        .putExtra("ocjena", reviews.get(position).getOcjena()).putExtra("id_recenzija", reviews.get(position).getId_recenzija()));
+                            } else {
                                 startActivity(new Intent(getApplicationContext(), AddReviewsActivity.class).putExtra("id_proizvod", reviews.get(position).getId_proizvod())
                                         .putExtra("komentar", reviews.get(position).getKomentar())
-                                        .putExtra("ocjena",reviews.get(position).getOcjena()).putExtra("id_recenzija",reviews.get(position).getId_recenzija()));
+                                        .putExtra("ocjena", reviews.get(position).getOcjena()).putExtra("id_recenzija", reviews.get(position).getId_recenzija()));
                             }
                             break;
                         case 1:
-                            DeleteReview(reviews.get(position).getId_recenzija(),position);
+                            DeleteReview(reviews.get(position).getId_recenzija(), position);
                             break;
 
                     }
@@ -136,8 +130,8 @@ public class ReviewsActivity extends BaseActivity implements AdapterReview.onRec
 
     private void DeleteReview(String idRecenzija, int pozicija) {
         requestQueueBrisanje = Volley.newRequestQueue(getApplicationContext());
-        Map<String, String > params = new HashMap<String, String>();
-        params.put("id_recenzija",idRecenzija);
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("id_recenzija", idRecenzija);
         SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
         slanjePodataka.setParametri(params);
         slanjePodataka.sendData(getApplicationContext(), requestQueueBrisanje);

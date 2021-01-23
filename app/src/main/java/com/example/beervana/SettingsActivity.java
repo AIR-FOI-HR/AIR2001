@@ -1,15 +1,10 @@
 package com.example.beervana;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-
-import androidx.appcompat.widget.Toolbar;
 
 
 public class SettingsActivity extends BaseActivity {
@@ -20,7 +15,7 @@ public class SettingsActivity extends BaseActivity {
         setContentView(R.layout.activity_settings);
         initToolbar();
 
-        Button button = (Button) findViewById(R.id.buttonAboutUs);
+        Button button = findViewById(R.id.buttonAboutUs);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -28,7 +23,7 @@ public class SettingsActivity extends BaseActivity {
             }
         });
 
-        Button logout = (Button) findViewById(R.id.buttonLogOut);
+        Button logout = findViewById(R.id.buttonLogOut);
         logout.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -36,7 +31,7 @@ public class SettingsActivity extends BaseActivity {
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
 
-                SharedPreferences preferences =getSharedPreferences("login",MODE_PRIVATE);
+                SharedPreferences preferences = getSharedPreferences("login", MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.clear();
                 editor.apply();
@@ -47,7 +42,7 @@ public class SettingsActivity extends BaseActivity {
 
     }
 
-    public void openActivity2(){
+    public void openActivity2() {
         Intent intent = new Intent(this, AboutUsActivity.class);
         startActivity(intent);
     }

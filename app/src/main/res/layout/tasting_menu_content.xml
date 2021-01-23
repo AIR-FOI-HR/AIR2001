@@ -16,7 +16,14 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:layout_margin="@dimen/razmakIzmedjuRedakaTekstEditor"/>
+    <TextView
+        android:id="@+id/tastingMenuContentDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_margin="@dimen/razmakIzmedjuRedakaTekstEditor"/>
     <LinearLayout
+        android:id="@+id/beerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

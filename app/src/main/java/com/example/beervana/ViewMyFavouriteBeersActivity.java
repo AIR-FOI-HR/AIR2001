@@ -11,9 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.example.beervana.BeerMenu.BeerCatalogActivity;
 import com.example.beervana.BeerMenu.PrikazZaPodatkeOPivuActivity;
-import com.example.beervana.BeerplacePage.BeerplaceHomepageActivityNew;
 import com.example.modulzamodule.BeerLogic;
 import com.example.modulzamodule.ModelPodatakaPivoSOcjenom;
 import com.example.webservice.DohvatPodataka;
@@ -28,10 +26,10 @@ import java.util.Map;
 public class ViewMyFavouriteBeersActivity extends BaseActivity implements ActivityRecyclerAdaptetPivoSOcjenom.onPivaListener {
     private ArrayList<ModelPodatakaPivoSOcjenom> pronadjenaPiva;
     private RequestQueue requestQueue;
-    private BeerLogic beerLogic = new BeerLogic();
+    private final BeerLogic beerLogic = new BeerLogic();
     private SharedPreferences sp;
     private int idKorisnika;
-    private String urlMojaNajdrazaPiva="https://beervana2020.000webhostapp.com/test/mojaNajdrazaPiva.php";
+    private final String urlMojaNajdrazaPiva = "https://beervana2020.000webhostapp.com/test/mojaNajdrazaPiva.php";
     View view;
     RecyclerView beerRecyclerView;
     private ActivityRecyclerAdaptetPivoSOcjenom adapterPivo;
@@ -45,7 +43,7 @@ public class ViewMyFavouriteBeersActivity extends BaseActivity implements Activi
         pronadjenaPiva = new ArrayList<>();
         beerRecyclerView = findViewById(R.id.favoriteBeersRecylcerView);
         beerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        sp=getSharedPreferences("login",MODE_PRIVATE);
+        sp = getSharedPreferences("login", MODE_PRIVATE);
         //idKorisnika = sp.getInt("id_korisnik",20);
         idKorisnika = 20;
         RetriveData();
@@ -64,10 +62,10 @@ public class ViewMyFavouriteBeersActivity extends BaseActivity implements Activi
             public void onRequestFinished(Request<Object> request) {
                 JSONObject odgovor = dohvatPodataka.getOdgovor();
                 try {
-                    if(odgovor.getString("message").equals("Successfully retrieved my beers")){
+                    if (odgovor.getString("message").equals("Successfully retrieved my beers")) {
                         pronadjenaPiva.clear();
                         pronadjenaPiva.addAll(beerLogic.parsiranjePivaZaNajdrazaPiva(odgovor));
-                        adapterPivo = new ActivityRecyclerAdaptetPivoSOcjenom(ViewMyFavouriteBeersActivity.this,pronadjenaPiva,ViewMyFavouriteBeersActivity.this);
+                        adapterPivo = new ActivityRecyclerAdaptetPivoSOcjenom(ViewMyFavouriteBeersActivity.this, pronadjenaPiva, ViewMyFavouriteBeersActivity.this);
                         beerRecyclerView.setAdapter(adapterPivo);
                         adapterPivo.notifyDataSetChanged();
                     }
@@ -81,6 +79,6 @@ public class ViewMyFavouriteBeersActivity extends BaseActivity implements Activi
     @Override
     public void onBeerClick(int position) {
         startActivity(new Intent(getApplicationContext(), PrikazZaPodatkeOPivuActivity.class)
-                .putExtra("id_lokacija",pronadjenaPiva.get(position).getId_lokacije()));
+                .putExtra("id_lokacija", pronadjenaPiva.get(position).getId_lokacije()));
     }
 }

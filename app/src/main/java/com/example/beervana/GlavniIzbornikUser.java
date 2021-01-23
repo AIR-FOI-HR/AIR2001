@@ -1,25 +1,23 @@
 package com.example.beervana;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.lifecycle.ViewModelProvider;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-
 import com.example.beervana.BeerplacePage.BeerplaceHomepageActivityNew;
-import com.example.modulzamodule.GlavniIzbornikUserViewModel;
-import com.example.modulzamodule.ModelPodatakaLokacijaSOcjenom;
 import com.example.beervana.BeerplacePage.ReviewsActivity;
 import com.example.beervana.Karta.KartaActivity;
+import com.example.modulzamodule.GlavniIzbornikUserViewModel;
+import com.example.modulzamodule.ModelPodatakaLokacijaSOcjenom;
 import com.example.modulzamodule.ModelPodatakaPivoSOcjenom;
 import com.example.webservice.DohvatPodataka;
 import com.squareup.picasso.Picasso;
@@ -27,7 +25,6 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,32 +52,32 @@ public class GlavniIzbornikUser extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.glavni_izbornik_user_activity);
         initToolbar();
-        prikazNajnovijeLokacije = (TextView) findViewById(R.id.textViewNajnovijaLokacija);
-        prikazNazivaNajboljeLokacije = (TextView) findViewById(R.id.textView8);
-        prikazOcjeneNajboljeLokacije = (TextView) findViewById(R.id.textView15);
-        prikazNajblizeLokacije1 = (TextView) findViewById(R.id.textView17);
-        prikazNajblizeLokacije2 = (TextView) findViewById(R.id.textView20);
-        udaljenost1 = (TextView) findViewById(R.id.textView18);
-        udaljenost2 = (TextView) findViewById(R.id.textView21);
-        omiljenaLokacijaPrva = (TextView) findViewById(R.id.textView25);
-        omiljenaLokacijaDruga = (TextView) findViewById(R.id.textView26);
+        prikazNajnovijeLokacije = findViewById(R.id.textViewNajnovijaLokacija);
+        prikazNazivaNajboljeLokacije = findViewById(R.id.textView8);
+        prikazOcjeneNajboljeLokacije = findViewById(R.id.textView15);
+        prikazNajblizeLokacije1 = findViewById(R.id.textView17);
+        prikazNajblizeLokacije2 = findViewById(R.id.textView20);
+        udaljenost1 = findViewById(R.id.textView18);
+        udaljenost2 = findViewById(R.id.textView21);
+        omiljenaLokacijaPrva = findViewById(R.id.textView25);
+        omiljenaLokacijaDruga = findViewById(R.id.textView26);
 
-        omiljenoPivoPrvo = (TextView) findViewById(R.id.textView27);
-        omiljenoPivoDrugo = (TextView) findViewById(R.id.textView29);
-        omiljenoPivo1 = (ImageView) findViewById(R.id.imageView27);
-        omiljenoPivo2 = (ImageView) findViewById(R.id.imageView28);
+        omiljenoPivoPrvo = findViewById(R.id.textView27);
+        omiljenoPivoDrugo = findViewById(R.id.textView29);
+        omiljenoPivo1 = findViewById(R.id.imageView27);
+        omiljenoPivo2 = findViewById(R.id.imageView28);
 
 
-        idiNaNajnovijuPivovaru = (Button) findViewById(R.id.button4);
-        idiNaNajboljuPivovaru = (Button) findViewById(R.id.button9);
-        prikaziNajblizeLokacije = (Button) findViewById(R.id.button10);
-        prikaziNajdrazeLokacije = (Button) findViewById(R.id.button12);
-        prikaziNajdrazaPiva= (Button) findViewById(R.id.button13);
+        idiNaNajnovijuPivovaru = findViewById(R.id.button4);
+        idiNaNajboljuPivovaru = findViewById(R.id.button9);
+        prikaziNajblizeLokacije = findViewById(R.id.button10);
+        prikaziNajdrazeLokacije = findViewById(R.id.button12);
+        prikaziNajdrazaPiva = findViewById(R.id.button13);
 
-        recenzijaTekst = (TextView) findViewById(R.id.textView24);
-        recenzijaDatum = (TextView) findViewById(R.id.textView34);
-        recenzijaOcjena = (TextView) findViewById(R.id.textView35);
-        recenzijaGumb = (Button) findViewById(R.id.button11);
+        recenzijaTekst = findViewById(R.id.textView24);
+        recenzijaDatum = findViewById(R.id.textView34);
+        recenzijaOcjena = findViewById(R.id.textView35);
+        recenzijaGumb = findViewById(R.id.button11);
 
         viewModel = new ViewModelProvider(this).get(GlavniIzbornikUserViewModel.class);
         sp = getSharedPreferences("login", MODE_PRIVATE);
@@ -124,7 +121,7 @@ public class GlavniIzbornikUser extends BaseActivity {
         prikaziNajdrazaPiva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),ViewMyFavouriteBeersActivity.class));
+                startActivity(new Intent(getApplicationContext(), ViewMyFavouriteBeersActivity.class));
             }
         });
 
@@ -204,13 +201,13 @@ public class GlavniIzbornikUser extends BaseActivity {
                     } else if (odgovor.getString("message").equals("Successfully retrieved my locations")) {
                         viewModel.ParsiranjeNajdrazihLokacija(odgovor);
                         postaviPodatkeNajdrazihLokacija();
-                        Map<String,String> params = new HashMap<>();
+                        Map<String, String> params = new HashMap<>();
                         params.put("id_korisnik", Integer.toString(idKorisnika));
                         dohvatPodataka.setParametri(params);
                         dohvatPodataka.setSendUrl(urlNajdrazaPiva);
-                        dohvatPodataka.retrieveData(getApplicationContext(),requestQueue);
+                        dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
 
-                    } else if (odgovor.getString("message").equals("Successfully retrieved my beers")){
+                    } else if (odgovor.getString("message").equals("Successfully retrieved my beers")) {
                         viewModel.ParsiranjeNajdrazihPiva(odgovor);
                         PostaviPodatkeNajdrazihPiva();
                     }
@@ -319,8 +316,7 @@ public class GlavniIzbornikUser extends BaseActivity {
                 omiljenoPivo2.setVisibility(View.GONE);
             }
 
-        }
-        else{
+        } else {
             prikaziNajdrazaPiva.setVisibility(View.GONE);
             omiljenoPivoPrvo.setText("Currrently you don't have any favourite beers added");
             omiljenoPivo2.setVisibility(View.GONE);

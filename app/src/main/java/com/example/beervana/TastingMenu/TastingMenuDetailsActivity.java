@@ -2,6 +2,8 @@ package com.example.beervana.TastingMenu;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -11,9 +13,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
+import com.example.beervana.R;
 import com.example.modulzamodule.Beer;
 import com.example.modulzamodule.BeerLogic;
-import com.example.beervana.R;
 import com.example.webservice.DohvatPodataka;
 
 import org.json.JSONException;
@@ -26,9 +28,10 @@ import java.util.Map;
 public class TastingMenuDetailsActivity extends BaseActivity {
     ListView listView;
     TastingMenuContentAdapter adapter;
-    TextView tastingMenuName;
+    TextView tastingMenuName, tastingMenuDescription;
     public static ArrayList<Beer> tastingMenuContentArray = new ArrayList<Beer>();
     String url = "https://beervana2020.000webhostapp.com/test/GetTastingMenuBeers.php";
+    LinearLayout linearLayout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,10 +39,14 @@ public class TastingMenuDetailsActivity extends BaseActivity {
         setContentView(R.layout.tasting_menu_content);
         initToolbar();
         Intent intent = getIntent();
-        String message = intent.getStringExtra("menu name");
+        String name = intent.getStringExtra("menu name");
         String menuId = intent.getStringExtra("menuId");
+        String description = intent.getStringExtra("menuDescription");
         tastingMenuName = findViewById(R.id.tastingMenuContentName);
-        tastingMenuName.setText(message);
+        tastingMenuName.setText(name);
+        linearLayout = findViewById(R.id.beerLayout);
+        tastingMenuDescription = findViewById(R.id.tastingMenuContentDescription);
+        tastingMenuDescription.setText(description);
 
         listView = findViewById(R.id.tastingMenuContentList);
         adapter = new TastingMenuContentAdapter(this, tastingMenuContentArray);
@@ -63,17 +70,19 @@ public class TastingMenuDetailsActivity extends BaseActivity {
             public void onRequestFinished(Request<Object> request) {
                 JSONObject odgovor = dohvatPodataka.getOdgovor();
                 try {
-                    if(odgovor!=null) {
+                    if (odgovor != null) {
                         if (odgovor.getString("message").equals(" Beers successfully loaded")) {
                             tastingMenuContentArray.clear();
                             tastingMenuContentArray.addAll(beers.parsiranjePodatakaPivaZaDegustacijskiMeni(odgovor));
                             adapter.notifyDataSetChanged();
+                            if (tastingMenuContentArray.size()==0){
+                                linearLayout.setVisibility(View.GONE);
+                            }
                         }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                ;
             }
         });
     }

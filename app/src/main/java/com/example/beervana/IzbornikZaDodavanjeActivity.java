@@ -1,16 +1,14 @@
 package com.example.beervana;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import com.example.beervana.BeerMenu.AddBeers;
 import com.example.beervana.EventMenu.AddEventActivity;
-import com.example.beervana.TastingMenu.DodavanjeDegustacijskihMeniaActivity;
+import com.example.beervana.TastingMenu.AddUpdateTastingMenu;
 
-public class IzbornikZaDodavanjeActivity extends BaseActivity{
+public class IzbornikZaDodavanjeActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,30 +16,29 @@ public class IzbornikZaDodavanjeActivity extends BaseActivity{
         setContentView(R.layout.activity_izbornik_za_dodavanje);
         initToolbar();
 
-        Button button = (Button) findViewById(R.id.actionAddBeer);
+        Button button = findViewById(R.id.actionAddBeer);
         button.setOnClickListener(v -> openAddBeers());
 
-        Button button1 = (Button) findViewById(R.id.actionAddEvent);
+        Button button1 = findViewById(R.id.actionAddEvent);
         button1.setOnClickListener(v -> openAddEvents());
         /*
         Button button3 = (Button) findViewById(R.id.actionAddPromo);
         button3.setOnClickListener(v -> openAddPromo());
          */
 
-        Button button4 = (Button) findViewById(R.id.actionAddTastingMenu);
+        Button button4 = findViewById(R.id.actionAddTastingMenu);
         button4.setOnClickListener(v -> openAddTastingMenu());
 
 
     }
 
-    public void openAddBeers(){
+    public void openAddBeers() {
         Intent intent = new Intent(this, AddBeers.class);
         startActivity(intent);
     }
 
 
-
-    public void openAddEvents(){
+    public void openAddEvents() {
         Intent intent = new Intent(this, AddEventActivity.class);
         startActivity(intent);
     }
@@ -53,8 +50,8 @@ public class IzbornikZaDodavanjeActivity extends BaseActivity{
     }*/
 
 
-    public void openAddTastingMenu(){
-        Intent intent = new Intent(this, DodavanjeDegustacijskihMeniaActivity.class);
+    public void openAddTastingMenu() {
+        Intent intent = new Intent(this, AddUpdateTastingMenu.class);
         startActivity(intent);
     }
 

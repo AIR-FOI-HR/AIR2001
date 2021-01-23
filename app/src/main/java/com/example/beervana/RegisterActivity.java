@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -26,45 +25,46 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private String sendUrl="https://beervana2020.000webhostapp.com/test/email.php";
+    private String sendUrl = "https://beervana2020.000webhostapp.com/test/email.php";
     private RequestQueue requestQueue;
-    private  static  final  String TAG=RegisterActivity.class.getSimpleName();
+    private static final String TAG = RegisterActivity.class.getSimpleName();
     int success;
-    private String TAG_SUCESS="success";
-    private String TAG_MESSAGE="message";
-    private String tag_json_obj="json_obj_req";
+    private final String TAG_SUCESS = "success";
+    private final String TAG_MESSAGE = "message";
+    private final String tag_json_obj = "json_obj_req";
     private EditText ime;
-    private EditText  prezime;
-    private EditText  brojMobitela;
-    private EditText  email;
-    private EditText  korisnickoIme;
-    private EditText  lozinka;
-    private EditText  ponovljenaLozinka;
-    private Spinner   uloga;
-    private EditText  nazivLokacije;
-    private EditText  oibLokacije;
-    private EditText  opisLokacije;
-    private EditText  grad;
-    private EditText  ulica;
-    private EditText  kucniBroj;
+    private EditText prezime;
+    private EditText brojMobitela;
+    private EditText email;
+    private EditText korisnickoIme;
+    private EditText lozinka;
+    private EditText ponovljenaLozinka;
+    private Spinner uloga;
+    private EditText nazivLokacije;
+    private EditText oibLokacije;
+    private EditText opisLokacije;
+    private EditText grad;
+    private EditText ulica;
+    private EditText kucniBroj;
 
-    private TextView errUnosIme ;
-    private TextView errUnosPrezime ;
-    private TextView errUnosBrojMobitela ;
-    private TextView errUnosEmail ;
-    private TextView errUnosKorisnickoIme ;
-    private TextView errUnosLozinka ;
-    private TextView errUnosPonovljenjaLozinka ;
-    private TextView errSpinUloga ;
-    private TextView errUnosNazivLokacije ;
-    private TextView errUnosOibLokacije ;
-    private TextView errUnosOpisLokacije ;
-    private TextView errUnosGrad ;
-    private TextView errUnosUlica ;
-    private TextView errUnosKucniBroj ;
+    private TextView errUnosIme;
+    private TextView errUnosPrezime;
+    private TextView errUnosBrojMobitela;
+    private TextView errUnosEmail;
+    private TextView errUnosKorisnickoIme;
+    private TextView errUnosLozinka;
+    private TextView errUnosPonovljenjaLozinka;
+    private TextView errSpinUloga;
+    private TextView errUnosNazivLokacije;
+    private TextView errUnosOibLokacije;
+    private TextView errUnosOpisLokacije;
+    private TextView errUnosGrad;
+    private TextView errUnosUlica;
+    private TextView errUnosKucniBroj;
     boolean provjeraPostojeLiPodaci;
 
     ActivityRegisterBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         email = binding.unosEmail;
         korisnickoIme = binding.unosKorisnickoIme;
         lozinka = binding.unosLozinka;
-        ponovljenaLozinka= binding.unosPonovljenaLozinka;
+        ponovljenaLozinka = binding.unosPonovljenaLozinka;
         uloga = binding.spinUloga;
         nazivLokacije = binding.unosNazivLokacije;
         oibLokacije = binding.unosOibLokacije;
@@ -161,25 +161,25 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 viewModel.setGrad(grad.getText().toString());
                 viewModel.setUlica(ulica.getText().toString());
                 viewModel.setKucniBroj(kucniBroj.getText().toString());
-                if(viewModel.ProvijeriSvePodatke(getApplicationContext())){
-                    requestQueue= Volley.newRequestQueue(getApplicationContext());
+                if (viewModel.ProvijeriSvePodatke(getApplicationContext())) {
+                    requestQueue = Volley.newRequestQueue(getApplicationContext());
                     provjeraPostojeLiPodaci = true;
-                    Map<String, String> params=new HashMap<String, String>();
-                    params.put("ime_korisnika",ime.getText().toString());
-                    params.put("prezime_korisnika",prezime.getText().toString());
-                    params.put("email_korisnika",email.getText().toString());
-                    params.put("korsnicko_ime",korisnickoIme.getText().toString());
-                    params.put("lozinka",lozinka.getText().toString());
-                    params.put("uloga",uloga.getSelectedItem().toString());
-                    params.put("nazivLokacije",nazivLokacije.getText().toString());
-                    params.put("OIBLokacije",oibLokacije.getText().toString());
-                    params.put("Latituda", viewModel.getKoordinate().split(",")[0] );
-                    params.put("Longituda", viewModel.getKoordinate().split(",")[1] );
-                    params.put("adresaLokacije",ulica.getText().toString().concat(" ".concat(kucniBroj.getText().toString().concat(", ".concat(grad.getText().toString()))) ));
-                    sendUrl="https://beervana2020.000webhostapp.com/test/email.php";
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("ime_korisnika", ime.getText().toString());
+                    params.put("prezime_korisnika", prezime.getText().toString());
+                    params.put("email_korisnika", email.getText().toString());
+                    params.put("korsnicko_ime", korisnickoIme.getText().toString());
+                    params.put("lozinka", lozinka.getText().toString());
+                    params.put("uloga", uloga.getSelectedItem().toString());
+                    params.put("nazivLokacije", nazivLokacije.getText().toString());
+                    params.put("OIBLokacije", oibLokacije.getText().toString());
+                    params.put("Latituda", viewModel.getKoordinate().split(",")[0]);
+                    params.put("Longituda", viewModel.getKoordinate().split(",")[1]);
+                    params.put("adresaLokacije", ulica.getText().toString().concat(" ".concat(kucniBroj.getText().toString().concat(", ".concat(grad.getText().toString())))));
+                    sendUrl = "https://beervana2020.000webhostapp.com/test/email.php";
                     SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
                     slanjePodataka.setParametri(params);
-                    slanjePodataka.sendData(getApplicationContext(),requestQueue);
+                    slanjePodataka.sendData(getApplicationContext(), requestQueue);
                     //sendUrl="https://beervana2020.000webhostapp.com/test/korisnickoImeProvjera.php";
                     //slanjePodataka.setSendUrl(sendUrl);
                     //slanjePodataka.sendData(getApplicationContext(),requestQueue);
@@ -187,61 +187,61 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                         @Override
                         public void onRequestFinished(Request<Object> request) {
                             String odgovor = slanjePodataka.getOdgovor();
-                            if(request.getUrl().contains("email.php")){
-                                if(odgovor.equals("E-mail already exists")){
+                            if (request.getUrl().contains("email.php")) {
+                                if (odgovor.equals("E-mail already exists")) {
                                     viewModel.setErrUnosEmail(odgovor);
                                     viewModel.errUnosEmailVidljivost = View.VISIBLE;
                                     errUnosEmail.setText(viewModel.getErrUnosEmail());
                                     errUnosEmail.setVisibility(viewModel.errUnosEmailVidljivost);
-                                    provjeraPostojeLiPodaci=false;
+                                    provjeraPostojeLiPodaci = false;
                                 }
-                                sendUrl="https://beervana2020.000webhostapp.com/test/korisnickoImeProvjera.php";
+                                sendUrl = "https://beervana2020.000webhostapp.com/test/korisnickoImeProvjera.php";
                                 slanjePodataka.setSendUrl(sendUrl);
-                                slanjePodataka.sendData(getApplicationContext(),requestQueue);
+                                slanjePodataka.sendData(getApplicationContext(), requestQueue);
 
-                            }else if(request.getUrl().contains("korisnickoImeProvjera.php")){
-                                if(odgovor.equals("Username already exists")){
+                            } else if (request.getUrl().contains("korisnickoImeProvjera.php")) {
+                                if (odgovor.equals("Username already exists")) {
                                     viewModel.setErrUnosKorisnickoIme(odgovor);
                                     viewModel.errUnosKorisnickoImeVidljivost = View.VISIBLE;
                                     errUnosKorisnickoIme.setText(viewModel.getErrUnosKorisnickoIme());
                                     errUnosKorisnickoIme.setVisibility(viewModel.errUnosKorisnickoImeVidljivost);
-                                    provjeraPostojeLiPodaci=false;
+                                    provjeraPostojeLiPodaci = false;
                                 }
-                                if(viewModel.getUloga().equals("Klijent")){
-                                    sendUrl="https://beervana2020.000webhostapp.com/test/LokacijaOIBProvjera.php";
+                                if (viewModel.getUloga().equals("Klijent")) {
+                                    sendUrl = "https://beervana2020.000webhostapp.com/test/LokacijaOIBProvjera.php";
                                     slanjePodataka.setSendUrl(sendUrl);
-                                    slanjePodataka.sendData(getApplicationContext(),requestQueue);
-                                }else{
-                                    if(provjeraPostojeLiPodaci){
-                                        sendUrl="https://beervana2020.000webhostapp.com/test/registracijaEmail.php";
+                                    slanjePodataka.sendData(getApplicationContext(), requestQueue);
+                                } else {
+                                    if (provjeraPostojeLiPodaci) {
+                                        sendUrl = "https://beervana2020.000webhostapp.com/test/registracijaEmail.php";
                                         slanjePodataka.setSendUrl(sendUrl);
-                                        slanjePodataka.sendData(getApplicationContext(),requestQueue);
+                                        slanjePodataka.sendData(getApplicationContext(), requestQueue);
                                     }
                                 }
 
-                            }else if(request.getUrl().contains("LokacijaOIBProvjera.php")){
-                                if(odgovor.equals("There already exist a location with this OIB")){
+                            } else if (request.getUrl().contains("LokacijaOIBProvjera.php")) {
+                                if (odgovor.equals("There already exist a location with this OIB")) {
                                     viewModel.setErrUnosOibLokacije(odgovor);
                                     viewModel.errUnosOibLokacijeVidljivost = View.VISIBLE;
                                     errUnosOibLokacije.setText(viewModel.getErrUnosOibLokacije());
                                     errUnosOibLokacije.setVisibility(viewModel.errUnosOibLokacijeVidljivost);
-                                    provjeraPostojeLiPodaci=false;
+                                    provjeraPostojeLiPodaci = false;
                                 }
-                                if(provjeraPostojeLiPodaci){
-                                    sendUrl="https://beervana2020.000webhostapp.com/test/registracijaEmail.php";
+                                if (provjeraPostojeLiPodaci) {
+                                    sendUrl = "https://beervana2020.000webhostapp.com/test/registracijaEmail.php";
                                     slanjePodataka.setSendUrl(sendUrl);
-                                    slanjePodataka.sendData(getApplicationContext(),requestQueue);
+                                    slanjePodataka.sendData(getApplicationContext(), requestQueue);
                                 }
 
-                            }else{
-                                if(odgovor.equals("successfully registered")){
+                            } else {
+                                if (odgovor.equals("successfully registered")) {
                                     openLogin();
                                 }
                             }
                         }
                     });
                     //openLogin();
-                }else{
+                } else {
                     errUnosIme.setText(viewModel.getErrUnosIme());
                     errUnosPrezime.setText(viewModel.getErrUnosPrezime());
                     errUnosBrojMobitela.setText(viewModel.getErrUnosBrojMobitela());
@@ -277,24 +277,24 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
-    public void openLogin(){
-        Toast toast = Toast.makeText(getApplicationContext(),"Successfully registered",Toast.LENGTH_LONG);
+    public void openLogin() {
+        Toast toast = Toast.makeText(getApplicationContext(), "Successfully registered", Toast.LENGTH_LONG);
         toast.show();
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finishAffinity();
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int pozicija, long id) {
-        if(pozicija==2){
+        if (pozicija == 2) {
             nazivLokacije.setVisibility(View.VISIBLE);
             oibLokacije.setVisibility(View.VISIBLE);
             opisLokacije.setVisibility(View.VISIBLE);
             grad.setVisibility(View.VISIBLE);
             ulica.setVisibility(View.VISIBLE);
             kucniBroj.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             nazivLokacije.setVisibility(View.GONE);
             oibLokacije.setVisibility(View.GONE);
             opisLokacije.setVisibility(View.GONE);

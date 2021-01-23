@@ -11,41 +11,34 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.BeerplacePage.Modularnost.Modules;
 import com.example.beervana.Payment.Payment;
 import com.example.beervana.Payment.PaymentActivity;
 import com.example.beervana.Payment.PaymentLogika;
-import com.example.beervana.TastingMenu.DodavanjeDegustacijskihMeniaActivity;
 import com.example.beervana.databinding.ActivityMainBinding;
 import com.example.modulzamodule.KorisnikLogika;
 import com.example.modulzamodule.MainActivityViewModel;
-import com.example.beervana.BeerplacePage.Modularnost.Modules;
 import com.example.modulzamodule.User;
 import com.example.webservice.DohvatPodataka;
-
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import androidx.core.app.ActivityCompat;
-
-import androidx.lifecycle.ViewModelProvider;
-
-import android.text.method.LinkMovementMethod;
-import android.view.View;
-
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,7 +56,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
 
-    private String sendUrl = "https://beervana2020.000webhostapp.com/test/login_pokusaj.php";
+    private final String sendUrl = "https://beervana2020.000webhostapp.com/test/login_pokusaj.php";
     private static final String url1 = "https://beervana2020.000webhostapp.com/test/getPayment.php";
 
     private Boolean gotLocation = false;
@@ -74,9 +67,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     int success;
     private SharedPreferences.Editor editor;
     private SharedPreferences sp;
-    private String TAG_SUCESS = "success";
-    private String TAG_MESSAGE = "message";
-    private String tag_json_obj = "json_obj_req";
+    private final String TAG_SUCESS = "success";
+    private final String TAG_MESSAGE = "message";
+    private final String tag_json_obj = "json_obj_req";
 
     private EditText korisnickoIme;
     private EditText lozinka;
@@ -95,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         sp = getSharedPreferences("login", MODE_PRIVATE);
         Boolean loggedIn = sp.getBoolean("logged", false);
 
-        if(loggedIn){
+        if (loggedIn) {
             ProvjeriUlogu();
         }
 
@@ -112,9 +105,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             //When permission granted
             //getLocation();
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER,0,0,this);
-        }
-         else {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+        } else {
             //When permission denied
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
 
@@ -125,7 +117,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             //getLocation();
         }
         final MainActivityViewModel viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-
 
 
         //if(sp.getBoolean("logged",false)){
@@ -218,11 +209,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     private void ProvjeriUlogu() {
-        Integer uloga= sp.getInt("id_uloga",0);
-        if(uloga == 1){
+        Integer uloga = sp.getInt("id_uloga", 0);
+        if (uloga == 1) {
             openGlavniIzbornikKorisnik();
-        }
-        else{
+        } else {
             df = new SimpleDateFormat("yyyy-MM-dd");
 
             Calendar cal = Calendar.getInstance();
@@ -236,13 +226,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     private void openGlavniIzbornikKlijent() {
-        Intent intent = new Intent(this,GlavniIzbornikClient.class);
+        Intent intent = new Intent(this, GlavniIzbornikClient.class);
         startActivity(intent);
         finish();
     }
 
     private void openGlavniIzbornikKorisnik() {
-        Intent intent = new Intent(this,GlavniIzbornikUser.class);
+        Intent intent = new Intent(this, GlavniIzbornikUser.class);
         startActivity(intent);
         finish();
     }
@@ -253,16 +243,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 @Override
                 public void onComplete(@NonNull Task<Location> task) {
                     Location location = task.getResult();
-                    if(location!=null){
+                    if (location != null) {
                         Geocoder geocoder = new Geocoder(MainActivity.this,
                                 Locale.getDefault());
                         try {
-                            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
-                            editor.putFloat("Latitude",(float)addresses.get(0).getLatitude());
-                            editor.putFloat("Longitude",(float)addresses.get(0).getLongitude());
-                            editor.putString("Country",addresses.get(0).getCountryName());
-                            editor.putString("City",addresses.get(0).getLocality());
-                            editor.putString("Address",addresses.get(0).getAddressLine(0));
+                            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                            editor.putFloat("Latitude", (float) addresses.get(0).getLatitude());
+                            editor.putFloat("Longitude", (float) addresses.get(0).getLongitude());
+                            editor.putString("Country", addresses.get(0).getCountryName());
+                            editor.putString("City", addresses.get(0).getLocality());
+                            editor.putString("Address", addresses.get(0).getAddressLine(0));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -273,8 +263,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     }
 
-    public void openRegistration(){
-        Intent intent = new Intent(this,RegisterActivity.class);
+    public void openRegistration() {
+        Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
 
@@ -303,7 +293,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
-        if (location.getAccuracy() < 1000 && !gotLocation && location!=null) {
+        if (location.getAccuracy() < 1000 && !gotLocation && location != null) {
             gotLocation = true;
             double latitude, longitude;
             Geocoder geocoder = new Geocoder(MainActivity.this,
@@ -344,7 +334,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 if (odgovor != null) {
                     Payment payment = paymentLogika.parsiranjePodatakaDatuma(odgovor);
                     stariDatum = payment.datum;
-                    if(stariDatum.equals("null")){
+                    if (stariDatum.equals("null")) {
                         stariDatum = "1998-12-02";
                     }
                     ProvjeriDatum(stariDatum, datum1);
@@ -353,12 +343,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         });
 
     }
+
     private void ProvjeriDatum(String stariDatum, String datum) {
         LocalDate datumPretplate = LocalDate.parse(datum);
         LocalDate stariDatum2 = LocalDate.parse(stariDatum);
-        if(stariDatum2.isBefore(datumPretplate)){
+        if (stariDatum2.isBefore(datumPretplate)) {
             openPlacanje();
-        } else{
+        } else {
             openGlavniIzbornikKlijent();
         }
     }

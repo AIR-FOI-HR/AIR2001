@@ -14,17 +14,17 @@ import com.example.modulzamodule.Beer;
 
 import java.util.ArrayList;
 
-public class BeerCatalogRecyclerAdapter extends RecyclerView.Adapter<BeerCatalogRecyclerAdapter.ViewHolder>{
-    private Context context;
-    private LayoutInflater layoutInflater;
+public class BeerCatalogRecyclerAdapter extends RecyclerView.Adapter<BeerCatalogRecyclerAdapter.ViewHolder> {
+    private final Context context;
+    private final LayoutInflater layoutInflater;
     private ArrayList<Beer> data = new ArrayList<Beer>();
-    private onPivoListener onPivoListener;
+    private final onPivoListener onPivoListener;
 
-    BeerCatalogRecyclerAdapter(Context context, ArrayList<Beer> data,onPivoListener onPivoListener) {
+    BeerCatalogRecyclerAdapter(Context context, ArrayList<Beer> data, onPivoListener onPivoListener) {
         this.layoutInflater = LayoutInflater.from(context);
         this.data = data;
         this.context = context;
-        this.onPivoListener =onPivoListener;
+        this.onPivoListener = onPivoListener;
     }
 
 
@@ -32,7 +32,7 @@ public class BeerCatalogRecyclerAdapter extends RecyclerView.Adapter<BeerCatalog
     @Override
     public BeerCatalogRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.custom_list_view, parent, false);
-        return new ViewHolder(view,onPivoListener);
+        return new ViewHolder(view, onPivoListener);
     }
 
     @Override
@@ -49,8 +49,9 @@ public class BeerCatalogRecyclerAdapter extends RecyclerView.Adapter<BeerCatalog
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView textId, textNaziv,textPrice;
+        TextView textId, textNaziv, textPrice;
         onPivoListener pivoListener;
+
         public ViewHolder(@NonNull View itemView, onPivoListener pivoListener) {
             super(itemView);
             textId = itemView.findViewById(R.id.txtIdPiva);
@@ -65,7 +66,8 @@ public class BeerCatalogRecyclerAdapter extends RecyclerView.Adapter<BeerCatalog
             pivoListener.onBeerClick(getAdapterPosition());
         }
     }
-    public interface onPivoListener{
+
+    public interface onPivoListener {
         void onBeerClick(int position);
     }
 }

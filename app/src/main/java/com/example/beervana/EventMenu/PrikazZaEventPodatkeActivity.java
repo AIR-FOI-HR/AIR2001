@@ -5,18 +5,14 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.beervana.BaseActivity;
-import com.example.beervana.EventMenu.EventCatalogActivity;
 import com.example.beervana.R;
-import com.example.beervana.SettingsActivity;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
-public class PrikazZaEventPodatkeActivity  extends BaseActivity {
+public class PrikazZaEventPodatkeActivity extends BaseActivity {
     ImageView slikaDogadaja;
-    TextView nazivDogadaja,nazivLokacije,opisDogadaja,datumOd,datumDo;
+    TextView nazivDogadaja, nazivLokacije, opisDogadaja, datumOd, datumDo;
     int position;
 
     @Override
@@ -36,13 +32,13 @@ public class PrikazZaEventPodatkeActivity  extends BaseActivity {
         position = intent.getExtras().getInt("position");
 
         nazivDogadaja.setText(EventCatalogActivity.eventDataList.get(position).dogadaj.getNazivDogadaj());
-        nazivLokacije.setText(EventCatalogActivity.eventDataList.get(position).getNazivLokacije()+", "+EventCatalogActivity.eventDataList.get(position).getAdresaLokacije());
+        nazivLokacije.setText(EventCatalogActivity.eventDataList.get(position).getNazivLokacije() + ", " + EventCatalogActivity.eventDataList.get(position).getAdresaLokacije());
         opisDogadaja.setText(EventCatalogActivity.eventDataList.get(position).dogadaj.getOpisDogadaja());
         datumOd.setText("Start: " + EventCatalogActivity.eventDataList.get(position).dogadaj.getDatumOd());
-        datumDo.setText("End: "+ EventCatalogActivity.eventDataList.get(position).dogadaj.getDatumDo());
+        datumDo.setText("End: " + EventCatalogActivity.eventDataList.get(position).dogadaj.getDatumDo());
 
         String imageUri = EventCatalogActivity.eventDataList.get(position).dogadaj.getSlikaDogadaja();
-        Picasso.with(this).load(imageUri).memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE).into(slikaDogadaja);
+        Picasso.with(this).load(imageUri).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).into(slikaDogadaja);
 
     }
 

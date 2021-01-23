@@ -1,8 +1,5 @@
 package com.example.beervana.BeerMenu;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -17,17 +14,20 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.lifecycle.ViewModelProvider;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
 import com.example.beervana.R;
-import com.example.beervana.SettingsActivity;
 import com.example.beervana.databinding.AddBeersActivityBinding;
 import com.example.modulzamodule.AddBeersViewModel;
 import com.example.webservice.SlanjePodataka;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,9 +38,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.Picasso;
 
 public class AddBeers extends BaseActivity {
 
@@ -71,6 +68,7 @@ public class AddBeers extends BaseActivity {
     int position;
 
     AddBeersActivityBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,10 +77,10 @@ public class AddBeers extends BaseActivity {
         binding = AddBeersActivityBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        viewModel=new ViewModelProvider(this).get(AddBeersViewModel.class);
+        viewModel = new ViewModelProvider(this).get(AddBeersViewModel.class);
 
-        naziv_proizvoda=binding.editTextTextPersonName;
-        cijena_proizvoda= binding.editTextNumberDecimal;
+        naziv_proizvoda = binding.editTextTextPersonName;
+        cijena_proizvoda = binding.editTextNumberDecimal;
         okus = binding.editTextTextPersonName3;
         kolicina = binding.editTextTextPersonName4;
         slika = binding.imageView11;
@@ -95,10 +93,10 @@ public class AddBeers extends BaseActivity {
 
         PostaviGreske();
 
-        if (!viewModel.isAzurirajPivo()){
+        if (!viewModel.isAzurirajPivo()) {
             Intent intent = getIntent();
             Bundle extras = intent.getExtras();
-            if(extras != null){
+            if (extras != null) {
                 position = extras.getInt("position");
                 viewModel.setAzurirajPivo(true);
                 DohvatiPodatkezaPivo(position);
@@ -109,14 +107,14 @@ public class AddBeers extends BaseActivity {
         cijena_proizvoda.setText(String.valueOf(viewModel.getCijenaPiva()));
         okus.setText(viewModel.getOkusPiva());
         kolicina.setText(String.valueOf(viewModel.getLitraPiva()));
-        Picasso.with(this).load(viewModel.getSlika()).memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE).into(slika);
+        Picasso.with(this).load(viewModel.getSlika()).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).into(slika);
 
 
         binding.button8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(pickPhoto,1);
+                startActivityForResult(pickPhoto, 1);
             }
         });
 
@@ -173,7 +171,7 @@ public class AddBeers extends BaseActivity {
                     if (viewModel.isAzurirajPivo()) {
                         if (viewModel.Promjena(pozicija_int)) {
                             slanje = true;
-                            params.put("id_proizvoda",viewModel.getIdPivo());
+                            params.put("id_proizvoda", viewModel.getIdPivo());
                             params.put("id_lokacija", "8");
                             params.put("naziv_proizvoda", viewModel.getNazivPiva());
                             params.put("cijena_proizvoda", String.valueOf(viewModel.getCijenaPiva()));
@@ -253,26 +251,26 @@ public class AddBeers extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode !=RESULT_CANCELED){
+        if (resultCode != RESULT_CANCELED) {
             if (resultCode == RESULT_OK && data != null) {
-                Uri selectedImage =  data.getData();
+                Uri selectedImage = data.getData();
 
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 60, stream);
-                    byte [] byte_arr = stream.toByteArray();
+                    byte[] byte_arr = stream.toByteArray();
                     String image_str = Base64.encodeToString(byte_arr, Base64.DEFAULT);
                     viewModel.setSlikaZaSlanje(image_str);
                 } catch (IOException e) {
-                    Toast toast = Toast.makeText(getApplicationContext(),"Erorr file not found",Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(getApplicationContext(), "Erorr file not found", Toast.LENGTH_LONG);
                     toast.show();
                     e.printStackTrace();
                 }
                 viewModel.setSlika(selectedImage);
                 slika.setImageURI(viewModel.getSlika());
-            }else{
-                Toast toast = Toast.makeText(getApplicationContext(),"Error when inserting image",Toast.LENGTH_LONG);
+            } else {
+                Toast toast = Toast.makeText(getApplicationContext(), "Error when inserting image", Toast.LENGTH_LONG);
                 toast.show();
             }
         }

@@ -1,6 +1,4 @@
 package com.example.beervana;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Intent;
@@ -8,15 +6,11 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.beervana.BeerMenu.AddBeers;
-import com.example.beervana.EventMenu.AddEventActivity;
-import com.example.beervana.TastingMenu.DodavanjeDegustacijskihMeniaActivity;
+import androidx.core.app.ActivityCompat;
 
-public class AboutUsActivity extends BaseActivity{
+public class AboutUsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +19,9 @@ public class AboutUsActivity extends BaseActivity{
         initToolbar();
 
         TextView broj1 = findViewById(R.id.ContactUsBroj1TextView2);
-        broj1.setOnClickListener(new View.OnClickListener(){
+        broj1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v ){
+            public void onClick(View v) {
                 String phone = broj1.getText().toString();
                 String s = "tel:" + phone;
                 Intent intent = new Intent(Intent.ACTION_CALL);
@@ -43,9 +37,9 @@ public class AboutUsActivity extends BaseActivity{
         });
 
         TextView broj2 = findViewById(R.id.ContactUsBroj2TextView2);
-        broj2.setOnClickListener(new View.OnClickListener(){
+        broj2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v ){
+            public void onClick(View v) {
                 String phone = broj2.getText().toString();
                 String str = "tel:" + phone;
                 Intent intent = new Intent(Intent.ACTION_CALL);

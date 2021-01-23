@@ -23,9 +23,9 @@ public class EventCatalogAdapter extends ArrayAdapter<ModelPodatakEventCatalog> 
 
 
     public EventCatalogAdapter(@NonNull Context context, List<ModelPodatakEventCatalog> arrayListDataEvent) {
-        super(context, R.layout.event_catalog_list_view,arrayListDataEvent);
+        super(context, R.layout.event_catalog_list_view, arrayListDataEvent);
 
-        this.context=context;
+        this.context = context;
         this.arrayListDataEvent = arrayListDataEvent;
     }
 
@@ -33,7 +33,7 @@ public class EventCatalogAdapter extends ArrayAdapter<ModelPodatakEventCatalog> 
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_catalog_list_view,null,true);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_catalog_list_view, null, true);
 
         ImageView slika = view.findViewById(R.id.imgSlikaPrikazDogadaja);
         TextView lokacija = view.findViewById(R.id.txtNazivLokacije);

@@ -16,10 +16,10 @@ import java.util.List;
 
 public class RecyclerTastingMenuAdapter extends RecyclerView.Adapter<RecyclerTastingMenuAdapter.ViewHolder> {
 
-    private Context context;
-    private List<TastingMenu> arrayListTastingMenu;
-    private onTastingMenuListener onTastingMenuListener;
-    private LayoutInflater layoutInflater;
+    private final Context context;
+    private final List<TastingMenu> arrayListTastingMenu;
+    private final onTastingMenuListener onTastingMenuListener;
+    private final LayoutInflater layoutInflater;
 
     public RecyclerTastingMenuAdapter(
             Context context,
@@ -57,7 +57,7 @@ public class RecyclerTastingMenuAdapter extends RecyclerView.Adapter<RecyclerTas
         return arrayListTastingMenu.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView tastingMenuName, tastingMenuDescription, tastingMenuDuration, tastingMenuLocation;
         onTastingMenuListener tastingMenuListener;
@@ -78,7 +78,8 @@ public class RecyclerTastingMenuAdapter extends RecyclerView.Adapter<RecyclerTas
             tastingMenuListener.onTastingMenuClick(getAdapterPosition());
         }
     }
-    public interface onTastingMenuListener{
+
+    public interface onTastingMenuListener {
         void onTastingMenuClick(int position);
     }
 }

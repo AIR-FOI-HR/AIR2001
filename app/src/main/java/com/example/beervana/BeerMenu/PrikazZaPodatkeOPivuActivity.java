@@ -7,16 +7,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
-import com.example.beervana.BeerMenu.BeerCatalogActivity;
 import com.example.beervana.BeerplacePage.AddReviewsActivity;
 import com.example.beervana.R;
-import com.example.beervana.SettingsActivity;
 import com.example.webservice.SlanjePodataka;
 import com.squareup.picasso.Picasso;
 
@@ -32,10 +28,10 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
     private ImageView addToFavorites;
     private boolean favorite;
     SlanjePodataka slanjePodataka;
-    private String CheckFavoriteBeer = "https://beervana2020.000webhostapp.com/test/isFavoriteBeer.php";
+    private final String CheckFavoriteBeer = "https://beervana2020.000webhostapp.com/test/isFavoriteBeer.php";
 
-    private String AddToFavoritesUrl = "https://beervana2020.000webhostapp.com/test/addFavoriteBeer.php";
-    private String RemoveFromFavoritesUrl = "https://beervana2020.000webhostapp.com/test/removeFavoriteBeer.php";
+    private final String AddToFavoritesUrl = "https://beervana2020.000webhostapp.com/test/addFavoriteBeer.php";
+    private final String RemoveFromFavoritesUrl = "https://beervana2020.000webhostapp.com/test/removeFavoriteBeer.php";
 
     Button addReviews;
     String id_proizvod = "12";
@@ -72,7 +68,7 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
             Picasso.with(this).load(imageUri).into(beerImage);
             beerId = intent.getExtras().getString("id_proizvod");
         }
-        addToFavorites = (ImageView) findViewById(R.id.addToFavorites);
+        addToFavorites = findViewById(R.id.addToFavorites);
         addToFavorites.setOnClickListener(v -> AddToFavoriteLocations());
         addReviews.setOnClickListener(v -> openReviewsActivity());
         CheckIfFavoriteBeer();

@@ -24,7 +24,7 @@ public class BeerplaceHomepageActivity extends AppCompatActivity {
     private static final String url = "https://beervana2020.000webhostapp.com/test/dohvacanjePiva.php";
     private static final String urlEvents = "https://beervana2020.000webhostapp.com/test/DohvacanjeDogadaja.php";
 
-    RecyclerView recyclerView,recyclerViewEvents;
+    RecyclerView recyclerView, recyclerViewEvents;
     public ArrayList<Beer> beers;
     private ArrayList<ModelPodatakEventCatalog> events;
     private RequestQueue requestQueue, requestQueue1;
@@ -50,18 +50,18 @@ public class BeerplaceHomepageActivity extends AppCompatActivity {
         loadEvents();
     }
 
-    private void loadBeers(){
+    private void loadBeers() {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         BeerLogic beerLogic = new BeerLogic();
         DohvatPodataka dohvatPodataka = new DohvatPodataka();
         dohvatPodataka.setSendUrl(url);
-        dohvatPodataka.retrieveData(getApplicationContext(),requestQueue);
+        dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
 
         requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
             @Override
-            public void onRequestFinished(Request<Object> request){
+            public void onRequestFinished(Request<Object> request) {
                 JSONObject odgovor = dohvatPodataka.getOdgovor();
-                if(odgovor != null){
+                if (odgovor != null) {
                     beers.clear();
                     beers.addAll(beerLogic.parsiranjePodatakaPiva(odgovor));
                     AdapterBeerplace adapterBeerplace = new AdapterBeerplace(BeerplaceHomepageActivity.this, beers);
@@ -72,18 +72,18 @@ public class BeerplaceHomepageActivity extends AppCompatActivity {
         });
     }
 
-    private void loadEvents(){
+    private void loadEvents() {
         requestQueue1 = Volley.newRequestQueue(getApplicationContext());
         EventCatalogLogika eventCatalogLogika = new EventCatalogLogika();
         DohvatPodataka dp = new DohvatPodataka();
         dp.setSendUrl(urlEvents);
-        dp.retrieveData(getApplicationContext(),requestQueue1);
+        dp.retrieveData(getApplicationContext(), requestQueue1);
 
         requestQueue1.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
             @Override
-            public void onRequestFinished(Request<Object> request){
+            public void onRequestFinished(Request<Object> request) {
                 JSONObject odgovor = dp.getOdgovor();
-                if(odgovor != null){
+                if (odgovor != null) {
                     events.clear();
                     events.addAll(eventCatalogLogika.parsiranjePodatakaEventData(odgovor));
                     AdapterEventsRecyclerView adapterEventsRecyclerViewr = new AdapterEventsRecyclerView(BeerplaceHomepageActivity.this, events);

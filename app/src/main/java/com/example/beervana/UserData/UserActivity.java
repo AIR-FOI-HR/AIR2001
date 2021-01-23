@@ -1,37 +1,19 @@
 package com.example.beervana.UserData;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.beervana.BaseActivity;
-import com.example.beervana.BeerplacePage.AdapterReview;
-import com.example.beervana.BeerplacePage.ReviewsActivity;
-import com.example.beervana.databinding.AddBeersActivityBinding;
-import com.example.beervana.databinding.UserDataActivityBinding;
-import com.example.webservice.DohvatPodataka;
-import com.example.webservice.SlanjePodataka;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+import com.example.beervana.BaseActivity;
 import com.example.beervana.R;
+import com.example.webservice.DohvatPodataka;
+import com.example.webservice.SlanjePodataka;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserActivity extends BaseActivity {
-    private String id_korisnik;
+    private Integer id_korisnik;
     private TextView username1;
     private TextView lozinka1;
     EditText new_username;
@@ -51,7 +33,7 @@ public class UserActivity extends BaseActivity {
     private static final String url = "https://beervana2020.000webhostapp.com/test/fetchUserData.php";
     private static final String url_username = "https://beervana2020.000webhostapp.com/test/AzurirajUsername.php";
     private static final String url_password = "https://beervana2020.000webhostapp.com/test/AzurirajPassword.php";
-    private RequestQueue requestQueue;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,156 +45,113 @@ public class UserActivity extends BaseActivity {
         username1 = findViewById(R.id.username1);
         lozinka1 = findViewById(R.id.password1);
 
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        id_korisnik = extras.getString("id_korisnik","20");
-        id_korisnik = "20";
+        sp = getSharedPreferences("login", MODE_PRIVATE);
+        id_korisnik = sp.getInt("id_korisnik", 0);
 
         loadUserData();
 
-        Button promijeni_username = (Button) findViewById(R.id.promijeni_username);
+        Button promijeni_username = findViewById(R.id.promijeni_username);
         promijeni_username.setOnClickListener(v -> setNewUsername());
 
-        Button promijeni_lozinku = (Button) findViewById(R.id.promijeni_lozinku);
+        Button promijeni_lozinku = findViewById(R.id.promijeni_lozinku);
         promijeni_lozinku.setOnClickListener(v -> setNewPassword());
 
     }
 
     private void setNewPassword() {
-        old_password = (EditText) findViewById(R.id.editTextTextPassword);
-        new_password1 = (EditText) findViewById(R.id.editTextTextPassword2);
-        new_password2 = (EditText) findViewById(R.id.editTextTextPassword3);
+        old_password = findViewById(R.id.editTextTextPassword);
+        new_password1 = findViewById(R.id.editTextTextPassword2);
+        new_password2 = findViewById(R.id.editTextTextPassword3);
         String old_password_a = old_password.getText().toString();
         String new_password1_a = new_password1.getText().toString();
-        String old_password2_a = new_password2.getText().toString();
-        loadPassword(old_password_a, new_password1_a, old_password2_a);
+        String new_password2_a = new_password2.getText().toString();
+        UserLogic uL = new UserLogic();
+        if (uL.ProvjeraUnosaLozinke(new_password1_a, new_password2_a) == ""
+                || uL.ProvjeraIspravnostiNoveLozinke(new_password1_a, new_password2_a, old_password_a) == ""
+                || uL.ProvjeraIspravnostiLozinke(new_password1_a, new_password2_a) == "") {
+            loadPassword(new_password1_a);
+        }
     }
 
-    private void loadPassword(String old_password, String new_password_1, String new_password_2){
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
-            try {
-
-                JSONArray array = response.getJSONArray("korisnik");
-                String korime = " ";
-                String lozinka = " ";
-                for(int i = 0; i < array.length(); i++){
-                    JSONObject object = (JSONObject) array.get(i);
-                    lozinka = object.getString("lozinka");
-
+    private void loadPassword(String new_password_1) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        SlanjePodataka slanjePodataka = new SlanjePodataka(url_password);
+        Map<String, String> params = new HashMap<>();
+        params.put("id_user", id_korisnik.toString());
+        params.put("new_password", new_password_1);
+        slanjePodataka.setParametri(params);
+        slanjePodataka.sendData(getApplicationContext(), requestQueue);
+        requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+            @Override
+            public void onRequestFinished(Request<Object> request) {
+                String odgovor = slanjePodataka.getOdgovor();
+                if (odgovor.equals("Succesfully changed your password")) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Succesfully changed your password", Toast.LENGTH_LONG);
+                    toast.show();
                 }
-
-                String userLogic = new UserLogic().ProvjeraUnosaLozinke(new_password_1, new_password_2);
-                String userLogic2 = new UserLogic().ProvjeraIspravnostiLozinke(new_password_1, new_password_2);
-                String userLogic3 = new UserLogic().ProvjeraIspravnostiNoveLozinke(new_password_1, new_password_2, old_password);
-
-                if(userLogic.equals("") | userLogic2.equals("") | userLogic3.equals("")){
-                    requestQueue = Volley.newRequestQueue(getApplicationContext());
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put("new_password",new_password_1);
-                    params.put("id_user", id_korisnik);
-
-                    SlanjePodataka slanjePodataka = new SlanjePodataka(url_password);
-                    slanjePodataka.setParametri(params);
-                    slanjePodataka.sendData(getApplicationContext(), requestQueue);
-
-                    requestQueue.addRequestFinishedListener(request1 -> {
-                        String odgovor = slanjePodataka.getOdgovor();
-                        if (odgovor.equals("Succesfully changed your password")) {
-                            Toast toast = Toast.makeText(getApplicationContext(), "Succesfully changed your password", Toast.LENGTH_LONG);
-                            toast.show();
-
-                        }
-                    });
-                }
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
-        }, error -> {
-            Toast.makeText(UserActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
         });
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(request);
     }
 
     private void setNewUsername() {
-        new_username = (EditText) findViewById(R.id.editTextTextPersonName2);
+        new_username = findViewById(R.id.editTextTextPersonName2);
         String username = new_username.getText().toString();
-        loadUsername(username);
+        UserLogic uL = new UserLogic();
+        if (uL.ProvjeraIspravnostiKorisnickogImena(username1.getText().toString(), username) == "") {
+            loadUsername(username);
+        }
     }
 
-    private void loadUsername(String new_username){
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
-            try {
+    private void loadUsername(String new_username) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        SlanjePodataka slanjePodataka = new SlanjePodataka(url_username);
+        Map<String, String> params = new HashMap<>();
+        params.put("new_username", new_username);
+        params.put("korsnicko_ime", username1.getText().toString());
+        slanjePodataka.setParametri(params);
 
-                JSONArray array = response.getJSONArray("korisnik");
-                String korime = " ";
-                String lozinka = " ";
-                for(int i = 0; i < array.length(); i++){
-                    JSONObject object = (JSONObject) array.get(i);
-                    korime = object.getString("korsnicko_ime");
-
+        slanjePodataka.sendData(getApplicationContext(), requestQueue);
+        requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+            @Override
+            public void onRequestFinished(Request<Object> request) {
+                String odgovor = slanjePodataka.getOdgovor();
+                if (odgovor.equals("Succesfully changed your username")) {
+                    username1.setText(new_username);
+                    Toast toast = Toast.makeText(getApplicationContext(), "Succesfully changed your username", Toast.LENGTH_LONG);
+                    toast.show();
+                } else {
+                    Toast toast = Toast.makeText(getApplicationContext(), odgovor, Toast.LENGTH_LONG);
+                    toast.show();
                 }
-
-
-                String userLogic = new UserLogic().ProvjeraUnosaKorisnickogImena(new_username);
-                String userLogic2 = new UserLogic().ProvjeraIspravnostiKorisnickogImena(korime, new_username);
-
-                if(userLogic.equals("") | userLogic2.equals("")){
-                    requestQueue = Volley.newRequestQueue(getApplicationContext());
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put("new_username",new_username);
-                    params.put("old_username",korime);
-
-                    SlanjePodataka slanjePodataka = new SlanjePodataka(url_username);
-                    slanjePodataka.setParametri(params);
-                    slanjePodataka.sendData(getApplicationContext(), requestQueue);
-
-                    requestQueue.addRequestFinishedListener(request1 -> {
-                        String odgovor = slanjePodataka.getOdgovor();
-                        if (odgovor.equals("Succesfully changed your username")) {
-                            Toast toast = Toast.makeText(getApplicationContext(), "Succesfully changed your username", Toast.LENGTH_LONG);
-                            toast.show();
-
-                        }
-                    });
-                }
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
-        }, error -> {
-            Toast.makeText(UserActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
         });
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(request);
     }
 
     private void loadUserData() {
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
-            try {
-                JSONArray array = response.getJSONArray("korisnik");
-                String korime = " ";
-                String lozinka = " ";
-                for(int i = 0; i < array.length(); i++){
-                    JSONObject object = (JSONObject) array.get(i);
-                    korime = "Username: " + (object.getString("korsnicko_ime"));
-                    lozinka = object.getString("lozinka");
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        DohvatPodataka dohvatPodataka = new DohvatPodataka();
+        Map<String, String> params = new HashMap<>();
+        params.put("id_korisnik", id_korisnik.toString());
+        dohvatPodataka.setParametri(params);
+        dohvatPodataka.setSendUrl(url);
+        dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
+        requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+            @Override
+            public void onRequestFinished(Request<Object> request) {
+                JSONObject odgovor = dohvatPodataka.getOdgovor();
+                if (odgovor != null) {
+                    JSONArray jsonArray = null;
+                    JSONObject jsonObject = null;
+                    try {
+                        jsonArray = odgovor.getJSONArray("korisnik");
+                        jsonObject = jsonArray.getJSONObject(0);
+                        username1.setText(jsonObject.getString("korsnicko_ime"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
                 }
-                username1.setText(korime);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
-        }, error -> {
-            Toast.makeText(UserActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
         });
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(request);
-
     }
 }

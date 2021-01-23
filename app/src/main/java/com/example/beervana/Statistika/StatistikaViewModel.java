@@ -12,11 +12,12 @@ public class StatistikaViewModel extends ViewModel {
     DataPoint[] podaci;
     ArrayList<DataPoint> podaciArray = new ArrayList<>();
     StatistikaLogika logika = new StatistikaLogika();
-    public void PostaviPodatke(JSONObject object){
+
+    public void PostaviPodatke(JSONObject object) {
         podaciArray.clear();
         podaciArray.addAll(logika.parsiranjePodatakaStatistika(object));
         podaci = new DataPoint[podaciArray.size()];
-        for(int i = 0;i<podaciArray.size();i++){
+        for (int i = 0; i < podaciArray.size(); i++) {
             podaci[i] = podaciArray.get(i);
         }
     }

@@ -41,7 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DodavanjeDegustacijskihMeniaActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
+public class AddUpdateTastingMenu extends BaseActivity implements AdapterView.OnItemSelectedListener {
     private static final String TAG = "DodavanjeDegustacijskihMeniaActivity";
 
     EditText menuName;
@@ -54,7 +54,7 @@ public class DodavanjeDegustacijskihMeniaActivity extends BaseActivity implement
     ArrayAdapter<String> listaAdapter;
     final List<KeyPairBoolData> listArray = new ArrayList<>();
     private TastingMenuViewModel model;
-    private Calendar calendar = Calendar.getInstance();
+    private final Calendar calendar = Calendar.getInstance();
     ActivityDodavanjeDegustacijskihMeniaBinding binding;
     private DatePickerDialog.OnDateSetListener listenerZaDatumOd;
     String sendUrl = "https://beervana2020.000webhostapp.com/test/UpdateTastingMenu.php";
@@ -67,7 +67,7 @@ public class DodavanjeDegustacijskihMeniaActivity extends BaseActivity implement
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dodavanje_degustacijskih_menia);
         sp = getSharedPreferences("login", MODE_PRIVATE);
-        korisnik = sp.getInt("id_korisnik",0);
+        korisnik = sp.getInt("id_korisnik", 0);
         idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
 
         binding = ActivityDodavanjeDegustacijskihMeniaBinding.inflate((getLayoutInflater()));
@@ -253,6 +253,7 @@ public class DodavanjeDegustacijskihMeniaActivity extends BaseActivity implement
             }
         }
     }
+
     private void setBeers(JSONArray jsonArray) {
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject = null;
@@ -261,7 +262,7 @@ public class DodavanjeDegustacijskihMeniaActivity extends BaseActivity implement
                 String naziv_proizvoda = jsonObject.optString("naziv_proizvoda");
 
                 beerList.add(naziv_proizvoda);
-                listaAdapter = new ArrayAdapter<>(DodavanjeDegustacijskihMeniaActivity.this,
+                listaAdapter = new ArrayAdapter<>(AddUpdateTastingMenu.this,
                         android.R.layout.simple_spinner_item, beerList);
                 listaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 beerSpin.setAdapter(listaAdapter);
@@ -283,8 +284,8 @@ public class DodavanjeDegustacijskihMeniaActivity extends BaseActivity implement
             if (view != null && view instanceof EditText) {
                 Rect r = new Rect();
                 view.getGlobalVisibleRect(r);
-                int rawX = (int)ev.getRawX();
-                int rawY = (int)ev.getRawY();
+                int rawX = (int) ev.getRawX();
+                int rawY = (int) ev.getRawY();
                 if (!r.contains(rawX, rawY)) {
                     view.clearFocus();
                 }
@@ -308,14 +309,15 @@ public class DodavanjeDegustacijskihMeniaActivity extends BaseActivity implement
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-    private void PokreniDijalogZaDatum(DatePickerDialog.OnDateSetListener listener){
+
+    private void PokreniDijalogZaDatum(DatePickerDialog.OnDateSetListener listener) {
         int godina = calendar.get(Calendar.YEAR);
         int mjesec = calendar.get(Calendar.MONTH);
-        int dan = calendar.get(calendar.DAY_OF_MONTH);
+        int dan = calendar.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog dialog = new DatePickerDialog
-                (DodavanjeDegustacijskihMeniaActivity.this,R.style.Theme_AppCompat_Light_Dialog_MinWidth,
-                        listener,godina,mjesec,dan);
+                (AddUpdateTastingMenu.this, R.style.Theme_AppCompat_Light_Dialog_MinWidth,
+                        listener, godina, mjesec, dan);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
         dialog.show();
     }

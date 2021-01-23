@@ -1,12 +1,6 @@
 package com.example.beervana.UserData;
 
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-
 public class UserLogic {
     public String ProvjeraUnosaKorisnickogImena(String username) {
         if (username.equals("")) {
@@ -41,36 +35,12 @@ public class UserLogic {
         return "";
     }
 
-    public String ProvjeraIspravnostiNoveLozinke(String new_password_1_1_1, String new_password_2_2_2, String old_password){
-        if(new_password_1_1_1.equals(old_password) | new_password_2_2_2.equals(old_password)){
+    public String ProvjeraIspravnostiNoveLozinke(String new_password_1_1_1, String new_password_2_2_2, String old_password) {
+        if (new_password_1_1_1.equals(old_password) | new_password_2_2_2.equals(old_password)) {
             return "Error: New password cannot be the same as old password";
         }
 
         return "";
     }
-    /*
-    public ArrayList<UserViewModel> parsiranjePodatakaUsera(JSONObject jsonObject) {
-        JSONArray jsonArray = null;
-        ArrayList<UserViewModel> userArrayList = new ArrayList<UserViewModel>();
-        try {
-            jsonArray = jsonObject.getJSONArray("korisnik");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject object = (JSONObject) jsonArray.get(i);
-                String username = "Username: " + (object.getString("korsnicko_ime"));
-                String password = object.getString("lozinka");
-
-                UserViewModel userViewModel = new UserViewModel(username, password);
-                userArrayList.add(userViewModel);
-
-
-            }
-        } catch (JSONException e) {
-            userArrayList = null;
-            e.printStackTrace();
-        }
-
-        return userArrayList;
-    }
-    */
 
 }

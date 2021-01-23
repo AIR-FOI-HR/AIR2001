@@ -1,27 +1,20 @@
 package com.example.beervana.BeerMenu;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceGroup;
-import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
-import com.example.beervana.EventMenu.AddEventActivity;
-import com.example.beervana.MainActivity;
 import com.example.beervana.R;
 import com.example.modulzamodule.Beer;
 import com.example.modulzamodule.BeerLogic;
@@ -34,7 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BeerCatalogActivity extends BaseActivity implements BeerCatalogRecyclerAdapter.onPivoListener{
+public class BeerCatalogActivity extends BaseActivity implements BeerCatalogRecyclerAdapter.onPivoListener {
     RecyclerView beerRecyclerView;
     private RequestQueue requestQueue;
     private RequestQueue requestQueueBrisanje;
@@ -46,7 +39,8 @@ public class BeerCatalogActivity extends BaseActivity implements BeerCatalogRecy
     String idLokacija;
     SharedPreferences sp;
     View view;
-    private int korisnik=0;
+    private int korisnik = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,10 +53,10 @@ public class BeerCatalogActivity extends BaseActivity implements BeerCatalogRecy
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         sp = getSharedPreferences("login", MODE_PRIVATE);
-        if(extras != null){
+        if (extras != null) {
             idLokacija = extras.getString("id_lokacija");
             korisnik = sp.getInt("id_uloga", 0);
-        }else{
+        } else {
             idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
         }
 
@@ -96,19 +90,19 @@ public class BeerCatalogActivity extends BaseActivity implements BeerCatalogRecy
         BeerLogic beerLogic = new BeerLogic();
         DohvatPodataka dohvatPodataka = new DohvatPodataka();
         Map<String, String> params = new HashMap<String, String>();
-        params.put("id_lokacija",idLokacija);
+        params.put("id_lokacija", idLokacija);
         dohvatPodataka.setParametri(params);
         dohvatPodataka.setSendUrl(url);
-        dohvatPodataka.retrieveData(getApplicationContext(),requestQueue);
+        dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
 
         requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
             @Override
-            public void onRequestFinished(Request<Object> request){
+            public void onRequestFinished(Request<Object> request) {
                 JSONObject odgovor = dohvatPodataka.getOdgovor();
-                if(odgovor != null){
+                if (odgovor != null) {
                     BeerArrayList.clear();
                     BeerArrayList.addAll(beerLogic.parsiranjePodatakaPiva(odgovor));
-                    adapter = new BeerCatalogRecyclerAdapter(BeerCatalogActivity.this,BeerArrayList,BeerCatalogActivity.this);
+                    adapter = new BeerCatalogRecyclerAdapter(BeerCatalogActivity.this, BeerArrayList, BeerCatalogActivity.this);
                     beerRecyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }
@@ -119,9 +113,9 @@ public class BeerCatalogActivity extends BaseActivity implements BeerCatalogRecy
 
     @Override
     public void onBeerClick(int position) {
-        if(korisnik == 1){
-            startActivity(new Intent(getApplicationContext(), PrikazZaPodatkeOPivuActivity.class).putExtra("position",position));
-        }else{
+        if (korisnik == 1) {
+            startActivity(new Intent(getApplicationContext(), PrikazZaPodatkeOPivuActivity.class).putExtra("position", position));
+        } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
             CharSequence[] dialogItem = {"View data", "Edit data", "Delete data"};
             builder.setTitle(BeerArrayList.get(position).getNaziv_proizvoda());
@@ -130,7 +124,7 @@ public class BeerCatalogActivity extends BaseActivity implements BeerCatalogRecy
                 public void onClick(DialogInterface dialog, int which) {
                     switch (which) {
                         case 0:
-                            startActivity(new Intent(getApplicationContext(), PrikazZaPodatkeOPivuActivity.class).putExtra("position",position));
+                            startActivity(new Intent(getApplicationContext(), PrikazZaPodatkeOPivuActivity.class).putExtra("position", position));
                             break;
                         case 1:
                             startActivity(new Intent(getApplicationContext(), AddBeers.class).putExtra("position", position));

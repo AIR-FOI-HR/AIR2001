@@ -14,22 +14,23 @@ import com.example.modulzamodule.ModelPodatakaLokacijaSOcjenom;
 import java.util.List;
 
 public class SearchActivityRecyclerAdapterPivnica extends RecyclerView.Adapter<SearchActivityRecyclerAdapterPivnica.ViewHolder> {
-    private Context context;
-    private LayoutInflater layoutInflater;
-    private List<ModelPodatakaLokacijaSOcjenom> lokacije;
-    private onLokacijaListener onLokacijaListener;
+    private final Context context;
+    private final LayoutInflater layoutInflater;
+    private final List<ModelPodatakaLokacijaSOcjenom> lokacije;
+    private final onLokacijaListener onLokacijaListener;
 
-    SearchActivityRecyclerAdapterPivnica(Context context, List<ModelPodatakaLokacijaSOcjenom> lokacije,onLokacijaListener onLokacijaListener){
+    SearchActivityRecyclerAdapterPivnica(Context context, List<ModelPodatakaLokacijaSOcjenom> lokacije, onLokacijaListener onLokacijaListener) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
         this.lokacije = lokacije;
         this.onLokacijaListener = onLokacijaListener;
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.custom_location_view,parent,false);
-        return new SearchActivityRecyclerAdapterPivnica.ViewHolder(view,onLokacijaListener);
+        View view = layoutInflater.inflate(R.layout.custom_location_view, parent, false);
+        return new SearchActivityRecyclerAdapterPivnica.ViewHolder(view, onLokacijaListener);
     }
 
     @Override
@@ -45,9 +46,10 @@ public class SearchActivityRecyclerAdapterPivnica extends RecyclerView.Adapter<S
         return lokacije.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
-        TextView nazivLokacije,ocjenaLokacije,adresaLokacije;
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView nazivLokacije, ocjenaLokacije, adresaLokacije;
         onLokacijaListener lokacijaListener;
+
         public ViewHolder(@NonNull View itemView, onLokacijaListener lokacijaListener) {
             super(itemView);
             nazivLokacije = itemView.findViewById(R.id.txtNazivLokacijePretrazivanje);
@@ -63,7 +65,8 @@ public class SearchActivityRecyclerAdapterPivnica extends RecyclerView.Adapter<S
             lokacijaListener.onLocationClick(getAdapterPosition());
         }
     }
-    public interface onLokacijaListener{
+
+    public interface onLokacijaListener {
         void onLocationClick(int position);
     }
 }

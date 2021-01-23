@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:theme="@style/Theme.Beervana.NoActionBar"
     android:background="@color/white"
-    tools:context=".TastingMenu.DodavanjeDegustacijskihMeniaActivity">
+    tools:context=".TastingMenu.AddUpdateTastingMenu">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -210,32 +210,13 @@
             android:id="@+id/acceptTastingMenu"
             android:layout_width="@dimen/circleButton"
             android:layout_height="@dimen/circleButton"
-            app:layout_constraintEnd_toStartOf="@id/cancelTastingMenu"
+            android:background="@drawable/circle_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/durationTextView"
-            app:srcCompat="@drawable/ic_baseline_check_24"
-            android:layout_marginStart="@dimen/pocetnaMarginaTekstEditor"
-            android:layout_marginTop="@dimen/razmakIzmedjuRedakaTekstEditor"
-            android:layout_marginEnd="@dimen/zavrsnaMarginaTekstEditor"
-            android:background="@drawable/circle_button"
-
-            />
-        <ImageButton
-            android:id="@+id/cancelTastingMenu"
-            android:layout_width="@dimen/circleButton"
-            android:layout_height="@dimen/circleButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/acceptTastingMenu"
-            app:layout_constraintTop_toBottomOf="@id/durationTextView"
-            app:srcCompat="@drawable/ic_baseline_close_24"
-            android:layout_marginStart="@dimen/pocetnaMarginaTekstEditor"
-            android:layout_marginTop="@dimen/razmakIzmedjuRedakaTekstEditor"
-            android:layout_marginEnd="@dimen/zavrsnaMarginaTekstEditor"
-            android:background="@drawable/circle_button"
+            app:srcCompat="@drawable/ic_baseline_check_24"
+
             />
-
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

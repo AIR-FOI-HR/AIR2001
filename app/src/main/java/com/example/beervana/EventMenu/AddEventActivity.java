@@ -63,12 +63,13 @@ public class AddEventActivity extends BaseActivity {
     private TimePickerDialog.OnTimeSetListener listenerZaVrijemeOd;
     private DatePickerDialog.OnDateSetListener listenerZaDatumDo;
     private TimePickerDialog.OnTimeSetListener listenerZaVrijemeDo;
-    private Calendar calendar = Calendar.getInstance();
+    private final Calendar calendar = Calendar.getInstance();
     private AddEventActivityViewModel viewModel;
     int position;
     private String idKorisnik;
     private String idLokacija;
     private SharedPreferences sp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +80,7 @@ public class AddEventActivity extends BaseActivity {
 
         sp = getSharedPreferences("login", MODE_PRIVATE);
         idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
-        idKorisnik = Integer.toString(sp.getInt("id_korisnik",0));
+        idKorisnik = Integer.toString(sp.getInt("id_korisnik", 0));
         //final AddEventActivityViewModel viewModel = new ViewModelProvider(this).get(AddEventActivityViewModel.class);
         viewModel = new ViewModelProvider(this).get(AddEventActivityViewModel.class);
 
@@ -98,10 +99,10 @@ public class AddEventActivity extends BaseActivity {
         errUnosDatumDo = binding.errUnosDatumDo;
         errUnosVrijemeDo = binding.errUnosVrijemeDo;
 
-        if(!viewModel.isAzuriraj()){
+        if (!viewModel.isAzuriraj()) {
             Intent intent = getIntent();
             Bundle extras = intent.getExtras();
-            if(extras != null){
+            if (extras != null) {
                 position = extras.getInt("position");
                 viewModel.setAzuriraj(true);
                 PostaviPodatkeUViewModel(position);
@@ -112,13 +113,11 @@ public class AddEventActivity extends BaseActivity {
         }
 
 
-
         prikazDatumaOd.setText(viewModel.getPrikazDatumaOd());
         prikazVremenaOd.setText(viewModel.getPrikazVremenaOd());
         prikazDatumaDo.setText(viewModel.getPrikazDatumaDo());
         prikazVremenaDo.setText(viewModel.getPrikazVremenaDo());
-        Picasso.with(this).load(viewModel.getSlika()).memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE).into(slikaDogadjaj);
-
+        Picasso.with(this).load(viewModel.getSlika()).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).into(slikaDogadjaj);
 
 
         PostaviGreske();
@@ -127,7 +126,7 @@ public class AddEventActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(pickPhoto , 1);
+                startActivityForResult(pickPhoto, 1);
             }
         });
 
@@ -163,14 +162,14 @@ public class AddEventActivity extends BaseActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month = month + 1;
-                viewModel.setPrikazDatumaOd(dayOfMonth +"/"+month+"/"+year);
+                viewModel.setPrikazDatumaOd(dayOfMonth + "/" + month + "/" + year);
                 prikazDatumaOd.setText(viewModel.getPrikazDatumaOd());
             }
         };
         listenerZaVrijemeOd = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                viewModel.setPrikazVremenaOd(hourOfDay+":"+minute);
+                viewModel.setPrikazVremenaOd(hourOfDay + ":" + minute);
                 prikazVremenaOd.setText(viewModel.getPrikazVremenaOd());
             }
         };
@@ -178,14 +177,14 @@ public class AddEventActivity extends BaseActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month = month + 1;
-                viewModel.setPrikazDatumaDo(dayOfMonth +"/"+month+"/"+year);
+                viewModel.setPrikazDatumaDo(dayOfMonth + "/" + month + "/" + year);
                 prikazDatumaDo.setText(viewModel.getPrikazDatumaDo());
             }
         };
         listenerZaVrijemeDo = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                viewModel.setPrikazVremenaDo(hourOfDay+":"+minute);
+                viewModel.setPrikazVremenaDo(hourOfDay + ":" + minute);
                 prikazVremenaDo.setText(viewModel.getPrikazVremenaDo());
             }
         };
@@ -196,54 +195,54 @@ public class AddEventActivity extends BaseActivity {
                 viewModel.setUnosImedogadjaja(unosImedogadjaja.getText().toString());
                 viewModel.setUnosOpisaDogadaja(unosOpisaDogadaja.getText().toString());
                 //TODO promijenit statičke podatke s pravim
-                if(viewModel.ProvijeriSvePodatke()){
+                if (viewModel.ProvijeriSvePodatke()) {
                     boolean mozeSlanje = false;
-                    Map<String, String> params=new HashMap<String, String>();
-                    if(viewModel.isAzuriraj()){
-                        if(viewModel.DosloDoPromjene()){
+                    Map<String, String> params = new HashMap<String, String>();
+                    if (viewModel.isAzuriraj()) {
+                        if (viewModel.DosloDoPromjene()) {
                             mozeSlanje = true;
-                            params.put("id_dogadaj",viewModel.getId_dogadaj());
-                            params.put("id_lokacija",idLokacija);
-                            params.put("naziv_dogadjaja",viewModel.getUnosImedogadjaja());
-                            params.put("opis_dogadjaja",viewModel.getUnosOpisaDogadaja());
-                            params.put("datum_pocetak",viewModel.FormirajDatum(viewModel.getPrikazDatumaOd(),viewModel.getPrikazVremenaOd()));
-                            params.put("datum_kraj",viewModel.FormirajDatum(viewModel.getPrikazDatumaDo(), viewModel.getPrikazVremenaDo()));
-                            if(viewModel.getSlikaZaSlanje() != ""){
-                                params.put("slika",viewModel.getSlikaZaSlanje());
+                            params.put("id_dogadaj", viewModel.getId_dogadaj());
+                            params.put("id_lokacija", idLokacija);
+                            params.put("naziv_dogadjaja", viewModel.getUnosImedogadjaja());
+                            params.put("opis_dogadjaja", viewModel.getUnosOpisaDogadaja());
+                            params.put("datum_pocetak", viewModel.FormirajDatum(viewModel.getPrikazDatumaOd(), viewModel.getPrikazVremenaOd()));
+                            params.put("datum_kraj", viewModel.FormirajDatum(viewModel.getPrikazDatumaDo(), viewModel.getPrikazVremenaDo()));
+                            if (viewModel.getSlikaZaSlanje() != "") {
+                                params.put("slika", viewModel.getSlikaZaSlanje());
                             }
-                            sendUrl="https://beervana2020.000webhostapp.com/test/AzurirajDogadaj.php";
-                        }else{
-                            Toast toast = Toast.makeText(getApplicationContext(),"You didn't make any changes",Toast.LENGTH_LONG);
+                            sendUrl = "https://beervana2020.000webhostapp.com/test/AzurirajDogadaj.php";
+                        } else {
+                            Toast toast = Toast.makeText(getApplicationContext(), "You didn't make any changes", Toast.LENGTH_LONG);
                             toast.show();
                             openBeerCatalog();
                         }
 
-                    }else{
+                    } else {
                         mozeSlanje = true;
-                        params.put("id_korisnik",idKorisnik);
-                        params.put("id_lokacija",idLokacija);
-                        params.put("slika",viewModel.getSlikaZaSlanje());
-                        params.put("naziv_dogadjaja",viewModel.getUnosImedogadjaja());
-                        params.put("opis_dogadjaja",viewModel.getUnosOpisaDogadaja());
-                        params.put("datum_pocetak",viewModel.FormirajDatum(viewModel.getPrikazDatumaOd(),viewModel.getPrikazVremenaOd()));
-                        params.put("datum_kraj",viewModel.FormirajDatum(viewModel.getPrikazDatumaDo(), viewModel.getPrikazVremenaDo()));
-                        sendUrl="https://beervana2020.000webhostapp.com/test/dodajDogadjajV2.php";
+                        params.put("id_korisnik", idKorisnik);
+                        params.put("id_lokacija", idLokacija);
+                        params.put("slika", viewModel.getSlikaZaSlanje());
+                        params.put("naziv_dogadjaja", viewModel.getUnosImedogadjaja());
+                        params.put("opis_dogadjaja", viewModel.getUnosOpisaDogadaja());
+                        params.put("datum_pocetak", viewModel.FormirajDatum(viewModel.getPrikazDatumaOd(), viewModel.getPrikazVremenaOd()));
+                        params.put("datum_kraj", viewModel.FormirajDatum(viewModel.getPrikazDatumaDo(), viewModel.getPrikazVremenaDo()));
+                        sendUrl = "https://beervana2020.000webhostapp.com/test/dodajDogadjajV2.php";
                     }
-                    if(mozeSlanje){
-                        requestQueue= Volley.newRequestQueue(getApplicationContext());
+                    if (mozeSlanje) {
+                        requestQueue = Volley.newRequestQueue(getApplicationContext());
                         SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
                         slanjePodataka.setParametri(params);
-                        slanjePodataka.sendData(getApplicationContext(),requestQueue);
+                        slanjePodataka.sendData(getApplicationContext(), requestQueue);
                         requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
                             @Override
                             public void onRequestFinished(Request<Object> request) {
                                 String odgovor = slanjePodataka.getOdgovor();
-                                Toast toast = Toast.makeText(getApplicationContext(),odgovor,Toast.LENGTH_LONG);
+                                Toast toast = Toast.makeText(getApplicationContext(), odgovor, Toast.LENGTH_LONG);
                                 toast.show();
-                                if(odgovor.equals("Succesfully updated an event.")){
+                                if (odgovor.equals("Succesfully updated an event.")) {
                                     openBeerCatalog();
                                 }
-                                if(odgovor.equals("Succesfully added an event")){
+                                if (odgovor.equals("Succesfully added an event")) {
                                     openMenuClient();
                                 }
                             }
@@ -259,35 +258,34 @@ public class AddEventActivity extends BaseActivity {
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode != RESULT_CANCELED){
+        if (resultCode != RESULT_CANCELED) {
             if (resultCode == RESULT_OK && data != null) {
-                Uri selectedImage =  data.getData();
+                Uri selectedImage = data.getData();
 
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 60, stream);
-                    byte [] byte_arr = stream.toByteArray();
+                    byte[] byte_arr = stream.toByteArray();
                     String image_str = Base64.encodeToString(byte_arr, Base64.DEFAULT);
                     viewModel.setSlikaZaSlanje(image_str);
                 } catch (IOException e) {
-                    Toast toast = Toast.makeText(getApplicationContext(),"Erorr file not found",Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(getApplicationContext(), "Erorr file not found", Toast.LENGTH_LONG);
                     toast.show();
                     e.printStackTrace();
                 }
                 viewModel.setSlika(selectedImage);
-                Picasso.with(this).load(viewModel.getSlika()).memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE).into(slikaDogadjaj);
-            }else{
-                Toast toast = Toast.makeText(getApplicationContext(),"Error when inserting image",Toast.LENGTH_LONG);
+                Picasso.with(this).load(viewModel.getSlika()).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).into(slikaDogadjaj);
+            } else {
+                Toast toast = Toast.makeText(getApplicationContext(), "Error when inserting image", Toast.LENGTH_LONG);
                 toast.show();
             }
         }
     }
 
-    private void PostaviGreske(){
+    private void PostaviGreske() {
         errSlika.setText(viewModel.getErrSlika());
         errUnosImeDogadjaja.setText(viewModel.getErrUnosImeDogadjaja());
         errOpisaDogadjaja.setText(viewModel.getErrOpisaDogadjaja());
@@ -305,28 +303,29 @@ public class AddEventActivity extends BaseActivity {
         errUnosVrijemeDo.setVisibility(viewModel.getErrUnosVrijemeDoVisibility());
     }
 
-    private void PokreniDijalogZaDatum(DatePickerDialog.OnDateSetListener listener){
+    private void PokreniDijalogZaDatum(DatePickerDialog.OnDateSetListener listener) {
         int godina = calendar.get(Calendar.YEAR);
         int mjesec = calendar.get(Calendar.MONTH);
-        int dan = calendar.get(calendar.DAY_OF_MONTH);
+        int dan = calendar.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog dialog = new DatePickerDialog
                 (AddEventActivity.this, R.style.Theme_AppCompat_Light_Dialog_MinWidth,
-                        listener,godina,mjesec,dan);
+                        listener, godina, mjesec, dan);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
         dialog.show();
     }
 
-    private void PokreniDijalogZaVrijeme(TimePickerDialog.OnTimeSetListener listener){
+    private void PokreniDijalogZaVrijeme(TimePickerDialog.OnTimeSetListener listener) {
         int sat = calendar.get(Calendar.HOUR_OF_DAY);
         int minuta = calendar.get(Calendar.MINUTE);
 
-        TimePickerDialog dialog = new TimePickerDialog(AddEventActivity.this,R.style.Theme_AppCompat_DayNight_Dialog_MinWidth
-                ,listener,sat,minuta,true);
+        TimePickerDialog dialog = new TimePickerDialog(AddEventActivity.this, R.style.Theme_AppCompat_DayNight_Dialog_MinWidth
+                , listener, sat, minuta, true);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable((Color.LTGRAY)));
         dialog.show();
     }
-    private void PostaviPodatkeUViewModel(int position){
+
+    private void PostaviPodatkeUViewModel(int position) {
         viewModel.podaciPrijeAzuriranja = EventCatalogActivity.eventDataList.get(position);
         viewModel.setId_dogadaj(EventCatalogActivity.eventDataList.get(position).dogadaj.getIdDogadaj());
         viewModel.setUnosOpisaDogadaja(EventCatalogActivity.eventDataList.get(position).dogadaj.getOpisDogadaja());
@@ -338,11 +337,13 @@ public class AddEventActivity extends BaseActivity {
         Uri imageUri = Uri.parse(EventCatalogActivity.eventDataList.get(position).dogadaj.getSlikaDogadaja());
         viewModel.setSlika(imageUri);
     }
-    public void openBeerCatalog(){
-        Intent intent = new Intent(this,EventCatalogActivity.class);
+
+    public void openBeerCatalog() {
+        Intent intent = new Intent(this, EventCatalogActivity.class);
         startActivity(intent);
     }
-    public void openMenuClient(){
+
+    public void openMenuClient() {
         Intent intent = new Intent(this, GlavniIzbornikClient.class);
         startActivity(intent);
     }

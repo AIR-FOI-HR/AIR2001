@@ -1,8 +1,5 @@
 package com.example.beervana;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,14 +7,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.modulzamodule.Beer;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class AdapterBeerplace extends RecyclerView.Adapter<AdapterBeerplace.ViewHolder> {
-    private Context context;
-    private LayoutInflater layoutInflater;
+    private final Context context;
+    private final LayoutInflater layoutInflater;
     private ArrayList<Beer> data = new ArrayList<Beer>();
 
     AdapterBeerplace(Context context, ArrayList<Beer> data) {
@@ -50,10 +50,11 @@ public class AdapterBeerplace extends RecyclerView.Adapter<AdapterBeerplace.View
         return data.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView textTitle, textDescription;
         ImageView imageView;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textTitle = itemView.findViewById(R.id.komentar);

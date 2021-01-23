@@ -10,21 +10,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.modulzamodule.Beer;
 import com.example.modulzamodule.ModelPodatakaPivoSOcjenom;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class ActivityRecyclerAdaptetPivoSOcjenom extends RecyclerView.Adapter<ActivityRecyclerAdaptetPivoSOcjenom.ViewHolder> {
-    private Context context;
+    private final Context context;
     private LayoutInflater layoutInflater;
-    private List<ModelPodatakaPivoSOcjenom> piva;
-    private onPivaListener onPivaListener;
+    private final List<ModelPodatakaPivoSOcjenom> piva;
+    private final onPivaListener onPivaListener;
 
     public ActivityRecyclerAdaptetPivoSOcjenom(Context context, List<ModelPodatakaPivoSOcjenom> piva, onPivaListener onPivaListener) {
         this.context = context;
-        this.layoutInflater = layoutInflater.from(context);
+        this.layoutInflater = LayoutInflater.from(context);
         this.piva = piva;
         this.onPivaListener = onPivaListener;
     }
@@ -32,8 +31,8 @@ public class ActivityRecyclerAdaptetPivoSOcjenom extends RecyclerView.Adapter<Ac
     @NonNull
     @Override
     public ActivityRecyclerAdaptetPivoSOcjenom.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.custom_beer_view,parent,false);
-        return new ActivityRecyclerAdaptetPivoSOcjenom.ViewHolder(view,onPivaListener);
+        View view = layoutInflater.inflate(R.layout.custom_beer_view, parent, false);
+        return new ActivityRecyclerAdaptetPivoSOcjenom.ViewHolder(view, onPivaListener);
     }
 
     @Override
@@ -52,24 +51,27 @@ public class ActivityRecyclerAdaptetPivoSOcjenom extends RecyclerView.Adapter<Ac
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView nazivPiva,cijenaPiva,okusPiva;
+        TextView nazivPiva, cijenaPiva, okusPiva;
         ImageView slikaPiva;
         onPivaListener pivaListener;
+
         public ViewHolder(@NonNull View itemView, onPivaListener pivaListener) {
             super(itemView);
-            nazivPiva=itemView.findViewById(R.id.txtNazivPivaPretrazivanje);
-            cijenaPiva=itemView.findViewById(R.id.txtCijenaPivaPretrazivanje);
-            okusPiva=itemView.findViewById(R.id.txtOkusPivaPretrazivanje);
-            slikaPiva= itemView.findViewById(R.id.slikaPiva);
+            nazivPiva = itemView.findViewById(R.id.txtNazivPivaPretrazivanje);
+            cijenaPiva = itemView.findViewById(R.id.txtCijenaPivaPretrazivanje);
+            okusPiva = itemView.findViewById(R.id.txtOkusPivaPretrazivanje);
+            slikaPiva = itemView.findViewById(R.id.slikaPiva);
             this.pivaListener = pivaListener;
             itemView.setOnClickListener(this);
         }
+
         @Override
         public void onClick(View v) {
             pivaListener.onBeerClick(getAdapterPosition());
         }
     }
-    public interface onPivaListener{
+
+    public interface onPivaListener {
         void onBeerClick(int position);
     }
 }

@@ -32,9 +32,9 @@ public class BeerplaceHomepageActivityNew extends BaseActivity {
     private SharedPreferences sp;
     private String idKorisnik;
     private SlanjePodataka slanjePodataka;
-    private String AddToFavoritesUrl = "https://beervana2020.000webhostapp.com/test/DodajOmiljenuLokaciju.php";
-    private String RemoveFromFavoritesUrl = "https://beervana2020.000webhostapp.com/test/UkloniOmiljenuLokaciju.php";
-    private String CheckFavoriteLocation = "https://beervana2020.000webhostapp.com/test/DaliOmiljenaLokacija.php";
+    private final String AddToFavoritesUrl = "https://beervana2020.000webhostapp.com/test/DodajOmiljenuLokaciju.php";
+    private final String RemoveFromFavoritesUrl = "https://beervana2020.000webhostapp.com/test/UkloniOmiljenuLokaciju.php";
+    private final String CheckFavoriteLocation = "https://beervana2020.000webhostapp.com/test/DaliOmiljenaLokacija.php";
     private RequestQueue requestQueue;
     private RequestQueue requestQueueCheck;
     private Button promocije;
@@ -50,25 +50,25 @@ public class BeerplaceHomepageActivityNew extends BaseActivity {
 
         idKorisnik = Integer.toString(sp.getInt("id_korisnik", 0));
 
-        Button button = (Button) findViewById(R.id.button4);
+        Button button = findViewById(R.id.button4);
         button.setOnClickListener(v -> openMapsActivity());
 
-        Button button1 = (Button) findViewById(R.id.button14);
+        Button button1 = findViewById(R.id.button14);
         button1.setOnClickListener(v -> openReviewsActivity());
 
-        ImageView mImageView = (ImageView) findViewById(R.id.imageView14);
+        ImageView mImageView = findViewById(R.id.imageView14);
         mImageView.setOnClickListener(v -> openActivityBeerCatalog());
 
-        ImageView nImageView = (ImageView) findViewById(R.id.imageView15);
+        ImageView nImageView = findViewById(R.id.imageView15);
         nImageView.setOnClickListener(v -> openActivityEventCatalog());
 
-        ImageView oImageView = (ImageView) findViewById(R.id.imageView16);
+        ImageView oImageView = findViewById(R.id.imageView16);
         oImageView.setOnClickListener(v -> openActivityMenuCatalog());
 
-        ImageView pImageView = (ImageView) findViewById(R.id.imageView17);
+        ImageView pImageView = findViewById(R.id.imageView17);
         pImageView.setOnClickListener(v -> openActivityReviews());
 
-        addToFavorites = (ImageView) findViewById(R.id.addToFavorites);
+        addToFavorites = findViewById(R.id.addToFavorites);
         addToFavorites.setOnClickListener(v -> AddToFavoriteLocations());
 
         Intent intent = getIntent();
@@ -77,10 +77,10 @@ public class BeerplaceHomepageActivityNew extends BaseActivity {
         naziv_lokacije = extras.getString("naziv_lokacije", "");
         ocjena_lokacije = extras.getString("ocjena_lokacije", "");
 
-        naziv = (TextView) findViewById(R.id.textView17);
+        naziv = findViewById(R.id.textView17);
         naziv.setText(naziv_lokacije);
 
-        ocjena = (TextView) findViewById(R.id.textView18);
+        ocjena = findViewById(R.id.textView18);
         ocjena.setText(ocjena_lokacije);
 
         promocije = findViewById(R.id.promocije);
@@ -155,36 +155,37 @@ public class BeerplaceHomepageActivityNew extends BaseActivity {
             }
         });
     }
-        private void openReviewsActivity () {
-            Intent intent = new Intent(this, AddReviewsActivity.class).putExtra("id_lokacija", id_lokacija);
-            startActivity(intent);
-        }
 
-        private void openMapsActivity () {
-            Intent intent = new Intent(this, MapsActivity.class).putExtra("id_lokacija", id_lokacija);
-            startActivity(intent);
+    private void openReviewsActivity() {
+        Intent intent = new Intent(this, AddReviewsActivity.class).putExtra("id_lokacija", id_lokacija);
+        startActivity(intent);
+    }
 
-        }
+    private void openMapsActivity() {
+        Intent intent = new Intent(this, MapsActivity.class).putExtra("id_lokacija", id_lokacija);
+        startActivity(intent);
 
-        private void openActivityReviews () {
-            Intent intent = new Intent(this, ReviewsActivity.class).putExtra("id_lokacija", id_lokacija);
-            startActivity(intent);
-        }
+    }
 
-        private void openActivityMenuCatalog() {
-            Intent intent = new Intent(this, TastingMenuActivity.class).putExtra("id_lokacija", id_lokacija);
-            startActivity(intent);
-        }
+    private void openActivityReviews() {
+        Intent intent = new Intent(this, ReviewsActivity.class).putExtra("id_lokacija", id_lokacija);
+        startActivity(intent);
+    }
 
-        private void openActivityEventCatalog() {
-            Intent intent = new Intent(this, EventCatalogActivity.class).putExtra("id_lokacija", id_lokacija);
-            startActivity(intent);
-        }
+    private void openActivityMenuCatalog() {
+        Intent intent = new Intent(this, TastingMenuActivity.class).putExtra("id_lokacija", id_lokacija);
+        startActivity(intent);
+    }
 
-        private void openActivityBeerCatalog() {
-            Intent intent = new Intent(this, BeerCatalogActivity.class).putExtra("id_lokacija", id_lokacija);
-            startActivity(intent);
-        }
+    private void openActivityEventCatalog() {
+        Intent intent = new Intent(this, EventCatalogActivity.class).putExtra("id_lokacija", id_lokacija);
+        startActivity(intent);
+    }
+
+    private void openActivityBeerCatalog() {
+        Intent intent = new Intent(this, BeerCatalogActivity.class).putExtra("id_lokacija", id_lokacija);
+        startActivity(intent);
+    }
 
 
 }

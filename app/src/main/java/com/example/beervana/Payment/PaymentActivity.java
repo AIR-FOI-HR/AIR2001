@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.braintreepayments.api.dropin.DropInActivity;
@@ -20,38 +22,20 @@ import com.braintreepayments.api.interfaces.HttpResponseCallback;
 import com.braintreepayments.api.internal.HttpClient;
 import com.braintreepayments.api.models.PaymentMethodNonce;
 import com.example.beervana.BaseActivity;
-import com.example.beervana.EventMenu.EventCatalogActivity;
-import com.example.beervana.EventMenu.EventCatalogRecyclerAdapter;
 import com.example.beervana.GlavniIzbornikClient;
+import com.example.beervana.R;
 import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.beervana.R;
 
 import org.json.JSONObject;
+import org.threeten.bp.LocalDate;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-
-import org.threeten.bp.LocalDate;
-import org.threeten.bp.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Executor;
 
 public class PaymentActivity extends BaseActivity {
     private static final int REQUEST_CODE = 1234;
@@ -71,6 +55,7 @@ public class PaymentActivity extends BaseActivity {
     String stariDatum;
     TextView statusPretplate;
     SharedPreferences sp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +64,7 @@ public class PaymentActivity extends BaseActivity {
         blockToolbar();
 
         sp = getSharedPreferences("login", MODE_PRIVATE);
-        id_korisnik = Integer.toString(sp.getInt("id_korisnik",0));
+        id_korisnik = Integer.toString(sp.getInt("id_korisnik", 0));
 
         df = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -89,10 +74,10 @@ public class PaymentActivity extends BaseActivity {
         date = df.format(result);
 
         //id_korisnik = "50";
-        statusPretplate = (TextView) findViewById(R.id.StatusSubskripcija);
+        statusPretplate = findViewById(R.id.StatusSubskripcija);
         checkStatus(date, id_korisnik);
 
-        btn_pay = (Button) findViewById(R.id.KorisnikPlati);
+        btn_pay = findViewById(R.id.KorisnikPlati);
 
         new getToken().execute();
 
@@ -116,10 +101,9 @@ public class PaymentActivity extends BaseActivity {
                 JSONObject odgovor = dohvatPodataka.getOdgovor();
                 if (odgovor != null) {
                     Payment payment = paymentLogika.parsiranjePodatakaDatuma(odgovor);
-                    if(payment == null){
+                    if (payment == null) {
                         stariDatum = "1998-12-02";
-                    }
-                    else {
+                    } else {
                         stariDatum = payment.datum;
                     }
 
@@ -132,13 +116,13 @@ public class PaymentActivity extends BaseActivity {
 
     private void ProvjeriDatum(String stariDatum, String datum) {
         LocalDate datumPretplate = LocalDate.parse(datum);
-        if(stariDatum.equals("null")){
+        if (stariDatum.equals("null")) {
             stariDatum = "1998-12-02";
         }
         LocalDate stariDatum2 = LocalDate.parse(stariDatum);
-        if(stariDatum2.isBefore(datumPretplate)){
+        if (stariDatum2.isBefore(datumPretplate)) {
             statusPretplate.setText("Inactive");
-        } else{
+        } else {
             statusPretplate.setText("Active");
             unBlockToolbar();
         }
@@ -146,14 +130,14 @@ public class PaymentActivity extends BaseActivity {
 
     private void submitPayment() {
         DropInRequest dropInRequest = new DropInRequest().clientToken(token);
-        startActivityForResult(dropInRequest.getIntent(this),REQUEST_CODE);
+        startActivityForResult(dropInRequest.getIntent(this), REQUEST_CODE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE){
-            if(resultCode == RESULT_OK){
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
                 DropInResult result = data.getParcelableExtra(DropInResult.EXTRA_DROP_IN_RESULT);
                 PaymentMethodNonce nonce = result.getPaymentMethodNonce();
                 String strNonce = nonce.getNonce();
@@ -164,11 +148,9 @@ public class PaymentActivity extends BaseActivity {
 
                 sendPayments();
 
-            }
-            else if (resultCode == RESULT_CANCELED){
+            } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(this, "User Cancel", Toast.LENGTH_SHORT).show();
-            }
-            else{
+            } else {
                 Exception error = (Exception) data.getSerializableExtra(DropInActivity.EXTRA_ERROR);
             }
         }
@@ -178,7 +160,7 @@ public class PaymentActivity extends BaseActivity {
         RequestQueue queue = Volley.newRequestQueue(PaymentActivity.this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, API_CHECK_OUT, response -> {
 
-            if(response.toString().contains("Successful")){
+            if (response.contains("Successful")) {
                 requestQueue = Volley.newRequestQueue(getApplicationContext());
 
                 Map<String, String> params = new HashMap<String, String>();
@@ -200,24 +182,22 @@ public class PaymentActivity extends BaseActivity {
                 });
 
                 Toast.makeText(PaymentActivity.this, "Transaction successful!", Toast.LENGTH_SHORT).show();
-            }
-            else {
+            } else {
                 Toast.makeText(PaymentActivity.this, "Transaction unsuccessful!", Toast.LENGTH_SHORT).show();
 
 
             }
-            Log.d("EDMT_ERROR", response.toString());
+            Log.d("EDMT_ERROR", response);
 
-        }, error -> Log.d("EDMT_ERROR", error.toString()))
-        {
+        }, error -> Log.d("EDMT_ERROR", error.toString())) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                if(paramsHash==null){
+                if (paramsHash == null) {
                     return null;
                 }
                 Map<String, String> params = new HashMap<>();
-                for(String key:paramsHash.keySet()){
-                    params.put(key,paramsHash.get(key));
+                for (String key : paramsHash.keySet()) {
+                    params.put(key, paramsHash.get(key));
                 }
                 return params;
             }

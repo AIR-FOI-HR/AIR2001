@@ -17,9 +17,11 @@ public class KartaParser {
 
                 String latitudaLokacija = object.getString("latituda");
                 String longitudaLokacija = object.getString("longituda");
+                String adresa = object.getString("adresa");
 
                 koordinate.add(latitudaLokacija);
                 koordinate.add(longitudaLokacija);
+                koordinate.add(adresa);
 
             }
         } catch (JSONException e) {

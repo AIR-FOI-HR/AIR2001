@@ -49,10 +49,10 @@ public class TastingMenuActivity extends BaseActivity implements RecyclerTasting
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         sp = getSharedPreferences("login", MODE_PRIVATE);
-        if(extras != null){
+        if (extras != null) {
             idLokacija = extras.getString("id_lokacija");
-            korisnik = sp.getInt("id_uloga",0);
-        }else{
+            korisnik = sp.getInt("id_uloga", 0);
+        } else {
             idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
         }
 
@@ -103,7 +103,7 @@ public class TastingMenuActivity extends BaseActivity implements RecyclerTasting
                 if (odgovor != null) {
                     tastingMenuArray.clear();
                     tastingMenuArray.addAll(loadTastingMenu.loadTastingMenu(odgovor));
-                    adapter = new RecyclerTastingMenuAdapter(TastingMenuActivity.this, tastingMenuArray,TastingMenuActivity.this);
+                    adapter = new RecyclerTastingMenuAdapter(TastingMenuActivity.this, tastingMenuArray, TastingMenuActivity.this);
                     tastingMenuRecyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }
@@ -113,57 +113,58 @@ public class TastingMenuActivity extends BaseActivity implements RecyclerTasting
 
     @Override
     public void onTastingMenuClick(int position) {
-        if(korisnik == 1){
+        if (korisnik == 1) {
             startActivity(
                     new Intent(getApplicationContext(),
                             TastingMenuDetailsActivity.class
                     ).putExtra(EXTRA_MESSAGE, tastingMenuArray.get(position).getName())
-                    .putExtra("menuId",
-                            tastingMenuArray
-                                    .get(position)
-                                    .getId()));
-        }else{
-        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-        ProgressDialog progressDialog = new ProgressDialog(view.getContext());
-        CharSequence[] dialogItem = {"View data", "Edit data", " Delete data"};
-        builder.setTitle(tastingMenuArray.get(position).getName());
-        builder.setItems(dialogItem, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case 0:
-                        startActivity(
-                                new Intent(getApplicationContext(),
-                                        TastingMenuDetailsActivity.class
-                                ).putExtra("menu name",
-                                        tastingMenuArray
-                                                .get(position)
-                                                .getName())
-                                        .putExtra("menuId",
-                                                tastingMenuArray
-                                                        .get(position)
-                                                        .getId()));
-                        break;
-                    case 1:
-                        startActivity(
-                                new Intent(getApplicationContext(),
-                                        DodavanjeDegustacijskihMeniaActivity.class
-                                ).putExtra(EXTRA_MESSAGE, tastingMenuArray.get(position).getName())
-                                        .putExtra("menuId",
-                                                tastingMenuArray
-                                                        .get(position)
-                                                        .getId()));;
-                        break;
-                    case 2:
-                        DeleteMenu(position);
-                        break;
+                            .putExtra("menuId",
+                                    tastingMenuArray
+                                            .get(position)
+                                            .getId()));
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+            ProgressDialog progressDialog = new ProgressDialog(view.getContext());
+            CharSequence[] dialogItem = {"View data", "Edit data", " Delete data"};
+            builder.setTitle(tastingMenuArray.get(position).getName());
+            builder.setItems(dialogItem, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case 0:
+                            startActivity(
+                                    new Intent(getApplicationContext(),
+                                            TastingMenuDetailsActivity.class
+                                    ).putExtra("menu name",
+                                            tastingMenuArray
+                                                    .get(position)
+                                                    .getName())
+                                            .putExtra("menuId",
+                                                    tastingMenuArray
+                                                            .get(position)
+                                                            .getId())
+                                            .putExtra("menuDescription", tastingMenuArray
+                                                    .get(position).getDescription()));
+                            break;
+                        case 1:
+                            startActivity(
+                                    new Intent(getApplicationContext(),
+                                            AddUpdateTastingMenu.class
+                                    ).putExtra(EXTRA_MESSAGE, tastingMenuArray.get(position).getName())
+                                            .putExtra("menuId",
+                                                    tastingMenuArray
+                                                            .get(position)
+                                                            .getId()));
+                            break;
+                        case 2:
+                            DeleteMenu(position);
+                            break;
+                    }
                 }
-            }
-        });
-        builder.create().show();
+            });
+            builder.create().show();
+        }
     }
-    }
-
 
 
 }

@@ -8,16 +8,18 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.beervana.R;
 import com.example.modulzamodule.Review;
 
 import java.util.ArrayList;
 
 public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder> {
-    private Context context;
-    private LayoutInflater layoutInflater;
+    private final Context context;
+    private final LayoutInflater layoutInflater;
     private ArrayList<Review> data = new ArrayList<Review>();
-    private onRecenzijaListener onRecenzijaListener;
+    private final onRecenzijaListener onRecenzijaListener;
+
     AdapterReview(Context context, ArrayList<Review> data, onRecenzijaListener onRecenzijaListener) {
         this.layoutInflater = LayoutInflater.from(context);
         this.data = data;
@@ -47,10 +49,11 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
         return data.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         onRecenzijaListener recenzijaListener;
         TextView komentar, ocjena, datum;
-        public ViewHolder(@NonNull View itemView,onRecenzijaListener recListener) {
+
+        public ViewHolder(@NonNull View itemView, onRecenzijaListener recListener) {
             super(itemView);
             komentar = itemView.findViewById(R.id.komentar);
             ocjena = itemView.findViewById(R.id.ocjena);
@@ -65,7 +68,8 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
             recenzijaListener.onReviewClick(getAdapterPosition());
         }
     }
-    public interface onRecenzijaListener{
+
+    public interface onRecenzijaListener {
         void onReviewClick(int position);
     }
 
