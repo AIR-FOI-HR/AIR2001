@@ -131,4 +131,36 @@ public class BeerLogic {
 
         return beerArrayList;
     }
+
+    public ArrayList<ModelPodatakaPivoSOcjenom> parsiranjePivaZaNajdrazaPiva(JSONObject odgovor){
+        ArrayList<ModelPodatakaPivoSOcjenom> podaciZaPrikaz = new ArrayList<>();
+        JSONArray jsonArray = null;
+        try {
+            jsonArray = odgovor.getJSONArray("body");
+            for(int i =0 ; i< jsonArray.length();i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String id_proizvod = jsonObject.getString("id_proizvod");
+                if(id_proizvod.equals("null")){
+                    return null;
+                }
+                String naziv_proizvoda = jsonObject.getString("naziv_proizvoda");
+                String cijena_proizvoda = jsonObject.getString("cijena_proizvoda");
+                String okus = jsonObject.getString("okus");
+                String litara = jsonObject.getString("litara");
+                String slika = jsonObject.getString("slika");
+                String ocjena = jsonObject.getString("ocjena");
+                String naziv_lokacije = jsonObject.getString("naziv_lokacije");
+                String id_lokacije = jsonObject.getString("id_lokacija");
+
+                Beer beer= new Beer(id_proizvod,"",naziv_proizvoda,cijena_proizvoda,okus,litara,slika);
+                ModelPodatakaPivoSOcjenom podatak = new ModelPodatakaPivoSOcjenom(beer,ocjena,id_lokacije,naziv_lokacije);
+                podaciZaPrikaz.add(podatak);
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return podaciZaPrikaz;
+    }
+
 }
