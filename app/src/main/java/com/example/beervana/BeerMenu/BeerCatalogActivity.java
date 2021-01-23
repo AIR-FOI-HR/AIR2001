@@ -132,7 +132,6 @@ public class BeerCatalogActivity extends BaseActivity implements BeerCatalogRecy
                             break;
                         case 1:
                             startActivity(new Intent(getApplicationContext(), AddBeers.class).putExtra("position", position));
-                            finish();
                             break;
                         case 2:
                             DeleteBeer(position);
