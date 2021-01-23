@@ -2,6 +2,7 @@ package com.example.beervana.Payment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -69,12 +70,16 @@ public class PaymentActivity extends BaseActivity {
     String date;
     String stariDatum;
     TextView statusPretplate;
+    SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         initToolbar();
         blockToolbar();
+
+        sp = getSharedPreferences("login", MODE_PRIVATE);
+        id_korisnik = Integer.toString(sp.getInt("id_korisnik",0));
 
         df = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -83,10 +88,7 @@ public class PaymentActivity extends BaseActivity {
         Date result = cal.getTime();
         date = df.format(result);
 
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        //id_korisnik = extras.getString("id_korisnik","");
-        id_korisnik = "50";
+        //id_korisnik = "50";
         statusPretplate = (TextView) findViewById(R.id.StatusSubskripcija);
         checkStatus(date, id_korisnik);
 
@@ -114,7 +116,13 @@ public class PaymentActivity extends BaseActivity {
                 JSONObject odgovor = dohvatPodataka.getOdgovor();
                 if (odgovor != null) {
                     Payment payment = paymentLogika.parsiranjePodatakaDatuma(odgovor);
-                    stariDatum = payment.datum;
+                    if(payment == null){
+                        stariDatum = "1998-12-02";
+                    }
+                    else {
+                        stariDatum = payment.datum;
+                    }
+
                     ProvjeriDatum(stariDatum, datum1);
                 }
             }
@@ -124,6 +132,9 @@ public class PaymentActivity extends BaseActivity {
 
     private void ProvjeriDatum(String stariDatum, String datum) {
         LocalDate datumPretplate = LocalDate.parse(datum);
+        if(stariDatum.equals("null")){
+            stariDatum = "1998-12-02";
+        }
         LocalDate stariDatum2 = LocalDate.parse(stariDatum);
         if(stariDatum2.isBefore(datumPretplate)){
             statusPretplate.setText("Inactive");
