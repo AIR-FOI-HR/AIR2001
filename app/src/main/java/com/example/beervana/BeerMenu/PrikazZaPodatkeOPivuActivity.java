@@ -54,9 +54,9 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
         addReviews = findViewById(R.id.addReview);
 
         Intent intent = getIntent();
-        position = intent.getExtras().getInt("position");
         if (intent.getExtras().containsKey("position")) {
-            beerName1.setText("Beer name: " + BeerCatalogActivity.BeerArrayList.get(position).getNaziv_proizvoda());
+            position = intent.getExtras().getInt("position");
+            beerName1.setText(BeerCatalogActivity.BeerArrayList.get(position).getNaziv_proizvoda());
             beerPrice.setText("Beer price: " + BeerCatalogActivity.BeerArrayList.get(position).getCijena_proizvoda());
             beerTaste.setText("Beer taste: " + BeerCatalogActivity.BeerArrayList.get(position).getOkus());
             beerLitres.setText("Beer litres: " + BeerCatalogActivity.BeerArrayList.get(position).getLitara());
@@ -64,7 +64,7 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
             Picasso.with(this).load(imageUri).into(beerImage);
             beerId = BeerCatalogActivity.BeerArrayList.get(position).getId_proizvod();
         } else {
-            beerName1.setText("Beer name: " + intent.getExtras().getString("naziv_proizvoda"));
+            beerName1.setText(intent.getExtras().getString("naziv_proizvoda"));
             beerPrice.setText("Beer price: " + intent.getExtras().getString("cijena_proizvoda"));
             beerTaste.setText("Beer taste: " + intent.getExtras().getString("okus"));
             beerLitres.setText("Beer litres: " + intent.getExtras().getString("litara"));

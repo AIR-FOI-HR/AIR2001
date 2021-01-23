@@ -40,7 +40,13 @@
         </activity>
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".BeerMenu.AddBeers" />
-        <activity android:name=".BeerMenu.BeerCatalogActivity" />
+        <activity android:name=".BeerMenu.BeerCatalogActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".BeerMenu.PrikazZaPodatkeOPivuActivity"
             android:theme="@style/Theme.Beervana.NoActionBar">
             <intent-filter>
