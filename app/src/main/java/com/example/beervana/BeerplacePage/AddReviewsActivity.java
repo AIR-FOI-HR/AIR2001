@@ -32,6 +32,8 @@ public class AddReviewsActivity extends BaseActivity {
     RatingBar ocjena;
     TextView errOcjena, errKomentar;
     boolean isLokacija = true;
+    boolean trebaSlati = true;
+
     private AddReviewsViewModel viewModel;
 
     ArrayList<String> lista = new ArrayList<>();
@@ -57,6 +59,7 @@ public class AddReviewsActivity extends BaseActivity {
             idProizvod = extras.getString("id_proizvod");
             isLokacija = false;
         }
+
         requestQueue = Volley.newRequestQueue(this);
 
         binding = AddReviewsActivityBinding.inflate(getLayoutInflater());
@@ -66,7 +69,16 @@ public class AddReviewsActivity extends BaseActivity {
 
         komentar = binding.recenzija;
         ocjena = binding.ratingBar;
-
+        if(extras.containsKey("id_recenzija")){
+            viewModel.setAzuriraj(true);
+            viewModel.setKomentar(extras.getString("komentar"));
+            viewModel.setOcjena(Double.parseDouble(extras.getString("ocjena")));
+            viewModel.setStariKomentar(viewModel.getKomentar());
+            viewModel.setStaraOcijena(viewModel.getOcjena());
+            viewModel.setIdRecenzija(extras.getString("id_recenzija"));
+            komentar.setText(viewModel.getKomentar());
+            ocjena.setRating(Float.valueOf((float) (double) viewModel.getOcjena()));
+        }
         binding.ratingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,35 +91,55 @@ public class AddReviewsActivity extends BaseActivity {
                 viewModel.setKomentar(komentar.getText().toString());
                 if(viewModel.ProvjeriPodatke()) {
                     Map<String, String > params = new HashMap<String, String>();
+                    params.put("ocjena", String.valueOf(viewModel.getOcjena()));
+                    params.put("komentar", viewModel.getKomentar());
+                    if(viewModel.isAzuriraj()){
+                        params.put("id_recenzija",viewModel.getIdRecenzija());
+                        sendUrl = "https://beervana2020.000webhostapp.com/test/updateReviews.php";
+                        if(!viewModel.DosloDoPromijene()){
+                            trebaSlati = false;
+                            Toast toast = Toast.makeText(getApplicationContext(), "You didn't make any changes!", Toast.LENGTH_LONG);
+                            toast.show();
+                            //TODO promijeniti sa dinamičkim podatkom
+                            startActivity(new Intent(getApplicationContext(), ReviewsActivity.class).putExtra("id_korisnika","50"));
+                        }
+                    }else{
                     /*
                     params.put("id_korisnik", String.valueOf(viewModel.getIdKorisnik()));
                     params.put("id_lokacija", String.valueOf(viewModel.getIdLokacija()));
                     params.put("ocjena", String.valueOf(viewModel.getOcjena()));
                     params.put("komentar", viewModel.getKomentar());
                     */
-                    params.put("id_korisnik", "20");
-                    if(isLokacija)
-                        params.put("id_lokacija", String.valueOf(viewModel.getIdLokacija()));
-                    else
-                        params.put("id_proizvod", String.valueOf(viewModel.getIdProizvod()));
-                    params.put("ocjena", String.valueOf(viewModel.getOcjena()));
-                    params.put("komentar", viewModel.getKomentar());
+                        params.put("id_korisnik", "20");
+                        if(isLokacija)
+                            params.put("id_lokacija", String.valueOf(viewModel.getIdLokacija()));
+                        else
+                            params.put("id_proizvod", String.valueOf(viewModel.getIdProizvod()));
 
-                    SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
-                    slanjePodataka.setParametri(params);
-                    slanjePodataka.sendData(getApplicationContext(), requestQueue);
+                    }
 
-                    requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
-                        @Override
-                        public void onRequestFinished(Request<Object> request) {
-                            String odgovor = slanjePodataka.getOdgovor();
-                            if (odgovor.equals("Succesfully added your review!")) {
-                                Toast toast = Toast.makeText(getApplicationContext(), "Succesfully added your review!", Toast.LENGTH_LONG);
-                                toast.show();
+                    if(trebaSlati){
+                        SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
+                        slanjePodataka.setParametri(params);
+                        slanjePodataka.sendData(getApplicationContext(), requestQueue);
 
+                        requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+                            @Override
+                            public void onRequestFinished(Request<Object> request) {
+                                String odgovor = slanjePodataka.getOdgovor();
+                                if (odgovor.equals("Succesfully added your review!")) {
+                                    Toast toast = Toast.makeText(getApplicationContext(), "Succesfully added your review!", Toast.LENGTH_LONG);
+                                    toast.show();
+                                }else if(odgovor.equals("Succesfully updated your review!")){
+                                    Toast toast = Toast.makeText(getApplicationContext(), "Succesfully updated your review!", Toast.LENGTH_LONG);
+                                    toast.show();
+                                    //TODO promijeniti sa dinamičkim podatkom
+                                    startActivity(new Intent(getApplicationContext(), ReviewsActivity.class).putExtra("id_korisnika","50"));
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
+
                 }
             }
         });
