@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.example.beervana.BeerMenu.Beer;
+import com.example.modulzamodule.Beer;
 import com.example.beervana.R;
 
 import java.util.List;

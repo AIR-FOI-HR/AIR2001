@@ -2,6 +2,7 @@ package com.example.beervana.TastingMenu;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
@@ -12,11 +13,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.android.volley.Request;
@@ -26,8 +25,9 @@ import com.androidbuts.multispinnerfilter.KeyPairBoolData;
 import com.androidbuts.multispinnerfilter.MultiSpinnerSearch;
 import com.example.beervana.BaseActivity;
 import com.example.beervana.R;
-import com.example.beervana.SettingsActivity;
 import com.example.beervana.databinding.ActivityDodavanjeDegustacijskihMeniaBinding;
+import com.example.modulzamodule.DegustacijskiMeniLogika;
+import com.example.modulzamodule.TastingMenuViewModel;
 import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;
 
@@ -58,11 +58,18 @@ public class DodavanjeDegustacijskihMeniaActivity extends BaseActivity implement
     ActivityDodavanjeDegustacijskihMeniaBinding binding;
     private DatePickerDialog.OnDateSetListener listenerZaDatumOd;
     String sendUrl = "https://beervana2020.000webhostapp.com/test/UpdateTastingMenu.php";
+    private SharedPreferences sp;
+    private int korisnik;
+    private String idLokacija;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dodavanje_degustacijskih_menia);
+        sp = getSharedPreferences("login", MODE_PRIVATE);
+        korisnik = sp.getInt("id_korisnik",0);
+        idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
+
         binding = ActivityDodavanjeDegustacijskihMeniaBinding.inflate((getLayoutInflater()));
         View view = binding.getRoot();
         setContentView(view);
@@ -162,8 +169,8 @@ public class DodavanjeDegustacijskihMeniaActivity extends BaseActivity implement
                 }
                 requestQueue = Volley.newRequestQueue(getApplicationContext());
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("id_korisnik", "50");
-                params.put("id_lokacija", "8");
+                params.put("id_korisnik", String.valueOf(korisnik));
+                params.put("id_lokacija", idLokacija);
                 params.put("menuName", model.getMenuName());
                 params.put("beersOnMenu", model.getBeers().toString().substring(1, model.getBeers().toString().length() - 1));
                 params.put("duration", model.getMenuDuration());
@@ -192,16 +199,17 @@ public class DodavanjeDegustacijskihMeniaActivity extends BaseActivity implement
     private void retriveData() {
         DohvatPodataka dohvatPodataka = new DohvatPodataka();
         String url;
+        Map<String, String> params = new HashMap<>();
         if (getIntent().getExtras() == null) {
             url = "https://beervana2020.000webhostapp.com/test/dohvacanjePiva.php";
+            params.put("id_lokacija", idLokacija);
         } else {
             url = "https://beervana2020.000webhostapp.com/test/GetTastingMenuInfo.php";
-            Map<String, String> params = new HashMap<String, String>();
             Intent intet = getIntent();
             Bundle extra = intet.getExtras();
-            params.put("tastingMenuName", extra.getString("com.example.beervana.TastingMenu.MESSAGE"));
-            dohvatPodataka.setParametri(params);
+            params.put("id_menu", extra.getString("menuId"));
         }
+        dohvatPodataka.setParametri(params);
         dohvatPodataka.setSendUrl(url);
         dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
         requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {

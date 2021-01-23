@@ -12,6 +12,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.BeerplacePage.BeerplaceHomepageActivityNew;
+import com.example.modulzamodule.LokacijaLogika;
+import com.example.modulzamodule.ModelPodatakaLokacijaSOcjenom;
 import com.example.webservice.DohvatPodataka;
 
 import org.json.JSONException;

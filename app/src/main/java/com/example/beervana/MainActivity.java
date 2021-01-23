@@ -20,21 +20,21 @@ import com.example.beervana.Payment.PaymentActivity;
 import com.example.beervana.Payment.PaymentLogika;
 import com.example.beervana.TastingMenu.DodavanjeDegustacijskihMeniaActivity;
 import com.example.beervana.databinding.ActivityMainBinding;
+import com.example.modulzamodule.KorisnikLogika;
+import com.example.modulzamodule.MainActivityViewModel;
+import com.example.beervana.BeerplacePage.Modularnost.Modules;
+import com.example.modulzamodule.User;
 import com.example.webservice.DohvatPodataka;
-import com.example.webservice.SlanjePodataka;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import androidx.lifecycle.ViewModelProvider;
@@ -46,7 +46,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -92,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        Modules.getInstance();
         sp = getSharedPreferences("login", MODE_PRIVATE);
         Boolean loggedIn = sp.getBoolean("logged", false);
 

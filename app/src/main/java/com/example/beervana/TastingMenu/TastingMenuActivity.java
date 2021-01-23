@@ -6,14 +6,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,10 +17,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
-import com.example.beervana.EventMenu.EventCatalogActivity;
-import com.example.beervana.EventMenu.EventCatalogRecyclerAdapter;
 import com.example.beervana.R;
-import com.example.beervana.SettingsActivity;
+import com.example.modulzamodule.TastingMenu;
 import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;
 
@@ -43,7 +37,7 @@ public class TastingMenuActivity extends BaseActivity implements RecyclerTasting
     private SharedPreferences sp;
     private String idLokacija;
     View view;
-    private int korisnik = 0;
+    private int korisnik;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -123,7 +117,11 @@ public class TastingMenuActivity extends BaseActivity implements RecyclerTasting
             startActivity(
                     new Intent(getApplicationContext(),
                             TastingMenuDetailsActivity.class
-                    ).putExtra(EXTRA_MESSAGE, tastingMenuArray.get(position).getName()));
+                    ).putExtra(EXTRA_MESSAGE, tastingMenuArray.get(position).getName())
+                    .putExtra("menuId",
+                            tastingMenuArray
+                                    .get(position)
+                                    .getId()));
         }else{
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
         ProgressDialog progressDialog = new ProgressDialog(view.getContext());
@@ -137,13 +135,24 @@ public class TastingMenuActivity extends BaseActivity implements RecyclerTasting
                         startActivity(
                                 new Intent(getApplicationContext(),
                                         TastingMenuDetailsActivity.class
-                                ).putExtra(EXTRA_MESSAGE, tastingMenuArray.get(position).getName()));
+                                ).putExtra("menu name",
+                                        tastingMenuArray
+                                                .get(position)
+                                                .getName())
+                                        .putExtra("menuId",
+                                                tastingMenuArray
+                                                        .get(position)
+                                                        .getId()));
                         break;
                     case 1:
                         startActivity(
                                 new Intent(getApplicationContext(),
                                         DodavanjeDegustacijskihMeniaActivity.class
-                                ).putExtra(EXTRA_MESSAGE, tastingMenuArray.get(position).getName()));
+                                ).putExtra(EXTRA_MESSAGE, tastingMenuArray.get(position).getName())
+                                        .putExtra("menuId",
+                                                tastingMenuArray
+                                                        .get(position)
+                                                        .getId()));;
                         break;
                     case 2:
                         DeleteMenu(position);

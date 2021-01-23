@@ -19,7 +19,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.android.volley.Request;
@@ -29,6 +28,7 @@ import com.example.beervana.BaseActivity;
 import com.example.beervana.GlavniIzbornikClient;
 import com.example.beervana.R;
 import com.example.beervana.databinding.ActivityAddeventBinding;
+import com.example.modulzamodule.AddEventActivityViewModel;
 import com.example.webservice.SlanjePodataka;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;

@@ -8,17 +8,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
 import com.example.beervana.BeerMenu.BeerCatalogActivity;
+import com.example.beervana.BeerplacePage.Modularnost.AddPromotionsActivity;
 import com.example.beervana.EventMenu.EventCatalogActivity;
 import com.example.beervana.R;
-import com.example.beervana.SettingsActivity;
-import com.example.beervana.TastingMenu.TastingMenu;
 import com.example.beervana.TastingMenu.TastingMenuActivity;
 import com.example.webservice.SlanjePodataka;
 
@@ -40,6 +37,7 @@ public class BeerplaceHomepageActivityNew extends BaseActivity {
     private String CheckFavoriteLocation = "https://beervana2020.000webhostapp.com/test/DaliOmiljenaLokacija.php";
     private RequestQueue requestQueue;
     private RequestQueue requestQueueCheck;
+    private Button promocije;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,9 +83,17 @@ public class BeerplaceHomepageActivityNew extends BaseActivity {
         ocjena = (TextView) findViewById(R.id.textView18);
         ocjena.setText(ocjena_lokacije);
 
+        promocije = findViewById(R.id.promocije);
+        promocije.setOnClickListener(v -> AddPromos());
+
         CheckIfFavoriteLocation();
 
 
+    }
+
+    private void AddPromos() {
+        Intent intent = new Intent(this, AddPromotionsActivity.class).putExtra("id_lokacija", id_lokacija);
+        startActivity(intent);
     }
 
     private void CheckIfFavoriteLocation() {
