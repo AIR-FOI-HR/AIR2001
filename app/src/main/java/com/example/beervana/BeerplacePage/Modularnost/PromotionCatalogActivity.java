@@ -16,7 +16,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.basemodule.BaseClassForModules;
 import com.example.beervana.BaseActivity;
+import com.example.beervana.EventMenu.AddEventActivity;
+import com.example.beervana.EventMenu.EventCatalogActivity;
+import com.example.beervana.EventMenu.EventCatalogRecyclerAdapter;
+import com.example.beervana.EventMenu.PrikazZaEventPodatkeActivity;
 import com.example.beervana.R;
+import com.example.modulzamodule.EventCatalogLogika;
 import com.example.modulzamodule.Promotion;
 import com.example.modulzamodule.Promotion1Logic;
 import com.example.webservice.DohvatPodataka;
@@ -55,11 +60,10 @@ public class PromotionCatalogActivity extends BaseActivity implements PromotionC
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         sp = getSharedPreferences("login", MODE_PRIVATE);
+        korisnik = sp.getInt("id_uloga",0);
+        korisnikId = sp.getInt("id_korisnik", 0);
         if (extras != null) {
             idLokacija = extras.getString("id_lokacija");
-            korisnik = sp.getInt("id_uloga", 0);
-            //TODO staviti default na 0
-            korisnikId = sp.getInt("id_korisnik", 50);
         } else {
             idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
         }
@@ -101,21 +105,19 @@ public class PromotionCatalogActivity extends BaseActivity implements PromotionC
     }
 
 
+
     @Override
     public void onPromotionClick(int position) {
-        //TODO ukloniti i ovu linuju
-        Modules.getInstance();
+
         List<BaseClassForModules> modulesList = Modules.getModulesList();
-        //TODO Ukloniti ovu liniju
-        korisnikId = 50;
-        for (int i = 0; i < modulesList.size(); i++) {
-            if (modulesList.get(i).getTip().equals(promotionDataList.get(position).getTip_promocije())) {
+        for(int i = 0; i<modulesList.size();i++){
+            if(modulesList.get(i).getTip().equals(promotionDataList.get(position).getTip_promocije())){
                 pozicija = String.valueOf(i);
             }
         }
         if (korisnik == 1) {
-            startActivity(new Intent(getApplicationContext(), LoadModuleFragmentActivity.class).putExtra("position", pozicija).putExtra("id_promocija", promotionDataList.get(position).getId_promocija())
-                    .putExtra("id_korisnik", String.valueOf(korisnikId)));
+            startActivity(new Intent(getApplicationContext(), LoadModuleFragmentActivity.class).putExtra("position", pozicija).putExtra("id_promocija",promotionDataList.get(position).getId_promocija())
+                    .putExtra("id_korisnik",String.valueOf(korisnikId)));
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
             CharSequence[] dijalogStavke = {"View data", "Edit data ", "Delete data"};
@@ -125,12 +127,12 @@ public class PromotionCatalogActivity extends BaseActivity implements PromotionC
                 public void onClick(DialogInterface dialog, int odabir) {
                     switch (odabir) {
                         case 0:
-                            startActivity(new Intent(getApplicationContext(), LoadModuleFragmentActivity.class).putExtra("position", pozicija).putExtra("id_promocija", promotionDataList.get(position).getId_promocija())
-                                    .putExtra("id_korisnik", String.valueOf(korisnikId)));
+                            startActivity(new Intent(getApplicationContext(), LoadModuleFragmentActivity.class).putExtra("position", pozicija).putExtra("id_promocija",promotionDataList.get(position).getId_promocija())
+                            .putExtra("id_korisnik",String.valueOf(korisnikId)));
                             break;
                         case 1:
                             startActivity(new Intent(getApplicationContext(), LoadModuleFragmentActivity.class).putExtra("position", pozicija)
-                                    .putExtra("id_lokacija", idLokacija).putExtra("id_promocija", promotionDataList.get(position).getId_promocija()));
+                                    .putExtra("id_lokacija",idLokacija).putExtra("id_promocija",promotionDataList.get(position).getId_promocija()));
                             break;
                         case 2:
                             DeletePromotion(position);

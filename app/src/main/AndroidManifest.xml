@@ -83,6 +83,8 @@
         <activity android:name=".SettingsActivity">
         </activity>
         <activity android:name=".BeerplacePage.Modularnost.AddPromotionsActivity" />
+        <activity android:name=".BeerplacePage.Modularnost.PromotionCatalogActivity" />
+        <activity android:name=".BeerplacePage.Modularnost.LoadModuleFragmentActivity" />
         <activity android:name=".ViewMyFavouriteBeersActivity" />
 
         <meta-data
