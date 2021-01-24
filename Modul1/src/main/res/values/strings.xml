@@ -6,4 +6,21 @@
     <string name="start_date">Start date</string>
     <string name="end_date">End date</string>
     <string name="add_promotion">Add promotion</string>
+    <string name="odaberite_proizvod_i_popust">Odaberite proizvod i popust (%)</string>
+    <string name="popust_u_postocima">Popust u postocima</string>
+    <string name="datum_placeholder">/ / /</string>
+    <string name="date_btn">Date</string>
+    <string name="time_placeholder">:</string>
+    <string name="time_btn">Time</string>
+    <string name="add_promotion_btn">Add Promotion</string>
+    <string name="naziv_promocije_View">Naziv Promocije</string>
+    <string name="opis_promocije_View">Opis promocije:</string>
+    <string name="opis_promocije_pod_View">Opis promocije:</string>
+    <string name="proizvod_i_popust_View">Proizvod i popust:</string>
+    <string name="proizvod_View">Proizvod</string>
+    <string name="pppust_View">Popust:</string>
+    <string name="trajanje_promocije_View">Trajanje promocije:</string>
+    <string name="od">Od:</string>
+    <string name="doo">Do:</string>
+    <string name="iskoristi_promociju_View">Iskoristi promociju</string>
 </resources>

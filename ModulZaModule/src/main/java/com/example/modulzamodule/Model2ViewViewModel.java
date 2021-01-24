@@ -13,7 +13,7 @@ public class Model2ViewViewModel  extends ViewModel {
     private String idPromocija;
     String nazivPromocije,opisPromocije,proizvodNaziv,kolicina,gratis,datumOd,datumDo,idOdabranaPiva,lozinka;
     Boolean iskoristeno;
-    Promotion1Logic logika = new Promotion1Logic();
+    Promotion2Logic logika = new Promotion2Logic();
 
 
     public String getIdOdabranaPiva() {

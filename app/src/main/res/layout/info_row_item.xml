@@ -21,14 +21,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/naziv_pivkana"
-            android:text="Naslov"
+            android:text="@string/naslov_IRI"
             android:textStyle="bold"
             android:textSize="18sp"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Okus"
+            android:text="@string/okus_IRI"
             android:id="@+id/okusi"
             android:textSize="15sp"
             />
@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/litara"
-            android:text="Litara"
+            android:text="@string/litara_IRI"
             android:layout_marginTop="10dp"
             android:textSize="15sp"
             />

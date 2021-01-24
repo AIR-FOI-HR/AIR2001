@@ -28,7 +28,7 @@
             android:layout_marginTop="5dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Search"
+            android:hint="@string/search_Tool"
 />
         <ImageView
             android:id="@+id/settings_icon"

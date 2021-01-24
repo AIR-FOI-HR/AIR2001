@@ -106,7 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:padding="15dp"
-            android:text="Choose how many product + how many free"
+            android:text="@string/choose_how_many_product_how_many_free"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -220,7 +220,7 @@
             android:layout_marginEnd="50dp"
             android:textColor="@color/black"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-            android:text=" / / / " />
+            android:text="@string/datum_placholder" />
         <Button
             android:id="@+id/btnOdaberiDatumOd"
             android:layout_width="wrap_content"
@@ -229,7 +229,7 @@
             android:layout_below="@id/txtStartDate"
             android:layout_marginTop="20dp"
             android:layout_toEndOf="@id/prikazDatumaOd"
-            android:text="Date" />
+            android:text="@string/date_btn" />
         <TextView
             android:id="@+id/errUnosDatumOd"
             android:layout_below="@id/prikazDatumaOd"
@@ -259,7 +259,7 @@
             android:layout_marginEnd="50dp"
             android:textColor="@color/black"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-            android:text="    :    " />
+            android:text="@string/time_placholder" />
         <Button
             android:id="@+id/btnOdaberiVrijemeOd"
             android:layout_width="wrap_content"
@@ -268,7 +268,7 @@
             android:layout_below="@id/errUnosDatumOd"
             android:layout_marginTop="20dp"
             android:layout_toEndOf="@id/prikazVremenaOd"
-            android:text="Time" />
+            android:text="@string/time_btn" />
         <TextView
             android:id="@+id/errUnosVrijemeOd"
             android:layout_below="@id/prikazVremenaOd"
@@ -310,7 +310,7 @@
             android:layout_marginEnd="50dp"
             android:textColor="@color/black"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-            android:text="/ / / " />
+            android:text="@string/datum_placholder" />
         <Button
             android:id="@+id/btnOdaberiDatumDo"
             android:layout_width="wrap_content"
@@ -319,7 +319,7 @@
             android:layout_below="@id/txtEndDate"
             android:layout_marginTop="20dp"
             android:layout_toEndOf="@id/prikazDatumaDo"
-            android:text="Date" />
+            android:text="@string/date_btn" />
         <TextView
             android:id="@+id/errUnosDatumDo"
             android:layout_below="@id/prikazDatumaDo"
@@ -347,7 +347,7 @@
             android:layout_marginEnd="50dp"
             android:textColor="@color/black"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-            android:text="    :    " />
+            android:text="@string/time_placholder" />
         <Button
             android:id="@+id/btnOdaberiVrijemeDo"
             android:layout_width="wrap_content"
@@ -356,7 +356,7 @@
             android:layout_below="@id/errUnosDatumDo"
             android:layout_marginTop="20dp"
             android:layout_toEndOf="@id/prikazVremenaDo"
-            android:text="Time" />
+            android:text="@string/time_btn" />
         <TextView
             android:id="@+id/errUnosVrijemeDo"
             android:layout_below="@id/prikazVremenaDo"
@@ -379,7 +379,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:padding="15dp"
-            android:text="Usage password"
+            android:text="@string/usage_password"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -388,7 +388,7 @@
             android:importantForAutofill="no"
             android:id="@+id/unosUsagePassword"
             android:layout_below="@id/txtUsagePassword"
-            android:hint="Usage password"
+            android:hint="@string/usage_password"
             android:textColorHint="@color/black"
             android:inputType="text"
             android:textColor="@color/black"
@@ -428,7 +428,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/errUsagePassword"
             android:layout_marginTop="30dp"
-            android:text="Add Promotion" />
+            android:text="@string/add_promotion_btn" />
     </RelativeLayout>
 
 </ScrollView>

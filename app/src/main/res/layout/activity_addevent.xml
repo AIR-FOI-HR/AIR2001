@@ -178,7 +178,7 @@
             android:layout_below="@id/txtStartDate"
             android:layout_marginTop="20dp"
             android:layout_toEndOf="@id/prikazDatumaOd"
-            android:text="Date" />
+            android:text="@string/date_Aevent" />
         <TextView
             android:id="@+id/errUnosDatumOd"
             android:layout_below="@id/prikazDatumaOd"
@@ -208,7 +208,7 @@
             android:layout_marginEnd="50dp"
             android:textColor="@color/black"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-            android:text="    :    " />
+            android:text="@string/vrijem_event" />
         <Button
             android:id="@+id/btnOdaberiVrijemeOd"
             android:layout_width="wrap_content"
@@ -217,7 +217,7 @@
             android:layout_below="@id/errUnosDatumOd"
             android:layout_marginTop="20dp"
             android:layout_toEndOf="@id/prikazVremenaOd"
-            android:text="Time" />
+            android:text="@string/time_gumb" />
         <TextView
             android:id="@+id/errUnosVrijemeOd"
             android:layout_below="@id/prikazVremenaOd"
@@ -268,7 +268,7 @@
             android:layout_below="@id/txtEndDate"
             android:layout_marginTop="20dp"
             android:layout_toEndOf="@id/prikazDatumaDo"
-            android:text="Date" />
+            android:text="@string/date_Aevent" />
         <TextView
             android:id="@+id/errUnosDatumDo"
             android:layout_below="@id/prikazDatumaDo"
@@ -296,7 +296,7 @@
             android:layout_marginEnd="50dp"
             android:textColor="@color/black"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-            android:text="    :    " />
+            android:text="@string/vrijem_event" />
         <Button
             android:id="@+id/btnOdaberiVrijemeDo"
             android:layout_width="wrap_content"
@@ -305,7 +305,7 @@
             android:layout_below="@id/errUnosDatumDo"
             android:layout_marginTop="20dp"
             android:layout_toEndOf="@id/prikazVremenaDo"
-            android:text="Time" />
+            android:text="@string/time_gumb" />
         <TextView
             android:id="@+id/errUnosVrijemeDo"
             android:layout_below="@id/prikazVremenaDo"
@@ -328,7 +328,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/errUnosVrijemeDo"
             android:layout_marginTop="30dp"
-            android:text="Add Event" />
+            android:text="@string/add_event_button" />
 
 
 
