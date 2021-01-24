@@ -34,11 +34,13 @@ public class ReviewsActivity extends BaseActivity implements AdapterReview.onRec
     private RequestQueue requestQueue;
     private String id_lokacija;
     private String id_korisnik;
-    private boolean is_user = false;
+    String id_proizvod;
+    private boolean is_user = false, is_lokacija = false, is_proizvod = false;
     View view;
     AdapterReview adapterReview;
     private final String sendUrl = "https://beervana2020.000webhostapp.com/test/deleteReview.php";
     private RequestQueue requestQueueBrisanje;
+    private String urlPivo = "https://beervana2020.000webhostapp.com/test/fetchBeerReviews.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +56,13 @@ public class ReviewsActivity extends BaseActivity implements AdapterReview.onRec
         Bundle extras = intent.getExtras();
         if (extras.containsKey("id_lokacija")) {
             id_lokacija = extras.getString("id_lokacija");
+            is_lokacija=true;
         } else if (extras.containsKey("id_korisnika")) {
             id_korisnik = extras.getString("id_korisnika");
             is_user = true;
+        } else if (extras.containsKey("id_proizvod")){
+            id_proizvod = extras.getString("id_proizvod");
+            is_proizvod = true;
         }
         loadReviews();
 
@@ -72,9 +78,12 @@ public class ReviewsActivity extends BaseActivity implements AdapterReview.onRec
             params.put("id_korisnik", id_korisnik);
             String urlKorisnik = "https://beervana2020.000webhostapp.com/test/fetchMyReviews.php";
             dohvatPodataka.setSendUrl(urlKorisnik);
-        } else {
+        } else if (is_lokacija){
             params.put("id_lokacija", id_lokacija);
             dohvatPodataka.setSendUrl(url);
+        } else if (is_proizvod){
+            params.put("id_proizvod", id_proizvod);
+            dohvatPodataka.setSendUrl(urlPivo);
         }
 
         dohvatPodataka.setParametri(params);

@@ -44,8 +44,8 @@ public class ViewMyFavouriteBeersActivity extends BaseActivity implements Activi
         beerRecyclerView = findViewById(R.id.favoriteBeersRecylcerView);
         beerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         sp = getSharedPreferences("login", MODE_PRIVATE);
-        //idKorisnika = sp.getInt("id_korisnik",20);
-        idKorisnika = 20;
+        idKorisnika = sp.getInt("id_uloga", 0);
+
         RetriveData();
     }
 
@@ -79,6 +79,11 @@ public class ViewMyFavouriteBeersActivity extends BaseActivity implements Activi
     @Override
     public void onBeerClick(int position) {
         startActivity(new Intent(getApplicationContext(), PrikazZaPodatkeOPivuActivity.class)
-                .putExtra("id_lokacija", pronadjenaPiva.get(position).getId_lokacije()));
+                .putExtra("naziv_proizvoda", pronadjenaPiva.get(position).getBeer().getNaziv_proizvoda())
+                .putExtra("id_proizvod", pronadjenaPiva.get(position).getBeer().getId_proizvod())
+                .putExtra("okus", pronadjenaPiva.get(position).getBeer().getOkus())
+                .putExtra("litara", pronadjenaPiva.get(position).getBeer().getLitara())
+                .putExtra("slika_proizvoda", pronadjenaPiva.get(position).getBeer().getSlika())
+                .putExtra("cijena_proizvoda", pronadjenaPiva.get(position).getBeer().getCijena_proizvoda()));
     }
 }
