@@ -14,7 +14,6 @@
     <string name="time_placholder">:</string>
     <string name="time_btn">Time</string>
     <string name="usage_password">Usage password</string>
-    <string name="usage_password">Usage password</string>
     <string name="add_promotion_btn">Add Promotion</string>
     <string name="naziv_promocije">Naziv Promocije</string>
     <string name="opis_promocije">Opis promocije:</string>
@@ -26,7 +25,5 @@
     <string name="trajanje_promocije">Trajanje promocije:</string>
     <string name="od">Od:</string>
     <string name="doo">Do:</string>
-    <string name="usage_password">Usage password</string>
-    <string name="usage_password">Usage password</string>
     <string name="iskoristi_promociju">Iskoristi promociju</string>
 </resources>

@@ -53,7 +53,7 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
         setContentView(R.layout.activity_prikaz_za_podatke_o_pivu);
         initToolbar();
         sp = getSharedPreferences("login", MODE_PRIVATE);
-        idKorisnika = sp.getString("id_uloga", "0");
+        idKorisnika = String.valueOf(sp.getInt("id_uloga", 0));
         beerName1 = findViewById(R.id.beerNameTextView1);
         beerPrice = findViewById(R.id.textView19);
         beerLitres = findViewById(R.id.alcoholPercentageTextView);
