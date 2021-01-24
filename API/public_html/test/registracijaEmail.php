@@ -10,11 +10,13 @@ class korisnik{}
     $korisnickoIme=$_POST['korsnicko_ime'];
     $lozinka=$_POST['lozinka']; 
     $uloga = $_POST['uloga'];
-    $nazivLokacije = $_POST['nazivLokacije'];
-    $OIB = $_POST['OIBLokacije'];
-    $adresa = $_POST['adresaLokacije'];
-    $latituda = $_POST['Latituda'];
-    $longituda = $_POST['Longituda'];
+    if(isset($_POST['nazivLokacije'])){
+        $nazivLokacije = $_POST['nazivLokacije'];
+        $OIB = $_POST['OIBLokacije'];
+        $adresa = $_POST['adresaLokacije'];
+        $latituda = $_POST['Latituda'];
+        $longituda = $_POST['Longituda'];
+    }
     $kod =md5(time());
     
     if($uloga=='Korisnik'){
@@ -25,18 +27,24 @@ class korisnik{}
         	$response=new korisnik();
         	$response->success=1;
         	$response->message="successfully registered";
-        	
+
+            $headers = "From:Beervana2020@gmail.com" . "\r\n";
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
         	$to = $emailKorisnika;
             $subject = "Account activation";
-            $message1 = "<a href='https://beervana2020.000webhostapp.com/test/aktivacija_email.php?kod=$kod'>Activate account</a>";
+            $message1 = '<html><body>';
+            $message1 .= "<a href='https://beervana2020.000webhostapp.com/test/aktivacija_email.php?kod=$kod'>Activate account</a>";
+            $message1 .= '</body></html>';
+            
     
-    mail($to,$subject,$message1,"From:Beervana2020@gmail.com");
+            mail($to,$subject,$message1, $headers);
         	die(json_encode($response));
             }
         else{
         	$response=new korisnik();
         	$response->success=0;
-        	$response->message="error occured";
+        	$response->message="error occured2";
         	die(json_encode($response));
         }
     }
@@ -52,12 +60,17 @@ class korisnik{}
     	    $response->success=1;
     	    $response->message="successfully registered";
     	    
-    	    
-    	    $to = $emailKorisnika;
+    	    $headers = "From:Beervana2020@gmail.com" . "\r\n";
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+        	$to = $emailKorisnika;
             $subject = "Account activation";
-            $message1 = "<a href='https://beervana2020.000webhostapp.com/test/aktivacija_email.php?kod=$kod'>Activate account</a>";
+            $message1 = '<html><body>';
+            $message1 .= "<a href='https://beervana2020.000webhostapp.com/test/aktivacija_email.php?kod=$kod'>Activate account</a>";
+            $message1 .= '</body></html>';
+            
     
-            mail($to,$subject,$message1,"From:Beervana2020@gmail.com");
+            mail($to,$subject,$message1, $headers);
     	    die(json_encode($response));
             }
             else{

@@ -12,6 +12,11 @@ if($nr>0){
 	$response->success=1;
 	$response->message="E-mail already exists";
 	die(json_encode($response));
+}else{
+    $response = new korisnik();
+    $response->success=1;
+    $response->message="E-mail ok";
+    die(json_encode($response));
 }
 
 mysqli_close($con);

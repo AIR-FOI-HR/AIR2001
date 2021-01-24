@@ -9,7 +9,7 @@ $datum=date("Y-m-d h:i:s", $d);
 $d=strtotime("-1 Months");
 $datum1=date("Y-m-d h:i:s", $d);
 
-$query = mysqli_query($con,"SELECT l.id_lokacija, l.naziv_lokacije, avg(r.ocjena) AS prosjek FROM lokacija l left JOIN recenzija r on l.id_lokacija = r.id_lokacija WHERE r.datum_i_vrijeme_recenzije BETWEEN '$datum1' AND '$datum' GROUP BY l.id_lokacija ORDER BY prosjek DESC LIMIT 1");
+$query = mysqli_query($con,"SELECT l.id_lokacija, l.naziv_lokacije, CAST(AVG(r.ocjena) AS DECIMAL(10,2)) AS prosjek FROM lokacija l left JOIN recenzija r on l.id_lokacija = r.id_lokacija WHERE r.datum_i_vrijeme_recenzije BETWEEN '$datum1' AND '$datum' GROUP BY l.id_lokacija ORDER BY prosjek DESC LIMIT 1");
 
 if($query->num_rows !==0){
     $result = array();

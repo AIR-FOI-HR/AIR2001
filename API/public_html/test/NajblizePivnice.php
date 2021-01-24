@@ -7,7 +7,7 @@ class LocationsForMap{}
 $lng = floatval($_POST["Longituda"]);
 $lat = floatval($_POST["Latituda"]);
 
-$query = mysqli_query($con, "SELECT l.id_lokacija, l.naziv_lokacije, avg(r.ocjena) , ( ACOS( COS( RADIANS( $lat ) ) * COS( RADIANS( l.latituda ) ) * COS( RADIANS( l.longituda ) - RADIANS( $lng ) ) + SIN( RADIANS( $lat ) ) * SIN( RADIANS( l.latituda ) ) ) * 6371 ) AS distance_in_km FROM lokacija l left JOIN recenzija r on l.id_lokacija = r.id_lokacija GROUP by l.id_lokacija having distance_in_km <5 ORDER by distance_in_km limit 2");
+$query = mysqli_query($con, "SELECT l.id_lokacija, l.naziv_lokacije, CAST(AVG(r.ocjena) AS DECIMAL(10,2)) , ( ACOS( COS( RADIANS( $lat ) ) * COS( RADIANS( l.latituda ) ) * COS( RADIANS( l.longituda ) - RADIANS( $lng ) ) + SIN( RADIANS( $lat ) ) * SIN( RADIANS( l.latituda ) ) ) * 6371 ) AS distance_in_km FROM lokacija l left JOIN recenzija r on l.id_lokacija = r.id_lokacija GROUP by l.id_lokacija having distance_in_km <5 ORDER by distance_in_km limit 2");
 
 if($query){
     $result = array();

@@ -10,10 +10,9 @@ $cijenaProizvoda=$_POST['cijena_proizvoda'];
 $vrsta_proizvoda = $_POST['vrsta_proizvoda'];
 $kolicina_proizvoda = $_POST['kolicina_proizvoda'];
 $idKategorija=$_POST['id_kategorija'];
-$slika = $_POST['slika'];
 
-$query= mysqli_query($con, "UPDATE proizvod 
-SET naziv_proizvoda = '$nazivProizvoda', cijena_proizvoda = '$cijenaProizvoda', vrsta_proizvoda='$vrsta_proizvoda', kolicina_proizvoda='$kolicina_proizvoda', id_kategorija='$idKategorija' WHERE id_proizvod = $idProizvod");
+
+$query= mysqli_query($con, "UPDATE proizvod SET naziv_proizvoda = '$nazivProizvoda', cijena_proizvoda='$cijenaProizvoda', okus='$vrsta_proizvoda', litara='$kolicina_proizvoda', id_kategorija='$idKategorija' WHERE id_proizvod = $idProizvod");
 
 if($query){
     if(isset($_POST['slika'])){
@@ -24,7 +23,7 @@ if($query){
     }
     $response=new pivo();
 	$response->success=1;
-	$response->message="Succesfully updated an item.";
+	$response->message="Succesfully updated a beer";
 	die(json_encode($response));
 }else{
     $response=new pivo();

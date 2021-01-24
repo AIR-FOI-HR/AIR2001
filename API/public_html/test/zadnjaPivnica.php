@@ -3,7 +3,7 @@
 include_once "connection.php";
 class lokacija{}
 
-$query = mysqli_query($con,"SELECT l.id_lokacija, l.naziv_lokacije, AVG(r.ocjena) as ocjena from lokacija l left join recenzija r on l.id_lokacija = r.id_lokacija GROUP by l.id_lokacija order by l.id_lokacija desc limit 1");
+$query = mysqli_query($con,"SELECT l.id_lokacija, l.naziv_lokacije, CAST(AVG(r.ocjena) AS DECIMAL(10,2)) as ocjena from lokacija l left join recenzija r on l.id_lokacija = r.id_lokacija GROUP by l.id_lokacija order by l.id_lokacija desc limit 1");
 
 if($query->num_rows !==0){
     $result = array();

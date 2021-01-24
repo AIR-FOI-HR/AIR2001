@@ -11,6 +11,11 @@ $q=mysqli_query($con, "SELECT * FROM korisnik WHERE korsnicko_ime='$korisnickoIm
 	    $response->success=1;
 	    $response->message="Username already exists";
 	    die(json_encode($response));
+    } else{
+        $response=new korisnik();
+        $response->success=1;
+        $response->message="Username ok";
+        die(json_encode($response));
     }
 mysqli_close($con);
 
