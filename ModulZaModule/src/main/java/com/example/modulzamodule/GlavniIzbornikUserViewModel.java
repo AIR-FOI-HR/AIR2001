@@ -56,6 +56,8 @@ public class GlavniIzbornikUserViewModel extends ViewModel {
         odgovorParsiranja = lokacijaLogika.ParsiranjeLokacijeZaPretrazivanje(odgovor);
         if(odgovorParsiranja!= null){
             najdrazeLokacije = odgovorParsiranja;
+        }else{
+            najdrazeLokacije = null;
         }
     }
 

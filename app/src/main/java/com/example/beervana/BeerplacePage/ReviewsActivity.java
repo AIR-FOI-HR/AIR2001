@@ -28,16 +28,17 @@ import java.util.Map;
 
 public class ReviewsActivity extends BaseActivity implements AdapterReview.onRecenzijaListener {
 
-    private static final String url = "https://beervana2020.000webhostapp.com/test/fetchReviews.php";
+    private static String url = "https://beervana2020.000webhostapp.com/test/fetchReviews.php";
     RecyclerView recyclerView;
     public ArrayList<Review> reviews;
     private RequestQueue requestQueue;
-    private String id_lokacija;
+    private String id_lokacija = "";
     private String id_korisnik;
+    private String id_proizvod = "";
     private boolean is_user = false;
     View view;
     AdapterReview adapterReview;
-    private final String sendUrl = "https://beervana2020.000webhostapp.com/test/deleteReview.php";
+    private String sendUrl = "https://beervana2020.000webhostapp.com/test/deleteReview.php";
     private RequestQueue requestQueueBrisanje;
 
     @Override
@@ -57,6 +58,9 @@ public class ReviewsActivity extends BaseActivity implements AdapterReview.onRec
         } else if (extras.containsKey("id_korisnika")) {
             id_korisnik = extras.getString("id_korisnika");
             is_user = true;
+        }else if(extras.containsKey("id_proizvod")){
+            id_proizvod = extras.getString("id_proizvod");
+            url = "https://beervana2020.000webhostapp.com/test/fetchBeerReviews.php";
         }
         loadReviews();
 
@@ -72,8 +76,11 @@ public class ReviewsActivity extends BaseActivity implements AdapterReview.onRec
             params.put("id_korisnik", id_korisnik);
             String urlKorisnik = "https://beervana2020.000webhostapp.com/test/fetchMyReviews.php";
             dohvatPodataka.setSendUrl(urlKorisnik);
-        } else {
+        } else if(!id_lokacija.equals("")){
             params.put("id_lokacija", id_lokacija);
+            dohvatPodataka.setSendUrl(url);
+        }else if(!id_proizvod.equals("")){
+            params.put("id_proizvod",id_proizvod);
             dohvatPodataka.setSendUrl(url);
         }
 
