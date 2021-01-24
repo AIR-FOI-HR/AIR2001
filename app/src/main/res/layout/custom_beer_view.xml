@@ -24,9 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="12dp"
-        android:text="Naziv: "
+        android:text="@string/naziv_CustomBV"
         app:layout_constraintStart_toEndOf="@+id/slikaPiva"
-        app:layout_constraintTop_toTopOf="parent"></TextView>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/lblCijenaPiva"
@@ -34,9 +34,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="7dp"
-        android:text="Cijena: "
+        android:text="@string/cijena_CustomBV"
         app:layout_constraintStart_toEndOf="@+id/slikaPiva"
-        app:layout_constraintTop_toBottomOf="@+id/lblNazivPiva"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/lblNazivPiva"/>
 
     <TextView
         android:id="@+id/lblOkusPiva"
@@ -44,15 +44,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="7dp"
-        android:text="Okus: "
+        android:text="@string/okus_CustomBV"
         app:layout_constraintStart_toEndOf="@+id/slikaPiva"
-        app:layout_constraintTop_toBottomOf="@+id/lblCijenaPiva"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/lblCijenaPiva"/>
 
     <TextView
         android:id="@+id/txtNazivPivaPretrazivanje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Naziv Piva"
+        android:text="@string/naziv_piva_CustomBV"
         app:layout_constraintBaseline_toBaselineOf="@+id/lblNazivPiva"
         app:layout_constraintStart_toEndOf="@+id/lblNazivPiva" />
 
@@ -60,7 +60,7 @@
         android:id="@+id/txtCijenaPivaPretrazivanje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cijena Piva"
+        android:text="@string/cijena_piva_CustomBV"
         app:layout_constraintBaseline_toBaselineOf="@+id/lblCijenaPiva"
         app:layout_constraintStart_toEndOf="@+id/lblCijenaPiva" />
 
@@ -68,7 +68,7 @@
         android:id="@+id/txtOkusPivaPretrazivanje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Okus Piva"
+        android:text="@string/okus_piva_CustomBV"
         app:layout_constraintBaseline_toBaselineOf="@+id/lblOkusPiva"
         app:layout_constraintStart_toEndOf="@+id/lblOkusPiva" />
 

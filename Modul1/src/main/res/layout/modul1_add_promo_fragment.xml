@@ -108,7 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:padding="15dp"
-        android:text="Odaberite proizvod i popust (%)"
+        android:text="@string/odaberite_proizvod_i_popust"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -139,7 +139,7 @@
         android:importantForAutofill="no"
         android:id="@+id/unosPopustPromocija"
         android:layout_below="@id/errUnosProizvoda"
-        android:hint="Popust u postocima"
+        android:hint="@string/popust_u_postocima"
         android:textColorHint="@color/black"
         android:inputType="number"
         android:textColor="@color/black"
@@ -198,7 +198,7 @@
         android:layout_marginEnd="50dp"
         android:textColor="@color/black"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:text=" / / / " />
+        android:text="@string/datum_placeholder" />
     <Button
         android:id="@+id/btnOdaberiDatumOd"
         android:layout_width="wrap_content"
@@ -207,7 +207,7 @@
         android:layout_below="@id/txtStartDate"
         android:layout_marginTop="20dp"
         android:layout_toEndOf="@id/prikazDatumaOd"
-        android:text="Date" />
+        android:text="@string/date_btn" />
     <TextView
         android:id="@+id/errUnosDatumOd"
         android:layout_below="@id/prikazDatumaOd"
@@ -237,7 +237,7 @@
         android:layout_marginEnd="50dp"
         android:textColor="@color/black"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:text="    :    " />
+        android:text="@string/time_placeholder" />
     <Button
         android:id="@+id/btnOdaberiVrijemeOd"
         android:layout_width="wrap_content"
@@ -246,7 +246,7 @@
         android:layout_below="@id/errUnosDatumOd"
         android:layout_marginTop="20dp"
         android:layout_toEndOf="@id/prikazVremenaOd"
-        android:text="Time" />
+        android:text="@string/time_btn" />
     <TextView
         android:id="@+id/errUnosVrijemeOd"
         android:layout_below="@id/prikazVremenaOd"
@@ -288,7 +288,7 @@
         android:layout_marginEnd="50dp"
         android:textColor="@color/black"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:text="/ / / " />
+        android:text="@string/datum_placeholder" />
     <Button
         android:id="@+id/btnOdaberiDatumDo"
         android:layout_width="wrap_content"
@@ -297,7 +297,7 @@
         android:layout_below="@id/txtEndDate"
         android:layout_marginTop="20dp"
         android:layout_toEndOf="@id/prikazDatumaDo"
-        android:text="Date" />
+        android:text="@string/date_btn" />
     <TextView
         android:id="@+id/errUnosDatumDo"
         android:layout_below="@id/prikazDatumaDo"
@@ -325,7 +325,7 @@
         android:layout_marginEnd="50dp"
         android:textColor="@color/black"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:text="    :    " />
+        android:text="@string/time_placeholder" />
     <Button
         android:id="@+id/btnOdaberiVrijemeDo"
         android:layout_width="wrap_content"
@@ -334,7 +334,7 @@
         android:layout_below="@id/errUnosDatumDo"
         android:layout_marginTop="20dp"
         android:layout_toEndOf="@id/prikazVremenaDo"
-        android:text="Time" />
+        android:text="@string/time_btn" />
     <TextView
         android:id="@+id/errUnosVrijemeDo"
         android:layout_below="@id/prikazVremenaDo"
@@ -357,7 +357,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/errUnosVrijemeDo"
         android:layout_marginTop="30dp"
-        android:text="Add Promotion" />
+        android:text="@string/add_promotion_btn" />
 </RelativeLayout>
 
 </ScrollView>

@@ -8,4 +8,25 @@
     <string name="end_date">End date</string>
     <string name="this_many">How many bought produtcts</string>
     <string name="this_many_free">+ how many free</string>
+    <string name="choose_how_many_product_how_many_free">Choose how many product + how many free</string>
+    <string name="datum_placholder">/ / /</string>
+    <string name="date_btn">Date</string>
+    <string name="time_placholder">:</string>
+    <string name="time_btn">Time</string>
+    <string name="usage_password">Usage password</string>
+    <string name="usage_password">Usage password</string>
+    <string name="add_promotion_btn">Add Promotion</string>
+    <string name="naziv_promocije">Naziv Promocije</string>
+    <string name="opis_promocije">Opis promocije:</string>
+    <string name="opis_promocije_pod">Opis promocije:</string>
+    <string name="proizvod_i_ponuda">Proizvod i ponuda:</string>
+    <string name="proizvod">Proizvod</string>
+    <string name="kolicna">Kolicna</string>
+    <string name="free">+Free</string>
+    <string name="trajanje_promocije">Trajanje promocije:</string>
+    <string name="od">Od:</string>
+    <string name="doo">Do:</string>
+    <string name="usage_password">Usage password</string>
+    <string name="usage_password">Usage password</string>
+    <string name="iskoristi_promociju">Iskoristi promociju</string>
 </resources>

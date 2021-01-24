@@ -24,7 +24,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="100dp"
         android:background="@drawable/circle_button"
-        android:text="+"
+        android:text="@string/plus_IZD"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/my_toolbar" />
 
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="52dp"
-        android:text="Add Promo"
+        android:text="@string/add_promo_IZD"
         android:textSize="30sp"
         app:layout_constraintStart_toEndOf="@+id/actionAddPromo"
         app:layout_constraintTop_toBottomOf="@+id/labelAddBeer" />
@@ -46,7 +46,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/circle_button"
-        android:text="+"
+        android:text="@string/plus_IZD"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actionAddPromo" />
 
@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="136dp"
-        android:text="Add Beer"
+        android:text="@string/add_beer_IZD"
         android:textSize="30sp"
         app:layout_constraintStart_toEndOf="@+id/actionAddBeer"
         app:layout_constraintTop_toBottomOf="@id/my_toolbar"  />
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="72dp"
-        android:text="Add Tasting menu"
+        android:text="@string/add_tasting_menu_IZD"
         android:textSize="30sp"
         app:layout_constraintStart_toEndOf="@+id/actionAddTastingMenu"
         app:layout_constraintTop_toBottomOf="@+id/labelAddEvent" />
@@ -79,7 +79,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/circle_button"
-        android:text="+"
+        android:text="@string/plus_IZD"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actionAddEvent" />
 
@@ -89,7 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="68dp"
-        android:text="Add Event"
+        android:text="@string/add_event_IZD"
         android:textSize="30sp"
         app:layout_constraintStart_toEndOf="@+id/actionAddEvent"
         app:layout_constraintTop_toBottomOf="@+id/labelAddPromo" />
@@ -101,7 +101,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/circle_button"
-        android:text="+"
+        android:text="@string/plus_IZD"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actionAddBeer" />
 

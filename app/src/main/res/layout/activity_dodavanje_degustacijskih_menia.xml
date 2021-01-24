@@ -80,7 +80,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tastingMenuName"
             android:visibility="gone"
-            android:text="@string/menuNameMismatch"></TextView>
+            android:text="@string/menuNameMismatch"/>
 
         <EditText
             android:id="@+id/tastingMenuDescription"
@@ -120,7 +120,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tastingMenuDescription"
             android:visibility="gone"
-            android:text="@string/menuNameMismatch"></TextView>
+            android:text="@string/menuNameMismatch"/>
 
         <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
 
@@ -156,7 +156,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/spinPivi"
             android:visibility="gone"
-            android:text="@string/menuBeerPickError"></TextView>
+            android:text="@string/menuBeerPickError"/>
 
         <LinearLayout
             android:id="@+id/durationLayout"
@@ -204,7 +204,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/durationLayout"
                 android:visibility="gone"
-                android:text="@string/menuDurationMismatch"></TextView>
+                android:text="@string/menuDurationMismatch"/>
 
         <ImageButton
             android:id="@+id/acceptTastingMenu"

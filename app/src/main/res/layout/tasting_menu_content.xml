@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/tastingMenuBeerContent"
             android:layout_weight="1"
-            android:text="Beer name"
+            android:text="@string/beer_name_TastingContent"
             />
 
 
@@ -46,7 +46,7 @@
             android:layout_toEndOf="@+id/tastingBeerName"
             android:layout_margin="@dimen/tastingMenuBeerContent"
             android:layout_weight="1"
-            android:text="Taste"
+            android:text="@string/taste_TastingContent"
             />
 
         <TextView
@@ -55,7 +55,7 @@
             android:layout_toEndOf="@id/tastingBeerDescription"
             android:layout_margin="@dimen/tastingMenuBeerContent"
             android:layout_weight="1"
-            android:text="Price"
+            android:text="@string/price_TastingContent"
             />
     </LinearLayout>
     <ListView

@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
-        android:text="Naziv Lokacije" />
+        android:text="@string/naziv_lokacije_WinodwKarta" />
 
     <ImageView
         android:id="@+id/imgInfoWindowZvijezdica"
@@ -29,7 +29,7 @@
         android:layout_marginTop="19dp"
         android:layout_marginStart="4dp"
         android:layout_toEndOf="@+id/imgInfoWindowZvijezdica"
-        android:text=":4" />
+        android:text="@string/_4_WinodwKarta" />
 
     <TextView
         android:id="@+id/txtInfoWindowAdresalokacije"
@@ -38,7 +38,7 @@
         android:layout_marginStart="7dp"
         android:layout_marginTop="17dp"
         android:layout_below="@+id/txtInfoWindowNazivLokacije"
-        android:text="Adresa" />
+        android:text="@string/adresa_WinodwKarta" />
 
 
 

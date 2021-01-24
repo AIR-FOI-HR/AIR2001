@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:padding="5dp"
-        android:text="Locations:"
+        android:text="@string/locations_Se"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_below="@+id/my_toolbar"/>
@@ -33,7 +33,7 @@
         android:layout_marginTop="5dp"
         android:padding="5dp"
         android:visibility="gone"
-        android:text="No locations found for the search term."
+        android:text="@string/_Se"
         android:textSize="12sp"
         android:textStyle="bold"
         android:layout_below="@+id/RecyclerLocationSearch"/>
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:padding="5dp"
-        android:text="Beers:"
+        android:text="@string/beers_Se"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_below="@+id/txtPretrazivanjeNemaPivnica"/>
@@ -60,7 +60,7 @@
         android:layout_marginTop="5dp"
         android:padding="5dp"
         android:visibility="gone"
-        android:text="No bears found for the search term."
+        android:text="@string/no_bears_found_for_the_search_term_Se"
         android:textSize="12sp"
         android:textStyle="bold"
         android:layout_below="@+id/RecyclerBeerSearch"/>
