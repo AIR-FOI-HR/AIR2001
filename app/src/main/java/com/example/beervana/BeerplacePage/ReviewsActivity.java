@@ -28,19 +28,18 @@ import java.util.Map;
 
 public class ReviewsActivity extends BaseActivity implements AdapterReview.onRecenzijaListener {
 
-    private static final String url = "https://beervana2020.000webhostapp.com/test/fetchReviews.php";
+    private static String url = "https://beervana2020.000webhostapp.com/test/fetchReviews.php";
     RecyclerView recyclerView;
     public ArrayList<Review> reviews;
     private RequestQueue requestQueue;
-    private String id_lokacija;
+    private String id_lokacija = "";
     private String id_korisnik;
-    String id_proizvod;
-    private boolean is_user = false, is_lokacija = false, is_proizvod = false;
+    private String id_proizvod = "";
+    private boolean is_user = false;
     View view;
     AdapterReview adapterReview;
-    private final String sendUrl = "https://beervana2020.000webhostapp.com/test/deleteReview.php";
+    private String sendUrl = "https://beervana2020.000webhostapp.com/test/deleteReview.php";
     private RequestQueue requestQueueBrisanje;
-    private String urlPivo = "https://beervana2020.000webhostapp.com/test/fetchBeerReviews.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +55,12 @@ public class ReviewsActivity extends BaseActivity implements AdapterReview.onRec
         Bundle extras = intent.getExtras();
         if (extras.containsKey("id_lokacija")) {
             id_lokacija = extras.getString("id_lokacija");
-            is_lokacija=true;
         } else if (extras.containsKey("id_korisnika")) {
             id_korisnik = extras.getString("id_korisnika");
             is_user = true;
-        } else if (extras.containsKey("id_proizvod")){
+        }else if(extras.containsKey("id_proizvod")){
             id_proizvod = extras.getString("id_proizvod");
-            is_proizvod = true;
+            url = "https://beervana2020.000webhostapp.com/test/fetchBeerReviews.php";
         }
         loadReviews();
 
@@ -78,12 +76,12 @@ public class ReviewsActivity extends BaseActivity implements AdapterReview.onRec
             params.put("id_korisnik", id_korisnik);
             String urlKorisnik = "https://beervana2020.000webhostapp.com/test/fetchMyReviews.php";
             dohvatPodataka.setSendUrl(urlKorisnik);
-        } else if (is_lokacija){
+        } else if(!id_lokacija.equals("")){
             params.put("id_lokacija", id_lokacija);
             dohvatPodataka.setSendUrl(url);
-        } else if (is_proizvod){
-            params.put("id_proizvod", id_proizvod);
-            dohvatPodataka.setSendUrl(urlPivo);
+        }else if(!id_proizvod.equals("")){
+            params.put("id_proizvod",id_proizvod);
+            dohvatPodataka.setSendUrl(url);
         }
 
         dohvatPodataka.setParametri(params);

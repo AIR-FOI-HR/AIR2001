@@ -108,7 +108,7 @@ public class BeerplaceHomepageActivityNew extends BaseActivity {
         requestQueueCheck = Volley.newRequestQueue(getApplicationContext());
         Map<String, String> params = new HashMap<String, String>();
         params.put("id_lokacija", id_lokacija);
-        params.put("id_korisnik", "20");
+        params.put("id_korisnik", idKorisnik);
         slanjePodataka.setParametri(params);
         slanjePodataka.sendData(this, requestQueueCheck);
 
@@ -137,7 +137,7 @@ public class BeerplaceHomepageActivityNew extends BaseActivity {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         Map<String, String> params = new HashMap<String, String>();
         params.put("id_lokacija", id_lokacija);
-        params.put("id_korisnik", "20");
+        params.put("id_korisnik", idKorisnik);
         slanjePodataka.setParametri(params);
         slanjePodataka.sendData(this, requestQueue);
 

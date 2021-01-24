@@ -148,6 +148,12 @@ public class GlavniIzbornikUser extends BaseActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        retrieveData();
+    }
+
     private void retrieveData() {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         DohvatPodataka dohvatPodataka = new DohvatPodataka();
