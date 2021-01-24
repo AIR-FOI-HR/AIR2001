@@ -13,6 +13,7 @@ if($query->num_rows!==0){
     
 while($row = mysqli_fetch_array($query)){
     
+    if($row['0']!==null){
     $index['naziv_lokacije'] = $row['0'];
     $index['adresa_lokacije'] = $row['1'];
     $index['ocjena'] = $row['2'];
@@ -20,11 +21,13 @@ while($row = mysqli_fetch_array($query)){
     
     array_push($result['proizvod'],$index);
     }
+}
     $response = new beerplace();
     $response->body =$result['proizvod'];
     $response->success=1;
     $response->message = "Successfully searched bearplaces";
     echo json_encode($response);
+
 }
 else{
     $response = new beerplace();
