@@ -1,9 +1,11 @@
 package com.example.beervana;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,10 +14,15 @@ import com.example.beervana.UserData.UserDataActivity;
 
 public abstract class BaseActivity extends AppCompatActivity {
     EditText pretrazivanje;
+    TextView naslovna;
+    private SharedPreferences sp;
+    int uloga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sp = getSharedPreferences("login", MODE_PRIVATE);
+        uloga = sp.getInt("id_uloga", 0);
 
 
     }
@@ -33,14 +40,35 @@ public abstract class BaseActivity extends AppCompatActivity {
         imageViewPretrazivanje.setOnClickListener(v -> openActivity5());
         pretrazivanje = findViewById(R.id.txtpretrazivanje);
 
+        naslovna = findViewById(R.id.naslovna);
+        if(uloga==1) {
+            naslovna.setOnClickListener(v -> openNaslovnaKorisnik());
+        }
+        else{
+            naslovna.setOnClickListener(v -> openNaslovnaClient());
+        }
         //
 
     }
 
+    private void openNaslovnaClient() {
+        Intent intent = new Intent(this, GlavniIzbornikClient.class);
+        startActivity(intent);
+        finishAffinity();
+    }
+
+    public void openNaslovnaKorisnik() {
+        Intent intent = new Intent(this,GlavniIzbornikUser.class);
+        startActivity(intent);
+        finishAffinity();
+    }
+
 
     public void openActivity3() {
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
+        if(this.getClass()!=SettingsActivity.class) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+        }
     }
 
     //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
@@ -72,6 +100,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         imageViewPretrazivanje.setEnabled(false);
         pretrazivanje = findViewById(R.id.txtpretrazivanje);
         pretrazivanje.setEnabled(false);
+
+        naslovna = findViewById(R.id.naslovna);
+        naslovna.setEnabled(false);
+
+
+
     }
 
     public void unBlockToolbar() {
@@ -85,6 +119,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         imageViewPretrazivanje.setEnabled(true);
         pretrazivanje = findViewById(R.id.txtpretrazivanje);
         pretrazivanje.setEnabled(true);
+
+        naslovna = findViewById(R.id.naslovna);
+        naslovna.setEnabled(true);
     }
 
 

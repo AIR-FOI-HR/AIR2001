@@ -70,7 +70,7 @@ public class TastingMenuActivity extends BaseActivity implements RecyclerTasting
         String urlBrisanje = "https://beervana2020.000webhostapp.com/test/DeleteTastingMenu.php";
         SlanjePodataka slanjePodataka = new SlanjePodataka(urlBrisanje);
         Map<String, String> params = new HashMap<String, String>();
-        params.put("tastingMenuName", tastingMenuArray.get(position).getName());
+        params.put("id_meni", tastingMenuArray.get(position).getId());
         slanjePodataka.setParametri(params);
         slanjePodataka.sendData(getApplicationContext(), requestQueue);
         requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {

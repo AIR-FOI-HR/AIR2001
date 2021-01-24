@@ -41,17 +41,17 @@ public class StatistikaLogika {
                 if (prvi.equals("null")) {
                     point1 = new DataPoint(prviM, 0);
                 } else {
-                    point1 = new DataPoint(prviM, Integer.valueOf(prvi));
+                    point1 = new DataPoint(prviM, Double.valueOf(prvi));
                 }
                 if (drugi.equals("null")) {
                     point2 = new DataPoint(drugiM, 0);
                 } else {
-                    point2 = new DataPoint(drugiM, Integer.valueOf(drugi));
+                    point2 = new DataPoint(drugiM, Double.valueOf(drugi));
                 }
                 if (treci.equals("null")) {
                     point3 = new DataPoint(treciM, 0);
                 } else {
-                    point3 = new DataPoint(treciM, Integer.valueOf(treci));
+                    point3 = new DataPoint(treciM, Double.valueOf(treci));
                 }
                 if (prviM > drugiM) {
                     pointovi.add(point3);
