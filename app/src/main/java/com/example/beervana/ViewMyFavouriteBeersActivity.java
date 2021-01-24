@@ -44,7 +44,7 @@ public class ViewMyFavouriteBeersActivity extends BaseActivity implements Activi
         beerRecyclerView = findViewById(R.id.favoriteBeersRecylcerView);
         beerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         sp = getSharedPreferences("login", MODE_PRIVATE);
-        idKorisnika = sp.getInt("id_uloga", 0);
+        idKorisnika = sp.getInt("id_korisnik", 0);
 
         RetriveData();
     }

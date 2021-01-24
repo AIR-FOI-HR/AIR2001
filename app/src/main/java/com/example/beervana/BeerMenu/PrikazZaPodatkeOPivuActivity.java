@@ -115,7 +115,12 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
                 JSONObject odgovor = dohvatPodataka.getOdgovor();
                 try {
                     if(odgovor.getString("message").equals("Succesfully retrived rating") ){
-                        ocjenap.setText(odgovor.getString("body").concat("/5"));
+                        if(odgovor.getString("body").length()>4){
+                            ocjenap.setText(odgovor.getString("body").substring(0,4).concat("/5"));
+                        }else{
+                            ocjenap.setText(odgovor.getString("body").concat("/5"));
+                        }
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

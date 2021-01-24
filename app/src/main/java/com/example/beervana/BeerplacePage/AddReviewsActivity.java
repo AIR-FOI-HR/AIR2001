@@ -82,6 +82,7 @@ public class AddReviewsActivity extends BaseActivity {
             viewModel.setIdRecenzija(extras.getString("id_recenzija"));
             komentar.setText(viewModel.getKomentar());
             ocjena.setRating(Float.valueOf((float) (double) viewModel.getOcjena()));
+            isLokacija = false;
         }
         binding.ratingButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +90,7 @@ public class AddReviewsActivity extends BaseActivity {
                 //viewModel.setIdKorisnik(Integer.valueOf(idKorisnik.toString()));
                 if(isLokacija)
                     viewModel.setIdLokacija(Integer.valueOf(idLokacija));
-                else
+                else if(idProizvod!=null)
                     viewModel.setIdProizvod(Integer.valueOf(idProizvod));
                 viewModel.setOcjena(Double.valueOf(ocjena.getRating()));
                 viewModel.setKomentar(komentar.getText().toString());

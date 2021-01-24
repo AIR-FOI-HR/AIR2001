@@ -321,6 +321,7 @@ public class GlavniIzbornikUser extends BaseActivity {
             }
 
         } else {
+            prikaziNajdrazaPiva.setEnabled(false);
             prikaziNajdrazaPiva.setVisibility(View.GONE);
             omiljenoPivoPrvo.setText("Currrently you don't have any favourite beers added");
             omiljenoPivo2.setVisibility(View.GONE);
