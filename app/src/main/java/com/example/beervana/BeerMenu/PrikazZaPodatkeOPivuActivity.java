@@ -44,7 +44,8 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
     RequestQueue requestQueue;
     ArrayList<JSONObject> reviews = new ArrayList();
     Button addReviews, allReviews;
-    String id, idKorisnika;
+    String id;
+    Integer idKorisnika;
     SharedPreferences sp;
 
     @Override
@@ -53,7 +54,7 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
         setContentView(R.layout.activity_prikaz_za_podatke_o_pivu);
         initToolbar();
         sp = getSharedPreferences("login", MODE_PRIVATE);
-        idKorisnika = sp.getString("id_uloga", "0");
+        idKorisnika = sp.getInt("id_uloga", 0);
         beerName1 = findViewById(R.id.beerNameTextView1);
         beerPrice = findViewById(R.id.textView19);
         beerLitres = findViewById(R.id.alcoholPercentageTextView);
@@ -112,10 +113,10 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
                 JSONArray jsonArray = null;
                 try {
                     jsonArray= odgovor.getJSONArray("recenzija");
-                    JSONObject jsonObject = jsonArray.getJSONObject(0);
-                    reviews.add(jsonObject);
-                    jsonObject = jsonArray.getJSONObject(1);
-                    reviews.add(jsonObject);
+                    for (Integer i= 0; i< jsonArray.length(); i++){
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        reviews.add(jsonObject);
+                    }
                     SetUpReviews();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -138,6 +139,7 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
             ocjena2.setVisibility(View.GONE);
             komentar2.setVisibility(View.GONE);
             datum2.setVisibility(View.GONE);
+            zvijezda2.setVisibility(View.GONE);
             komentar.setText(reviews.get(0).optString("komentar"));
             ocjena.setText(reviews.get(0).optString("ocjena"));
             datum.setText(reviews.get(0).optString("datum_i_vrijeme_recenzije"));
@@ -148,6 +150,8 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
             ocjena.setVisibility(View.GONE);
             komentar.setVisibility(View.GONE);
             datum.setVisibility(View.GONE);
+            zvijezda2.setVisibility(View.GONE);
+            zvijezda.setVisibility(View.GONE);
         }
     }
 
@@ -156,7 +160,7 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
         RequestQueue requestQueueCheck = Volley.newRequestQueue(getApplicationContext());
         Map<String, String> params = new HashMap<String, String>();
         params.put("id_proizvod", id);
-        params.put("id_korisnik", idKorisnika);
+        params.put("id_korisnik", idKorisnika.toString());
         slanjePodataka.setParametri(params);
         slanjePodataka.sendData(this, requestQueueCheck);
 
@@ -195,7 +199,7 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         Map<String, String> params = new HashMap<String, String>();
         params.put("id_proizvod", id);
-        params.put("id_korisnik", idKorisnika);
+        params.put("id_korisnik", idKorisnika.toString());
         slanjePodataka.setParametri(params);
         slanjePodataka.sendData(this, requestQueue);
         requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {

@@ -94,4 +94,5 @@ dependencies {
             }
         }
     }
+    implementation 'com.genymobile:mirror:1.0.0'
 }
