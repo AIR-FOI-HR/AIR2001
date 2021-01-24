@@ -299,6 +299,14 @@ public class RegisterActivityViewModel extends ViewModel {
                 sveUredu=false;
                 errUnosKucniBrojVidljivost = visible;
             }
+            if(errUnosGrad.equals("") && errUnosUlica.equals("") && errUnosKucniBroj.equals("")){
+                koordinate = logikaLokacija.provjeraIDohvatLokacije(ulica.concat(" ".concat(kucniBroj.concat(", ".concat(grad)))),context);
+                if(koordinate==null){
+                    sveUredu=false;
+                    errUnosGrad="Error: Check your address, we couldn't find the coordinates.";
+                    errUnosGradVidljivost=visible;
+                }
+            }
         }
         if(!errUnosIme.equals("")) {
             sveUredu=false;
@@ -346,14 +354,7 @@ public class RegisterActivityViewModel extends ViewModel {
             sveUredu=false;
             errSpinUlogaVidljivost = visible;
         }
-        if(errUnosGrad.equals("") && errUnosUlica.equals("") && errUnosKucniBroj.equals("")){
-            koordinate = logikaLokacija.provjeraIDohvatLokacije(ulica.concat(" ".concat(kucniBroj.concat(", ".concat(grad)))),context);
-            if(koordinate==null){
-                sveUredu=false;
-                errUnosGrad="Error: Check your address, we couldn't find the coordinates.";
-                errUnosGradVidljivost=visible;
-            }
-        }
+
 
         return sveUredu;
     }

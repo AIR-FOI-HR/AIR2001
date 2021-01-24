@@ -31,7 +31,7 @@ import java.util.Map;
 
 public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
 
-    TextView beerName1, beerPrice, beerTaste, beerLitres, komentar, komentar2, datum,datum2, ocjena,ocjena2;
+    TextView beerName1, beerPrice, beerTaste, beerLitres, komentar, komentar2, datum,datum2, ocjena,ocjena2, ocjenap;
     ImageView beerImage, zvijezda, zvijezda2;
     int position;
     private ImageView addToFavorites;
@@ -47,6 +47,7 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
     String id;
     Integer idKorisnika;
     SharedPreferences sp;
+    private String urlOcjena= "https://beervana2020.000webhostapp.com/test/GetBeerRating.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,8 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
         setContentView(R.layout.activity_prikaz_za_podatke_o_pivu);
         initToolbar();
         sp = getSharedPreferences("login", MODE_PRIVATE);
-        idKorisnika = sp.getInt("id_uloga", 0);
+        idKorisnika = sp.getInt("id_korisnik", 0);
+        ocjenap = findViewById(R.id.noStarTextView);
         beerName1 = findViewById(R.id.beerNameTextView1);
         beerPrice = findViewById(R.id.textView19);
         beerLitres = findViewById(R.id.alcoholPercentageTextView);
@@ -95,7 +97,31 @@ public class PrikazZaPodatkeOPivuActivity extends BaseActivity {
         allReviews.setOnClickListener(v -> loadAllReviews());
         CheckIfFavoriteBeer();
         GetReviews();
+        SetOcjena();
 
+    }
+
+    private void SetOcjena() {
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
+        DohvatPodataka dohvatPodataka = new DohvatPodataka();
+        HashMap<String,String> params = new HashMap<>();
+        params.put("id_proizvod", id);
+        dohvatPodataka.setParametri(params);
+        dohvatPodataka.setSendUrl(urlOcjena);
+        dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
+        requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+            @Override
+            public void onRequestFinished(Request<Object> request) {
+                JSONObject odgovor = dohvatPodataka.getOdgovor();
+                try {
+                    if(odgovor.getString("message").equals("Succesfully retrived rating") ){
+                        ocjenap.setText(odgovor.getString("body").concat("/5"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void GetReviews() {

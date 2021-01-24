@@ -142,11 +142,18 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         errUnosUlica.setVisibility(viewModel.errUnosUlicaVidljivost);
         errUnosKucniBroj.setVisibility(viewModel.errUnosKucniBrojVidljivost);
 
-        //requestQueue= Volley.newRequestQueue(getApplicationContext());
-
         binding.btnRegistracija.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                viewModel.setUloga(listaUloga.getSelectedItem().toString());
+                if (viewModel.getUloga().equals("Klijent")) {
+                    viewModel.setNazivLokacije(nazivLokacije.getText().toString());
+                    viewModel.setOibLokacije(oibLokacije.getText().toString());
+                    viewModel.setOpisLokacije(opisLokacije.getText().toString());
+                    viewModel.setGrad(grad.getText().toString());
+                    viewModel.setUlica(ulica.getText().toString());
+                    viewModel.setKucniBroj(kucniBroj.getText().toString());
+                }
                 viewModel.setIme(ime.getText().toString());
                 viewModel.setPrezime(prezime.getText().toString());
                 viewModel.setBrojMobitela(brojMobitela.getText().toString());
@@ -154,35 +161,32 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 viewModel.setKorisnickoIme(korisnickoIme.getText().toString());
                 viewModel.setLozinka(lozinka.getText().toString());
                 viewModel.setPonovljenaLozinka(ponovljenaLozinka.getText().toString());
-                viewModel.setUloga(listaUloga.getSelectedItem().toString());
-                viewModel.setNazivLokacije(nazivLokacije.getText().toString());
-                viewModel.setOibLokacije(oibLokacije.getText().toString());
-                viewModel.setOpisLokacije(opisLokacije.getText().toString());
-                viewModel.setGrad(grad.getText().toString());
-                viewModel.setUlica(ulica.getText().toString());
-                viewModel.setKucniBroj(kucniBroj.getText().toString());
                 if (viewModel.ProvijeriSvePodatke(getApplicationContext())) {
                     requestQueue = Volley.newRequestQueue(getApplicationContext());
                     provjeraPostojeLiPodaci = true;
                     Map<String, String> params = new HashMap<String, String>();
+                    if (viewModel.getUloga().equals("Klijent")) {
+                        params.put("nazivLokacije", nazivLokacije.getText().toString());
+                        params.put("OIBLokacije", oibLokacije.getText().toString());
+                        params.put("Latituda", viewModel.getKoordinate().split(",")[0]);
+                        params.put("Longituda", viewModel.getKoordinate().split(",")[1]);
+                        params.put("adresaLokacije", ulica.getText().toString()
+                                .concat(" "
+                                        .concat(kucniBroj.getText().toString()
+                                                .concat(", "
+                                                        .concat(grad.getText().toString())))));
+                    }
                     params.put("ime_korisnika", ime.getText().toString());
                     params.put("prezime_korisnika", prezime.getText().toString());
                     params.put("email_korisnika", email.getText().toString());
                     params.put("korsnicko_ime", korisnickoIme.getText().toString());
                     params.put("lozinka", lozinka.getText().toString());
                     params.put("uloga", uloga.getSelectedItem().toString());
-                    params.put("nazivLokacije", nazivLokacije.getText().toString());
-                    params.put("OIBLokacije", oibLokacije.getText().toString());
-                    params.put("Latituda", viewModel.getKoordinate().split(",")[0]);
-                    params.put("Longituda", viewModel.getKoordinate().split(",")[1]);
-                    params.put("adresaLokacije", ulica.getText().toString().concat(" ".concat(kucniBroj.getText().toString().concat(", ".concat(grad.getText().toString())))));
+
                     sendUrl = "https://beervana2020.000webhostapp.com/test/email.php";
                     SlanjePodataka slanjePodataka = new SlanjePodataka(sendUrl);
                     slanjePodataka.setParametri(params);
                     slanjePodataka.sendData(getApplicationContext(), requestQueue);
-                    //sendUrl="https://beervana2020.000webhostapp.com/test/korisnickoImeProvjera.php";
-                    //slanjePodataka.setSendUrl(sendUrl);
-                    //slanjePodataka.sendData(getApplicationContext(),requestQueue);
                     requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
                         @Override
                         public void onRequestFinished(Request<Object> request) {
