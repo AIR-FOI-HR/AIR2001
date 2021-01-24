@@ -1,6 +1,7 @@
 package com.example.beervana.BeerMenu;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -61,12 +62,13 @@ public class AddBeers extends BaseActivity {
     RequestQueue requestQueue;
     String pozicija;
     Integer pozicija_int;
+    String idLokacija;
 
     FloatingActionButton podnesi;
     String sendUrl = "https://beervana2020.000webhostapp.com/test/addBeers.php";
 
     int position;
-
+    SharedPreferences sp;
     AddBeersActivityBinding binding;
 
     @Override
@@ -78,7 +80,8 @@ public class AddBeers extends BaseActivity {
         View view = binding.getRoot();
         setContentView(view);
         viewModel = new ViewModelProvider(this).get(AddBeersViewModel.class);
-
+        sp = getSharedPreferences("login", MODE_PRIVATE);
+        idLokacija = sp.getString("id_lokacija", "Nema Lokacija").split(",")[0];
         naziv_proizvoda = binding.editTextTextPersonName;
         cijena_proizvoda = binding.editTextNumberDecimal;
         okus = binding.editTextTextPersonName3;
@@ -172,7 +175,7 @@ public class AddBeers extends BaseActivity {
                         if (viewModel.Promjena(pozicija_int)) {
                             slanje = true;
                             params.put("id_proizvoda", viewModel.getIdPivo());
-                            params.put("id_lokacija", "8");
+                            params.put("id_lokacija", idLokacija);
                             params.put("naziv_proizvoda", viewModel.getNazivPiva());
                             params.put("cijena_proizvoda", String.valueOf(viewModel.getCijenaPiva()));
                             params.put("vrsta_proizvoda", viewModel.getOkusPiva());
@@ -189,7 +192,7 @@ public class AddBeers extends BaseActivity {
                         }
                     } else {
                         slanje = true;
-                        params.put("id_lokacija", "8");
+                        params.put("id_lokacija", idLokacija);
                         params.put("naziv_proizvoda", viewModel.getNazivPiva());
                         params.put("cijena_proizvoda", String.valueOf(viewModel.getCijenaPiva()));
                         params.put("vrsta_proizvoda", viewModel.getOkusPiva());

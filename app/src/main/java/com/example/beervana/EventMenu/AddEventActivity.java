@@ -194,7 +194,6 @@ public class AddEventActivity extends BaseActivity {
             public void onClick(View v) {
                 viewModel.setUnosImedogadjaja(unosImedogadjaja.getText().toString());
                 viewModel.setUnosOpisaDogadaja(unosOpisaDogadaja.getText().toString());
-                //TODO promijenit statičke podatke s pravim
                 if (viewModel.ProvijeriSvePodatke()) {
                     boolean mozeSlanje = false;
                     Map<String, String> params = new HashMap<String, String>();

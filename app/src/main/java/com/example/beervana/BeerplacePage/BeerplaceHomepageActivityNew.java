@@ -38,7 +38,6 @@ public class BeerplaceHomepageActivityNew extends BaseActivity {
     private String CheckFavoriteLocation = "https://beervana2020.000webhostapp.com/test/DaliOmiljenaLokacija.php";
     private RequestQueue requestQueue;
     private RequestQueue requestQueueCheck;
-    private Button promocije;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

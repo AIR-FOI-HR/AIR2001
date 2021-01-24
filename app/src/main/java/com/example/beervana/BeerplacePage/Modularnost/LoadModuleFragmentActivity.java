@@ -21,8 +21,6 @@ public class LoadModuleFragmentActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load_module_fragment);
         initToolbar();
-        //TODO remove line under
-        Modules.getInstance();
         modulesList = Modules.getModulesList();
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();

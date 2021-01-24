@@ -159,8 +159,6 @@ public class AddUpdateTastingMenu extends BaseActivity implements AdapterView.On
         };
 
         binding.acceptTastingMenu.setOnClickListener(v -> {
-
-            //TODO promijenit statičke podatke s pravim
             if (model.ProvjeriSvePodatke()) {
                 if (getIntent().getExtras() == null) {
                     sendUrl = "https://beervana2020.000webhostapp.com/test/addMenu.php";

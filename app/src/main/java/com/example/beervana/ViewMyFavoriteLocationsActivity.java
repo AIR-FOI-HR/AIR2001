@@ -44,7 +44,7 @@ public class ViewMyFavoriteLocationsActivity extends BaseActivity implements Sea
         locationRecyclerView = findViewById(R.id.favoriteLocationsRecyclerView);
         locationRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         sp = getSharedPreferences("login", MODE_PRIVATE);
-        idKorisnika = sp.getInt("id_korisnik", 20);
+        idKorisnika = sp.getInt("id_korisnik", 0);
         RetriveData();
     }
 
