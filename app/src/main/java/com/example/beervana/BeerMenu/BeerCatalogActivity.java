@@ -113,7 +113,7 @@ public class BeerCatalogActivity extends BaseActivity implements BeerCatalogRecy
 
     @Override
     public void onBeerClick(int position) {
-        if (korisnik == 1) {
+        if (korisnik == 1 || !sp.getString("id_lokacija", "Nema Lokacija").split(",")[0].equals(idLokacija)) {
             startActivity(new Intent(getApplicationContext(), PrikazZaPodatkeOPivuActivity.class).putExtra("position", position));
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());

@@ -113,7 +113,7 @@ public class TastingMenuActivity extends BaseActivity implements RecyclerTasting
 
     @Override
     public void onTastingMenuClick(int position) {
-        if (korisnik == 1) {
+        if (korisnik == 1 || !sp.getString("id_lokacija", "Nema Lokacija").split(",")[0].equals(idLokacija)) {
             startActivity(
                     new Intent(getApplicationContext(),
                             TastingMenuDetailsActivity.class

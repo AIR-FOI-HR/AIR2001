@@ -115,7 +115,7 @@ public class PromotionCatalogActivity extends BaseActivity implements PromotionC
                 pozicija = String.valueOf(i);
             }
         }
-        if (korisnik == 1) {
+        if (korisnik == 1 || !sp.getString("id_lokacija", "Nema Lokacija").split(",")[0].equals(idLokacija)) {
             startActivity(new Intent(getApplicationContext(), LoadModuleFragmentActivity.class).putExtra("position", pozicija).putExtra("id_promocija",promotionDataList.get(position).getId_promocija())
                     .putExtra("id_korisnik",String.valueOf(korisnikId)));
         } else {

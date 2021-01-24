@@ -41,7 +41,7 @@ public class AddReviewsActivity extends BaseActivity {
     RequestQueue requestQueue;
 
     String sendUrl = "https://beervana2020.000webhostapp.com/test/addReviews.php";
-
+    View view;
     AddReviewsActivityBinding binding;
     SharedPreferences sp;
     String idKorisnik;
@@ -134,6 +134,7 @@ public class AddReviewsActivity extends BaseActivity {
                                 if (odgovor.equals("Succesfully added your review!")) {
                                     Toast toast = Toast.makeText(getApplicationContext(), "Succesfully added your review!", Toast.LENGTH_LONG);
                                     toast.show();
+                                    finish();
                                 }else if(odgovor.equals("Succesfully updated your review!")){
                                     Toast toast = Toast.makeText(getApplicationContext(), "Succesfully updated your review!", Toast.LENGTH_LONG);
                                     toast.show();
