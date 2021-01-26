@@ -93,9 +93,16 @@ public class SearchActivity extends BaseActivity implements SearchActivityRecycl
                             nemaPiva.setVisibility(View.VISIBLE);
                         } else if (odgovor.getString("message").equals("Successfully searched bearplaces")) {
                             pronadjeneLokacije.clear();
-                            pronadjeneLokacije.addAll(logikaLokacija.ParsiranjeLokacijeZaPretrazivanje(odgovor));
-                            adapterPivnica = new SearchActivityRecyclerAdapterPivnica(SearchActivity.this, pronadjeneLokacije, SearchActivity.this);
-                            locationRecyclerView.setAdapter(adapterPivnica);
+                            ArrayList<ModelPodatakaLokacijaSOcjenom> lokacije = new ArrayList<>();
+                            lokacije = logikaLokacija.ParsiranjeLokacijeZaPretrazivanje(odgovor);
+                            if (lokacije != null) {
+                                pronadjeneLokacije.addAll(lokacije);
+                                nemaLokacija.setVisibility(View.GONE);
+                            } else {
+                                nemaLokacija.setVisibility(View.VISIBLE);
+                            }
+                                adapterPivnica = new SearchActivityRecyclerAdapterPivnica(SearchActivity.this, pronadjeneLokacije, SearchActivity.this);
+                                locationRecyclerView.setAdapter(adapterPivnica);
                             adapterPivnica.notifyDataSetChanged();
                         } else if (odgovor.getString("message").equals("No beerplaces with this name")) {
                             nemaLokacija.setVisibility(View.VISIBLE);
