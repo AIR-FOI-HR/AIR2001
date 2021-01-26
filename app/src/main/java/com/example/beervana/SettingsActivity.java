@@ -29,12 +29,13 @@ public class SettingsActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(i);
+
 
                 SharedPreferences preferences = getSharedPreferences("login", MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.clear();
                 editor.apply();
+                startActivity(i);
                 finish();
             }
         });

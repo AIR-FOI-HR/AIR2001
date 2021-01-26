@@ -282,11 +282,11 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     }
 
     public void openLogin() {
+        finishAffinity();
         Toast toast = Toast.makeText(getApplicationContext(), "Successfully registered", Toast.LENGTH_LONG);
         toast.show();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        finishAffinity();
     }
 
     @Override

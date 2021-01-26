@@ -103,6 +103,7 @@
             app:srcCompat="@drawable/group_188" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/textView8"
             android:layout_width="146dp"
             android:layout_height="91dp"
@@ -113,6 +114,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView15" />
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/imageView17"
             android:layout_width="106dp"
             android:layout_height="90dp"
@@ -150,6 +152,7 @@
             app:layout_constraintVertical_bias="0.481" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -161,6 +164,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/textView15"
             android:layout_width="62dp"
             android:layout_height="18dp"

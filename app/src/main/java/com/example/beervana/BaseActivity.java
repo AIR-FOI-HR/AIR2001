@@ -52,15 +52,20 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     private void openNaslovnaClient() {
-        Intent intent = new Intent(this, GlavniIzbornikClient.class);
-        startActivity(intent);
-        finishAffinity();
+        if(this.getClass()!=GlavniIzbornikClient.class) {
+            finishAffinity();
+            Intent intent = new Intent(this, GlavniIzbornikClient.class);
+            startActivity(intent);
+        }
     }
 
     public void openNaslovnaKorisnik() {
-        Intent intent = new Intent(this,GlavniIzbornikUser.class);
-        startActivity(intent);
-        finishAffinity();
+        if(this.getClass()!=GlavniIzbornikUser.class) {
+            finishAffinity();
+            Intent intent = new Intent(this, GlavniIzbornikUser.class);
+            startActivity(intent);
+
+        }
     }
 
 
@@ -71,7 +76,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    //OVAJ DIO OTKOMENTIRATI KAD SE KREIRAJU AKTIVNOSTI
 
     public void openActivity4() {
         Intent intent = new Intent(this, UserDataActivity.class);

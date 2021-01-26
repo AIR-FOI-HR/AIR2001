@@ -46,6 +46,7 @@ public class GlavniIzbornikUser extends BaseActivity {
     private float KorisnikLongituda;
     private float KorisnikLatituda;
     private int idKorisnika;
+    String odg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +146,7 @@ public class GlavniIzbornikUser extends BaseActivity {
                 startActivity(new Intent(getApplicationContext(), ReviewsActivity.class).putExtra("id_korisnika", String.valueOf(idKorisnika)));
             }
         });
+        PostaviSve();
 
     }
 
@@ -152,6 +154,10 @@ public class GlavniIzbornikUser extends BaseActivity {
     protected void onResume() {
         super.onResume();
         retrieveData();
+        PostaviSve();
+    }
+
+    private void PostaviSve() {
     }
 
     private void retrieveData() {
@@ -159,11 +165,10 @@ public class GlavniIzbornikUser extends BaseActivity {
         DohvatPodataka dohvatPodataka = new DohvatPodataka();
         dohvatPodataka.setSendUrl(urlNajnovijaPivovara);
         dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
-
-
         requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
             @Override
             public void onRequestFinished(Request<Object> request) {
+                Map<String, String> params;
                 JSONObject odgovor = dohvatPodataka.getOdgovor();
                 try {
                     if (odgovor.getString("message").equals("Successfully retrieved location")) {
@@ -173,22 +178,15 @@ public class GlavniIzbornikUser extends BaseActivity {
                         }
                         dohvatPodataka.setSendUrl(urlNajboljaPivoavara);
                         dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
-
                     } else if (odgovor.getString("message").equals("Successfully retrieved best location")) {
                         viewModel.ParsiranjeLokacijeZaGlavniIzbornikUser(odgovor, 2);
                         if (viewModel.getLokacijaMjeseca() != null) {
                             PostaviPodatkePivovaraMjeseca();
                         }
-                        Map<String, String> params = new HashMap<String, String>();
-                        params.put("Latituda", Float.toString(KorisnikLatituda));
-                        params.put("Longituda", Float.toString(KorisnikLongituda));
-                        dohvatPodataka.setParametri(params);
-                        dohvatPodataka.setSendUrl(urlNajblizeLokacije);
-                        dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
                     } else if (odgovor.getString("message").equals("Locations successfully loaded")) {
                         viewModel.ParsiranjeLokacijeZaGlavniIzbornikUserZaLokacijeUBlizini(odgovor);
                         PostaviPodatkeNajblizihPivovara();
-                        Map<String, String> params = new HashMap<String, String>();
+                        params = new HashMap<String, String>();
                         params.put("id_korisnik", Integer.toString(idKorisnika));
                         dohvatPodataka.setParametri(params);
                         dohvatPodataka.setSendUrl(urlRecenzije);
@@ -196,24 +194,29 @@ public class GlavniIzbornikUser extends BaseActivity {
                     } else if (odgovor.getString("message").equals("Succesfully retrived reviews")) {
                         viewModel.ParsiranjeRecenzijeZaGlavniIzbornikUser(odgovor);
                         PostaviPodatkeRecenzija();
-                        Map<String, String> params = new HashMap<String, String>();
+                        params = new HashMap<String, String>();
                         params.put("id_korisnik", Integer.toString(idKorisnika));
                         dohvatPodataka.setParametri(params);
                         dohvatPodataka.setSendUrl(urlNajdrazeLokacije);
                         dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
-
                     } else if (odgovor.getString("message").equals("Successfully retrieved my locations")) {
                         viewModel.ParsiranjeNajdrazihLokacija(odgovor);
                         postaviPodatkeNajdrazihLokacija();
-                        Map<String, String> params = new HashMap<>();
+                        params = new HashMap<>();
                         params.put("id_korisnik", Integer.toString(idKorisnika));
                         dohvatPodataka.setParametri(params);
                         dohvatPodataka.setSendUrl(urlNajdrazaPiva);
                         dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
-
                     } else if (odgovor.getString("message").equals("Successfully retrieved my beers")) {
                         viewModel.ParsiranjeNajdrazihPiva(odgovor);
                         PostaviPodatkeNajdrazihPiva();
+                    }else if (odgovor.getString("message").equals("Couldn't retrieve location")){
+                        params = new HashMap<String, String>();
+                        params.put("Latituda", Float.toString(KorisnikLatituda));
+                        params.put("Longituda", Float.toString(KorisnikLongituda));
+                        dohvatPodataka.setParametri(params);
+                        dohvatPodataka.setSendUrl(urlNajblizeLokacije);
+                        dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
                     }
 
                 } catch (JSONException e) {
@@ -288,6 +291,11 @@ public class GlavniIzbornikUser extends BaseActivity {
         ModelPodatakaLokacijaSOcjenom lokacijaNajbolja = new ModelPodatakaLokacijaSOcjenom(viewModel.getLokacijaMjeseca().getLokacija(), viewModel.getLokacijaMjeseca().getOcjena());
         prikazNazivaNajboljeLokacije.setText(lokacijaNajbolja.getLokacija().getNazivLokacija());
         prikazOcjeneNajboljeLokacije.setText(lokacijaNajbolja.getOcjena());
+        prikazNazivaNajboljeLokacije.setVisibility(View.VISIBLE);
+        prikazOcjeneNajboljeLokacije.setVisibility(View.VISIBLE);
+        findViewById(R.id.imageView17).setVisibility(View.VISIBLE);
+        findViewById(R.id.textView14).setVisibility(View.VISIBLE);
+        findViewById(R.id.textView14).setVisibility(View.VISIBLE);
     }
 
     private void PostaviPodatkeNajnovijaPivovara() {
@@ -298,11 +306,10 @@ public class GlavniIzbornikUser extends BaseActivity {
     private void PostaviPodatkeNajdrazihPiva() {
         if (viewModel.getNajdrazaPiva() != null && viewModel.getNajdrazaPiva().size() != 0) {
             ModelPodatakaPivoSOcjenom najdrazaPiva = viewModel.getNajdrazaPiva().get(0);
-            double ocjena = Double.parseDouble(najdrazaPiva.getOcjena());
             omiljenoPivoPrvo.setText("Ime piva: ".concat(najdrazaPiva.getBeer().getNaziv_proizvoda()).concat("\n Okus piva: ")
                     .concat(najdrazaPiva.getBeer().getOkus()).concat("\n Količina: ").concat(najdrazaPiva.getBeer().getLitara() + " l")
                     .concat("\n Cijena: ").concat(najdrazaPiva.getBeer().getCijena_proizvoda())
-                    .concat("\n Ocjena: ").concat(String.format("%.2f", ocjena))
+                    .concat("\n Ocjena: ").concat(najdrazaPiva.getOcjena().substring(0,4))
                     .concat("\n Lokacija: ").concat(najdrazaPiva.getNaziv_lokacije()));
 
             String imageUri = najdrazaPiva.getBeer().getSlika();
