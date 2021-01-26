@@ -1,5 +1,7 @@
 package com.example.modulzamodule;
 
+import com.example.modulzamodule.Event.Event;
+
 public class ModelPodatakEventCatalog {
     public Event dogadaj;
     private String nazivLokacije;

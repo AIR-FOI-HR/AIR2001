@@ -1,5 +1,7 @@
 package com.example.modulzamodule;
 
+import com.example.modulzamodule.Beer.Beer;
+
 public class ModelPodatakaPivoSOcjenom {
     private Beer beer;
     private String ocjena;

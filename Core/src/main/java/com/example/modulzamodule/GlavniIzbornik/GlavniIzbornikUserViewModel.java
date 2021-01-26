@@ -2,6 +2,11 @@ package com.example.modulzamodule;
 
 import androidx.lifecycle.ViewModel;
 
+import com.example.modulzamodule.Beer.Beer;
+import com.example.modulzamodule.Beer.BeerLogic;
+import com.example.modulzamodule.Reviews.Review;
+import com.example.modulzamodule.Reviews.ReviewsLogic;
+
 import org.json.JSONObject;
 
 import java.util.ArrayList;
