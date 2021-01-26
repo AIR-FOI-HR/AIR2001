@@ -127,9 +127,11 @@ public class GlavniIzbornikUser extends BaseActivity {
         idiNaNajboljuPivovaru.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), BeerplaceHomepageActivityNew.class).putExtra("id_lokacija", viewModel.getLokacijaMjeseca().getLokacija().getId_lokacija())
-                        .putExtra("naziv_lokacije", viewModel.getLokacijaMjeseca().getLokacija().getNazivLokacija())
-                        .putExtra("ocjena_lokacije", viewModel.getLokacijaMjeseca().getOcjena()));
+                if(viewModel.getLokacijaMjeseca() !=null) {
+                    startActivity(new Intent(getApplicationContext(), BeerplaceHomepageActivityNew.class).putExtra("id_lokacija", viewModel.getLokacijaMjeseca().getLokacija().getId_lokacija())
+                            .putExtra("naziv_lokacije", viewModel.getLokacijaMjeseca().getLokacija().getNazivLokacija())
+                            .putExtra("ocjena_lokacije", viewModel.getLokacijaMjeseca().getOcjena()));
+                }
             }
         });
 
@@ -170,20 +172,20 @@ public class GlavniIzbornikUser extends BaseActivity {
             public void onRequestFinished(Request<Object> request) {
                 Map<String, String> params;
                 JSONObject odgovor = dohvatPodataka.getOdgovor();
-                try {
-                    if (odgovor.getString("message").equals("Successfully retrieved location")) {
+                if(odgovor != null) {
+                    if (odgovor.optString("message").equals("Successfully retrieved location")) {
                         viewModel.ParsiranjeLokacijeZaGlavniIzbornikUser(odgovor, 1);
                         if (viewModel.getLokacijaNajnovija() != null) {
                             PostaviPodatkeNajnovijaPivovara();
                         }
                         dohvatPodataka.setSendUrl(urlNajboljaPivoavara);
                         dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
-                    } else if (odgovor.getString("message").equals("Successfully retrieved best location")) {
+                    } else if (odgovor.optString("message").equals("Successfully retrieved best location")) {
                         viewModel.ParsiranjeLokacijeZaGlavniIzbornikUser(odgovor, 2);
                         if (viewModel.getLokacijaMjeseca() != null) {
                             PostaviPodatkePivovaraMjeseca();
                         }
-                    } else if (odgovor.getString("message").equals("Locations successfully loaded")) {
+                    } else if (odgovor.optString("message").equals("Locations successfully loaded")) {
                         viewModel.ParsiranjeLokacijeZaGlavniIzbornikUserZaLokacijeUBlizini(odgovor);
                         PostaviPodatkeNajblizihPivovara();
                         params = new HashMap<String, String>();
@@ -191,7 +193,7 @@ public class GlavniIzbornikUser extends BaseActivity {
                         dohvatPodataka.setParametri(params);
                         dohvatPodataka.setSendUrl(urlRecenzije);
                         dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
-                    } else if (odgovor.getString("message").equals("Succesfully retrived reviews")) {
+                    } else if (odgovor.optString("message").equals("Succesfully retrived reviews")) {
                         viewModel.ParsiranjeRecenzijeZaGlavniIzbornikUser(odgovor);
                         PostaviPodatkeRecenzija();
                         params = new HashMap<String, String>();
@@ -199,7 +201,7 @@ public class GlavniIzbornikUser extends BaseActivity {
                         dohvatPodataka.setParametri(params);
                         dohvatPodataka.setSendUrl(urlNajdrazeLokacije);
                         dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
-                    } else if (odgovor.getString("message").equals("Successfully retrieved my locations")) {
+                    } else if (odgovor.optString("message").equals("Successfully retrieved my locations")) {
                         viewModel.ParsiranjeNajdrazihLokacija(odgovor);
                         postaviPodatkeNajdrazihLokacija();
                         params = new HashMap<>();
@@ -207,10 +209,10 @@ public class GlavniIzbornikUser extends BaseActivity {
                         dohvatPodataka.setParametri(params);
                         dohvatPodataka.setSendUrl(urlNajdrazaPiva);
                         dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
-                    } else if (odgovor.getString("message").equals("Successfully retrieved my beers")) {
+                    } else if (odgovor.optString("message").equals("Successfully retrieved my beers")) {
                         viewModel.ParsiranjeNajdrazihPiva(odgovor);
                         PostaviPodatkeNajdrazihPiva();
-                    }else if (odgovor.getString("message").equals("Couldn't retrieve location")){
+                    } else if (odgovor.optString("message").equals("Couldn't retrieve location")) {
                         params = new HashMap<String, String>();
                         params.put("Latituda", Float.toString(KorisnikLatituda));
                         params.put("Longituda", Float.toString(KorisnikLongituda));
@@ -218,9 +220,6 @@ public class GlavniIzbornikUser extends BaseActivity {
                         dohvatPodataka.setSendUrl(urlNajblizeLokacije);
                         dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
                     }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
             }
         });
