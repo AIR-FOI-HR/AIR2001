@@ -1,7 +1,7 @@
 package com.example.beervana.TastingMenu;
 
 
-import com.example.modulzamodule.TastingMenu;
+import com.example.modulzamodule.TastingMenu.TastingMenu;
 
 import org.json.JSONArray;
 import org.json.JSONException;

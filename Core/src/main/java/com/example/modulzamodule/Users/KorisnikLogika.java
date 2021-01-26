@@ -1,11 +1,9 @@
-package com.example.modulzamodule;
+package com.example.modulzamodule.Users;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Pattern;
 
 public class KorisnikLogika {

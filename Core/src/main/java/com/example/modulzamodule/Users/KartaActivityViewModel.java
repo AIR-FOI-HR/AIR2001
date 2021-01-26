@@ -1,6 +1,9 @@
-package com.example.modulzamodule;
+package com.example.modulzamodule.Users;
 
 import androidx.lifecycle.ViewModel;
+
+import com.example.modulzamodule.Karta.KartaLogika;
+import com.example.modulzamodule.Karta.KartaModelPodataka;
 
 import org.json.JSONObject;
 

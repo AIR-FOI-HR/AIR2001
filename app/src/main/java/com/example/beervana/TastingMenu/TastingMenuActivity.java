@@ -18,7 +18,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
 import com.example.beervana.R;
-import com.example.modulzamodule.TastingMenu;
+import com.example.modulzamodule.TastingMenu.TastingMenu;
 import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;
 

@@ -1,4 +1,6 @@
-package com.example.modulzamodule;
+package com.example.modulzamodule.Karta;
+
+import com.example.modulzamodule.Lokacija.Lokacija;
 
 public class KartaModelPodataka {
     public Lokacija lokacija;

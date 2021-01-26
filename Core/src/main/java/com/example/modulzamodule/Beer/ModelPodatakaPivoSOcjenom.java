@@ -1,4 +1,4 @@
-package com.example.modulzamodule;
+package com.example.modulzamodule.Beer;
 
 import com.example.modulzamodule.Beer.Beer;
 

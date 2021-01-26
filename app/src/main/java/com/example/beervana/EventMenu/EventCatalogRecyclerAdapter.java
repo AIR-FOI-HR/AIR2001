@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.beervana.R;
-import com.example.modulzamodule.ModelPodatakEventCatalog;
+import com.example.modulzamodule.Event.ModelPodatakEventCatalog;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

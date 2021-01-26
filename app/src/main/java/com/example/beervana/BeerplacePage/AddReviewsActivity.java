@@ -18,7 +18,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
 import com.example.beervana.R;
 import com.example.beervana.databinding.AddReviewsActivityBinding;
-import com.example.modulzamodule.AddReviewsViewModel;
+import com.example.modulzamodule.Reviews.AddReviewsViewModel;
 import com.example.webservice.SlanjePodataka;
 
 import java.util.ArrayList;

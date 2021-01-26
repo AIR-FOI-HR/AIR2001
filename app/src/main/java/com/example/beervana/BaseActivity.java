@@ -10,6 +10,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.beervana.GlavniIzbornik.GlavniIzbornikClient;
+import com.example.beervana.GlavniIzbornik.GlavniIzbornikUser;
+import com.example.beervana.Toolbar.SearchActivity;
+import com.example.beervana.Toolbar.SettingsActivity;
 import com.example.beervana.UserData.UserDataActivity;
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -52,7 +56,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     private void openNaslovnaClient() {
-        if(this.getClass()!=GlavniIzbornikClient.class) {
+        if(this.getClass()!= GlavniIzbornikClient.class) {
             finishAffinity();
             Intent intent = new Intent(this, GlavniIzbornikClient.class);
             startActivity(intent);
@@ -60,7 +64,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void openNaslovnaKorisnik() {
-        if(this.getClass()!=GlavniIzbornikUser.class) {
+        if(this.getClass()!= GlavniIzbornikUser.class) {
             finishAffinity();
             Intent intent = new Intent(this, GlavniIzbornikUser.class);
             startActivity(intent);
@@ -70,7 +74,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
     public void openActivity3() {
-        if(this.getClass()!=SettingsActivity.class) {
+        if(this.getClass()!= SettingsActivity.class) {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
         }

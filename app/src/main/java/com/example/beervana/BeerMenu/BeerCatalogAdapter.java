@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.beervana.R;
-import com.example.modulzamodule.Beer;
+import com.example.modulzamodule.Beer.Beer;
 
 import java.util.List;
 

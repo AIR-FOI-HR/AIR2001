@@ -24,7 +24,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
 import com.example.beervana.R;
 import com.example.beervana.databinding.AddBeersActivityBinding;
-import com.example.modulzamodule.AddBeersViewModel;
+import com.example.modulzamodule.Beer.AddBeersViewModel;
 import com.example.webservice.SlanjePodataka;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.MemoryPolicy;

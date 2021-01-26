@@ -1,4 +1,4 @@
-package com.example.beervana;
+package com.example.beervana.Toolbar;
 
 import android.Manifest;
 import android.content.Intent;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.core.app.ActivityCompat;
+
+import com.example.beervana.BaseActivity;
+import com.example.beervana.R;
 
 public class AboutUsActivity extends BaseActivity {
 

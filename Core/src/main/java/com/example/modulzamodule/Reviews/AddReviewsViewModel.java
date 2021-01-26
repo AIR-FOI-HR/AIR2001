@@ -1,4 +1,4 @@
-package com.example.modulzamodule;
+package com.example.modulzamodule.Reviews;
 
 import android.view.View;
 

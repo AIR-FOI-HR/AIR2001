@@ -40,15 +40,15 @@
             android:theme="@style/Theme.Beervana.NoActionBar" />
         <activity android:name=".UserData.UserDataActivity" />
         <activity android:name=".BeerplacePage.AddReviewsActivity" />
-        <activity android:name=".GlavniIzbornikUser">
+        <activity android:name=".GlavniIzbornik.GlavniIzbornikUser">
         </activity>
         <activity
             android:name=".TastingMenu.AddUpdateTastingMenu"
             android:label="@string/app_name" />
-        <activity android:name=".IzbornikZaDodavanjeActivity" />
-        <activity android:name=".ViewMyFavoriteLocationsActivity" />
-        <activity android:name=".GlavniIzbornikClient" />
-        <activity android:name=".SearchActivity" />
+        <activity android:name=".GlavniIzbornik.IzbornikZaDodavanjeActivity" />
+        <activity android:name=".GlavniIzbornik.ViewMyFavoriteLocationsActivity" />
+        <activity android:name=".GlavniIzbornik.GlavniIzbornikClient" />
+        <activity android:name=".Toolbar.SearchActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -73,19 +73,18 @@
         </activity>
         <activity android:name=".TastingMenu.TastingMenuActivity" />
         <activity android:name=".TastingMenu.TastingMenuDetailsActivity" />
-        <activity android:name=".AboutUsActivity">
+        <activity android:name=".Toolbar.AboutUsActivity">
         </activity>
-        <activity android:name=".BeerplaceHomepageActivity" />
         <activity android:name=".BeerplacePage.BeerplaceHomepageActivityNew">
         </activity>
         <activity android:name=".BeerplacePage.MapsActivity" />
         <activity android:name=".BeerplacePage.ReviewsActivity" />
-        <activity android:name=".SettingsActivity">
+        <activity android:name=".Toolbar.SettingsActivity">
         </activity>
         <activity android:name=".BeerplacePage.Modularnost.AddPromotionsActivity" />
         <activity android:name=".BeerplacePage.Modularnost.PromotionCatalogActivity" />
         <activity android:name=".BeerplacePage.Modularnost.LoadModuleFragmentActivity" />
-        <activity android:name=".ViewMyFavouriteBeersActivity" />
+        <activity android:name=".GlavniIzbornik.ViewMyFavouriteBeersActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

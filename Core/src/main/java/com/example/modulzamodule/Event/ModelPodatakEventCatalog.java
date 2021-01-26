@@ -1,6 +1,4 @@
-package com.example.modulzamodule;
-
-import com.example.modulzamodule.Event.Event;
+package com.example.modulzamodule.Event;
 
 public class ModelPodatakEventCatalog {
     public Event dogadaj;

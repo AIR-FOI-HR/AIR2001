@@ -1,4 +1,4 @@
-package com.example.modulzamodule;
+package com.example.modulzamodule.Lokacija;
 
 public class ModelPodatakaLokacijaSOcjenom {
     private Lokacija lokacija;

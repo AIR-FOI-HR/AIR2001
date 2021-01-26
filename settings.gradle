@@ -1,7 +1,7 @@
-include ':ModulZaModule'
-include ':Modul1'
+include ':Core'
+include ':PromocijaPopust'
 include ':BaseModule'
-include ':Modul2'
+include ':PromocijaGratis'
 include ':webservice'
 include ':app'
 rootProject.name = "Beervana"

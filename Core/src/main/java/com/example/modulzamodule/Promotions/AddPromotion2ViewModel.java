@@ -1,4 +1,4 @@
-package com.example.modulzamodule;
+package com.example.modulzamodule.Promotions;
 
 import android.view.View;
 
@@ -7,8 +7,6 @@ import androidx.lifecycle.ViewModel;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.List;
 
 public class AddPromotion2ViewModel extends ViewModel {
 

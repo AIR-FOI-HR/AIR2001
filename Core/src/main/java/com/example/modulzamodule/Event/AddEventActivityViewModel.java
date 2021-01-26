@@ -1,4 +1,4 @@
-package com.example.modulzamodule;
+package com.example.modulzamodule.Event;
 
 import android.net.Uri;
 import android.view.View;

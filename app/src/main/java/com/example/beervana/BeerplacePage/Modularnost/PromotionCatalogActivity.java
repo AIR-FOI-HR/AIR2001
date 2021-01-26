@@ -16,14 +16,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.basemodule.BaseClassForModules;
 import com.example.beervana.BaseActivity;
-import com.example.beervana.EventMenu.AddEventActivity;
-import com.example.beervana.EventMenu.EventCatalogActivity;
-import com.example.beervana.EventMenu.EventCatalogRecyclerAdapter;
-import com.example.beervana.EventMenu.PrikazZaEventPodatkeActivity;
 import com.example.beervana.R;
-import com.example.modulzamodule.EventCatalogLogika;
-import com.example.modulzamodule.Promotion;
-import com.example.modulzamodule.Promotion1Logic;
+import com.example.modulzamodule.Promotions.Promotion;
+import com.example.modulzamodule.Promotions.Promotion1Logic;
 import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;
 

@@ -1,4 +1,4 @@
-package com.example.modulzamodule;
+package com.example.modulzamodule.Lokacija;
 
 public class Lokacija {
     private String id_lokacija, nazivLokacija,oibLokacija,adresaLokacija,latitudaLokacija, longitudaLokacija;

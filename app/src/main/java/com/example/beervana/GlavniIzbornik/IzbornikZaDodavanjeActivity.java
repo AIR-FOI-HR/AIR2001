@@ -1,12 +1,14 @@
-package com.example.beervana;
+package com.example.beervana.GlavniIzbornik;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.example.beervana.BaseActivity;
 import com.example.beervana.BeerMenu.AddBeers;
 import com.example.beervana.BeerplacePage.Modularnost.AddPromotionsActivity;
 import com.example.beervana.EventMenu.AddEventActivity;
+import com.example.beervana.R;
 import com.example.beervana.TastingMenu.AddUpdateTastingMenu;
 
 public class IzbornikZaDodavanjeActivity extends BaseActivity {

@@ -5,6 +5,9 @@ import android.view.View;
 
 import androidx.lifecycle.ViewModel;
 
+import com.example.modulzamodule.Lokacija.LokacijaLogika;
+import com.example.modulzamodule.Users.KorisnikLogika;
+
 public class RegisterActivityViewModel extends ViewModel {
     private String  ime;
     private String  prezime;

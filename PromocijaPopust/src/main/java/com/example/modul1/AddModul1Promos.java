@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,8 +29,7 @@ import com.androidbuts.multispinnerfilter.KeyPairBoolData;
 import com.androidbuts.multispinnerfilter.SingleSpinnerListener;
 import com.androidbuts.multispinnerfilter.SingleSpinnerSearch;
 import com.example.modul1.databinding.Modul1AddPromoFragmentBinding;
-import com.example.modulzamodule.AddPromotion1ViewModel;
-import com.example.modulzamodule.TastingMenuViewModel;
+import com.example.modulzamodule.Promotions.AddPromotion1ViewModel;
 import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;
 
@@ -42,7 +40,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 

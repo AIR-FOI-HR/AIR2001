@@ -2,7 +2,6 @@ package com.example.modul1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.modul1.databinding.Modul1AddPromoFragmentBinding;
 import com.example.modul1.databinding.Modul1ViewPromosFragmentBinding;
-import com.example.modulzamodule.Model1ViewViewModel;
+import com.example.modulzamodule.Promotions.Model1ViewViewModel;
 import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;
 

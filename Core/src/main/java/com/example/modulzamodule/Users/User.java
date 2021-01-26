@@ -1,4 +1,4 @@
-package com.example.modulzamodule;
+package com.example.modulzamodule.Users;
 
 public class User {
     private int id_korisnik, id_uloga, id_clanstvo ;

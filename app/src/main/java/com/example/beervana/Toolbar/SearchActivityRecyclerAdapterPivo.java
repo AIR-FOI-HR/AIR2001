@@ -1,4 +1,4 @@
-package com.example.beervana;
+package com.example.beervana.Toolbar;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.modulzamodule.Beer;
+import com.example.beervana.R;
+import com.example.modulzamodule.Beer.Beer;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

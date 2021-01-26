@@ -22,7 +22,7 @@ import com.braintreepayments.api.interfaces.HttpResponseCallback;
 import com.braintreepayments.api.internal.HttpClient;
 import com.braintreepayments.api.models.PaymentMethodNonce;
 import com.example.beervana.BaseActivity;
-import com.example.beervana.GlavniIzbornikClient;
+import com.example.beervana.GlavniIzbornik.GlavniIzbornikClient;
 import com.example.beervana.R;
 import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;

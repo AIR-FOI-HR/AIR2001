@@ -2,7 +2,7 @@ package com.example.beervana.Statistika;
 
 import androidx.lifecycle.ViewModel;
 
-import com.example.modulzamodule.Review;
+import com.example.modulzamodule.Reviews.Review;
 import com.jjoe64.graphview.series.DataPoint;
 
 import org.json.JSONObject;

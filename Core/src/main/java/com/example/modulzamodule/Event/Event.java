@@ -1,4 +1,4 @@
-package com.example.modulzamodule;
+package com.example.modulzamodule.Event;
 
 public class Event {
     private String idDogadaj,nazivDogadaj, slikaDogadaja, idKorisnika, opisDogadaja, datumOd,datumDo;

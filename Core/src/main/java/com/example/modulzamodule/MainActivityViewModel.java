@@ -4,6 +4,9 @@ import android.view.View;
 
 import androidx.lifecycle.ViewModel;
 
+import com.example.modulzamodule.Lokacija.LokacijaLogika;
+import com.example.modulzamodule.Users.KorisnikLogika;
+
 public class MainActivityViewModel extends ViewModel {
     private String korisnickoIme;
     private String lozinka;

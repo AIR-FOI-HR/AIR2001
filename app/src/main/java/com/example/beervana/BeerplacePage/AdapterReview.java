@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.beervana.R;
-import com.example.modulzamodule.Review;
+import com.example.modulzamodule.Reviews.Review;
 
 import java.util.ArrayList;
 

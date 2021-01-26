@@ -1,4 +1,4 @@
-package com.example.modulzamodule;
+package com.example.modulzamodule.Reviews;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Theme.Beervana.NoActionBar"
-    tools:context=".IzbornikZaDodavanjeActivity">
+    tools:context=".GlavniIzbornik.IzbornikZaDodavanjeActivity">
 
     <include
         android:id="@+id/my_toolbar"

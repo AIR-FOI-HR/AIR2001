@@ -1,6 +1,5 @@
-package com.example.beervana;
+package com.example.beervana.GlavniIzbornik;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -14,19 +13,18 @@ import android.widget.TextView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.BaseActivity;
 import com.example.beervana.BeerMenu.BeerCatalogActivity;
 import com.example.beervana.BeerplacePage.Modularnost.PromotionCatalogActivity;
 import com.example.beervana.BeerplacePage.ReviewsActivity;
 import com.example.beervana.EventMenu.EventCatalogActivity;
-import com.example.beervana.EventMenu.EventCatalogRecyclerAdapter;
+import com.example.beervana.R;
 import com.example.beervana.Statistika.StatistikaViewModel;
 import com.example.beervana.TastingMenu.TastingMenuActivity;
-import com.example.modulzamodule.ModelPodatakaLokacijaSOcjenom;
-import com.example.modulzamodule.Review;
-import com.example.modulzamodule.ReviewsLogic;
+import com.example.modulzamodule.Reviews.Review;
+import com.example.modulzamodule.Reviews.ReviewsLogic;
 import com.example.webservice.DohvatPodataka;
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 

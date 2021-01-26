@@ -1,4 +1,4 @@
-package com.example.beervana;
+package com.example.beervana.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.BaseActivity;
 import com.example.beervana.BeerMenu.PrikazZaPodatkeOPivuActivity;
 import com.example.beervana.BeerplacePage.BeerplaceHomepageActivityNew;
-import com.example.modulzamodule.Beer;
-import com.example.modulzamodule.BeerLogic;
-import com.example.modulzamodule.LokacijaLogika;
-import com.example.modulzamodule.ModelPodatakaLokacijaSOcjenom;
+import com.example.beervana.R;
+import com.example.modulzamodule.Beer.Beer;
+import com.example.modulzamodule.Beer.BeerLogic;
+import com.example.modulzamodule.Lokacija.LokacijaLogika;
+import com.example.modulzamodule.Lokacija.ModelPodatakaLokacijaSOcjenom;
 import com.example.webservice.DohvatPodataka;
 
 import org.json.JSONException;

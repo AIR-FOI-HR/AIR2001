@@ -1,4 +1,4 @@
-package com.example.modulzamodule;
+package com.example.modulzamodule.Promotions;
 
 public class Promotion {
     private String id_promocija, id_lokacija, naziv_promocije,opis_promocije, tip_promocije, opis_o_promociji, datum_od, datum_do;

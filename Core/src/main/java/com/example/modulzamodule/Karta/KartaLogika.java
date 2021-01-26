@@ -1,4 +1,6 @@
-package com.example.modulzamodule;
+package com.example.modulzamodule.Karta;
+
+import com.example.modulzamodule.Lokacija.Lokacija;
 
 import org.json.JSONArray;
 import org.json.JSONException;

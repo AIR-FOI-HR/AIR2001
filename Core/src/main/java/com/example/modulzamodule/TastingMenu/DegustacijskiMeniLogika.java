@@ -1,4 +1,4 @@
-package com.example.modulzamodule;
+package com.example.modulzamodule.TastingMenu;
 
 import java.text.SimpleDateFormat;
 import java.util.List;

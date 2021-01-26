@@ -1,4 +1,4 @@
-package com.example.beervana;
+package com.example.beervana.GlavniIzbornik;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.BaseActivity;
 import com.example.beervana.BeerMenu.PrikazZaPodatkeOPivuActivity;
-import com.example.modulzamodule.BeerLogic;
-import com.example.modulzamodule.ModelPodatakaPivoSOcjenom;
+import com.example.beervana.R;
+import com.example.modulzamodule.Beer.BeerLogic;
+import com.example.modulzamodule.Beer.ModelPodatakaPivoSOcjenom;
 import com.example.webservice.DohvatPodataka;
 
 import org.json.JSONException;

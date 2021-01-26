@@ -35,7 +35,7 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
-    implementation project(path: ':ModulZaModule')
+    implementation project(path: ':Core')
     implementation project(path: ':BaseModule')
     implementation project (':webservice')
     implementation 'com.github.pratikbutani:MultiSelectSpinner:-SNAPSHOT'

@@ -1,4 +1,4 @@
-package com.example.modulzamodule;
+package com.example.modulzamodule.Promotions;
 
 import org.json.JSONArray;
 import org.json.JSONException;

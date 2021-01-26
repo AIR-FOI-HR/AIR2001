@@ -16,8 +16,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
 import com.example.beervana.R;
-import com.example.modulzamodule.EventCatalogLogika;
-import com.example.modulzamodule.ModelPodatakEventCatalog;
+import com.example.modulzamodule.Event.EventCatalogLogika;
+import com.example.modulzamodule.Event.ModelPodatakEventCatalog;
 import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;
 

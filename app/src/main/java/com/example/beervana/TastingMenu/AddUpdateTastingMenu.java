@@ -26,8 +26,8 @@ import com.androidbuts.multispinnerfilter.MultiSpinnerSearch;
 import com.example.beervana.BaseActivity;
 import com.example.beervana.R;
 import com.example.beervana.databinding.ActivityDodavanjeDegustacijskihMeniaBinding;
-import com.example.modulzamodule.DegustacijskiMeniLogika;
-import com.example.modulzamodule.TastingMenuViewModel;
+import com.example.modulzamodule.TastingMenu.DegustacijskiMeniLogika;
+import com.example.modulzamodule.TastingMenu.TastingMenuViewModel;
 import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;
 

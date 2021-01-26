@@ -2,18 +2,14 @@ package com.example.beervana.BeerplacePage;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.fragment.app.FragmentActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
 import com.example.beervana.R;
-import com.example.beervana.SettingsActivity;
-import com.example.modulzamodule.KartaParser;
+import com.example.modulzamodule.Karta.KartaParser;
 import com.example.webservice.DohvatPodataka;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;

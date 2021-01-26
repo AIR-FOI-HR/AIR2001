@@ -1,4 +1,4 @@
-package com.example.beervana;
+package com.example.beervana.GlavniIzbornik;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,12 +13,14 @@ import androidx.lifecycle.ViewModelProvider;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.beervana.BaseActivity;
 import com.example.beervana.BeerplacePage.BeerplaceHomepageActivityNew;
 import com.example.beervana.BeerplacePage.ReviewsActivity;
 import com.example.beervana.Karta.KartaActivity;
-import com.example.modulzamodule.GlavniIzbornikUserViewModel;
-import com.example.modulzamodule.ModelPodatakaLokacijaSOcjenom;
-import com.example.modulzamodule.ModelPodatakaPivoSOcjenom;
+import com.example.beervana.R;
+import com.example.modulzamodule.GlavniIzbornik.GlavniIzbornikUserViewModel;
+import com.example.modulzamodule.Lokacija.ModelPodatakaLokacijaSOcjenom;
+import com.example.modulzamodule.Beer.ModelPodatakaPivoSOcjenom;
 import com.example.webservice.DohvatPodataka;
 import com.squareup.picasso.Picasso;
 
@@ -171,52 +173,54 @@ public class GlavniIzbornikUser extends BaseActivity {
                 Map<String, String> params;
                 JSONObject odgovor = dohvatPodataka.getOdgovor();
                 try {
-                    if (odgovor.getString("message").equals("Successfully retrieved location")) {
-                        viewModel.ParsiranjeLokacijeZaGlavniIzbornikUser(odgovor, 1);
-                        if (viewModel.getLokacijaNajnovija() != null) {
-                            PostaviPodatkeNajnovijaPivovara();
+                    if (odgovor != null) {
+                        if (odgovor.getString("message").equals("Successfully retrieved location")) {
+                            viewModel.ParsiranjeLokacijeZaGlavniIzbornikUser(odgovor, 1);
+                            if (viewModel.getLokacijaNajnovija() != null) {
+                                PostaviPodatkeNajnovijaPivovara();
+                            }
+                            dohvatPodataka.setSendUrl(urlNajboljaPivoavara);
+                            dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
+                        } else if (odgovor.getString("message").equals("Successfully retrieved best location")) {
+                            viewModel.ParsiranjeLokacijeZaGlavniIzbornikUser(odgovor, 2);
+                            if (viewModel.getLokacijaMjeseca() != null) {
+                                PostaviPodatkePivovaraMjeseca();
+                            }
+                        } else if (odgovor.getString("message").equals("Locations successfully loaded")) {
+                            viewModel.ParsiranjeLokacijeZaGlavniIzbornikUserZaLokacijeUBlizini(odgovor);
+                            PostaviPodatkeNajblizihPivovara();
+                            params = new HashMap<String, String>();
+                            params.put("id_korisnik", Integer.toString(idKorisnika));
+                            dohvatPodataka.setParametri(params);
+                            dohvatPodataka.setSendUrl(urlRecenzije);
+                            dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
+                        } else if (odgovor.getString("message").equals("Succesfully retrived reviews")) {
+                            viewModel.ParsiranjeRecenzijeZaGlavniIzbornikUser(odgovor);
+                            PostaviPodatkeRecenzija();
+                            params = new HashMap<String, String>();
+                            params.put("id_korisnik", Integer.toString(idKorisnika));
+                            dohvatPodataka.setParametri(params);
+                            dohvatPodataka.setSendUrl(urlNajdrazeLokacije);
+                            dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
+                        } else if (odgovor.getString("message").equals("Successfully retrieved my locations")) {
+                            viewModel.ParsiranjeNajdrazihLokacija(odgovor);
+                            postaviPodatkeNajdrazihLokacija();
+                            params = new HashMap<>();
+                            params.put("id_korisnik", Integer.toString(idKorisnika));
+                            dohvatPodataka.setParametri(params);
+                            dohvatPodataka.setSendUrl(urlNajdrazaPiva);
+                            dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
+                        } else if (odgovor.getString("message").equals("Successfully retrieved my beers")) {
+                            viewModel.ParsiranjeNajdrazihPiva(odgovor);
+                            PostaviPodatkeNajdrazihPiva();
+                        } else if (odgovor.getString("message").equals("Couldn't retrieve location")) {
+                            params = new HashMap<String, String>();
+                            params.put("Latituda", Float.toString(KorisnikLatituda));
+                            params.put("Longituda", Float.toString(KorisnikLongituda));
+                            dohvatPodataka.setParametri(params);
+                            dohvatPodataka.setSendUrl(urlNajblizeLokacije);
+                            dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
                         }
-                        dohvatPodataka.setSendUrl(urlNajboljaPivoavara);
-                        dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
-                    } else if (odgovor.getString("message").equals("Successfully retrieved best location")) {
-                        viewModel.ParsiranjeLokacijeZaGlavniIzbornikUser(odgovor, 2);
-                        if (viewModel.getLokacijaMjeseca() != null) {
-                            PostaviPodatkePivovaraMjeseca();
-                        }
-                    } else if (odgovor.getString("message").equals("Locations successfully loaded")) {
-                        viewModel.ParsiranjeLokacijeZaGlavniIzbornikUserZaLokacijeUBlizini(odgovor);
-                        PostaviPodatkeNajblizihPivovara();
-                        params = new HashMap<String, String>();
-                        params.put("id_korisnik", Integer.toString(idKorisnika));
-                        dohvatPodataka.setParametri(params);
-                        dohvatPodataka.setSendUrl(urlRecenzije);
-                        dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
-                    } else if (odgovor.getString("message").equals("Succesfully retrived reviews")) {
-                        viewModel.ParsiranjeRecenzijeZaGlavniIzbornikUser(odgovor);
-                        PostaviPodatkeRecenzija();
-                        params = new HashMap<String, String>();
-                        params.put("id_korisnik", Integer.toString(idKorisnika));
-                        dohvatPodataka.setParametri(params);
-                        dohvatPodataka.setSendUrl(urlNajdrazeLokacije);
-                        dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
-                    } else if (odgovor.getString("message").equals("Successfully retrieved my locations")) {
-                        viewModel.ParsiranjeNajdrazihLokacija(odgovor);
-                        postaviPodatkeNajdrazihLokacija();
-                        params = new HashMap<>();
-                        params.put("id_korisnik", Integer.toString(idKorisnika));
-                        dohvatPodataka.setParametri(params);
-                        dohvatPodataka.setSendUrl(urlNajdrazaPiva);
-                        dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
-                    } else if (odgovor.getString("message").equals("Successfully retrieved my beers")) {
-                        viewModel.ParsiranjeNajdrazihPiva(odgovor);
-                        PostaviPodatkeNajdrazihPiva();
-                    }else if (odgovor.getString("message").equals("Couldn't retrieve location")){
-                        params = new HashMap<String, String>();
-                        params.put("Latituda", Float.toString(KorisnikLatituda));
-                        params.put("Longituda", Float.toString(KorisnikLongituda));
-                        dohvatPodataka.setParametri(params);
-                        dohvatPodataka.setSendUrl(urlNajblizeLokacije);
-                        dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
                     }
 
                 } catch (JSONException e) {

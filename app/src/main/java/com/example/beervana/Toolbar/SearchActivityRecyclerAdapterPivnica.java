@@ -1,4 +1,4 @@
-package com.example.beervana;
+package com.example.beervana.Toolbar;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.modulzamodule.ModelPodatakaLokacijaSOcjenom;
+import com.example.beervana.R;
+import com.example.modulzamodule.Lokacija.ModelPodatakaLokacijaSOcjenom;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class SearchActivityRecyclerAdapterPivnica extends RecyclerView.Adapter<S
     private final List<ModelPodatakaLokacijaSOcjenom> lokacije;
     private final onLokacijaListener onLokacijaListener;
 
-    SearchActivityRecyclerAdapterPivnica(Context context, List<ModelPodatakaLokacijaSOcjenom> lokacije, onLokacijaListener onLokacijaListener) {
+    public SearchActivityRecyclerAdapterPivnica(Context context, List<ModelPodatakaLokacijaSOcjenom> lokacije, onLokacijaListener onLokacijaListener) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
         this.lokacije = lokacije;

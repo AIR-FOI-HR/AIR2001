@@ -19,8 +19,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.modul2.databinding.Modul2ViewPromosFragmentBinding;
-import com.example.modulzamodule.Model1ViewViewModel;
-import com.example.modulzamodule.Model2ViewViewModel;
+import com.example.modulzamodule.Promotions.Model2ViewViewModel;
 import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;
 

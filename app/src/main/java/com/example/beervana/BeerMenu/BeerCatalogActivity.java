@@ -16,8 +16,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.beervana.BaseActivity;
 import com.example.beervana.R;
-import com.example.modulzamodule.Beer;
-import com.example.modulzamodule.BeerLogic;
+import com.example.modulzamodule.Beer.Beer;
+import com.example.modulzamodule.Beer.BeerLogic;
 import com.example.webservice.DohvatPodataka;
 import com.example.webservice.SlanjePodataka;
 

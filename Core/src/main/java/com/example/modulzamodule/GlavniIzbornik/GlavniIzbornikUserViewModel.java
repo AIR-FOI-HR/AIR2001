@@ -1,9 +1,12 @@
-package com.example.modulzamodule;
+package com.example.modulzamodule.GlavniIzbornik;
 
 import androidx.lifecycle.ViewModel;
 
 import com.example.modulzamodule.Beer.Beer;
 import com.example.modulzamodule.Beer.BeerLogic;
+import com.example.modulzamodule.Lokacija.LokacijaLogika;
+import com.example.modulzamodule.Lokacija.ModelPodatakaLokacijaSOcjenom;
+import com.example.modulzamodule.Beer.ModelPodatakaPivoSOcjenom;
 import com.example.modulzamodule.Reviews.Review;
 import com.example.modulzamodule.Reviews.ReviewsLogic;
 
@@ -12,7 +15,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class GlavniIzbornikUserViewModel extends ViewModel {
-    private  ModelPodatakaLokacijaSOcjenom lokacijaNajnovija = null;
+    private ModelPodatakaLokacijaSOcjenom lokacijaNajnovija = null;
     private ModelPodatakaLokacijaSOcjenom lokacijaMjeseca = null;
     private ArrayList<ModelPodatakaLokacijaSOcjenom> lokacijeUBlizini = null;
     private ArrayList<ModelPodatakaLokacijaSOcjenom> lokacijeMoje = null;

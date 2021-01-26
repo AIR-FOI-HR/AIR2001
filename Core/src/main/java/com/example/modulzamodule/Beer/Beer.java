@@ -1,4 +1,4 @@
-package com.example.modulzamodule;
+package com.example.modulzamodule.Beer;
 
 public class Beer {
     private String id_proizvod,id_kategorija,naziv_proizvoda,cijena_proizvoda, okus,litara,slika;
