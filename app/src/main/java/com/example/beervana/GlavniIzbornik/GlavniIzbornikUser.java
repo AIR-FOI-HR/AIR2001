@@ -188,6 +188,12 @@ public class GlavniIzbornikUser extends BaseActivity {
                             if (viewModel.getLokacijaMjeseca() != null) {
                                 PostaviPodatkePivovaraMjeseca();
                             }
+                            params = new HashMap<String, String>();
+                            params.put("Latituda", Float.toString(KorisnikLatituda));
+                            params.put("Longituda", Float.toString(KorisnikLongituda));
+                            dohvatPodataka.setParametri(params);
+                            dohvatPodataka.setSendUrl(urlNajblizeLokacije);
+                            dohvatPodataka.retrieveData(getApplicationContext(), requestQueue);
                         } else if (odgovor.getString("message").equals("Locations successfully loaded")) {
                             viewModel.ParsiranjeLokacijeZaGlavniIzbornikUserZaLokacijeUBlizini(odgovor);
                             PostaviPodatkeNajblizihPivovara();
