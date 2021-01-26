@@ -129,9 +129,11 @@ public class GlavniIzbornikUser extends BaseActivity {
         idiNaNajboljuPivovaru.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), BeerplaceHomepageActivityNew.class).putExtra("id_lokacija", viewModel.getLokacijaMjeseca().getLokacija().getId_lokacija())
-                        .putExtra("naziv_lokacije", viewModel.getLokacijaMjeseca().getLokacija().getNazivLokacija())
-                        .putExtra("ocjena_lokacije", viewModel.getLokacijaMjeseca().getOcjena()));
+                if(viewModel.getLokacijaMjeseca() !=null) {
+                    startActivity(new Intent(getApplicationContext(), BeerplaceHomepageActivityNew.class).putExtra("id_lokacija", viewModel.getLokacijaMjeseca().getLokacija().getId_lokacija())
+                            .putExtra("naziv_lokacije", viewModel.getLokacijaMjeseca().getLokacija().getNazivLokacija())
+                            .putExtra("ocjena_lokacije", viewModel.getLokacijaMjeseca().getOcjena()));
+                }
             }
         });
 
