@@ -2,12 +2,17 @@ package com.example.beervana;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.beervana.GlavniIzbornik.GlavniIzbornikClient;
@@ -16,11 +21,17 @@ import com.example.beervana.Toolbar.SearchActivity;
 import com.example.beervana.Toolbar.SettingsActivity;
 import com.example.beervana.UserData.UserDataActivity;
 
-public abstract class BaseActivity extends AppCompatActivity {
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
+public abstract class BaseActivity extends AppCompatActivity implements LocationListener {
     EditText pretrazivanje;
     TextView naslovna;
     private SharedPreferences sp;
     int uloga;
+    private Boolean gotLocation = false;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +142,28 @@ public abstract class BaseActivity extends AppCompatActivity {
         naslovna = findViewById(R.id.naslovna);
         naslovna.setEnabled(true);
     }
-
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+        if (location.getAccuracy() < 1000 && !gotLocation && location != null) {
+            gotLocation = true;
+            double latitude, longitude;
+            Geocoder geocoder = new Geocoder(this,
+                    Locale.getDefault());
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
+            try {
+                List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+                editor = sp.edit();
+                editor.putFloat("Latitude", (float) addresses.get(0).getLatitude());
+                editor.putFloat("Longitude", (float) addresses.get(0).getLongitude());
+                editor.putString("Country", addresses.get(0).getCountryName());
+                editor.putString("City", addresses.get(0).getLocality());
+                editor.putString("Address", addresses.get(0).getAddressLine(0));
+                editor.apply();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }
