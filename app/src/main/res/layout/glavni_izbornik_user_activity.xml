@@ -29,7 +29,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
-            app:srcCompat="@drawable/beervana_banner_user" />
+            app:srcCompat="@drawable/w" />
 
         <ImageView
             android:id="@+id/imageView10"
